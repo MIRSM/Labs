@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>PACK(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PACK(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+pack - упаковка файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+     pack  [-] [-f] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда pack предпринимает попытку сохранить  указанные
+файлы  в  сжатой  форме,  то есть упаковать информацию.
+Когда только возможно (и имеет смысл),  каждый  входной
+файл  заменяется упакованным вариантом с именем файл.z,
+который имеет тот же режим доступа, те же даты  доступа
+и  модификации,  того  же  владельца. Опция -f вызывает
+принудительную упаковку файла. Она используется для того, чтобы упаковать весь каталог, даже если для некоторых файлов это невыгодно. Если команда выполняется  успешно,  то  исходный файл  удаляется. Упакованные файлы
+могут быть преобразованы в свою первоначальную форму  с
+помощью команд <a href=UNPACK.htm>unpack(1)</a> или <a href=PCAT.htm>pcat(1)</a>.
+<p align=justify>Командой pack используется метод  кодирования  Хаффмана
+(с минимальной избыточностью) на побайтной основе. Если
+используется опция  -,  то  устанавливается  внутренний
+флаг, определяющий выдачу на  стандартный  вывод  количества использований каждого байта, относительную  частоту использования и код для байта. Дополнительное  задание опции - на месте аргумента файл  устанавливает  и
+сбрасывает этот внутренний флаг.
+<p align=justify>Итоговая степень сжатия зависит  от  размера  исходного
+файла и от распределения частоты символов. Так как  дерево декодировки занимает начало  каждого  упакованного
+.z-файла, то обычно не стоит упаковывать файлы,  размер
+которых менее трех блоков,  если  только  распределение
+частоты символов не является очень  неравномерным,  что
+может иметь место в случае чертежа или картинки.
+<p align=justify>Обычно текстовые файлы уменьшаются до 60-75% от  своего
+первоначального размера. Загрузочные модули, в  которых
+используется более широкое множество символов и в которых распределение символов более равномерно,  подвергаются меньшему сжатию; размер упакованной  версии  файла
+составляет примерно 90% от первоначального.
+<p align=justify>Команда pack возвращает значение, равное числу  файлов,
+которые не удалось упаковать.
+<p align=justify>В следующих случаях упаковки файла не происходит:
+<ol>
+<li> Файл уже упакован.
+<li> Имя файла состоит более чем из 12 символов.
+<li> На файл есть ссылки.
+<li> Файл является каталогом.
+<li> Файл не может быть открыт.
+<li> Упаковка не сэкономит дисковое пространство.
+<li> Файл с именем файл.z уже существует.
+<li>  .z-файл не может быть создан.
+<li> Ошибка ввода/вывода по время выполнения упаковки.
+</ol>
+<p align=justify>Простое имя файла не должно состоять более  чем  из  12
+символов, чтобы можно было добавить расширение .z.  Каталоги упаковывать нельзя.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CAT.htm>cat(1)</a>, <a href=PCAT.htm>pcat(1)</a>, <a href=UNPACK.htm>unpack(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/krest.html -->
+<HTML><HEAD><TITLE>Фракталы: Крест</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Крест.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Крест.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Крест</H1></TD></TR></TBODY></TABLE>
+<CENTER><IMG height=530 alt=Крест src="Фракталы Крест.files/fr030.gif" width=530 
+border=0></CENTER>
+<DIV align=justify>Этот фрактал получается применением двух преобразований на 
+основе метода Монте-Карло. Эти преобразования выглядят следующим образом: <BR>
+<CENTER><IMG height=187 src="Фракталы Крест.files/fr031.gif" width=252 
+border=0>.</CENTER>Здесь L - поворот на 90 градусов относительно точки (0, 0), а 
+R - "растяжение" относительно точки (1, 0) с переменным показателем, который 
+зависит от растояния от центра (1, 0). Приведенный пример получен при a=2,8. <PRE><B>program</B> Rnd;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+   gd,gm : Integer;
+   
+B&gt;Procedure</B> draw;
+<B>const</B>
+  iter = 70000;
+  a = 2.8;
+<B>Var</B>
+   t, x, y, p : Real;
+   k : LongInt;
+   mx, my, rad : Integer;
+<B>Begin</B>
+   mx := 320;
+   my := 240;
+   rad := 200;
+   Randomize;
+   x := 0.0;
+   y := 0.0;
+   <B>For</B> k := 1 <B>To</B> iter <B>Do</B> <B>Begin</B>
+      p := Random;
+      t := x;
+     <B>If</B> p &lt;= 1/2 <B>Then</B> <B>Begin</B>
+         x := -y;
+         y := t;
+      <B>End</B>
+      <B>Else</B>
+         <B>Begin</B>
+            x := 1+(a*(x-1))/(sqr(x-1)+sqr(y)+1);
+            y := a*y/(sqr(t-1)+sqr(y)+1);
+         <B>End</B>;
+      PutPixel(mx + Round(rad * x), my - Round(rad * y), 2);
+   <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   draw;
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+<PRE></PRE></PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 11.10.04<BR>Дата последнего обновления: 11.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Крест.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

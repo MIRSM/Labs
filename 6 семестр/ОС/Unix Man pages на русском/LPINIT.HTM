@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>LPINIT(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LPINIT(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+lpinit - подключает, переустанавливает конфигурацию и поддерживает
+принтеры.
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/lpinit
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+lpinit - это программа-оболочка для конфигурирования и  подключения
+новых принтеров к системе, а также для поддержания и  переустановки
+конфигурации существующих принтеров. Она должна вцыполняться только
+администратором системы.
+<p align=justify>
+lpinit  задает  ряд  вопросов,  на  которые  высвечивается ответ по
+умолчанию. Вы  можете нажать  RETURN, если  принимаете значение  по
+умолчанию, или ввести новое значение.
+<p>
+lpinit высвечивает меню со следующими опциями:
+<pre>
+   1) Add a new printer
+   2) Remove a printer
+   3) Reconfigure an existing printer
+   4) Assign a system default printer
+   5) Print lp status information
+</pre>
+При переустановке конфигурации существующего принтера высвечиваются
+следующие опции:
+<pre>
+   1) Insert a printer into class
+   2) Remove a printer from a class
+   3) Install a new interface program for a printer
+   4) Associate a new device with a printer
+</pre>
+Информация, запрашиваемая у администратора системы, включает:
+<ul>
+<li>устройство принтера (например, /dev/lp0).
+<li>Режим обработки символов  принтера. (Значение по умолчанию  не
+интерпретируется.   Дополнительную   информацию   смотрите   в
+"Описании".)
+<li>Имя принтера (по умолчанию - printer).
+<li>Полное  имя интерфейсной  программы (поддерживается  несколько
+версий программ).
+<li>Имя  класса, в  который включается  или из  которого удаляется
+принтер.
+<li>является   ли   подключаемый  или  переустанавливаемый принтер
+параллельным, последовательным или удаленным принтером.
+<li>требует  ли  подключаемый  или  переустанавливаемый    принтер
+специальной обработки символов возврата каретки и перевода  на
+новую строку.
+</ul><p align=justify>
+Имя принтера может представлять собой любую комбинацию вплоть до 14
+буквенно-численных символов  и символа  подчеркивания. Интерфейсная
+программа печати может быть программой-оболочкой, C-программой  или
+любой другой  выполняемой программой,  а также  модификацией версии
+/usr/spool/lp/model/dumb. (Смотрите раздел "Интерфейсные  программы
+печати" на странице документации <a href=LPADMI~1.htm>lpadmin(8)</a>.)
+<p align=justify>
+Подключая новый принтер  lpinit изменяет состояние  нового принтера
+на "accept"  (прием) и  активизирует его  для печати  файлов. Затем
+/etc/lpinit  спрашивает,  будет  ли  новый  принтер  назначен   для
+печати по  умолчанию. Все  запросы без  задания спецификаций  будут
+направляться на устройство, определяемое по умолчанию (см. <a href=LP.htm>lp(1)</a>).
+<p align=justify>
+Если  lpinit  вызывается  при  работающем  планировщике  печати, то
+пользователь получит  напоминание о  том, что  всякая печать  может
+быть  прервана,  и  вопрос,  хочет  ли  он  продолжать. Планировщик
+получит управление после выхода  из lpinit, только если  при вызове
+lpinit он функционировал или если подключался новый принтер.
+<p align=justify>
+Действия  по  установке  конфигурации  нового  принтера  могут быть
+выполнены  раздельно  (смотрите <a href=LPADMI~1.htm>lpadmin(8)</a>, <a href=ACCEPT.htm>accept(1)</a>, <a href=ENABLE.htm>enable(1)</a>  и
+<a href=LPSCHE~1.htm>lpsched(8)</a>).
+<p><b>ФАЙЛЫ</b>
+<pre>
+  /etc/lpinit
+  /usr/lib/mkdev/lp
+</pre>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Некоторые  принтеры  требуют  преобразования  символов  перевода на
+новую  строку,  табуляции  и  перевода  на новую страницу. В режиме
+интерпретации система посылает символы  перевода на новую строку  в
+виде  символов  возврата  каретки,  табуляции  -  в  виде   нужного
+количества пробелов, а перевода на новую страницу - в виде  нужного
+количества возвратов каретки. В режиме отсутствия интерпретации (по
+умолчанию) система посылает символы на принтер без изменений.
+<p align=justify>
+При подключении параллельного принтера вы получите вопрос,  требует
+ли  принтер  преобразование  символов  перевода  на  новую  строку,
+табуляции и перевода на  новуюстраницу. Если нет -  нажмите RETURN.
+Если  да  -  нажмите  y.  В  последнем  случае  будет  выбран режим
+интерпретации и принтеру будет приписано устройство /dev/lp[012]f.
+<p align=justify>
+Если  вы   выбрали  режим   интерпретации,  обратите   внимание  на
+следующее:
+<ul>
+<li>Вы  должны  быть  уверены,  что установка позиционирования верха
+страницы  на  принтере  совпадает  с  соответствущей  установкой
+драйвера печати.
+<li>Если вы  запускаете программу,  выполняющую любые  нестандартные
+установки  междустрочного   расстояния,  например,   сдвиги   на
+полстроки  или  8  строк  на  дюйм, тогда позиционирование верха
+страницы в процессе печати будет смещено.
+<li>Если   выходные   данные   содержат   символы,    обрабатываемые
+неединообразно,  то  преобразование  символа  табуляции может не
+сработать.
+<li>Обратите внимание,  что если  ваш принтер  может быть установлен
+(например, посредством микропереключателей) на обработку символа
+перевода на новую строку,  как символа новой строки,  и возврата
+каретки, как возврата каретки, и если принтер может генерировать
+свои собственные табуляции и переводы на новую страницу, то  вам
+следует выбрать режим отсутствия интерпретации. Если ваш принтер
+не  может  автоматически  генерировать  табуляцию,  вы все равно
+можете выбрать  этот режим,  используя опцию  -e команды  <a href=PR.htm>pr(1)</a>,
+когда печатаете файлы, содержащие символы табуляции.
+</ul>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCEPT.htm>accept(1)</a>, <a href=ENABLE.htm>enable(1)</a>, <a href=LP.htm>lp(1)</a>, <a href=LPADMI~1.htm>lpadmin(8)</a>, <a href=LPSCHE~1.htm>lpsched(8)</a>, <a href=PR.htm>pr(1)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\bin\Debug\PIASBuilder.exe.config
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\bin\Debug\PIASBuilder.exe
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\bin\Debug\PIASBuilder.pdb
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\obj\Debug\PIASBuilder.csprojAssemblyReference.cache
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\obj\Debug\PIASBuilder.csproj.CoreCompileInputs.cache
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\obj\Debug\PIASBuilder.exe
+C:\Users\ugrov\source\repos\PIASBuilder\PIASBuilder\obj\Debug\PIASBuilder.pdb

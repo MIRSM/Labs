@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/mink.html -->
+<HTML><HEAD><TITLE>Фракталы: Кривая Минковского</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Кривая Минковского.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Кривая Минковского.files/lab24.gif" width=150 
+    border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Кривая Минковского</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=500 alt="Кривая Минковского" 
+src="Фракталы Кривая Минковского.files/fr034.gif" width=740 border=0></CENTER><PRE><B>program</B> mink;
+<B>uses</B> crt,graph;
+<B>Const</B>
+  min=4;
+<B>var</B>
+  a,b:integer;
+<B>procedure</B> rotate_plus(<B>var</B> x,y:integer);
+<B>var</B> t:integer;
+<B>begin</B>
+   t:=x;
+   x:=y;
+   y:=-t
+<B>end</B>;
+<B>procedure</B> rotate_minus(<B>var</B> x,y:integer);
+<B>var</B> t:integer;
+<B>begin</B>
+   t:=x;
+   x:=-y;
+   y:=t
+<B>end</B>;
+<B>procedure</B> draw(x,y:integer;length:word);
+<B>var</B> t:word;
+<B>begin</B>
+   <B>if</B> keypressed <B>then</B> exit;
+   <B>if</B> length&gt;= min <B>then</B>
+    <B>begin</B>
+     t:=length <B>div</B> 4;
+     draw(x,y,t);
+     rotate_plus(x,y);
+     draw(x,y,t);
+     rotate_minus(x,y);
+     draw(x,y,t);
+     rotate_minus(x,y);
+     draw(x,y,t);
+     draw(x,y,t);
+     rotate_plus(x,y);
+     draw(x,y,t);
+     rotate_plus(x,y);
+     draw(x,y,t);
+     rotate_minus(x,y);
+     draw(x,y,t)
+    <B>end</B>
+   <B>else</B> linerel(length*x,length*y)
+  <B>end</B>;
+<B>begin</B>
+ initgraph(a,b,'c:\bp\bgi');
+ moveto(50,200);
+ draw(1,0,512);
+ readkey;
+ closegraph
+<B>end</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 11.10.04<BR>Дата последнего обновления: 11.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Кривая Минковского.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

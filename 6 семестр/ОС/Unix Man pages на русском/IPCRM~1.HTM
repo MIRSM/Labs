@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>IPCRM(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IPCRM(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ipcrm - удаляет идентификаторы очередей сообщений, семафоров или
+общей памяти.
+<p><b>СИНТАКСИС</b>
+<pre>
+ ipcrm [options]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+ipcrm -  удаляет идентификаторы  очередей сообщений,  семафоров или
+общей памяти. Эти идентификаторы задаются следующими опциями:
+<dl>
+<dt>-q msqid
+<dd>удаляет  идентификатор  очереди сообщений msqid     из
+системы и разрушает связанные с ним очередь  сообщений
+и структуру данных.
+<dt>-m shmid
+<dd>удаляет из системы  идентификатор общей памяти  shmid.
+Связанные  с  ним  сегмент  общей  памяти  и структура
+данных разрушаются после последнего обращения.
+<dt>-s semid
+<dd>удаляет  из  системы  идентификатор  семафора  semid и
+разрушает связанные с ним набор семафоров и  структуру данных.
+<dt>-Q msgkey
+<dd>удаляет  идентификатор  очереди сообщений, созданный с
+помощью  ключа  msgkey,   из  системы  и   разрушает
+связанные с ним очередь сообщений и структуру данных.
+<dt>-M shmkey
+<dd>удаляет  из  системы    идентификатор  общей   памяти,
+созданный с помощью ключа   shmkey.  Связанные  с  ним
+сегмент общей  памяти и  структура данных  разрушаются
+после последнего обращения.
+<dt>-S semkey
+<dd>удаляет    из    системы    идентификатор    семафора,
+созданный  с  помощью   ключа    semkey  и   разрушает
+связанные с ним набор семафоров и структуру данных.
+</dl><p align=justify>
+Подробности  этих  удалений  описываются  на  страницах  <a href=MSGCTL.htm>msgctl(2)</a>,
+<a href=SHMCTL.htm>shmctl(2)</a>  и  <a href=SEMCTL.htm>semctl(2)</a>.  Можно  найти  упомянутые идентификаторы и
+ключи с помощью <a href=IPCS~1.htm>ipcs(8)</a>.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=IPCS~1.htm>ipcs(8)</a>, <a href=MSGCTL.htm>msgctl(2)</a>, <a href=MSGGET.htm>msgget(2)</a>, <a href=MSGOP.htm>msgop(2)</a>, <a href=SEMCTL.htm>semctl(2)</a>, <a href=SEMGET.htm>semget(2)</a>,
+<a href=SEMOP.htm>semop(2)</a>, <a href=SHMCTL.htm>shmctl(2)</a>, <a href=SHMGET.htm>shmget(2)</a>, <a href=SHMOP.htm>shmop(2)</a>
+<p align=justify><b>ПРИМЕЧАНИЕ</b><br>
+ipcrm не может использоваться  для удаления семафоров, созданных  с
+помощью creatsem(2),  или для  удаления общей  памяти, созданной  с
+помощью sdget(2).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

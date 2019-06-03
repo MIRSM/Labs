@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>MKFS(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MKFS(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mkfs - формирует файловую систему.
+<p><b>СИНТАКСИС</b>
+<pre>
+/etc/mkfs [-y] [-n] special blocks[:inodes] [gap inblocks]
+/etc/mkfs [-y] [-n] special proto [gap inblocks]
+                            [-s blocks [:inode]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+mkfs  формирует  файловую  систему,  записывая данные в специальный
+файл special  в соответствии  с указаниями,  заданными в  остальной
+части командной строки.
+<p align=justify>
+Если  оказывается,  что  этот  специальный  файл  содержит файловую
+систему, то, прежде чем переписывать в нем информацию,  потребуется
+подтверждение от  оператора. Выбор  опции -y  ("да") перебивает эту
+установку и задет перезапись информации без всяких вопросов.  Опция
+-n заставляет mkfs  прекратить работу без  всяких вопросов, если  в
+назначенном  файле   содержится  существующая   файловая   система.
+Выполняемая проверка заключается в  том, что читается блок  номер 1
+(суперблок)  и  производится  сравнение  байтов.  Если сравнение не
+проходит,  то   предполагается,  что   изменения  несут    значащую
+информацию и требуется подтверждение оператора.
+<p align=justify>
+Если второй аргумент  задается в виде  строки цифр, то  mkfs строит
+файловую систему с единственным пустым каталогом в ней. Размер этой
+файловой  системы  определяется  значением blocks, интерпретируемым
+как    десятичное    число.    Загрузочная    программа    остается
+неинициализированной.  Если  задано  количество  inodes   индексных
+дескрипторов, тогда это число  должно совпадать с оценочным  числом
+количества  файлов  в  файловой  системе.  Если этот необязательный
+аргумент  не  задается,  тогда  количество  индексных  дескрипторов
+вычисляется как функция размера файловой системы.
+<p align=justify>
+Если второй  аргумент представляет  собой имя  файла, который может
+быть открыт, mkfs предполагает, что это - файл прототипов proto,  и
+черпает из  него необходимые  инструкции. Файл  прототипов содержит
+лексемы,  разделенные  пробелами  или  символами  перевода на новую
+строку. Первая лексема - имя  файла, который копируется в блок  0 в
+качестве   программы-загрузчика.   Заголовок   программы-загрузчика
+должен быть  отсечен (см.  <a href=STRIP.htm>strip(1)</a>).  Если  же это  не сделано, то
+mkfs выдаст предупреждение. Вторая лексема задает размер  созданной
+файловой системы.  Обычно это  - количество  блоков на  устройстве,
+возможно,  уменьшенное  за  счет  пространства  свопинга. Следующая
+лексема - это размер индексного списка (i-list) в блоках. Следующие
+лексемы   задают   спецификации   корневого   файла   (root  file).
+Спецификации  файла  состоят  из  лексем,  задающих  режим доступа,
+пользовательский идентификатор, групповой идентификатор и  исходное
+содержание  файла.  Синтаксис  поля  содержания  зависит  от режима
+доступа к файлу.
+<p align=justify>
+Режим доступа к файлу задается строкой из 6 символов. Первый символ
+задает  тип  файла.  (Символы   -bcd  задают  соответственно   файл
+регулярного   типа,   специальный   файл    блочно-ориентированного
+устройства и  файл каталога.)  Второй символ  может быть  либо "u",
+либо  "-",  определяя  тип  пользовательского режима. Третий символ
+может быть либо "g", либо "-", определяя режим групповых установок.
+Остальные  символы  режима  доступа  представляют собой трехзначное
+восьмиричное  число,  задающее  разрешения  на  запись,  чтение   и
+выполнение в  отношении владельца,  группы и  прочих пользователей;
+см. <a href=CHMOD.htm>chmod(1)</a>.
+<p align=justify>
+После лексемы  режима доступа  идут два  десятичных числа,  которые
+задают пользовательский и групповой идентификаторы владельца файла.
+<p align=justify>
+Если  файл  является  регулярным   файлом,  то  следующая   лексема
+представляет собой полное имя  файла, размер и содержимое  которого
+копируются.  Если  файл  является  специальным  файлом блочного или
+символьного  устройства,  то  далее  следуют  два десятичных числа,
+которые  представляют  главное  (большее)  и  малое (меньшее) числа
+устройства. Если файл является  файлом каталога, то mkfs  формирует
+структуры "." и ".." и  затем считывает список имен и  (рекурсивным
+образом) спецификации файлов  для входных структур  этого каталога.
+Сканирование прерывается лексемой $.
+<p>
+Ниже приведен пример спецификации прототипа:
+<pre>
+  /stand/diskboot
+  4872 110
+  d--777 3 1
+  usr d --773 3 1
+     sh ---755 3 1 /bin/sh
+     ken d --755 6 1
+         $
+     b0 b--644 3 1 0 0
+     c0 c--644 3 1 0 0
+     $
+  $
+</pre><p align=justify>
+Во  второй  версии  данной  команды  опция  -s  перебивает размер и
+количество индексных дескрипторов в файле proto.
+<p align=justify>
+В  обоих  вариантах   этой  команды  могут   быть  заданы   факторы
+чередования  для  диска  gap  и  inblocks.  Эти  факторы определяют
+аппаратное функционирование жестких дисков и подробно описываются в
+Руководстве администратора системы UNIX.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD.htm>chmod(1)</a>, filesystem(3), dir(3), <a href=STRIP.htm>strip(1)</a>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+При  использовании  файла  прототипов  не существует способа задать
+количество связей.  И если  в командной  строке задается количество
+индексных дескрипторов,  то максимальное  их количество  в файловой
+системе может быть 65500.
+<p align=justify>
+Эта утилита  использует блоки  размера BSIZE.  В отношении размеров
+блоков файловой системы смотрите страницу документации manual(HW).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

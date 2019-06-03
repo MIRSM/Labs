@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>ADDKERN(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ADDKERN(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+addkern - добавление драйвера устройства или модуля потока к ядру ОС UNIX
+<p><b>СИНТАКСИС</b>
+<pre>
+  /etc/addkern  [-a размер] [-a выполняемый_файл] [-x адрес]
+  [-f адрес] [-l]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита addkern обеспечивает добавление драйверов  устройств  или  модулей потоков к ядру ОС UNIX. Применение
+всех опций, за исключением -l, доступно  только  суперпользователю.  Из всех возможных опций должна быть указана ровно одна.
+<P>
+Опциям утилиты addkern приписан следующий смысл:
+<table></tr>
+<tr valign=top><td>-a размер<td>
+Выделение  пространства в виртуальной и физической
+памяти ядра. В случае успеха  возвращается  виртуальный адрес в пространстве ядра, который выдается
+на  стандартный вывод для последующих вызовов утилит <a href=DOWNLOAD.htm>download(1M)</a> и addkern.</tr>
+<tr valign=top><td>-a выполняемый_файл<td>
+Выделение  пространства в виртуальной и физической
+памяти ядра. Размер вычисляется по секциям  выполняемого_файла.</tr>
+<tr valign=top><td>-x адрес<td>
+Активация  драйвера  устройства или модуля потока.
+Адрес является виртуальным адресом в  пространстве
+ядра, заранее полученным с помощью вызова  addkern
+-a.  UNIX-ядро предполагает, что по данному адресу
+находится структура типа  addkern.  Эта  структура
+определяется  во  включаемом  файле &lt;sys/conf.h&gt; и
+будет сгенерирована программой addconf  [см.  <a href=CONFIG.htm>config(1M)</a>].</tr>
+<tr valign=top><td>-f адрес<td>
+Деактивация драйвера устройства или модуля потока.
+Адрес является виртуальным адресом в  пространстве
+ядра,  заранее  полученным  и активированным с помощью вызовов addkern. UNIX-ядро предполагает, что
+по данному адресу находится  структура  типа  addkern.  После полной деактивации область памяти будет освобождена и возвращена в  пул  физической  и
+виртуальной памяти ядра.</tr>
+<tr valign=top><td>-l<td>
+На  стандартный вывод выдается список выделенных и
+активных в ядре структур типа addkern.</tr>
+</table>
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+/usr/include/sys/conf.h
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ADD.htm>add(1M)</a>, <a href=CONFIG.htm>config(1M)</a>, <a href=DOWNLOAD.htm>download(1M)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Диагностические сообщения утилиты addkern не  нуждаются
+в пояснениях.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Предоставьте  вызовы  addkern  -a  и addkern -x утилите
+<a href=ADD.htm>add(1M)</a> - у нее больше информации.
+<p align=justify>
+Вызывайте addkern с опциями -a, -x, -f только  в  однопользовательском режиме.
+<p align=justify>
+Использование addkern может вызвать аварийный отказ Вашей системы.
+<p align=justify>
+Использовать addkern рекомендуется только лучшим специалистам (гуру) по операционной системе UNIX.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

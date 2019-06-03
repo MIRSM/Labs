@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/mcurve.html -->
+<HTML><HEAD><TITLE>Фракталы: Кривая-М</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY background="Фракталы Кривая-М.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Кривая-М.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Кривая-М</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<P>Назовем пилой порядка n кусочно-линейную функцию, непрерывную на отрезке [0, 
+1], значения которой осциллируют между 0 и 2<SUP>-n</SUP>, а производная, где 
+она существует, принимает значения 1 или -1. Тогда кривая М. - график суммы пил 
+всех порядков от 1 до бесконечности. <BR>
+<CENTER><IMG height=340 alt=Кривая-М src="Фракталы Кривая-М.files/fr056.gif" 
+width=512 border=0> </CENTER>
+<P></P><PRE><B>Program</B> Ms;
+<B>Uses</B> Graph, Crt;
+<B>const</B>
+  l=512;
+<B>Var</B>
+   n,t    : Integer;
+   gd, gm : Integer;
+   m      : <B>Array</B> [0..l] <B>of</B> Integer;
+   a      : Integer;
+   t2     : integer;
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd, gm, 'c:\bp\bgi');
+   <B>For</B> n:=0 <B>to</B> l <B>do</B> m[n]:=0;
+   <B>For</B> t:=1 <B>to</B> 8 <B>do</B> <B>Begin</B>
+     n:=0;
+     <B>Repeat</B>
+       t2:=Round(exp(t*ln(2)));
+       <B>For</B> a:=0 <B>to</B> t2 <B>do</B> m[n+a]:=m[n+a]+a;
+       <B>For</B> a:=t2-1 <B>downto</B> 1 <B>do</B> m[n+2*t2-a]:=m[n+2*t2-a]+a;
+      n:=n+2*t2;
+     <B>Until</B> n&gt;=l;
+   <B>End</B>;
+   <B>For</B> n:=0 <B>to</B> l <B>do</B> Line(n, 439 - m[n], n - 1, 439 - m[n-1]);
+   ReadKey;
+   CloseGraph;
+<B>end</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 26.11.04<BR>Дата последнего обновления: 26.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Кривая-М.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

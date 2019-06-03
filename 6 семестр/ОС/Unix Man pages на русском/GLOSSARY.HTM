@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>GLOSSARY(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GLOSSARY(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	glossary - толковый словарь терминов системы UNIX
+<p><b>СИНТАКСИС</b>
+<pre>
+      [help] glossary  [термин]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда справочной службы glossary предоставляет  определения технических терминов и символов системы UNIX.
+<p align=justify>	Команда glossary без аргумента изображает на экране меню терминов и символов, занесенных в словарь. Пользователь  может  либо выбрать один из них, либо вернуться в
+	систему, введя q (quit - выйти). Когда  термин  выбран,
+	его  определение считывается и выдается на экран. Делая
+	соответствующий выбор в меню, можно вновь получить список терминов и символов.
+<p align=justify>	Определение термина можно запросить  непосредственно  с
+	уровня операционной системы (см. СИНТАКСИС), минуя  начальное меню. При этом некоторые  символы  должны  быть
+	экранированы, чтобы команда glossary могла  их  распознать. Ниже перечислены символы и правила их экранирования.
+<p><table border=1>
+<tr valign=top><th>Символ  <th> Экранирующая последовательность
+<tr valign=top><td>  ""     <td>     \"\"
+<tr valign=top><td>  ''    <td>     \'\'
+<tr valign=top><td>  []     <td>  \\[\\]
+<tr valign=top><td>  ``    <td>     \`\`
+<tr valign=top><td>  #     <td>     \#
+<tr valign=top><td>  &      <td>   \&
+<tr valign=top><td>  *   <td>   \*
+<tr valign=top><td>  \    <td>     \\\\
+<tr valign=top><td>  |   <td>   \| 
+</table>
+<p align=justify>	В любой момент диалога со справочной службой  пользователь может выполнить команду shell'а [см. <a href=SH.htm>sh(1)</a>], введя
+	! и собственно команду. После ее выполнения экран перерисовывается, если команда  была  введена  в  ответ  на приглашение первого уровня; в противном случае  перерисовывается только приглашение.
+<p align=justify>	По умолчанию справочная служба  роллирует  изображение.
+	Если Вы предпочитаете, чтобы экран очищался перед выводом данных (без роллинга),  переменной  shell'а  SCROLL
+	нужно присвоить значение no и экспортировать ее,  чтобы
+	сделать частью окружения. Для этого в  пользовательский
+	профайл .profile [см. <a href=PROFILE.htm>profile(4)</a>]  достаточно  вставить
+	строку
+<pre>
+     SCROLL=no; export SCROLL
+</pre>
+	Чтобы вернуть роллинг, переменной SCROLL нужно  присвоить значение yes.
+<p align=justify>	Каждой из команд справочной  службы  (starter,  locate,
+	usage, glossary и help) посвящена отдельная статья настоящего Справочника.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	help(1), <a href=LOCATE.htm>locate(1)</a>, <a href=SH.htm>sh(1)</a>, <a href=STARTER.htm>starter(1)</a>, <a href=USAGE.htm>usage(1)</a>.<br>
+	term(5) в Справочнике программиста.<br>
+	helpadm(1M) в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+	Если переменная окружения TERM не  установлена,  то  по
+	умолчанию считается, что работа идет с терминалом  типа
+	450. Список допустимых типов  терминалов  содержится  в
+	файле <a href=TERM~1.htm>term(5)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

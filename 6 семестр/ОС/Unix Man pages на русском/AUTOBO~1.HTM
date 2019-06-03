@@ -1,0 +1,219 @@
+<html>
+<head>
+<title>AUTOBOOT(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>AUTOBOOT(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+autoboot - Автоматически загружает систему.
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Можно  установить  систему  на  автоматическое  прохождение  стадий
+загрузки  (как  определено   в  /etc/default/boot)  при   включении
+(загрузке) компьютера,  при условии,  что на  подсказку boot(HW) не
+нажимается никакая клавиша.
+<p align=justify>
+Если  время  ожидания  ввода  на  загрузочную  подсказку истекает и
+LOADXENIX=YES, тогда системе передается в загрузочную строку  слово
+"auto", командам init(5), <a href=FSCK~1.htm>fsck(8)</a> и <a href=ASKTIME.htm>asktime(8)</a> передается  аргумент 
+-a.
+<p align=justify>
+Кроме этого,  величина TIMEOUT  должна быть  установлена так, чтобы
+задавать  определенное  количество  секунд  ожидания  до  истечения
+времени,  отводимого  для  реакции  пользователя  на   загрузочную.
+подсказку.
+<p align=justify>
+Процедура  autoboot  проверяет  файл  /etc/default/boot  на наличие
+следующих инструкций по автозагрузке:
+<dl>
+<dt>LOADXENIX=YES или NO
+<dd>boot(HW) либо ждет истечения заданного срока
+и загружает  систему XENIX,  либо нет.  boot
+ищет     эту     переменную     в      файле
+/etc/default/boot на устройстве определяемом
+по умолчанию.
+<dt>FSCKFIX=YES или NO
+<dd>fsck(8)    либо    исправляет   затруднения,
+возникшие  с  корневой  системой,  либо нет.
+Если эта  переменная установлена  в YES,  то
+fsck(ADM) запускается для корневой системы с
+аргументом -rr.
+<dt>MULTIUSER=YES или NO
+<dd>init(5) либо вызовает sulogin или  переходит
+в многопользовательский режим, либо нет.
+<dt>PANICBOOT=YES или NO
+<dd>После    сбоя    panic()    система     либо
+перезагружается,  либо  нет.  Эта переменная
+читается    командой    init    из     файла
+/etc/default/boot.
+<dt>RONLYROOT=YES или NO
+<dd>Корневая файловая система монтируется либо с
+режимом   доступа   readonly   (только   для
+чтения),  либо  нет.  Следует   использовать
+только  во  время  инсталляции,  но  не  для
+нормальной загрузки. Эффективно защищает  от
+записи в файловую систему.
+<dt>DEFBOOTSTR=bootstring
+<dd>Устанавливает      загрузочную       строку,
+воспринимаемую по  умолчанию, в  bootstring.
+Это  -  строка,  используемая  при загрузке,
+когда  пользователь  на  подсказку   "Boot:"
+нажимает  просто  RETURN  или когда истекает
+срок ожидания реакции на эту подсказку.
+<dt>SYSTTY=x
+<dd>Если  x  равно   1,  то  системная   консоль
+устанавливается на последовательный  адаптер
+COM, если же x равно 0, то системная консоль
+устанавливается на главный адаптер дисплея.
+<dt>TIMEOUT=n
+<dd>где n - количество секунд ожидания ввода на
+подсказку "Boot:" перед загрузкой ядра (если
+LOADXENIX=YES). Если величина TIMEOUT не
+задана, то по умолчанию устанавливается одна
+минута.
+</dl>
+<p align=justify>
+Если  нужная  переменная  или  файл  /etc/default/boot  не  могут быть
+найдены, то  переменная устанавливается  в NO.  Но если  не обнаружена
+файловая система, то значением PANICBOOT будет YES.
+<p align=justify>
+Файл  /etc/default/boot  поставляется  со  следующими  установками  по
+умолчанию:
+<pre>
+       LOADXENIX=YES
+       FSCKFIX=YES
+       MULTIUSER=YES
+       PANICBOOT=NO
+</pre><p align=justify>
+Для  проверки  больших  файловых  систем  команде  fsck требуется файл
+scratch. Во время  инсталляции системы XENIX  пользователю сообщается,
+нуждается ли  система в  файле scratch  для работы  fsck. Если  да, то
+инсталляционная процедура  создает файловую  систему /dev/scratch  для
+записи временного файла команды fsck. В качестве файла scratch команда
+fsck использует имя, заданное в файле /etc/default/boot в строке
+<pre>
+  SCRATCH=
+</pre><p align=justify>
+Если инсталляционная процедура создает фаловую систему scratch, то эта
+запись в файле /etc/default/boot формируется автоматически.
+<p align=justify>
+Строка SCRATCH должна быть задана  только в том случае, если  корневая
+файловая система  достаточно велика  и нуждается  в наличии указанного
+временного  файла.  Если  этот  файл  задан,  то  он всегда передается
+команде  fsck  при  проверке  корневой  файловой  системы,  даже когда
+система загружается вручную. Единственным исключением является  первый
+раз,  когда  система  XENIX  загружается  с  жесткого  диска  и  когда
+пользователь  должен  задать  файл  scratch.  Файл,  заданный в строке
+SCRATCH, не должен находиться в проверяемой fsck файловой системе.  Он
+не может также быть в несмонтированной файловой системе.
+<p align=justify>
+Если на машине установлена почтовая система XENIX, <a href=MAIL.htm>mail(1)</a>, то  выдача
+загрузочной последовательности направляется почтой в root. В противном
+случае  администратор   системы  должен   искать  выдачу   загрузочной
+последовательности  в  файле  /etc/bootlog.  Выдача fsck(ADM) временно
+сохраняется  в  файле  /dev/recover,  прежде  чем  быть перемещенной в
+/etc/bootlog, и, наконец, может быть послана администратору системы  с
+помощью mail.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/etc/bootlog       файл регистрации выходной загрузочной информации
+                   для систем с автозагрузкой
+/etc/default/boot  файл загрузочной информации
+/etc/rc            файл    инструкций      для      вхождения     в
+                   многопользовательский     режим,      включающий
+                   монтировку  и  проверку  дополнительных файловых
+                   систем
+/etc/sulogin       файл,  выполняемый  при  запуске  и предлагающий
+                   пользователю   нажать   Ctrl-d   для   входа   в
+                   многопользовательский  режим  или  ввести пароль
+                   привилегированного  пользователя  для  входа   в
+                   режим обслуживания системы
+/dev/recover       предназначен для сохранения выдачи fsck
+/dev/scratch       временный файл команды fsck для больших файловых
+                   систем
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FSCK~1.htm>fsck(8)</a>, init(5)
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Утилиты, вызываемые  во время  загрузочной процедуры,  получают
+флаг -а и ждут истечения срока TIMEOUT, только при автозагрузке
+системы.  Например,  при  автозагрузке  системы  срок  ожидания
+asktime(ADM)  заканчивается  через  30  секунд,  но  при других
+обстоятельствах  своего  вызова  она  ждет  ввод   пользователя
+неограниченно.
+<p align=justify>
+Загрузочные режимы предыдущих  версий AUTO=CLEAN, DIRTY,  NEVER
+были  оставлены  для  обеспечения  обратной  совместимости,  но
+игнорируются, если имеются другие, более новые режимы.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<html>
+<head>
+<title>LOCKF(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LOCKF(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+lockf - блокировка сегментов файла
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;unistd.h>
+	
+	int lockf (fildes, function, size)
+	long size;
+	int fildes, function;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция lockf позволяет блокировать отдельные  сегменты
+файла. Учитывать ли блокировку при записи, определяется
+режимом  доступа  к  файлу  [см. <a href=CHMOD~1.htm>chmod(2)</a>]. Если другие
+процессы  попытаются  блокировать  уже  заблокированный
+фрагмент, они либо получат в ответ код ошибки, либо будут ждать освобождения ресурса. При завершении процесса
+все блокировки, установленные им, удаляются. Более подробная информация о блокировке приведена в <a href=FCNTL.htm>fcntl(2)</a>.
+<p align=justify>Аргумент fildes - это дескриптор открытого файла. Чтобы
+функция lockf завершилась  успешно,  файл  должен  быть
+открыт с правом записи (O_WRONLY или O_RDWR).
+<p align=justify>Аргумент  function  - это значение, задающее вполняемые
+действия. Допустимые значения определены во  включаемом
+файле &lt;unistd.h>:
+<pre>
+	#define F_ULOCK 0 /* Разблокировать ранее блокированный
+	                     сегмент */
+	#define F_LOCK  1 /* Заблокировать сегмент */
+	#define F_TLOCK 2 /* Проверить и заблокировать сегмент */
+	#define F_TEST  3 /* Проверить сегмент */
+</pre>
+Другие  значения  function  зарезервированы для будущих
+расширений и приводят к ошибке, если не реализованы.
+<p align=justify>Значение F_TEST используется для определения  того,  не
+блокирован  ли  соответствующий сегмент файла каким-нибудь другим процессом. F_LOCK и F_TLOCK блокируют  указанный сегмент, если это возможно. F_ULOCK разблокирует
+ранее блокированный сегмент.
+<p align=justify>Аргумент  size  задает количество последовательных байт
+файла, которые должны быть заблокированы или  разблокированы.  Началом  сегмента  является  текущая позиция в
+файле; сегмент распространяется  вперед  или  назад  по
+файлу,  в зависимости от положительного или отрицательного значения size (при распространении  назад  текущая
+позиция не включается в блокируемую или  разблокируемую
+область).  Если значение size равно 0, блокируется (или
+разблокируется) сегмент от  текущей  позиции  до  конца
+файла (текущего и любого будущего). Блокируемый сегмент
+не  обязан  существовать в файле, допустима  блокировка
+областей за концом файла.
+<p align=justify>Сегменты, блокируемые посредством F_LOCK и F_TLOCK, могут полностью или частично пересекаться  с  сегментами,
+ранее  блокированными тем же процессом. При обнаружении
+такого пересечения, а  также  при  обнаружении  смежных
+сегментов,  создается один блокируемый сегмент, охватывающий все смежные байты. Если при блокировании  создается  новый блокируемый сегмент, он заносится в таблицу
+блокировок; при нехватке места в этой таблице обращение
+к lockf завершается неудачей и блокировка не устанавливается.
+<p align=justify>Запросы F_LOCK и F_TLOCK отличаются только  действиями,
+которые производятся в случае, если блокировку осуществить  невозможно. F_LOCK приводит к ожиданию освобождения ресурса. Запрос F_TLOCK, если сегмент уже  блокирован другим процессом, приводит к возврату значения -1 и
+присваивания переменной errno значения EACCES.
+<p align=justify>Запрос F_ULOCK может полностью или частично разблокировать один или более сегментов, заблокированных вызывающим  процессом.  Если  сегмент  разблокируется  не полностью, остаток остается блокированным. Разблокирование
+середины сегмента требует  дополнительного  элемента  в
+таблице  блокировок.  При нехватке места в этой таблице
+происходит неудача, переменной errno присваивается значение EDEADLK и разблокировка не производится.
+<p align=justify>Если процесс,  захвативший  ресурс,  ждет  освобождения
+другого  ресурса другим процессом, может возникнуть тупик, поэтому lockf и fcntl контролируют возможность образования тупика, прежде чем начать  ожидание  ресурса.
+Если  обнаруживается,  что ожидание ресурса вызовет тупик, выдается ошибка.
+<p align=justify>Ожидание ресурса может быть прервано произвольным  сигналом.  Для  применений,  в которых требуется временной
+контроль, рекомендуется пользоваться системным  вызовом
+<a href=ALARM.htm>alarm(2)</a>.
+<p align=justify>Функция lockf завершается неудачей, если выполнено хотя
+бы одно из следующих условий:
+<table>
+<tr valign=top><th>[EBADF]  <td>   Аргумент fd не является корректным дескриптором открытого файла.
+<tr valign=top><th>[EACCES] <td>   Значение function равно F_TLOCK или F_TEST,
+а сегмент уже блокирован  другим процессом.
+<tr valign=top><th>[EDEADLK] <td>  Значение function равно F_LOCK и может создаться  тупик,  или значение function равно
+F_LOCK, F_TLOCK или F_ULOCK,  а  в  таблице
+блокировок не хватает места.
+<tr valign=top><th>[ECOMM]   <td>  Fildes является дескриптором файла на  удаленном компьютере, связи с которым в данный
+момент нет.
+</table>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD~1.htm>chmod(2)</a>,   <a href=CLOSE.htm>close(2)</a>,   <a href=CREAT.htm>creat(2)</a>,  <a href=FCNTL.htm>fcntl(2)</a>,  <a href=INTRO~1.htm>intro(2)</a>,
+<a href=OPEN.htm>open(2)</a>, <a href=READ.htm>read(2)</a>, <a href=WRITE.htm>write(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА </b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ </b><br>
+Для процесса, который занимается буферизацией ввода/вывода  в  адресном пространстве пользователя, результаты
+взаимодействия с механизмом блокировки могут  оказаться
+непредсказуемыми:   запись  в  заблокированный  сегмент
+пройдет нормально, зато потом запись  совсем  в  другое
+место  может привести к ошибке из-за выталкивания буферов. Главным источником неожиданной буферизации является стандартный пакет ввода/вывода.
+<p align=justify>Так как в будущем переменной errno будет  присваиваться
+значение EAGAIN, вместо значения EACCES в  случае, если
+сегмент файла уже блокирован другим процессом, для достижения мобильности прикладных программ следует ожидать
+и обрабатывать оба кода ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

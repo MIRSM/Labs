@@ -1,0 +1,250 @@
+<html>
+<head>
+<title>DIVVY(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DIVVY(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+divvy - утилита разбиения диска
+<p><b>СИНТАКСИС</b>
+<pre>
+ divvy -b block_device -c character_device [-v virtual_drive]
+ [-p physical_drive] [-i] [-m]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+divvy разбивает  раздел  диска,  созданный с  помощью <a href=FDISK~1.htm>fdisk(8)</a>,  на
+отдельные  области,  известные  как  "части"  ("divisions").  Часть
+определяется  уникальными  главным  (большим)  и  малым   (меньшим)
+числами  устройства  и  может  использоваться для файловой системы,
+области свопинга или выделения дефектных мест на данном устройстве.
+<p>
+С помощью divvy вы можете:
+<ul>
+<li>Разбить раздел диска на отдельные устройства.
+<li>Создавать новые файловые системы.
+<li>Изменять имена устройств файловых систем.
+<li>Удалять файловые системы.
+</ul>
+<p align=justify><i>Опции</i>
+<dl>
+<dt>-b block_device
+<dd>Главное число устройства блочного интерфейса.
+<dt>-c character_device
+<dd>Главное число устройства символьного интерфейса.
+<dt>-v virtual_device
+<dd>Для разбиения виртуального устройства.
+<dt>-p physical_drive
+<dd>Для   разбиения   одного  из  нескольких   физических    дисков,
+имеющих общий контроллер.
+<dt>-i
+<dd>Разбиваемый  диск будет  содержать корневую  файловую систему  в
+части 0.
+<dt>-m
+<dd>Разбиваемый диск должен быть разбит на ряд монтируемых  файловых
+систем.
+</dl>
+<p align=justify><i>Использование</i><br>
+Разделяемое на части устройство  должно быть блочным устройством  с
+символьным  интерфейсом.  Например,  при  использовании  divvy  для
+устройства с главным числом блочного интерфейса 1 и главным  числом
+символьного интерфейса 1 введите:
+<pre>
+  divvy -b 1 -c 1
+</pre><p align=justify>
+Опция -v определяет  виртуальное устройство, подлежащее  разбиению.
+По  умолчанию  используется  активное  устройство.  Здесь  "virtual
+drive"  -   это  раздел   MS-DOS.  Числа   виртуального  устройства
+определяются утилитой fdisk(ADM).
+<p align=justify>
+Опция  -p  позволяет  выполнить  разделение  одного  из  нескольких
+физических  дисков,  имеющих  общий  контроллер. По умолчанию divvy
+обращается  к  первому  физическому  устройство  под номером 0. Для
+обращения ко второму физическому диску используете опцию -p 1.
+<p align=justify>
+Опция -i подразумевает, что  разделяемое на части устройство  будет
+содержать корневую файловую  систему. При использовании  этой опции
+дескрипторы  устройств  создаются  по  отношению  к  новой корневой
+системе,  представленной,  как  правило,  жестким  диском,  а  не к
+текущей, часто  находящейся на  инсталляционной дискете.  Создаются
+divvy запрашивает также размер области свопинга. Если диск является
+достаточно большим, то divvy выдает подсказки в отношении отдельной
+пользовательской  файловой  системы  /u.  В  процессе  формирования
+файловых систем divvy  запрашивает информацию по  поводу поблочного
+контроля.  Если  файловая  система  достаточно  велика (более 40000
+блоков), чтобы потребовать  наличия временной файловой  системы, то
+divvy спрашивает, надо ли создавать последнюю. Во время инсталляции
+системы XENIX divvy вызывается с опцией -i.
+<p align=justify>
+Опция  -m  используется  для  выполнения  исходной  установки   для
+устройств,  которые  не  будут  корневыми.  При  этом  пользователь
+получит подсказки по ряду файловых систем.
+<p>
+При вызове divvy из командной строки вы увидите следующее меню:
+<pre>
+  n[ame]     Name or rename a division.
+  c[reate]   Create a new file system on this division.
+  p[revent]  Prevent a new file system from being created on this division.
+  s[tart]    Start a division on a different block.
+  e[nd]      End a division on a different block.
+  r[estore]  Restore the original partition table.
+
+  Please enter your choice or 'q' to quit:_
+</pre><p align=justify>
+Для  выбора  команды  введите  первую  букву этой команды и нажмите
+RETURN.
+<p>
+Таблица частей divvy выглядит приблизительно так:
+<pre>
+ -------------------------------------------------------------
+  Name       New File System?  #    First Block    Last Block
+ -------------------------------------------------------------
+  root       no,exists         0           0         13754 
+  swap       no,exists         1       13755         15135  
+  u          no,exists         2       15136         25135   
+          no                3           -             -    
+          no                4           -             -
+          no                5           -             - 
+  recover    no,exists         6       25136         25145  
+  d1057all   no                7           0         25546   
+ -------------------------------------------------------------
+     x blocks for divisions, y blocks reserved for the system
+</pre><p align=justify>
+divvy высвечивает также информацию о расположении блоков  системных
+таблиц и дефектных дорожек.
+<p align=justify>
+Если вы выберете опцию 'n', то вы сможете изменить имя  устройства.
+divvy подсказывает вам, где ввести номер части (из приведенной выше
+таблицы), а затем предлагает ввести новое имя.
+<p align=justify>
+Опция  'c'  определяет  то,  что  данная часть станет новой, пустой
+файловой системой, когда  вы выйдете из  divvy. Введя опцию  -c, вы
+увидите в колонке 'New File System?' слово 'yes'. Если вы примените
+опцию  'p',  то  слово  'yes'  в  этой колонке изменится на 'no', а
+содержимое данной части не изменится.
+<p align=justify>
+Используя опцию  's' или  команду 'start',  вы можете  сформировать
+часть с другим  начальным блоком. С  помощью опции 'e'  или команды
+'end' вы можете сформировать часть с другим конечным блоком.
+<p align=justify>
+Вы  можете  использовать  обе  эти  команды  для  изменения размера
+раздела. Например, если ваш  диск подобен диску в  приведенном выше
+примере с таблицей divvy,  и вы хотите расширить  корневую файловую
+систему и уменьшить область свопинга, сделайте следующее:
+<ul>
+<li>Уменьшите область свопинга с помощью команды 's'.
+<li>Увеличьте часть, содержащую корневую файловую систему, с помощью
+команды 'e'.
+</ul><p align=justify>
+Обратите  внимание,  что  при  наложении  каких-либо  частей, divvy
+пожалуется на  это, когда  вы захотите  выйти из  нее, и вернет вас
+обратно в меню для исправления ситуации.
+<p align=justify>
+При  выходе  из  divvy  вы  получите  вопрос  о  том,  хотите ли вы
+сохранить внесенные изменения, или выйти без сохранения  изменений.
+В  этом  месте  вы  можете  вернуться  назад  в меню divvy и можете
+выбрать  опцию   для  переустановки   исходной  таблицы   разделов,
+установленной по умолчанию.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BADTRK.htm>badtrk(8)</a>, <a href=FDISK~1.htm>fdisk(8)</a>, <a href=FSCK~1.htm>fsck(8)</a>, hd(5), mkdev(1), <a href=MKFS.htm>mkfs(1)</a>,mknod(1).
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+divvy  запрашивает  у  драйвера  устройства уровень поддержки ядра.
+Если divvy  выдает нулевой  размер диска  в блоках  или высвечивает
+следующие сообщения об ошибках, то устройство не может быть разбито
+на части:
+<pre>
+    cannot read division table
+</pre>или
+<pre>
+    cannot get drive parameters
+</pre><p align=justify>
+Эти ошибки могут  возникать также в  том случае, когда  неправильно
+выполены предварительные программы fdisk и badtrk.
+<p align=justify>
+Если вы меняете размер файловых  систем (таких как /u) после  того,
+как  вы  установили  систему  XENIX,  то  вам  нужно  запустить для
+заданной  файловой   системы  программу   mkfs  и    переустановить
+находящиеся там файлы. Это вызвано тем, что список свободных блоков
+для  этой  файловой  системы  изменился.  Не  забывайте   выполнять
+резервное копирование файлов файловой системы, которую вы  намерены
+изменить,  с  помощью  <a href=BACKUP.htm>backup(1)</a>,  <a href=TAR.htm>tar(1)</a>  или  <a href=CPIO.htm>cpio(1)</a>, прежде чем
+запускать  divvy.  (Результирующая  файловая  система  /dev/scratch
+используется для автозагрузки,  если последняя запускает  fsck. Имя
+/dev/scratch  нужно  ввести,  если  fsck запрашивает имя временного
+файла, при условии, что  проверяемая файловая система -  не больше,
+чем корневая  файловая система.)  Если использованы  все подразделы
+(части) диска, то divvy не будет высвечивать подсказку в  отношении
+временной  файловой  системы,  даже  если корневая файловая система
+является достаточно большой, чтобы нуждаться в ней.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

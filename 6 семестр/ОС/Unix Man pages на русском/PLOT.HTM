@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>PLOT(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PLOT(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+plot - графический интерфейс
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Файлы данного формата порождаются функциями из <a href=PLOT~1.htm>plot(3X)</a>
+и интерпретируются графическими фильтрами, описанными в
+<a href=TPLOT.htm>tplot(1G)</a>. Графический файл  -  это  последовательность
+инструкций  рисования.  Каждая  инструкция начинается с
+латинской буквы, за которой обычно следуют байты двоичной информации. Инструкции выполняются последовательно.
+Точка задается четырьмя байтами,  содержащими  значения
+координат  x и y в виде коротких целых чисел. Последняя
+точка в инструкциях l, m, n и p становится текущей точкой для следующей инструкции.
+<p align=justify>
+Каждое из приведенных ниже описаний начинается с  имени
+соответствующей функции из <a href=PLOT~1.htm>plot(3X)</a>.
+<table>
+<tr valign=top><th>m<td><i>Перемещение.</i> Следующие четыре байта  задают  новую
+текущую точку.</tr>
+<tr valign=top><th>n<td><i>Продолжение.</i> Нарисовать отрезок из текущей точки в
+точку, заданную следующими четырьмя байтами [смотри <a href=TPLOT.htm>tplot(1G)</a>].</tr>
+<tr valign=top><th>p<td><i>Точка.</i>  Нарисовать  точку, заданную следующими четырьмя байтами.</tr>
+<tr valign=top><th>l<td><i>Отрезок.</i> Нарисовать  отрезок  от  точки,  заданной
+первыми четырьмя байтами до точки, заданной вторыми четырьмя байтами.</tr>
+<tr valign=top><th>t<td><i>Метка.</i>  Изобразить следующую цепочку символов, начиная с текущей точки. Цепочка завершается  символом перевода строки.</tr>
+<tr valign=top><th>e<td><i>Очистка.</i> Начать другой кадр вывода.</tr>
+<tr valign=top><th>f<td><i>Тип  линии.</i> Рассматривать следующую цепочку символов (до перевода строки) как тип линии при рисовании отрезков. Возможные типы линий: dotted (точечная), solid (сплошная),  longdashed  (длинно-пунктирная),   shortdashed  (пунктирная)  и  dotdashed
+(штрихпунктирная).  Действует  только  для   опций
+-T4014   и   -Tver   команды  <a href=TPLOT.htm>tplot(1G)</a>  (терминал
+Tektronix 4014 и графопостроитель Versatec).</tr>
+<tr valign=top><th>s<td><i>Область.</i> Следующие 4  байта  задают  левый  нижний
+угол области рисования, следующие 4 байта - правый
+верхний угол. Графический вывод будет промасштабирован  для  достижения  максимального соответствия
+параметрам устройства.</tr>
+</table>
+<p align=justify>
+Ниже описаны параметры установки области для устройств,
+поддерживаемых  фильтрами  из <a href=TPLOT.htm>tplot(1G)</a>, обеспечивающие
+заполнение всей области рисования. Верхний предел лежит
+непосредственно за областью рисования. В  любом  случае
+область  рисования считается квадратом; точки, расположенные вне квадрата, могут быть изображены на устройствах с не квадратным экраном/листом:
+<table>
+<tr><td><b>DASI 300</b><td>область (0, 0, 4096, 4096);</tr>
+<tr><td><b>DASI 300s</b><td>область (0, 0, 4096, 4096);</tr>
+<tr><td><b>DASI 450</b><td>область (0, 0, 4096, 4096);</tr>
+<tr><td><b>Tektronix 4014</b><td>область (0, 0, 3120, 3120);</tr>
+<tr><td><b>Versatec</b><td>область (0, 0, 2048, 2048);</tr>
+</table>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PLOT~1.htm>plot(3X)</a>, <a href=GPS.htm>gps(4)</a>, <a href=TERM~1.htm>term(5)</a>.<br>
+<a href=GRAPH.htm>graph(1G)</a>, <a href=TPLOT.htm>tplot(1G)</a> в Справочнике пользователя.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Две библиотеки, <a href=PLOT~1.htm>plot(3X)</a> и <a href=CURSES.htm>curses(3X)</a>, используют имена
+erase ( ) и move ( ). В версии  библиотеки  curses  они
+являются  макросами.  Если нужно работать с обеими библиотеками, поместите в отдельный  файл  программы,  использующие  <a href=PLOT~1.htm>plot(3X)</a>,  и/или  примените к ним директивы
+#undef move( ) и #undef erase( ).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

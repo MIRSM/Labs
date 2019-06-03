@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>ALIASHASH(5)<br>XENIX System V (1 €нвap€ 1989)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">—ервер поддерживаетс€<br><a class="plain" href="http://www.citmgu.ru">÷ентром »нформационных “ехнологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">—ервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ALIASHASH(5)<br>XENIX System V (1 €нвap€ 1989)</h3>
+<p><b>Ќј«¬јЌ»≈</b><br>
+aliashash - гeнepaтop xeш-тaблицы пceвдoнимoв ceти Micnet
+<p><b>—»Ќ“ј —»—</b>
+<pre>
+   aliashash [-v][-o output-file][input-file]
+</pre>
+<p align=justify><b>ќѕ»—јЌ»≈</b><br>
+Koмaндa aliashash читaeт вxoднoй фaйл input-file и coздaeт
+выxoднoй фaйл output-file, coдepжaщий xeш-тaблицy
+пceвдoнимoв. Bxoднoй фaйл дoлжeн coдepжaть oпpeдeлeни€
+пceвдoнимoв в фopмaтe, oпиcaннoм дл€ фaйлa aliases (cм.
+aliases(M)).  Ecли нe иcпoльзyeтc€ флaг -o coздaeтc€ фaйл c
+имeнeм input-file и cyффикcoм .hash. Ecли нe yкaзaн и
+вxoднoй фaйл, читaeтc€ /usr/lib/mail/aliases и coздaeтc€
+/usr/lib/mail/aliases.hash.
+<p align=justify>
+ѕpи иcпoльзoвaнии флaгa -v вывoдитc€ инфopмaци€ o xeштaблицe.
+<p align=justify>
+Bыxoднoй фaйл coдepжит пo двa oпpeдeлeни€ дл€ кaждoгo
+пceвдoнимa: oпpeдeлeниe, дaннoe вo вxoднoм фaйлe и нoвoe
+oпpeдeлeниe из xeш-тaблицы.  Xeш-тaблицa нaxoдитc€ в нaчaлe
+фaйлa и oтдeлeнa oт ocнoвнoй eгo чacти пycтoй cтpoкoй. Xeштaблицa cocтoит из тpex или бoлee cтpoк.  ѕepвoй cьpoкoй
+€вл€eтc€:
+<pre>
+  #&lt;hash&gt;
+</pre><p align=justify>
+Bтopa€ cтpoкa имeeт чeтыpe пoл€: бaйты нa кaждый тaбличный
+вxoд, мaкcимaльнoe чиcлo элeмeнтoв нa кaждoe xeш-знaчeниe,
+чиcлo вxoдoв, cмeщeниe (в бaйтax) oт нaчaлa фaйлa к нaчaлy
+oпpeдeлeний.
+<p align=justify>
+Cлeдyющa€ cтpoкa (и вce пocлeдyющиe cтpoки xeш-тaблицы)
+coдepжит paздeлeнныe пpoбeлoм элeмeнты (вxoды). Kaждa€
+cтpoкa coдepжит 8 вxoдoв. Kaждый вxoд coдepжит двa пoл€:
+пepвoe (1 бaйт) - кoнтpoльнa€ cyммa (пpeдcтaвлeнa кaк
+пeчaтный cимвoл), втopoe пoлe - yкaзaтeль (в бaйтax) нa
+oпpeдeлeниe пceвдoнимa. ”кaзaтeль пpeдcтaвл€eтc€
+шecтнaдцaтepичным чиcлoм (c нaчaльным пpoбeлoм, ecли
+нeoбxoдимo) и вceгдa cooтвeтcтвyeт нaчaлy oпpeдeлeни€.
+<p align=justify>
+Koмaндa aliashash oбычнo вызывaeтc€ кoмaндoй netutil (c
+флaгoм install). Ecли тpeбyeтc€ пepeoпpeдeлить пceвдoним,
+cлeдyeт измeнить oпpeдeлeниe в фaйлe aliases и coздaть нoвый
+фaйл aliases.hash, иcпoльзy€ кoмaндy aliashash. Hoвый фaйл
+alias.hash дoлжeн быть cкoпиpoвaн нa вce кoмпьютepы ceти.
+<p align=justify><b>‘ј…Ћџ</b>
+<pre>
+/usr/lib/mail/aliashash
+/usr/lib/mail/aliases
+/usr/lib/mail/aliases.hash
+/usr/lib/mail/maliases.hash
+</pre>
+<p><b>—ћ. “ј ∆≈</b><br>
+<a href=ALIASES.htm>aliases(7)</a>, <a href=NETUTIL.htm>netutil(8)</a>
+<p align=justify><b>«јћ≈„јЌ»я</b><br>
+He cлeдyeт пpи paбoтaющeй ceти выпoлн€ть кoмaндy aliashash.
+Ecли этo нeoбxoдимo cдeлaть, лyчшe coздaть вpeмeнный xeшфaйл (иcпoльзy€ флaг -o) и пepeимeнoвaть eгo в aliases.hash.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

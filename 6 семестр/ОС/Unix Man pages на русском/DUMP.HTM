@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>DUMP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DUMP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	dump - дамп указанных частей об ектных файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+ dump  [-a] [-g] [-f] [-o] [-h] [-s] [-r] [-l] [-t] [-z имя] [-c] [-L] фа
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда dump выдает на стандартный вывод указанные части файлов, заданных в  командной  строке.  Файлы  могут быть как об ектными, так и архивами (библиотеками) объектных файлов. Каждый файл обрабатывается в  соответствии со следующими опциями:
+<table>
+<tr valign=top><th>-a <td> Для каждого архива вывести архивные заголовки элементов.
+<tr valign=top><th>-g <td> Вывести глобальные имена из таблицы имен архива.
+<tr valign=top><th>-f <td> Вывести заголовки файлов.
+<tr valign=top><th>-o <td> Вывести необязательные заголовки.
+<tr valign=top><th>-h <td> Вывести заголовки секций.
+<tr valign=top><th>-s <td> Вывести содержимое секций.
+<tr valign=top><th>-r <td> Вывести информацию о настройке ссылок.
+<tr valign=top><th>-l <td> Вывести информацию о номерах строк.
+<tr valign=top><th>-t <td> Вывести элементы таблицы имен.
+<tr valign=top><th>-z имя <td> Вывести для функции с заданным именем информацию о номерах строк.
+<tr valign=top><th>-c <td> Вывести таблицу цепочек.
+<tr valign=top><th>-L <td> Проинтерпретировать и  вывести  содержимое  секций .lib.
+</table>
+<p align=justify>	Вместе с перечисленными опциями можно использовать следующие модификаторы:
+<table>
+<tr valign=top><th>-d номер <td> Вывести секцию с данным номером или последовательность секций, начинающуюся с секции номер и кончающуюся последней секцией, или секцией  с  номером, заданным модификатором +d.
+<tr valign=top><th>+d номер <td> Вывести  последовательность  секций,  начинающуюся либо с первой секции, либо с секции,  определяемой
+	     модификатором -d.
+<tr valign=top><th>-n имя <td> Вывести информацию, относящуюся только к об екту с указанным именем. Данный модификатор применяется к
+	     опциям -h, -s, -r, -l и -t.
+<tr valign=top><th>-p <td> Подавить выдачу заголовков.
+<tr valign=top><th>-t индекс <td> Вывести только элемент таблицы  имен  с  указанным  индексом. При использовании  данного  модификатора
+	     вместе с  +t  специфицируется  диапазон  элементов
+	     таблицы имен.
+<tr valign=top><th>+t индекс <td>  Вывести элементы таблицы имен в диапазоне, кончающемся элементом с указанным индексом. Начало  диапазона - либо первый элемент, либо указанный в модификаторе -t.
+<tr valign=top><th>-u <td>  Подчеркнуть для выразительности имя файла.
+<tr valign=top><th>-v <td>  Выводить информацию в символьном представлении,  а не в числовом. Данный модификатор можно  использовать со всеми опциями команды dump, кроме -s и -o.
+<tr valign=top><th>-z имя номер <td> Вывести для функции с заданным именем информацию о строке с указанным номером. При использовании данного модификатора вместе с +z специфицируется диапазон строк.
+<tr valign=top><th>+z номер <td> Вывести информацию о номерах  строк  в  диапазоне, кончающемся строкой с заданным номером. Начало диапазона - либо первая строка функции, либо  строка с номером, указанным в модификаторе -z.
+</table>
+<p align=justify>	Команда dump пытается отформатировать выводимую  информацию осмысленным  образом,  выводя  ее  в  символьном, шестнадцатеричном, восьмеричном или  десятичном  представлении.
+<p><b>СМ. ТАКЖЕ</b><br>
+	a.out(4), <a href=AR~1.htm>ar(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

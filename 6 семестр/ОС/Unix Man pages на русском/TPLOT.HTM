@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>TPLOT(1G)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TPLOT(1G)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+tplot - графические фильтры
+<p><b>СИНТАКСИС</b>
+<pre>
+	tplot  [-Tтерминал [-e файл]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда tplot считывает команды  графопостроителя  [см.
+<a href=PLOT.htm>plot(4)</a>] со стандартного ввода и выдает на  стандартный
+вывод графические команды, ориентированные  на  определенный тип  терминала  (особым  образом  обрабатывается
+терминал ver). Если  терминал  не  задан,  используется
+значение переменной окружения $TERM [см <a href=ENVIRON.htm>environ(5)</a>].
+<p align=justify>Допустимы следующие типы терминалов:
+<table>
+<tr valign=top><td>300 <td> DASI 300.
+<tr valign=top><td>300S <td> DASI 300s.
+<tr valign=top><td>450 <td> DASI 450.
+<tr valign=top><td>4014 <td> Tektronix 4014.
+<tr valign=top><td>ver <td> Принтер-плоттер Versatec  D1200A.  В  этом  случае
+растровый    образ    запоминается     в     файле
+/usr/tmp/raster$$ и тут же выдается на устройство,
+а не на стандартный вывод. Смысл опции:
+</table>
+<table>
+<tr valign=top><th>-e файл <td>
+Вывести на плоттер растровый  образ,  предварительно сохраненный в файле.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/lib/t300
+	/usr/lib/t300s
+	/usr/lib/t450
+	/usr/lib/t4014
+	/usr/lib/vplot
+	/usr/tmp/raster$$
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GDEV.htm>gdev(1G)</a>.<br>
+<a href=PLOT~1.htm>plot(3X)</a>, <a href=PLOT.htm>plot(4)</a>, environ (5), <a href=TERM~1.htm>term(5)</a>  в  Справочнике
+программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

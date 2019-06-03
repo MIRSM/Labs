@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_main_hero_8cs" kind="file" language="C#">
+    <compoundname>MainHero.cs</compoundname>
+    <innerclass refid="class_main_hero" prot="public">MainHero</innerclass>
+    <innernamespace refid="namespace_unity_engine_1_1_scene_management">UnityEngine::SceneManagement</innernamespace>
+    <innernamespace refid="namespace_unity_engine_1_1_audio">UnityEngine::Audio</innernamespace>
+    <innernamespace refid="namespace_system_1_1_xml">System::Xml</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="MainHero.cs"/>
+  </compounddef>
+</doxygen>

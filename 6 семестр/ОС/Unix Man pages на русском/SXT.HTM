@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>SXT(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SXT(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+sxt - драйвер виртуального терминала
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Sxt  представляет собой дополнительный драйвер, который
+располагается между драйвером верхнего  уровня,  единым
+для  всех  терминальных  линий, и драйвером конкретного
+устройства. Драйвер верхнего уровня выполняет  операции
+над виртуальными устройствами, а sxt служит посредником
+при  передаче  этих  операций  на  реальные устройства.
+Драйвер sxt в настоящее время используется  только  командой <a href=SHL.htm>shl(1)</a>.
+<p align=justify>
+Виртуальным  терминалам  соответствуют файлы в каталоге
+/dev/sxt, которые образуют группы по  8.  Чтобы  начать
+работу  с  группой,  программа должна открыть файл вида
+/dev/sxt/??0 (так называемый канал 0) с флагом  O_EXCL,
+после  чего выполнить команду SXTIOCLINK системного вызова <a href=IOCTL.htm>ioctl(2)</a> для начала мультиплексирования.
+<p align=justify>
+Ввод с клавиатуры может доставаться только одному каналу из группы, так называемому "управляющему". Процессы,
+пытающиеся читать по другим каналам, будут блокированы.
+<p align=justify>
+Драйвер  sxt  поддерживает две группы команд системного
+вызова <a href=IOCTL.htm>ioctl(2)</a>. Первая группа включает все стандартные
+команды ioctl, описанные в <a href=TERMIO.htm>termio(7)</a>, со следующим  добавлением:
+<dl>
+<dt>TIOCEXCL 
+<dd>Установить исключительный доступ: до тех пор, пока
+файл  не будет закрыт, все попытки его открыть отвергаются.
+<dt>TIOCNXCL 
+<dd>Отменить исключительный доступ:  разрешается  несколько раз открывать файл.
+</dl>
+Вторая группа включает команды для самого драйвера sxt.
+Некоторые из них могут выполняться только для канала 0.
+<dl>
+<dt>SXTIOCLINK 
+<dd>Создать группу каналов и начать мультиплексированное  отображение  виртуальных терминалов на реальный. Аргументом  является  количество  создаваемых
+каналов. Эту команду можно выполнить только на канале 0. Возможны следующие ошибки:
+<ul>
+<li><b>[EINVAL]</b> Значение аргумента некорректно.
+<li><b>[ENOTTY]</b> Команда  выдана не с реального терминала.
+<li><b>[ENXIO]</b> В системе нет драйвера sxt.
+<li><b>[EBUSY]</b> Команда SXTIOCLINK уже была выдана  для данного реального терминала.
+<li><b>[ENOMEM]</b> Не  хватает  памяти для структур виртуальных терминалов.
+<li><b>[EBADF]</b> Канал 0 не был предварительно открыт.
+</ul>
+<dt>SXTIOCSWTCH 
+<dd>Установить "управляющий" канал. Возможны следующие
+ошибки:
+<ul>
+<li><b>[EINVAL]</b> Некорректный номер канала.
+<li><b>[EPERM]</b> Команду можно выполнить только на канале 0.
+</ul>
+<dt>SXTIOCWF 
+<dd>Заставить канал ожидать, пока он не станет "управляющим". Эта команда возвращает ошибку EINVAL, если указан некорректный номер канала.
+<dt>SXTIOCUBLK 
+<dd>Сбросить флаг loblk для указанного канала. Эта команда возвращает ошибку EINVAL, если указан некорректный номер канала или канал 0.
+<dt>SXTIOCSTAT 
+<dd>Выдать состояние (блокирован на вводе или на выводе)  каждого  канала, записав его в структуру типа
+struct sxtblock, адрес которой передан в  качестве
+аргумента  (тип  struct  sxtblock  описан  в файле
+&lt;sys/sxt.h&gt;). Если в структуру  записать  не  удалось, выдается ошибка EFAULT.
+<dt>SXTIOCTRACE 
+<dd>Включить  трассировку.  Трассировочная  информация
+выдается на системную консоль. Если при конфигурировании системы возможность трассировки не предусмотрена, команда игнорируется.
+<dt>SXTIOCNOTRACE 
+<dd>Выключить  трассировку.  Если при конфигурировании
+системы возможность трассировки не  предусмотрена,
+команда игнорируется.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<br>
+<tt>/dev/sxt/??[0-7]</tt>  Виртуальные терминалы.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=TERMIO.htm>termio(7)</a>.<br>
+<a href=SHL.htm>shl(1)</a>, <a href=STTY~1.htm>stty(1)</a> в Справочнике пользователя.<br>
+<a href=IOCTL.htm>ioctl(2)</a>, <a href=OPEN.htm>open(2)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>MKDEV(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MKDEV(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mkdev - вызывает программы для подключения периферийных устройств.
+<p><b>СИНТАКСИС</b>
+<pre>
+/etc/mkdev lp
+/etc/mkdev hd
+/etc/mkdev serial
+/etc/mkdev fs [device file]
+/etc/mkdev fd
+/etc/mkdev tape
+/etc/mkdev shl
+/etc/mkdev mouse
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+mkdev  вызывает  программы  для  создания  заданного  типа   файлов
+устройств.  mkdev  может  вызывать   <a href=LPINIT.htm>lpinit(8)</a>   или  любую  другую
+программу,  находящуюся  в  каталоге  /usr/lib/mkdev.  Если никакие
+аргументы не  заданы, то  mkdev выдает  информационное сообщение по
+использованию.
+<p align=justify>
+/etc/mkdev lp создает файлы устройств для работы с принтерами. (См.
+<a href=LPINIT.htm>lpinit(8)</a>).
+<p align=justify>
+/etc/mkdev hd  создает файлы  устройств для  работы с  периферийным
+жестким  диском.  Соответствующие  файлы  устройств для внутреннего
+жесткого диска уже  существуют. hdinit вызывает  следующие утилиты:
+<a href=DPARAM.htm>dparam(8)</a>, <a href=BADTRK.htm>badtrk(8)</a>, <a href=FDISK~1.htm>fdisk(8)</a> и <a href=DIVVY.htm>divvy(8)</a>.
+<p align=justify>
+/etc/mkdev  serial   создает  файлы  устройст  для работы с платами
+портов последовательной связи. Подобные файлы для первого и второго
+портов  уже   существуют.  Когда   к  системе   присоединяют  платы
+расширения,  эти  файлы  должны  быть  созданы  для соответствующих
+дополнительных    портов.    Файлы    /etc/ttys    и   /etc/ttytype
+модифицируются.
+<p align=justify>
+/etc/mkdev fs выполняет задачи системного обслуживания,  требуемого
+для добавления к системе новой файловой системы, когда подключается
+новое  устройство   и   создается   файловая   система   (mkfs(8)).
+/etc/mkdev   fs   создает   каталоги   /file   и  /file/lost+found,
+резервирует поля в каталоге lost+found (если они уже существуют, то
+они   остаются,   как   есть)   и   модифицирует    /etc/checklist,
+/etc/default/filesys,  /etc/default   для   проверки  (fsck(8))   и
+монтирования    (mount(8),   <a href=MNT.htm>mnt(1)</a>,   rc(1))    файловой   системы
+соответствующим образом. Обычно  эта команда работает  в соединении
+с mkdev hd, когда к системе присоединяется второй жесткий диск, или
+с mkdev fd при создании на дискете монтируемой файловой системы, но
+может  использоваться  также  для  любой  дополнительной   файловой
+системы (например, на большом внутреннем жестком диске).
+<p align=justify>
+/etc/mkdev fd  создает загрузочные  дискеты с  корневыми  файловыми
+системами. Тремя основными опциями являются - одиночная загрузочная
+дискета с корневой  файловой системой (только  для форматов 96  или
+135  дор/дюйм),  загрузочная  пара   дискет  с  корневой   файловой
+системой  (формат  48  дор/дюйм)  или  дискета  только  с  корневой
+файловой  системой.  В  последнем  случае  используйте  эту команду
+совместно с mkdev fs.
+<p align=justify>
+За один сеанс работы mkdev fs можно создать несколько таких дискет,
+но mkdev  не высвечивает  подсказку для  замены дискет.  Вставляйте
+следующую дискету,  когда mkdev  спросит:"Would you  like to format
+the  floppy  first?  (y/n)"  (Не  хотите ли вначале отформатировать
+дискету?)
+<p align=justify>
+/etc/mkdev tape  конфигурирует драйвер  стримера перед  компоновкой
+нового ядра, включающего поддержку стримера. При этом  подключается
+драйвер стандартного  четверть-дюймового кассетного  стримера и/или
+драйвер министримера.
+<p align=justify>
+При  необходимости  конфигурация   текущих  драйверов  может   быть
+высвечена или изменена. Наличие в любом из полей нуля означает, что
+драйвер автоматически  определяет тип  установленного устройства  и
+использует    для    него    "зашитые"    значения.    Если     эти
+автоконфигурационные  значения  не   верны  для  вашего   драйвера,
+уточните правильные  значения в  документации по  аппаратной части,
+установите конфигурацию драйвера и перекомпонуйте ядро.  /etc/mkdev
+tape может также использоваться  для удаления драйвера стримера  из
+существующего ядра.
+<p align=justify>
+/etc/mkdev   shl    инициализирует   необходимые    устройства    и
+устанавливает   конфигурацию   параметров   ядра   уровней  общения
+оболочкой, доступных в системе.
+<p align=justify>
+/etc/mkdev   mouse   инициализирует   необходимые   устройства    и
+устанавливает   конфигурацию   системы    для   работы   с    любым
+поддерживаемым манипулятором типа "мышь".
+<p align=justify>
+После  установки   конфигурации  драйвера   вам  будет   предложено
+перекомпоновать ядро. При этом создаются соответствующие устройства
+в /dev.
+<p align=justify>
+Различные программы  init выводят  подсказки для  ввода информации,
+необходимой для создания этих устройств.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /usr/lib/mkdev/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BADTRK.htm>badtrk(8)</a>, <a href=DIVVY.htm>divvy(8)</a>, <a href=DPARAM.htm>dparam(8)</a>, fd(HW), <a href=FDISK~1.htm>fdisk(8)</a>,
+filesys(3), <a href=FORMAT.htm>format(1)</a>, hd(HW), lp(HW), <a href=LPINIT.htm>lpinit(8)</a>,mkfs(8),
+<a href=MKNOD.htm>mknod(1)</a>, <a href=MOUNT~~2.htm>mount(8)</a>, serial(HW), <a href=USEMOUSE.htm>usemouse(1)</a>, tape(HW).
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Обратите  внимание,  что  /etc/mkdev  tape  не  подключает  драйвер
+стримерных систем типа SCSI.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

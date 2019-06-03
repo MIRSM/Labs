@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>ALIASHASH(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ALIASHASH(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+aliashash - генератор хэш-таблицы псевдонимов Micnet-сети
+<p><b>СИНТАКСИС</b>
+<pre>
+ aliashash [-v] [-o output-file] [input-file]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда  aliashash   читает  файл   input-file  и   формирует  файл
+output-file,  содержащий  хэш-таблицу  определений  псевдонимов для
+Micnet-сетей.    input-file   должен   задавать   файл,  содержащий
+определения псевдонимов  в виде,  описанном для  файла aliases (см.
+aliases(5)). Если  опция -o  не используется  для задания выходного
+файла output-file,  то команда  создает файл  с тем  же именем, что
+input-file, но с расширением .hash. Если файл input-file не  задан,
+то  команда  читает  файл  /usr/lib/mail/aliases  и  создает   файл
+/usr/lib/mail/aliases.hash .
+<p align=justify>
+При вызове с опцией -v команда выводит информацию о хэш-таблице.
+<p align=justify>
+Файл output-file содержит  как определения псевдонимов,  заданные в
+файле input-file, так и новую хэш-таблицу. Эта таблица находится  в
+начале этого  файла и  отделена от  определений псевдонимов  пустой
+строкой.  Хэш-таблица  состоит  из  трех  или  более  строк. Первая
+строка:
+<pre>
+   #&lt;hash&gt;
+</pre><p align=justify>
+Вторая строка содержит четыре поля: количество байтов на  табличную
+запись,  максимальное  количество  элементов  на одну хэш-величину,
+количество записей в таблице и смещение в байтах от начала файла до
+начала определений псевдонимов.
+<p align=justify>
+Следующие строки (вплоть до конца хэш-таблицы) содержат записи этой
+таблицы. Каждая строка содержит 8 структур (разделенных пробелами),
+а  каждая  структура  имеет  два  поля.  Первое  поле  (1  байт)  контрольная сумма (представленная как печатный символ), второе поле
+- указатель  (в байтах)  на определение  псевдонима. Этот указатель
+представляет  собой  шестнадцатиричное  число,  при   необходимости
+начинающееся   пробелами,   и   всегда   отсчитываемое   от  начала
+определений.
+<p align=justify>
+Команда aliashash обычно вызывается опцией install команды netutil.
+Если  определения  псевдонимов  должны  быть  изменены,  то следует
+изменить  определения  в  файле   aliases  и  создать  новый   файл
+aliases.hash  с  помощью  команды  aliashash. Новый файл alias.hash
+должен быть скопирован на все другие компьютеры сети.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/usr/lib/mail/aliashash
+/usr/lib/mail/aliases
+/usr/lib/mail/aliases.hash
+/usr/lib/mail/maliases.hash
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+aliases(5), <a href=NETUTIL.htm>netutil(8)</a>
+<p align=justify><b>ПРЕДУПРЕЖДЕНИЕ</b><br>
+Не запускайте команду aliashash для создания файла aliases.hash  во
+время функционирования сети.  При необходимости создайте  временный
+выходной файл aliases.hash- с помощью опции -o и затем введите:
+<pre>
+   mv aliases.hash- aliases.hash
+</pre>
+Это предохранит сеть от срыва.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

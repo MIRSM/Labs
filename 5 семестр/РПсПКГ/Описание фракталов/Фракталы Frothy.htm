@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/frothy.html -->
+<HTML><HEAD><TITLE>Фракталы: Frothy</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Frothy.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Frothy.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Frothy</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=430 src="Фракталы Frothy.files/fr053.gif" width=420 
+border=0></CENTER>
+<P>Построение производится следующим образом: <I>
+<DD>Z<SUB>0</SUB> = pixel<BR>
+<DD>Z' = Z<SUP>2</SUP> - C*conj(Z),<BR>
+<DD>где C = 1 + A*i, A=1.02871... </I>
+<P></P><PRE><B>Program</B> Froth;
+<B>Uses</B> Graph, CRT;
+<B>Type</B>
+   TComplex=<B>Record</B>
+     x: Real;
+     y: Real;
+   <B>end</B>;
+<B>Const</B>
+   iter = 50;
+   max = 16;
+<B>Var</B>
+   z,z1,c: TComplex;
+   x,y,n : Integer;
+   Cancel: Boolean;
+   gd,gm : Integer;
+   mx, my: Integer;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   Cancel:=False;
+   mx:=GetMaxX <B>div</B> 2;
+   my:=GetMaxY <B>div</B> 2;
+   <B>For</B> y:=-my <B>to</B> mx <B>do</B>
+      <B>For</B> x:=-mx <B>to</B> mx <B>do</B> <B>Begin</B>
+         n:=0;
+         z.X:=X*0.01;
+         z.Y:=Y*0.01;
+         c.X:=1;
+         c.Y:=1.02871;
+         <B>While</B> ((sqr(z.x) + sqr(z.y)) &lt; max) <B>and</B> (n &lt; iter) <B>do</B> <B>Begin</B>
+            z1:=z;
+            z.x:=sqr(z1.x) - sqr(z1.y) - c.x * (z1.x + z1.y);
+            z.y:=2 * z1.x * z1.y - c.y * (z1.x - z1.y);
+            Inc(n);
+            <B>If</B> KeyPressed <B>Then</B> Cancel:=True;
+         <B>End</B>;
+         <B>If</B> n=iter <B>then</B> PutPixel(mx + x, my + y, Round((sqr(z.x) + sqr(z.y))*10));{}
+         <B>If</B> Cancel <B>Then</B> Exit;
+      <B>End</B>;
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+</PRE></DD></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 26.11.04<BR>Дата последнего обновления: 26.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Frothy.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,69 @@
+Turbo Assembler	 Version 2.5	    10/31/18 15:54:50	    Page 1
+lab5.asm
+
+
+
+      1	0000			     stseg   segment para    stack
+      2	0000  10*(????)			     dw	     16	     dup(?)
+      3	0020			     stseg   ends
+      4
+      5	0000			     dseg    segment para
+      6	0000  0A 64*(24)	     string  db	     0ah,100 dup('$')
+      7	0065			     dseg    ends
+      8
+      9	0000			     cseg    segment para
+     10	0000			     lab5    proc    far
+     11					     assume  cs:cseg,ds:dseg,ss:stseg
+     12	0000  B8 0000s			     mov     ax,dseg
+     13	0003  8E D8			     mov     ds,ax
+     14
+     15	0005  B9 0063			     mov     cx,99
+     16	0008  BB 0001r			     lea     bx,string+1
+     17	000B  B4 01			     mov     ah,1
+     18	000D			     n1:
+     19	000D  CD 21			     int     21h
+     20	000F  88 07			     mov     [bx],al
+     21	0011  43			     inc     bx
+     22	0012  3C 2E			     cmp     al,'.'
+     23	0014  74 02			     je	     ex
+     24	0016  E2 F5			     loop    n1
+     25	0018			     ex:
+     26	0018  B4 09			     mov     ah,9
+     27	001A  BA 0000r			     lea     dx,string
+     28	001D  CD 21			     int 21h
+     29
+     30	001F  B4 10			     mov     ah,10h
+     31	0021  CD 16			     int     16h
+     32
+     33	0023  B8 4C00			     mov     ax,4c00h
+     34	0026  CD 21			     int     21h
+     35	0028				     lab5    endp
+     36	0028			     cseg    ends
+     37					     end     lab5
+Turbo Assembler	 Version 2.5	    10/31/18 15:54:50	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "10/31/18"
+??FILENAME			  Text	 "lab5	  "
+??TIME				  Text	 "15:54:49"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 LAB5
+@WORDSIZE			  Text	 2
+EX				  Near	 CSEG:0018
+LAB5				  Far	 CSEG:0000
+N1				  Near	 CSEG:000D
+STRING				  Byte	 DSEG:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0028 Para	  none
+DSEG				  16  0065 Para	  none
+STSEG				  16  0020 Para	  Stack
+

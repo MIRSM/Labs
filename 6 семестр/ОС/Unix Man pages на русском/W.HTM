@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>W(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>W(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+w - выдает информацию о пользователях,  находящихся в системе,
+и о том, что они делают.
+<p><b>СИНТАКСИС</b>
+<pre>
+	w [-h  l  q  t  w][-n  namelist][-s  swapdev][-c  corefile][-u
+	utmpfile][user...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда 'w' печатает суммарную информацию об активности системы, включая данные о том, что делает каждый пользователь. Заглавная строка показывает текущее время дня, длительность работы системы, число пользователей, зарегистрированных в системе.
+В системах, которые обрабатывают необходимые данные, в заглавной строке также показывается средняя загрузка системы.  Средняя загрузка представляет собой число процессов, находящихся в
+очереди на выполнение от 1,5 до 15 минут.
+<p align=justify><b>ОПЦИИ</b><br>
+<dl>
+<dt>-h<dd>
+Не печатать заглавные строки.
+<p><dt>
+-l<dd>
+Длинный формат (по умолчанию). Для каждого пользователя команда 'w' выводит регистрационное имя пользователя, тип терминала
+или  псевдотерминала, за которым работает пользователь, время,
+когда пользователь подключился к системе, число минут, которое
+пользователь находился в ожидании (т.е. сколько времени прошло
+с момента последнего набора информации  пользователем),  время
+процессора,  используемое  всеми  процессорами  и их дочерними
+процессами, подключенными к терминалу, время  процессора,  используемое  текущим активным процессом, имя и аргументы активного в настоящее время процесса.
+<p><dt>
+-q<dd>
+Быстрый формат.  Для каждого пользователя команда 'w' печатает
+его регистрационное имя, тип используемого терминала или псевдотерминала, время ожидания пользователя  и  имя  активного  в
+настоящее время пользователя.
+<p><dt>
+-t<dd>
+Выводится только   заглавная   строка   (эквивалент    команды
+<a href=UPTIME.htm>uptime(1)</a>).
+<p><dt>
+-w<dd>
+Выводится заглавная строка вместе с суммарной  информацией  по
+всем пользователям.
+<p><dt>
+-n namelist<dd>
+Аргумент берется как имя альтернативного списка имен  namelist
+<p><dt>
+-s swapdev<dd>
+Использует файл подкачки данных swapdev вместо /dev/swap.  Это
+полезно при проверке файла corefile.
+<p><dt>
+-c corefile<dd>
+Использует файл corefile вместо файла /dev/kmem.
+<p><dt>
+-u utmpfile<dd>
+Файл utmpfile  используется вместо файла /etc/utmp как запись,
+кто логически подключен в настоящее время.
+</dl>
+<p align=justify>Если заданы имена каких-либо пользователей users,  то выдается
+суммарная информация по этим пользователям.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/utmp
+	/dev/kmem
+	/dev/swap
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=DATE.htm>date(1)</a>, <a href=FINGER.htm>finger(1)</a>, <a href=PS.htm>ps(1)</a>, <a href=UPTIME.htm>uptime(1)</a>, <a href=WHO.htm>who(1)</a>, <a href=WHODO.htm>whodo(1)</a>.
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Термин "активный  в  настоящее время процесс" является приближенным и не всегда точен.  Программные каналы  могут  выдавать
+странные результаты,  как некоторые фоновые процессы. Если команда 'w' не в состоянии опознать активный в  настоящее  время
+процесс, она печатает знак '-'.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

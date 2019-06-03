@@ -1,0 +1,221 @@
+<html>
+<head>
+<title>MSCREEN(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MSCREEN(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mscreen - Утилита последовательных мультиэкранов
+<p><b>СИНТАКСИС</b>
+<pre>
+     mscreen [-s] [-n number] [-t]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+mscreen допускает  последовательный  терминал  для  того,
+чтобы иметь множественные входные экраны аналогично управлению
+<a href=MULTISCR.htm>multiscreen(7)</a>.
+<p align=justify>
+Замечание:  Для  полной  поддержки  mscreen терминал дожен
+иметь возможность переключать внутренние страницы экрана по команде и должен сохранять отдельную позицию курсора  для  каждой
+страницы экрана.
+<p>
+Параметры используются следующим образом:
+<table>
+<tr valign=top><th>-s<td>Режим подавления вывода сообщений. Этот флаг  поддерживает  сообщения при запуске, и на "немых" терминалах он поддерживает сообщения о переключателе экрана.</tr>
+<tr valign=top><th>-n<td>Выбирает число последовательных мультиэкранов,  сведенных  к максимальному числу, определенному для данного типа терминала.</tr>
+<tr valign=top><th>-t<td>Делает  невозможной непосредственную проверку tty. Как
+правило, mscreen входит без объявления, если имя  терминального
+устройства начинается с символов "ttyp". Имена устройств, начинающиеся  с  "ttyp", используются как починенные устройства для
+mscreen. Правильные имена для управляющих устройств tty начинаются с "ptyp".</tr>
+</table>
+<p align=justify>mscreen может быть использован как на "интеллектуальных",
+так и на "немых" терминалах.  Хотя он оптимизирован так, чтобы
+работать преимущественно  с  "интеллектуальными терминалами" с
+экранной памятью,  mscreen также работает на немых терминалах,
+хотя при  изменениях экрана изображения экрана не сохраняются.
+mscreen также поддерживает терминалы с двумя (или более)  последовательными портами,  подсоединенными к различным компьютерам.
+<p align=justify>
+mscreen сконструирована так, чтобы она вызывалась из файлов .profile  или .login.  Следует использовать mscreen вместо
+переменной SHELL, чтобы последовательные мультиэкраны последовательно включались  во  время  ввода.  Клавиши "stp" и "quit"
+позволяют выйти из всех экранов с посмощью одного удара клавиши.
+<p align=justify><i>Конфигурация</i><br>
+Анализируя переменную среды TERM, mscreen  определяет  вид
+терминала,  из  которого она вызывалась. Чтобы получить возможности для данного вида терминала, mscreen просматривает
+/etc/mscreencp или имя файла,  содержащееся в переменной среды
+SPTTERMCAP.
+<p align=justify>
+Псевдотерминалы, приписанные пользователю,  автоматически
+определяются mscreen при запуске.  Присваивание  ttys  вручную
+может быть выполнено путем создания файла .mscreenrc в начальном каталоге пользователя.
+<p align=justify><i>Формат mscreencap</i><br>
+mscreencap содержит вход для каждого поддерживаемого  вида
+терминала. Если поддержка для нескольких видов терминала одинакова,  вход  может  иметь  несколько имен. Внутри входа имеются
+отображения клавиш для каждого потенциального  псевдотерминала.
+Каждый псевдотерминал имеет строку клавиши help, входную строку
+(последовательность  с генерированной клавишей, выбирающей данный экран), и произвольная выходная строка (последовательность,
+посылаемая терминалу для включения страницы). Входная и  выходная строки находятся в формате типа termcap: (backslash и возврат каретки являются руководящими в (управляющих) символах).
+<p><table>
+<tr><th>\nnn<td>восьмеричное число, допускается от одного до трех цифр</tr>
+<tr><th>\n<td>новая строка</tr>
+<tr><th>\r<td>возвращение каретки</tr>
+<tr><th>\t<td>символ табуляции</tr>
+<tr><th>\b<td>backspace</tr>
+<tr><th>\f<td>form feed</tr>
+<tr><th>\E<td>переход (от шестнадцатиричного 1b к восьмиричному 33)</tr>
+<tr><th>\<td>ввести backslash в качестве символа данных</tr>
+<tr><th>\^<td>нажать на каретку как символ данных</tr>
+<tr><th>\^X<td>ctrl-X, где Х может быть: @ABCDEFGHIJKLMNOPQRSTUVWXYZ</tr>
+<tr><th>[]^_<td>полезно то, что каретка может порождать шестнадцатиричное 01 через шестнадцатиричное 1f.</tr>
+</table>
+<p align=justify>
+Если вид терминала не имеет выходных строк,  то он считается "немым" терминалом,  не имеющим множественных  внутренних
+страниц памяти.
+<p align=justify>
+Существует пять  особых входов,  позволяющих пользователю
+определять клавиши для поддержки других функций mscreen.   Это
+клавиша help (которая печатает список всех доступных в настоящее время клавиш и их функций),  клавиша who (печатает имя текущего экрана),  клавиша stop (прекращает mscreen и возвращает
+хороший (нулевой)  возвратный код оболочки),  и  клавиша  quit
+(прекращает mscreen и возвращает плохой (ненулевой) возвратный
+код оболочки),  и немой вход,  используемый для  терминалов  с
+множественными портами.
+<p>Формат:
+<pre>
+     #это комментарий и может появляться только между вводами
+
+     entryname|alias1|alias1...|aliasn:
+  :specialname,helpname,inputstring,pageselectstring:
+  :specialname,helpname,inputstring,pageselectstring:
+     entryname|alias1|alias1...|aliasn:
+  :specialname,helpname,inputstring,pageselectstring:
+  :specialname,helpname,inputstring,pageselectstring:
+</pre>
+specialname пусто  для  вводов  с действительного экрана.
+Посмотрите пример для /etc/mscreencap 1.
+<pre>
+     .mscreen format
+</pre>
+Фиксированный набор ttys для использования:
+<pre>
+     tty0
+     tty1
+     ttyn
+</pre><p align=justify><i>Возвращенные коды оболочки и автоматический ввод/вывод</i><br>
+mscreen выходит с плохим (ненулевым)   возвратным  кодом
+при наличии  ошибки  или  при нажатии клавиши "quit".  Клавиша
+stop вызывает выход mscreen с хорошим нулевым  возвратным  кодом. Это  позволяет  пользователям  помещать  mscreen  в файлы
+.profile и .login.  Если возвратный код mscreen хороший (нулевой), файлы  .profile  и .login должны устанавливать автоматический выход. Ниже показан вызов выборки csh mscreen для файла
+.login.
+<pre>
+     mscreen -n4
+     if ($status==0)logout
+</pre>
+<p align=justify>Выходное свойство единственного ключа  mscreen  работает,
+как будто  на каждом псевдотерминале был введен нормальный выход. Всем процессам на всех псевдотерминалах посылается сигнал
+зависания.
+<p align=justify><i>Опция множественного порта</i><br>
+mscreen обеспечивает вид немого входа. Он разрешает помещать mscreen  в неактивное состояние,  а пока пользователь использует свой терминал для проникновения через  другой  (физический) порт ввода/вывода в другой компьютер. Например, смотри
+/etc/mscreentermmap. Для использования вы должны взять  пример
+и составить его для своих целей.
+<p align=justify><i>Драйвер mscreen</i><br>
+Драйвер mscreen уже внедрен в ядро XENIX с восемью псевдотерминалами, доступными для использования. Чтобы использовать
+его, вам следует включить псевдотерминалы. Чтобы иметь больше
+доступных псевдотерминалов, следует ознакомиться с инструкциями
+link-kit для повторного подсоединения ядра.
+<p align=justify><b>ПРИМЕЧАНИЕ</b><br>
+Для входных  строк mscreen имеет истечение времени ожидания события VTIM, равное 1/5 секунды.
+<p align=justify>
+На каждого пользователя mscreen имеет предел в 20 мультиэкранов.
+<p align=justify>
+При выходе не следует включать страницы экрана в mscreen,
+так как если управляющая последовательность разбита пополам,
+терминал может остаться в неопределенном состоянии и исказить
+изображение экрана.
+<p align=justify>
+Терминалы, сохраняющие положение курсора для каждого  экрана, часто  не сохраняют такие состояния,  как режим вставки,
+обратный видео и другие.  Например, не следует менять  экраны,
+если вы находитесь в режиме вставки в vi, и вам не следует менять экраны во время выходной последовательности обратного видео.
+<p align=justify>
+Для незадействованных экранов (экранов, отличающихся от
+текущего) mscreen сохраняет по крайней мере 2048 символов информации (2К). Более старая информация теряется. Это ограничение иногда приводит к ошибкам в программах, требующих памяти
+для большего объема информации, чем задано. Клавиша повторного
+изображения эрана, определенного пользователем, восстанавливает
+экран в нормальный вид.
+<p align=justify>
+mscreen зависит от имен утройства псевдотерминала,  начинающихся с ttyp для зависимых устройств и ptyp для управляющих
+устройств. Количество    последних символов в имени устройства
+несущественно.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MULTISCR.htm>multiscreen(7)</a>, <a href=ENABLE.htm>enable(1)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>LP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+lp - выдача запроса на печать
+<p><b>СИНТАКСИС</b>
+<pre>
+   lp  [-c] [-d адрес] [-m] [-n количество] [-o опция] [-s]
+       [-t заголовок] [-w] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда  lp  вызывает  печать файлов и связанной с ними
+информации (все вместе называется запросом) на строчном
+печатающем устройстве  (принтере).  Если  имена  файлов
+опущены, печатается стандартный файл ввода. Файл с именем  "-" означает стандартный ввод и может быть задан в
+командной строке наряду с другими файлами. Файлы  печатаются в том порядке, в котором они перечислены.
+<p align=justify>Команда lp связывает с каждым запросом уникальный идентификатор, который выдается на стандартный вывод.  Этот
+идентификатор может быть в дальнейшем  использован  для
+аннулирования [см. <a href=CANCEL.htm>cancel(1)</a>] или  определения  статуса
+[см. <a href=LPSTAT.htm>lpstat(1)</a>] запроса.
+<p align=justify>Команда lp имеет следующие опции, которые могут записываться в командной строке в любом порядке вперемежку  с
+именами файлов:
+<dl>
+<dt>-c <dd>  Копировать файлы сразу после ввода команды. Обычно
+     на печатаемые файлы устанавливаются  ссылки.  Если
+     опция -c не задана, пользователь должен быть  внимателен: не следует удалять файлы прежде, чем запрос на печать будет полностью удовлетворен. Следует также отметить, что при отсутствии опции -c все
+     изменения в файлах, сделанные после выдачи  запроса, но до вывода на печать, будут отражены в напечатанном экземпляре.
+<p><dt>-d адрес <dd>
+     Параметр адрес задает принтер или класс принтеров,
+     на которые следует осуществлять вывод. Если  адрес
+     задает принтер, то печать осуществляется на  конкретном принтере. Если адрес задает  класс  принтеров, то печать осуществляется на ближайшем доступном принтере указанного класса. При некоторых  условиях (например, недоступность принтера,  ограничение на длину файла) запрос может быть не воспринят (см. <a href=ACCEPT.htm>accept(1M)</a>  и  <a href=LPSTAT.htm>lpstat(1)</a>).  По  умолчанию
+     значение параметра адрес определяется по  переменной окружения LPDEST  (если  она  установлена);  в
+     противном случае используется  системное  значение
+     по умолчанию (если оно  существует).  Адреса  устройств   зависят   от   генерации   системы   [см.
+     <a href=LPSTAT.htm>lpstat(1)</a>].
+<p><dt>-m <dd>  Послать почтовое сообщение (см. <a href=MAIL.htm>mail(1)</a>) после завершения печати файлов. По умолчанию при  нормальном завершении запроса на печать сообщений не  выдается.
+<p><dt>-n количество <dd>
+     Напечатать заданное количество копий (по умолчанию
+     - одну)
+<p><dt>-o опция <dd>
+     Задать опции принтера или  класса  принтеров.  Используя флаг -o многократно, можно в одной команде
+     задать несколько опций. Дополнительные сведения об
+     этих опциях см. в команде <a href=LPADMIN.htm>lpadmin(1M)</a>.
+<p><dt>-s  <dd> Подавить сообщения  команды  <a href=LP.htm>lp(1)</a>  о  присвоенном
+     запросу идентификаторе (типа "request id is ..." )
+<p><dt>-t заголовок <dd>
+     Печатать заголовок на титульной странице
+<p><dt>-w <dd>  Вывести  сообщение  на  терминал  пользователя  по
+     окончании печати файлов. Если пользователь не  вошел в систему, то вместо этого посылается почтовое
+     сообщение.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+   /usr/spool/lp/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CANCEL.htm>cancel(1)</a>, <a href=ENABLE.htm>enable(1)</a>, <a href=LPSTAT.htm>lpstat(1)</a>, <a href=MAIL.htm>mail(1)</a>.<br>
+<a href=ACCEPT.htm>accept(1M)</a>, <a href=LPADMIN.htm>lpadmin(1M)</a>, lpshed(1M) в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

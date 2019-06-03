@@ -1,0 +1,231 @@
+<html>
+<head>
+<title>OPEN(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>OPEN(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+open - открыть файл для чтения или записи
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;fcntl.h&gt;
+
+        int open (path, oflag [, mode])
+        char *path;
+        int oflag, mode;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргумент path является  указателем  на  маршрутное  имя
+файла.  Системный  вызов  open открывает дескриптор для
+указанного файла и устанавливает флаги статуса файла  в
+соответствии  со значением аргумента oflag. Для файлов,
+не являющихся псевдоустройствами [см. <a href=INTRO~1.htm>intro(2)</a>], значение oflag задается как поразрядное ИЛИ флагов из следующего списка (из первых трех  флагов  можно  установить
+только один):
+<dl>
+<dt>O_RDONLY 
+<dd>Открыть только на чтение.
+<dt>O_WRONLY 
+<dd>Открыть только на запись.
+<dt>O_RDWR 
+<dd>Открыть на чтение/запись.
+<dt>O_NDELAY 
+<dd>Этот флаг может воздействовать на последующие операции чтения и записи [см. <a href=READ.htm>read(2)</a> и <a href=WRITE.htm>write(2)</a>].
+<p>
+При  открытии именованного канала с установленными
+флагами O_RDONLY или O_WRONLY:
+<ol>
+<li>Если установлен флаг O_NDELAY,  то  вызов  open
+только  на  чтение  завершается без задержки, а
+вызов open только для записи отрабатывает с сообщением об ошибке, если в  данный  момент  нет
+процесса, открывшего файл для чтения;
+<li>Если не установлен флаг O_NDELAY, то вызов open
+только  на  чтение блокируется, пока какой-либо
+процесс не откроет файл  для  записи,  а  вызов
+open  только на запись блокируется, пока какой 
+либо процесс не откроет файл на чтение.
+</ol>
+При открытии файла, ассоциированного с линией связи:
+<ol>
+<li>Если установлен флаг O_NDELAY,  то  вызов  open
+завершается без ожидания несущей.
+<li>Если не установлен флаг O_NDELAY, то вызов open
+блокируется до появления несущей.
+</ol>
+<dt>O_APPEND 
+<dd>Перед каждой операцией записи устанавливать указатель текущей позиции на конец файла.
+<dt>O_SYNC 
+<dd>При открытии обычного файла этот флаг воздействует
+на последующие операции записи. Если флаг установлен,  то каждый вызов <a href=WRITE.htm>write(2)</a> ожидает физического
+обновления как данных, так и статуса файла.
+<dt>O_CREAT 
+<dd>Если файл существует, то флаг игнорируется. В противном случае идентификаторы  владельца  и  группы
+создаваемого  файла устанавливаются равными, соответственно, действующим идентификаторам  пользователя  и группы процесса, а младшие 12 бит значения
+режима доступа  к  файлу  устанавливаются  равными
+значению аргумента mode, модифицированному следующим образом [см. <a href=CREAT.htm>creat(2)</a>]:
+<ol>
+<li>Биты, соответствующие единичным битам маски режима  создания  файлов  текущего  процесса [см.
+<a href=UMASK.htm>umask(2)</a>], устанавливаются равными 0.
+<li>Бит навязчивости [см. <a href=CHMOD~1.htm>chmod(2)</a>] устанавливается
+равным 0.
+</ol>
+<dt>O_TRUNC 
+<dd>Если файл существует, то он  опустошается  (размер
+становится  равным  0), а режим доступа и владелец
+не изменяются.
+<dt>O_EXCL 
+<dd>Если установлены оба флага O_EXCL  и  O_CREAT,  то
+системный  вызов  open  завершается неудачей, если
+файл уже существует.
+</dl><p align=justify>
+При открытии псевдоустройства значение oflag может  задаваться  как поразрядное ИЛИ флага O_NDELAY с одним из
+флагов O_RDONLY, O_WRONLY или O_RDWR. Другие флаги применительно  к  псевдоустройствам   игнорируются.   Флаг
+O_NDELAY  воздействует  на  работу драйверов псевдоустройств и некоторые  системные  вызовы<dt>[см.  <a href=GETMSG.htm>getmsg(2)</a>,
+<a href=PUTMSG.htm>putmsg(2)</a>,  <a href=READ.htm>read(2)</a>, <a href=WRITE.htm>write(2)</a>]. Что касается драйверов,
+то реализация флага O_NDELAY зависит от устройства.
+<p align=justify>
+Некоторые флаги могут быть установлены и после открытия
+файла, посредством системного вызова <a href=FCNTL.htm>fcntl(2)</a> [см. также <a href=FCNTL~1.htm>fcntl(5)</a>].
+<p align=justify>
+Указатель текущей  позиции  устанавливается  на  начало
+файла.
+<p align=justify>
+Новый дескриптор файла остается открытым после выполнения системных вызовов <a href=EXEC.htm>exec(2)</a> [см. <a href=FCNTL.htm>fcntl(2)</a>].
+<p align=justify>
+Системный  вызов open завершается неудачей и дескриптор
+указанного файла не открывается, если выполнено хотя бы
+одно из следующих условий:
+<dl>
+<dt>[EACCES]
+<dd>Нет права на поиск для компонента маршрута.
+<dt>[EACCES]
+<dd>Для указанного файла нет прав на выполнение
+операций, задаваемых значением oflag.
+<dt>[EAGAIN]
+<dd>Файл существует и доступ к нему  заблокирован [см. <a href=CHMOD~1.htm>chmod(2)</a>].
+<dt>[EEXIST]
+<dd>Флаги O_CREAT и O_EXCL установлены  и  указанный файл существует.
+<dt>[EFAULT]
+<dd>Аргумент path указывает за пределы отведенного процессу адресного пространства.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[EIO]
+<dd>Разрыв  связи или ошибка при открытии псевдоустройства.
+<dt>[EISDIR]
+<dd>Указанный файл является каталогом и  открывается на запись или чтение/запись.
+<dt>[EMFILE]
+<dd>Превышается  максимально  допустимое  количество дескрипторов файлов, открытых  одновременно в одном процессе.
+<dt>[EMULTIHOP] Компоненты path требуют многократного обращения к удаленным компьютерам.
+<dt>[ENFILE]
+<dd>Переполнение системной таблицы файлов.
+<dt>[ENOENT]
+<dd>Флаг O_CREAT не установлен и указанный файл
+не существует.
+<dt>[ENOLINK]
+<dd>Маршрутное имя path указывает на  удаленный
+компьютер, связи с которым в данный  момент
+нет.
+<dt>[ENOMEM]
+<dd>Система не в состоянии выделить память  под
+дескриптор пересылки.
+<dt>[ENOSPC]
+<dd>Установлены флаги O_CREAT и  O_EXCL  и  нет
+свободных описателей файлов.
+<dt>[ENOSR]
+<dd>Нет места для потока.
+<dt>[ENOTDIR]
+<dd>Компонент маршрута не является каталогом.
+<dt>[ENXIO]
+<dd>Указанный файл  является  специальным  символьным  или  блочным файлом, а устройство,
+ассоциированное с этим специальным  файлом,
+не существует.
+<dt>[ENXIO]
+<dd>Установлены флаги O_NDELAY и O_WRONLY, указанный  файл является именованным каналом и
+нет процесса, открывшего файл для чтения.
+<dt>[ENXIO]
+<dd>Неудачная попытка выполнить  процедуру  открытия  для  модуля или драйвера псевдоустройства.
+<dt>[EROFS]
+<dd>Указанный файл расположен в файловой системе,  доступной только на чтение, а открывается на запись или чтение/запись.
+<dt>[ETXTBSY]
+<dd>Файл содержит секцию команд, которая в данный момент выполняется.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD~1.htm>chmod(2)</a>,   <a href=CLOSE.htm>close(2)</a>,   <a href=CREAT.htm>creat(2)</a>,   <a href=DUP.htm>dup(2)</a>,   <a href=FCNTL.htm>fcntl(2)</a>,
+<a href=INTRO~1.htm>intro(2)</a>,  <a href=LSEEK.htm>lseek(2)</a>,  <a href=READ.htm>read(2)</a>,  <a href=GETMSG.htm>getmsg(2)</a>,   <a href=PUTMSG.htm>putmsg(2)</a>,
+<a href=UMASK.htm>umask(2)</a>, <a href=WRITE.htm>write(2)</a>, <a href=FCNTL~1.htm>fcntl(5)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результатом  служит  дескриптор
+файла;  в  случае  ошибки возвращается -1, а переменной
+errno присваивается код ошибки
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

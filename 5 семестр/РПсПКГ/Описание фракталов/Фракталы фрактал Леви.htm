@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/levy.html -->
+<HTML><HEAD><TITLE>Фракталы: фрактал Леви</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY background="Фракталы фрактал Леви.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы фрактал Леви.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: фрактал Леви</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=470 alt="Фрактал Леви" 
+src="Фракталы фрактал Леви.files/fr037.gif" width=755 border=0></CENTER>
+<P>Французкий математик Том Леви (1886-1971) был одним из первых ученых, который 
+изучал фрактальные кривые.</P>
+<P>Фрактал леви получается, если взять половину квадрата вида /\, а затем каждую 
+сторону заменить таким же фрагментом, и так много много раз, то в пределе 
+получим фрактал Леви.</P>
+<P>СИФ преобразования для построения фрактала Леви выглядят следующим 
+образом:<BR>T1:<BR><I>
+<DD>x'=0.5x-0.5y<BR>
+<DD>y'=0.5x+0.5y<BR></I>T2:<BR><I>
+<DD>x'=0.5x+0.5y+0.5<BR>
+<DD>y'=-0.5x+0.5y+0.5<BR></I>
+<P></P><PRE><B>program</B> Levy;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+   gd,gm : Integer;
+
+<B>Procedure</B> draw;
+<B>const</B> iter = 50000;
+<B>Var</B>
+   t, x, y, p : Real;
+   k : LongInt;
+   mx, my, rad : Integer;
+<B>Begin</B>
+   mx := 200;
+   my := 300;
+   rad := 250;
+   Randomize;
+   x := 0.0;
+   y := 0.0;
+   <B>For</B> k := 1 <B>To</B> iter <B>Do</B> <B>Begin</B>
+      p := Random;
+      t := x;
+     <B>If</B> p &lt;= 1/2 <B>Then</B> <B>Begin</B>
+         x :=  0.5*x-0.5*y;
+         y :=  0.5*t+0.5*y;
+      <B>End</B>
+      <B>Else</B>
+         <B>Begin</B>
+           x :=  0.5*x+0.5*y+0.5;
+           y :=  -0.5*t+0.5*y+0.5;
+         <B>End</B>;
+      PutPixel(mx + Round(rad * x), my - Round(rad * y), 2);
+   <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   draw;
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+</PRE></DD></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 12.10.04<BR>Дата последнего обновления: 12.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы фрактал Леви.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>SYSM68K(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SYSM68K(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+sysm68k - машинно-зависимые функции
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/trap.h&gt;
+        
+        int sysm68k (cmd, arg1, arg2, arg3)
+        int cmd, arg1, arg2, arg3;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный  вызов  sysm68k  реализует  машинно-зависимые
+действия.  Конкретный  характер  действий  определяется
+аргументом  cmd.  Количество и смысл остальных аргументов, в свою очередь, зависят от выполняемого  действия.
+Ниже кратко описаны три из возможных действий. Дополнительные  сведения  можно  получить из включаемых файлов
+&lt;sys/trap.h&gt;, &lt;sys/swap.h&gt; и &lt;sys/conf.h&gt;.
+<p align=justify><b>Команда S3BFPHW</b></br>
+Если значение cmd равно S3BFPHW,  то  проверяется,  существует  ли сопроцессор, поддерживающий арифметику вещественных чисел. Требуется один  дополнительный  аргумент - адрес целочисленной переменной. Если сопроцессор
+существует, то в результате выполнения системного вызова этой переменной присваивается 1, а если не существует, то 0.
+<p align=justify>
+Чтобы проверить наличие сопроцессора,  необходимо  сделать следующее:
+<pre>
+             #include &lt;sys/trap.h&gt;
+             
+             int fpu_present;
+             sysm68k (S3BFPHW, &fpu_present);
+</pre><p align=justify>
+Системный  вызов  sysm68k  при  значении аргумента cmd,
+равном S3BFPHW, завершается неудачей, и наличие  сопроцессора не определяется, если выполнено хотя бы одно из
+следующих условий:
+<dl>
+<dt>[EFAULT]
+<dd>Дополнительный аргумент  не  является  корректным  адресом  целочисленной  переменной
+(например, он оказался нечетным).
+<dt>[EFAULT]
+<dd>Дополнительный аргумент указывает за пределы отведенного  процессу  адресного  пространства.
+</dl>
+<p align=justify><b>Команда S3BSWPI</b><br>
+Если значение cmd равно S3BSWPI, то может быть добавлена или удалена отдельная область подкачки. Можно  также
+получить текущую информацию обо всех областях подкачки.
+В  качестве дополнительного аргумента указывается адрес
+структуры типа swapint:
+<pre>
+        struct swapint {
+          char si_cmd;   /* Код команды (см. ниже). */
+          char *si_buf;  /* В случае информационного запроса
+                            [код SI_LIST] это поле должно указывать
+                            на буфер размером не менее
+                            sizeof (swpt_t) * MSFILES байт.
+                            В остальных запросах это указатель на
+                            маршрутное имя файла-устройства, на
+                            котором находится или создается область
+                            подкачки. */ 
+          int  si_swplo; /* Номер первого блока области подкачки.
+                            Используется только для  добавления
+                            и удаления областей подкачки. */
+          int  si_nblks; /* Размер области подкачки в блоках.
+                            Используется только в запросе добавления
+                            области подкачки. */
+        }
+        /* Возможные значения si_cmd (коды команд) */
+        #define SI_LIST  0   /* Получить список текущих областей
+                                подкачки. */
+        #define SI_ADD   1   /* Добавить область подкачки. */
+        #define SI_DEL   2   /* Удалить одну из текущих областей
+                                подкачки. */
+</pre><p align=justify>
+Описания,  необходимые  для использования данной разновидности системного вызова sysm68k, содержатся во включаемом файле &lt;sys/swap.h&gt;.
+<p align=justify>
+Добавление и удаление областей подкачки доступно только
+суперпользователям.
+<p align=justify>
+Операции с областями подкачки обычно выполняются следующим образом:
+<pre>
+             #include &lt;sys/trap.h&gt;
+             #include &lt;sys/swap.h&gt;
+             
+             /* Описание структуры для выполнения запросов */
+             struct swapint swapbuf;
+             
+             /* Заполнение структуры */
+              ...
+             
+             /* Собственно системный вызов */
+             sysm68k (S3BSWPI, &swapbuf);
+</pre><p align=justify>
+Системный вызов sysm68k  при  значении  аргумента  cmd,
+равном  S3BSWPI, завершается неудачей, и операции с областями подкачки не выполняются, если выполнено хотя бы
+одно из следующих условий:
+<dl>
+<dt>[EFAULT]
+<dd>Дополнительный аргумент указывает за пределы отведенного  процессу  адресного  пространства.
+<dt>[EFAULT]
+<dd>Поле si_buf указывает за пределы отведенного процессу адресного пространства.
+<dt>[ENOTBLK]
+<dd>Заданная область подкачки не является  специальным блочным файлом.
+<dt>[EEXIST]
+<dd>Заданная область подкачки уже существует.
+<dt>[ENOSPC]
+<dd>Добавить область подкачки нельзя,  так  как
+их количество уже максимально.
+<dt>[ENOMEM]
+<dd>Попытка удалить последнюю область подкачки.
+<dt>[EINVAL]
+<dd>Неправильные аргументы.
+<dt>[ENOMEM]
+<dd>Если удалить область подкачки, то не хватит
+места для подкачиваемых страниц.
+</dl>
+<p align=justify><b>Команда STIME</b><br>
+Если значение cmd равно STIME, то устанавливаются  системные  дата и время. Единственный дополнительный аргумент типа long должен содержать время, прошедшее с нуля
+часов 1 января 1970 года (по  Гринвичу),  измеренное  в
+секундах. Эту команду может выполнить только суперпользователь.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=DATE.htm>date(1)</a> в Справочнике пользователя.
+<a href=SWAP.htm>swap(1M)</a> в Справочнике администратора.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Для описанных вариантов системного вызова  sysm68k  при
+успешном завершении результат равен 0; в противном случае  возвращается  -1, а переменной errno присваивается
+код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

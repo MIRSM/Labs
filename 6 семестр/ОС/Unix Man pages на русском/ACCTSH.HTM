@@ -1,0 +1,207 @@
+<html>
+<head>
+<title>ACCTSH(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCTSH(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acctsh: chargefee, ckpacct, dodisk, lastlogin, monacct,
+nulladm,  prctmp,  prdaily, prtacct, runacct, shutacct,
+startup, turnacct - shell-процедуры сбора статистики
+<p><b>СИНТАКСИС</b>
+<pre>
+  /usr/lib/acct/chargefee  входное_имя число
+  /usr/lib/acct/ckpacct  [число_блоков]
+  /usr/lib/acct/dodisk  [-o] [файл ...]
+  /usr/lib/acct/lastlogin
+  /usr/lib/acct/monacct  период
+  /usr/lib/acct/nulladm  файл
+  /usr/lib/acct/prctmp  файл ["заголовок"]
+  /usr/lib/acct/prdaily  [-l] [-c] [ммдд]
+  /usr/lib/acct/prtacct  файл ["заголовок"]
+  /usr/lib/acct/runacct  [ммдд [фаза]]
+  /usr/lib/acct/shutacct  ["причина"]
+  /usr/lib/acct/startup
+  /usr/lib/acct/turnacct  [on] [off] [switch]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Процедура  chargefee используется для добавления заданного числа единиц оплаты на счет пользователя с указанным входным_именем. В файл /usr/adm/fee помещается  соответствующая запись, которая ночью, во время ежесуточного запуска процедуры runacct, будет об единена с другими учетными записями.
+<p align=justify>
+Процедура   ckpacct   должна  периодически  запускаться
+cron'ом [см.  <a href=CRON.htm>cron(1M)</a>].  Она  проверяет  размер  файла
+/usr/adm/pacct.  Если  размер  превышает указанное число_блоков  (по  умолчанию  500),  запускается   утилита
+turnacct с аргументом switch. Если количество свободных
+блоков  в  файловой  системе,  содержащей каталог /usr,
+меньше 500, ckpacct автоматически выключает  сбор  статистической информации о процессах, используя для этого
+команду  turnacct  off.  Когда появится по крайней мере
+500 свободных блоков, сбор статистической информации  о
+процессах   возобновится   (будет   выполнена   команда
+turnacct on). Обычно планируется один запуск  процедуры
+ckpacct в час.
+<p align=justify>
+Процедура dodisk служит для  накопления  информации  об
+использовании  дискового пространства. По умолчанию она
+выполняет сбор статистики об устройствах, перечисленных
+в файле /etc/checklist. Если задана опция -o,  выполняется более медленная процедура учета использования дискового пространства каждым из пользователей. Если в командной строке указаны файлы, они определяют имена файловых систем, для которых будет произведен сбор статистики;  содержимое таблицы /etc/checklist при этом игнорируется. Если задана опция -o, файл должен быть именем
+каталога, к которому  подключена  файловая  система;  в
+противном  случае  файл должен быть именем специального
+файла, содержащего пригодную для монтирования  файловую
+систему. Обычно процедуру dodisk планируют для периодического запуска cron'ом.
+<p align=justify>
+Процедура lastlogin запускается  утилитой  runacct  для
+обновления файла /usr/adm/acct/sum/loginlog, содержащего даты последнего входа в систему каждого из пользователей.
+<p align=justify>
+Процедура monacct должна запускаться один раз  в  месяц
+или  в учетный период. Аргумент период указывает, какой
+именно месяц или период имеется в виду. Подразумеваемым
+значением периода является текущий месяц  (01-12).  Это
+полезно,  поскольку  обычно monacct запускается cron'ом
+по первым числам каждого месяца. Monacct создает файлы
+сводки в каталоге /usr/adm/acct/fiscal и очищает  файлы
+в каталоге /usr/adm/acct/sum.
+<p align=justify>
+Процедура nulladm создает указанный файл с режимом доступа 664 и об являет его принадлежащим пользователю adm
+и  группе  adm.  Эта  процедура используется различными
+shell-процедурами сбора статистики.
+<p align=justify>
+Процедура  prctmp  служит для печати файла с записями о
+сеансах (обычно это файл /usr/adm/acct/nite/ctmp), созданного утилитой acctcon1 [см. <a href=ACCTCON.htm>acctcon(1M)</a>].
+<p align=justify>
+Процедура prdaily используется для форматирования и печати  (на  стандартный вывод) отчета за указанный день.
+Предполагается, что отчеты хранятся в файлах с  именами
+/usr/adm/acct/sum/rprtммдд,  где ммдд есть месяц и день
+создания отчета. Для получения отчета за  текущий  день
+следует вызвать процедуру prdaily без аргументов [что и
+делает  <a href=RUNACCT.htm>runacct(1M)</a>]. Отчет за какой либо из предыдущих
+дней можно получить, указав нужную дату  (ммдд)  в  командной  строке.  Опция -l служит для вывода сведений о
+сверхактивных пользователях, потребивших ресурсов больше некоторого предела (например, истративших  более  20
+минут времени ЦП или проведших в системе более двух часов).  Отметим, что процедура monacct удаляет отчеты за
+предыдущие дни. Опция -c используется для вывода сведений о командах, потребивших подозрительно много  ресурсов  (например, истративших более 1000 килобайтоминут).
+Сведения о расточительных командах можно получить только за текущий день.
+<p align=justify>
+Процедуру prtacct можно использовать для распечатки любых  файлов,  содержащих записи в сводном формате tacct
+[см. <a href=ACCT~1~2.htm>acct(4)</a>].
+<p align=justify>
+Процедура runacct подытоживает накопленную за день  информацию о сеансах, о процессах, об оплате и об использовании  дискового  пространства. Создается также отчет
+об использовании команд. Подробнее см. <a href=RUNACCT.htm>runacct(1M)</a>.
+<p align=justify>
+Процедура shutacct должна  запускаться  при  выключении
+системы  для прекращения сбора информации о процессах и
+для записи "причины" в файл  /etc/wtmp.  Обычно  запуск
+shutacct производится из процедуры /etc/shutdown.
+<p align=justify>
+Процедура startup должна запускаться при включении системы для возобновления сбора информации о процессах.
+<p align=justify>
+Процедура turnacct  обеспечивает  удобный  интерфейс  с
+утилитой  accton  [см.  <a href=ACCT.htm>acct(1M)</a>]. Она используется для
+включения (on) и выключение (off)  сбора  информации  о
+процессах.  При  указании аргумента switch производятся
+следующие действия: выключается сбор статистики;  текущий  файл  /usr/adm/pacct переименовывается в /usr/adm/
+pacctчисло (где число, начиная с 1, увеличивается на  1
+при  создании  каждого  дополнительного  файла  pacct);
+вновь включается сбор  статистики.  Процедура  turnacct
+вызывается из регулярно планируемой к выполнению утилиты  ckpacct; тем самым размер файла /usr/adm/pacct поддерживается в разумных пределах. Из трех возможных  аргументов  процедуры  turnacct  должен быть указан ровно
+один.
+<p align=justify><b>ФАЙЛЫ</b>
+<dl>
+<dt><tt>/usr/adm/fee</tt>
+<dd>Файл, в котором  накапливается  информация об оплате.
+<dt><tt>/usr/adm/pacct</tt>
+<dd>Текущий  файл  с информацией о процессах.
+<dt><tt>/usr/adm/pacct*</tt>
+<dd>Файлы с ранее накопленной  информацией о процессах.
+<dt><tt>/etc/wtmp</tt>
+<dd>Файл со сведениями  о  начале/конце сеансов работы пользователей в системе.
+<dt><tt>/usr/lib/acct/ptelus.awk</tt>
+<dd>Файл  с  критериями отбора сверхактивных пользователей.
+<dt><tt>/usr/lib/acct/ptecms.awk</tt>
+<dd>Файл с критериями  отбора  расточительных команд.
+<dt><tt>/usr/adm/acct/nite</tt>
+<dd>Рабочий каталог.
+<dt><tt>/usr/lib/acct</tt>
+<dd>Каталог, содержащий все утилиты для
+сбора статистики.
+<dt><tt>/usr/adm/acct/sum</tt>
+<dd>Каталог,  содержащий сводную информацию.
+<dt><tt>/usr/spool/cron/crontabs/adm</tt>
+<dd>Файл с описанием  регулярных  административных действий.
+</dl>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCT.htm>acct(1M)</a>,   <a href=ACCTCMS.htm>acctcms(1M)</a>,   <a href=ACCTCON.htm>acctcon(1M)</a>,   <a href=ACCTMERG.htm>acctmerg(1M)</a>,
+<a href=ACCTPRC.htm>acctprc(1M)</a>,    <a href=CRON.htm>cron(1M)</a>,    <a href=DISKUSG.htm>diskusg(1M)</a>,    <a href=FWTMP.htm>fwtmp(1M)</a>,
+<a href=RUNACCT.htm>runacct(1M)</a>.<br>
+<a href=ACCTCOM.htm>acctcom(1)</a> в Справочнике пользователя.<br>
+<a href=ACCT~1.htm>acct(2)</a>, <a href=ACCT~1~2.htm>acct(4)</a>, <a href=UTMP.htm>utmp(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

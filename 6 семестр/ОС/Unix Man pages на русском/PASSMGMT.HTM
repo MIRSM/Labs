@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>passmgmt</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>passmgmt</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+passmgmt - работа с файлами паролей
+<p><b>СИНТАКСИС</b>
+<pre>
+ passmgmt -a опции имя
+ passmgmt -m опции имя
+ passmgmt -d имя
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда passmgmt корректирует содержимое файлов паролей.  Она
+имеет дело с файлами /etc/passwd и /etc/shadow.  Если файл shadow
+отсутствует, изменения записываются только в файл /etc/passwd.
+<p align=justify>
+Команда с параметром -a добавляет в файлы,  содержащие пароли
+регистрации, запись  о пользователе с указанным именем.  При этом
+для нового пользователя не создается никакого каталога и  вход  в
+систему остается   заблокированным (поле passwd содержит значение
+"LK") до  тех пор,  пока для установки пароля не будет  исполнена
+команда <a href=PASSWD~2.htm>passwd(1)</a>.
+<p align=justify>
+Команда с параметром -m модифицирует в файлах, содержащих пароли регистрации,  запись о пользователе с указанным именем.  При
+этом могут   корректироваться  поля:   имени   в   записи   файла
+/etc/shadow и   все  поля (за исключением пароля)  в записи файла
+/etc/passwd. Исправлены  будут значения только тех полей, которые
+указаны в   командной строке.  Если файл /etc/shadow отсутствует,
+все исправления делаются в файле /etc/passwd.
+<p align=justify>
+Команда с  параметром -d удаляет из файлов запись о пользователе с указанным именем.  При этом никакие файлы из принадлежащих
+пользователю удалены не будут; их нужно удалять вручную.
+<p>
+Имя пользователя должно быть уникальным.
+<p>
+Опции команды:
+<table>
+<tr valign=top><td>-c комментарии<td>Краткое описание входа в систему. Может содержать до 128 символов.</tr>
+<tr valign=top><td>-h начальный_каталог<td>Собственный каталог пользователя с указанным именем. Содержит до 256 символов (по умолчанию, "/usr/имя").</tr>
+<tr valign=top><td>-u uid<td>Код  идентификации пользователя с указанным именем. По умолчанию равен следующему  свободному коду  после  100.  Если опция -o не указана, код идентификации должен быть уникальным.</tr>
+<tr valign=top><td>-o<td>Разрешение использования неуникального кода идентификации пользователя.    Используется только с опцией -u.</tr>
+<tr valign=top><td>-g gid<td>Групповой  код идентификации пользователя с указанным именем. По умолчанию равен 1.</tr>
+<tr valign=top><td>-s shell<td>Оболочка регистрации пользователя с указанным именем. Указывается полное имя программы, исполняемой при регистрации пользователя в системе.  Максимальная длина  имени - 256 символов.   Умолчание  интерпретируется как /bin/sh.</tr>
+<tr valign=top><td>-l logname<td>Замена имени пользователя на logname (только для опции -m).</tr>
+</table>
+<p align=justify>
+Общий размер каждой регистрационной записи, как существующей,
+так и новой, не должен превышать 511 байт.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/passwd
+ /etc/shadow
+ /etc/opasswd
+ /etc/oshadow
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PASSWD~2.htm>passwd(1)</a>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Команда passmgmt возвращает одно из следующих значений:
+<table>
+<tr valign=top><td><b>0</b><td>УСПЕХ.<tr>
+<tr valign=top><td><b>1</b><td>В разрешении отказано.<tr>
+<tr valign=top><td><b>2</b><td>Неверный синтаксис команды.  Отображается формат команды passmgmt.<tr>
+<tr valign=top><td><b>3</b><td>Неверное использование аргумента с опцией.<tr>
+<tr valign=top><td><b>4</b><td>Код идентификации уже задействован.<tr>
+<tr valign=top><td><b>5</b><td>Несогласованность паролей в файлах (иначе  говоря, имя  присутствует  в файле /etc/passwd и отсутствует в файле /etc/shadow, и наоборот).<tr>
+<tr valign=top><td><b>6</b><td>Непредвиденный отказ. Файлы не изменились.<tr>
+<tr valign=top><td><b>7</b><td>Непредвиденный отказ. Файлы отсутствуют.<tr>
+<tr valign=top><td><b>8</b><td>Файлы заняты. Повторите попытку позже.<tr>
+<tr valign=top><td><b>9</b><td>Имя не существует (если указаны опция -m или -d), уже существует (опция -a), logname уже существует (опции -m -l).<tr>
+</table>
+<p align=justify><b>ЗАМЕЧАНИЕ</b><br>
+Символы "кавычки" и &lt;CR&gt; интерпретируются как разделители полей.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

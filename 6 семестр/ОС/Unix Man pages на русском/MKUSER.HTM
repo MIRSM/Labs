@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>MKUSER(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MKUSER(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mkuser - добавляет к системе идентификатор входа в систему.
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/mkuser
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+mkuser  используется  для  добавления  к  системе  пользовательских
+идентификаторов входа  в систему.  При добавлении  к системе  новых
+пользователей этот  метод является  предпочтительным, поскольку  он
+обеспечивает  все  функции  создания  каталогов и модификации файла
+паролей.  Для  добавления  к  системе  нового  пользователя  mkuser
+требует шесть информационных элементов:
+<ul>
+<li>регистрационное имя (имя входа в систему)
+<li>идентификатор пользователя
+<li>идентификатор группы
+<li>исходный пароль
+<li>строку комментариев для файла /etc/passwd (необязательно)
+</ul><p align=justify>
+Регистрационное имя  проверяется с  помощью определенного  критерия
+(т.е.  оно  должно  состоять  по  крайней  мере  из трех символов и
+начинаться  с  прописной  буквы).  Пароль  должен   соответствовать
+стандартным соглашениям, принятым в системе  UNIX (см.  passwd(3)).
+Поле  комментариев  файла  паролей  может  содержать до 35 символов
+информации.
+<p align=justify>
+mkuser  просит  задания  типа  оболочки, которая назначается новому
+пользователю.  Выбор  оболочек  определяется  количеством оболочек,
+устанавливаемых в  системе.  Оболочки,  включенные в   операционную
+систему,  -  это   стандартная    (Бурновская)  оболочка,   sh,   и
+ограниченная  оболочка,   rsh.    Каждая   установленная   оболочка
+представляется   подкаталогом     /usr/lib/mkuser/shell,    который
+/  устанавливается     вместе    с     пакетом     оболочки    (см.
+<a href=CUSTOM.htm>custom(8)</a>).  Подкаталог   оболочки   содержит  файлы,   необходимые
+для  установки  пользовательского  окружения  для  работы  в   этой
+оболочке. Это файлы - mkuser.defs и mkuser.init плюс все добавочные
+файлы,  специфические    для   данной     оболочки.      (Например,
+/usr/lib/mkuser/csh/cshrc   и     /usr/lib/mkuser/csh/login -   это
+стандартные файлы  .cshrc и   .login, используемые  оболочкой  csh,
+которые   копируются   в  рабочий   каталог   пользователя,   когда
+запускается программа mkuser.)
+<p align=justify>
+mkuser   берет   некоторые   из    своих   параметров   из    файла
+/etc/default/mkuser. Примерный вид этого файла таков:
+<pre>
+HOME=/usr
+HOMEMODE=0755
+PROFMODE=0640
+MAILMODE=0640
+</pre><p align=justify>
+Запись HOME задает  рабочий  каталог пользователя,  запись HOMEMODE  разрешения для рабочего каталога пользователя, запись PROFMODE  задает
+режим доступа к файлам .login, .profile, .cshrc и прочим специфическим
+для оболочки  файлам, а  запись MAILMODE  - разрешения  для  почтового
+ящика пользователя.
+<p align=justify>
+Этот файл может быть отредактирован привилегированным пользователем, и
+эти установки  могут быть  изменены. Эти  установки могут  быть  также
+заданы для каждой оболочки посредством добавления аналогичных  записей
+в соответствующий  файл /usr/lib/mkuser/shell/mkuser.def.  Кроме того,
+имеются и другие файлы, которые могут быть адаптированы. Они  включают
+файл /usr/lib/mkuser/lib/mail,  который содержит  стандартное почтовое
+сообщение,      направляемое      новым      пользователям,       файл
+/usr/lib/mkuser/lib/help, который  содержит пояснение,   высвечиваемое
+программой mkuser при запуске, файл  /usr/lib/mkuser/shell/mkuser.init
+и все другие относящиеся к оболочке файлы.
+<p align=justify>
+mkuser резервирует пользовательские  идентификаторы, начиная с  номера
+200,  который  является  самым  большим  номером, используемым в файле
+паролей. (Оператор может  присвоить новому пользователю  специфический
+идентификатор. Он должен быть больше  200 и не должен совпадать  с уже
+существующими номерами.)  По умолчанию  групповой идентификатор  новых
+пользователей равняется 50.  Это минимальный групповой  идентификатор,
+допускаемый для  пользовательских бюджетов.  Оператору предоставляется
+возможность  приписать  пользователя  к  группе,  устанавливаемой   по
+умолчанию, или к какой-либо существующей группе (высвечиваются  только
+группы  с  идентификаторами,  большими  или  равными 50, однако, можно
+выбрать любую группу.) Кроме того, может быть создана новая группа,  и
+в этом случае оператор может задать ее имя или идентификатор (или  оба
+вместе). Если задается только  имя, то группе присваивается  очередной
+свободный номер.
+<p align=justify>
+mkuser может быть выполнена только привилегированным пользователем.
+<p align=justify>
+Минимальная  длина  действительноо  пароля,  а  также  минимальные   и
+максимальные  количества    недель,   используемые    для   временного
+сопровождения пароля, задаются  в файле /etc/default/passwd  с помощью
+переменных PASSLENGTH, MINWEEKS  и MAXWEEKS. Например,  эти переменные
+могут быть установлены следующим образом:
+<pre>
+PASSLENGTH=6
+MINWEEKS=2
+MAXWEEKS=6
+</pre>
+<p><b>ФАЙЛЫ</b>
+<pre>
+/etc/passwd
+/usr/spool/mail/username
+/etc/default/mkuser
+/etc/default/passwd
+/usr/lib/mkuser/mkuser/lib/lib/help
+/usr/lib/mkuser/shell/mkuser.defs
+/usr/lib/mkuser/shell/mkuser.init
+/usr/lib/mkuser/shell/shellfiles
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD.htm>chmod(1)</a>, <a href=CUSTOM.htm>custom(8)</a>, <a href=SH.htm>sh(1)</a>, <a href=CSH.htm>csh(1)</a>, <a href=RSH.htm>rsh(1)</a>, <a href=VSH.htm>vsh(1)</a>, group(3),
+passwd(3), <a href=PWADMIN.htm>pwadmin(8)</a>, <a href=RMUSER.htm>rmuser(8)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>IPS(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IPS(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ips, isbs, ipbs - программы обеспечения протоколов IMAGEN
+<p><b>СИНТАКСИС</b>
+<pre>
+/usr/lib/ips  [options] [file]
+/usr/lib/isbs  [options] [file]
+/usr/lib/isps  [options] [file]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+ips, isbs  и ipbs  представляют собой  программные средства  печати
+самого низкого уровня для принтера IMAGEN. Каждая из этих  программ
+отвечает  за  свой  вид  связи.  Они представляют собой интерфейс к
+программным средствам высокого уровня, обеспечивая им способ связи,
+практически независимый от вида этой связи.
+<p align=justify>
+ips   посылает   принтеру   IMAGEN   файлы,   используя  на  линиях
+последовательной    связи    через    порты    RS-232C    "протокол
+последовательных пакетов".  Этот протокол  обеспечивает обнаружение
+ошибок,  повторную  передачу,  сообщения  о  состоянии, обнаружение
+неисправимых ошибок и  учет использования принтера.  Принтер IMAGEN
+должен быть сконфигурирован для передачи "последовательного  пакета
+V1" на нужной скорости.
+<p align=justify>
+isbs  поддерживает  связь  на  линиях  последовательной связи через
+порты  RS-232C  в  соответствии  с методом "потока последовательных
+байтов". Этот протокол выполняет  управление потоком данных, но  не
+обеспечивает  обнаружение  и  исправление  ошибок.  Принтер  IMAGEN
+должен  быть  сконфигурирован  для  поддержания  протокола  "потока
+последовательных  байтов"  на  нужной  скорости,  а  также   должен
+использовать  в  качестве  символа  "EOF"  (конца  файла)  0x04,  в
+качестве  "кавычек"  0x02,  обеспечивать  прием 8-разрядных данных,
+управление  потоком  данных  XON/XOFF  и  не  должен   игнорировать
+непечатные символы.
+<p align=justify>
+ipbs поддерживает метод  "потока последовательных байтов",  который
+в   сущности   аналогичен   методу   isbs,   но   предназначен  для
+параллельных, а не  последовательных портов. Принтер  IMAGEN должен
+быть   сконфигурирован   для   параллельного   интерфейса,   должен
+использовать  в  качестве  символа  "EOF"  (конца  файла)  0x04,  в
+качестве   "кавычек"   0x02 и  не должен   игнорировать  непечатные
+символы.
+<p align=justify>
+Ни isbs, ни  ipbs не ведут  учет использования принтера.  Следующая
+информация действительна для всех этих программ.
+<p align=justify>
+Если имя  file не  задано, то  считывается устройство  стандартного
+ввода.
+<p>
+Распознаются следующие опции:
+<dl>
+<dt>-D string
+<dd>Вставляет строку string язык управления документами передаваемого
+файла. Если  во время  передачи возникает  неисправимая ошибка, и
+может понадобиться повторная передача файла, то эта строка   тоже
+будет передана повторно.
+<dt>-astsfile
+<dd>Сохранение текущего статуса принтера в файле stsfile.
+<dt>-idevice
+<dd>Принтер IMAGEN соединяется  со специальным файлом  device системы
+UNIX.   По  умолчанию  имя  device  задается в параметре DEVICE в
+файле /etc/default/imagen.
+<dt>-llogfile
+<dd>Сохранение   коммуникационной    информации,   необходимой    для
+направления выходных данных в файл logfile.
+<dt>-r
+<dd>Возможна  переустановка  стандартного  устройства  на    начало.
+ Обычно эта возможность не предполагается. Или, если явно  задано
+ имя файла, то этот файл не может быть переустановлен на  начало.
+ Обычно при  явном задании  имени файла  позиционирование в  этом
+ файле предполагается переустанавливаемым.
+<dt>-s
+<dd>Независимо   от  того,  какие  могут быть даны указания, принтер
+используется как устройство стандартного вывода.
+<dt>-pdebug
+<dd>Устанавливает различные отладочные величины.
+</dl><p align=justify>
+Следующие опции распознаются всеми тремя программами, но только ips
+и isbs используют их; ipbs игнорирует их.
+<dl>
+<dt>-o
+<dd>Нужно   установить  характеристики  строки, если выходные данные
+ посылаются  на  устройство   стандартного  вывода.  Обычно   эти
+ характеристики не  изменяются. Или,  если явно  задано некоторое
+ устройство с помощью опции  -i, то изменение этих  характеристик
+ не  требуется.  Обычно  характеристики  явно  заданных устройств
+ изменяются.
+<dt>-Bspeed
+<dd>speed - скорость передачи информации на линиях  последовательной
+ связи. Предполагается, что  принтер IMAGEN способен  работать на
+ заданной скорости  и что  он сконфигурирован  соответственно. По
+ умолчанию  значение  speed  задается  в  параметре  SPEED  файла
+ /etc/default/imagen.
+</dl><p align=justify>
+Следующие опции распознаются всеми тремя программами, но только ips
+использует их; isbs и ipbs игнорируют их.
+<dl>
+<dt>-Aacctfile
+<dd>Включает  режим   отчета  и   записывает  отчетную информацию  в
+ файл   acctfile.   Этот    файл   должен    читаться  программой
+ <a href=IMACCT.htm>imacct(1)</a>. Для  каждого принтера  IMAGEN должен  быть свой  файл
+ acctfile.
+<dt>-nuser
+<dd>Называет   имя   пользователя   или   бюджета,   для    которого
+ предназначается   печать.   Поскольку   обычно   эти   программы
+ выполняются  системой  спулинга,  то разумного пользовательского
+ имени, устанавливаемого  по умолчанию,  не существует.  Поэтому,
+ если активизирован режим  отчета с помощью  опции -А, то  данная
+ опция тоже должна  быть задана. Если  это не так,  то вся печать
+ назначается пользователю "???".
+<dt>-hhost
+<dd>Называет имя машины, на которой будет запущена печать. Если  это
+ имя  не  задано,  то  используются  сначала  <a href=UNAME.htm>uname(2)</a>,  а  затем
+ /etc/systemid для определения имени локальной системы. Если  это
+ имя не может быть определено, то используется имя "LOCAL".
+</dl><p align=justify>
+Следующая   опция   не   поддерживается,   и   вместо  нее  следует
+использовать опцию -n:
+<dl>
+<dt>-uuid
+<dd>Пользовательский  идентификатор  лица,  которому предназначается
+печать.
+</dl><p align=justify>
+ips, isbs и ipbs читают /etc/default/imagen для получения различных
+установок по умолчанию. Этими величинами являются:
+<dl>
+<dt>DEVICE=/dev/imagen
+<dd>Имя  специального  файла  системы  UNIX,  связанного с принтером
+IMAGEN. Может быть перебито с помощью опций -i и -s.
+<dt>SPEED=9600
+<dd>Скорость  передачи  данных  для  принтера IMAGEN. Имеет значение
+только для ips и isbs и может быть перебито с помощью опции -B.
+</dl><p align=justify>
+Эти значения, устанавливаемые по  умолчанию, могут быть изменены  в
+соответствии  с  локальной   системной  конфигурацией.  Если   файл
+/etc/default/imagen не существует или не может быть прочитан, то по
+умолчанию используются приведенные выше значения.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/dev/imagen
+ Имя  специального   файла  системы    UNIX,  устанавливаемое   по
+ умолчанию и связанное с принтером IMAGEN.
+/dev/null
+ Соответствует файлу stsfile по умолчанию. Смотрите опцию -a.
+/imagen.log
+ Соответствует по умолчанию файлу logfile. Смотрите опцию -l.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+imagen(5), <a href=IPR.htm>ipr(1)</a>
+<p align=justify><b>АВТОР</b><br>
+Kорпорация IMAGEN.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

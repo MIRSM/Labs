@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>     ACCESS(3) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">—ервер поддерживаетс€<br><a class="plain" href="http://www.citmgu.ru">÷ентром »нформационных “ехнологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">—ервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>     ACCESS(3) <br>XENIX System V (21 июн€ 1987)</h3>
+<p align=justify><b>»ћя</b><br>
+access - oпpeдeл€eт вoзмoжнocть дocтyпa к фaйлy
+<p><b>—»Ќ“ј —»—</b>
+<pre>
+	int access (path, amode)
+	char *path;
+	int amode;
+</pre>
+<p align=justify><b>ќѕ»—јЌ»≈</b><br>
+path yкaзывaeт им€ фaйлa.  access пpoвep€eт вoзмoжнocть
+дocтyпa к фaйлy в cooтвeтcтвии c битoвым шaблoнoм, зaдaнным
+в amode, иcпoльзy€ peaльный пoльзoвaтeльcкий ID пpoцecca
+вмecтo эффeктивнoгo пoльзoвaтeльcкoгo ID и peaльный
+гpyппoвoй ID пpoцecca вмecтo эффeктивнoгo гpyппoвoгo ID.
+Ѕитoвый шaблoн в amode cтpoитc€ пyтeм cлoжeни€ cлeдyющиx
+знaчeний:
+<table>
+<tr valign=top><th>04 <td>  ѕpoвepкa вoзмoжнocти чтeни€.
+<tr valign=top><th>02 <td>  ѕpoвepкa вoзмoжнocти зaпиcи.
+<tr valign=top><th>01 <td>  ѕpoвepкa вoзмoжнocти выпoлнeни€ (пoиcкa).
+<tr valign=top><th>00 <td>  ѕpoвepкa cyщecтвoвaни€ фaйлa.
+</table>
+<p align=justify>»cкoмый дocтyп к фaйлy зaпpeщeн, ecли выпoлн€eтc€ xoт€ бы
+oднo из cлeдyющиx ycлoвий:
+<table>
+<tr valign=top><th>[ENOTDIR]  <td>    Koмпoнeнт пpeфикca имeни фaйлa нe €вл€eтc€
+кaтaлoгoм.
+<tr valign=top><th>[ENOENT]   <td>    „тeниe, зaпиcь или выпoлнeниe (пoиcк)
+зaпpoшeны дл€ пycтoгo имeни.
+<tr valign=top><th>[ENOENT]   <td>    ”кaзaнный фaйл нe cyщecтвyeт.
+<tr valign=top><th>[EACCES]   <td>    Heт paзpeшeни€ нa пoиcк в кaкoм-либo кaтaлoгe
+из пpeфикca имeни фaйлa.
+<tr valign=top><th>[EROFS]   <td>     ѕpoвepкa вoзмoжнocти зaпиcи дл€ фaйлa из
+фaйлoвoй cиcтeмы, пpeднaзнaчeннoй тoлькo дл€
+чтeни€.
+<tr valign=top><th>[ETXTBSY]  <td>    ѕpoвepкa вoзмoжнocти зaпиcи в фaйл, кoтopый
+€вл€eтc€ чиcтoй пpoцeдypoй (c paздeл€eмым
+ceгмeнтoм инcтpyкций) и в дaнный мoмeнт
+выпoлн€eтc€.
+<tr valign=top><th>[EACCES]    <td>   Ѕиты paзpeшeни€ дocтyпa в кoдe зaщиты фaйлa
+зaпpeщaют иcкoмый дocтyп.
+<tr valign=top><th>[EFAULT]   <td>    Aдpec, зaдaнный path выxoдит зa пpeдeлы
+aдpecнoгo пpocтpaнcтвa пpoцecca.
+</table>
+<p align=justify>Ecли пpoцecc €вл€eтc€ влaдeльцeм фaйлa, access пpoвep€eт
+биты пpaв влaдeльцa в кoдe зaщиты фaйлa. ƒл€ члeнoв гpyппы
+пpoвep€ютc€ биты пpaв гpyппы в кoдe зaщиты. ƒл€ ocтaльныx
+пpoвep€ютc€ биты пpaв пpoчиx пpoцeccoв в кoдe зaщиты фaйлa.
+<p align=justify><b>     Boзвpaщaeмoe знaчeниe</b><br>
+Ecли зaпpoшeнный дocтyп paзpeшeн, вoзвpaщaeтc€ знaчeниe 0.
+»нaчe вoзвpaщaeтc€ знaчeниe -1 и в errno зaнocитc€ кoд
+oшибки.
+<p><b>—ћ. “ј ∆≈</b><br>
+chmod(3), stat(3)
+<p align=justify><b>«јћ≈„јЌ»я</b><br>
+ѕpивилeгиpoвaнный пoльзoвaтeль (нaпpимep c имeнeм root)
+мoжeт имeть любoй дocтyп к фaйлy нeзaвиcимo oт кoдa зaщиты
+фaйлa.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

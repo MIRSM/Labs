@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>GETMSG(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETMSG(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+getmsg - извлечение  сообщения из потока, ассоциированного с псевдоустройством
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;stropts.h&gt;
+
+        int getmsg (fd, ctlptr, dataptr, flags)
+        int fd;
+        struct strbuf *ctlptr;
+        struct strbuf *dataptr;
+        int *flags;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов getmsg извлекает сообщение  из  очереди
+чтения  в  истоке потока, ассоциированного с псевдоустройством [см. <a href=INTRO~1.htm>intro(2)</a>], и помещает его в буфера,  указанные  пользователем. Сообщение может состоять из двух
+частей: области данных и управляющей  области,  которые
+помещаются в разные буфера (см. ниже). Семантика каждой
+части  определяется модулем потока, породившего сообщение.
+<p align=justify>
+Аргумент fd задает дескриптор файла, ассоциированный  с
+открытым потоком.
+<p align=justify>
+Каждый из аргументов ctlptr и dataptr является указателем на структуру типа strbuf, содержащую следующие компоненты:
+<pre>
+     int maxlen; /* Максимальная длина буфера */
+     int len;    /* Длина извлеченной информации */
+     char *buf;  /* Указатель на буфер */
+</pre><p align=justify>
+Компонент buf указывает на буфер, в который должны быть
+помещены данные или управляющая  информация,  а  maxlen
+задает  размер  буфера  в байтах. Возвращаемое значение
+len содержит количество байт данных или управляющей информации, которое фактически было помещено в буфер, или
+0, если область данных или  управляющая  область  имеют
+нулевую длину, или -1, если область данных или управляющая область отсутствуют в данном сообщении.
+<p align=justify>
+Переменной,  на которую указывает аргумент flags, могут
+быть присвоены два значения: 0 или RS_HIPRI (см. ниже).
+<p align=justify>
+Указатель ctlptr используется для извлечения  управляющей области сообщения, dataptr - для извлечения области
+данных.  Если ctlptr (или dataptr) равны NULL, или компонент maxlen равен -1, управляющая  область  (или  область данных) не обрабатывается; она остается в очереди
+чтения  истока,  а  len устанавливается равным -1. Если
+компонент maxlen равен 0, а  управляющая  область  (или
+область  данных) содержит ненулевое число байт, они остаются в очереди чтения истока, а  len  устанавливается
+равным  0.  Если  maxlen меньше, чем размер управляющей
+области (области  данных),  извлекается  только  maxlen
+байт. В этом случае оставшаяся часть остается в очереди
+чтения  истока  и  возвращается ненулевое значение, как
+это описано ниже в пункте ДИАГНОСТИКА. Если  информация
+извлекается из приоритетного сообщения, то  переменная,
+на  которую  указывает аргумент flags, получит значение
+RS_HIPRI.
+<p align=justify>
+По умолчанию системный вызов getmsg извлекает из очереди чтения в истоке первое сообщение, независимо от  того,  является  оно  приоритетным или нет. Пользователь,
+однако, может потребовать выдачи  только  приоритетного
+сообщения, установив по адресу flags значение RS_HIPRI.
+В  этом  случае  будет извлечено первое из приоритетных
+сообщений, стоящих в очереди, даже если перед ним находятся несколько неприоритетных.
+<p align=justify>
+Если не установлен режим  доступа  без  ожидания  (флаг
+O_NDELAY),  процесс, вызвавший getmsg, откладывается до
+тех пор, пока сообщение указанного  типа  (приоритетное
+или  любое) не появится в очереди чтения в истоке потока. Если флаг O_NDELAY установлен, а сообщения  указанного типа в очереди чтения нет, getmsg завершается неудачей и присваивает переменной errno значение EAGAIN.
+<p align=justify>
+Если в потоке, из которого извлекается сообщение,  происходит  освобождение  линии, то системный вызов getmsg
+будет нормально работать, пока очередь чтения в  истоке
+не  станет пустой. После этого getmsg присвоит 0 компонентам len тех структур, на которые указывают аргументы
+ctlptr и dataptr.
+<p align=justify>
+Системный вызов getmsg завершается неудачей,  если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EAGAIN]
+<dd>Установлен  флаг O_NDELAY, а сообщения указанного типа в очереди чтения нет.
+<dt>[EBADF]
+<dd>Аргумент fd не является корректным дескриптором открытого файла.
+<dt>[EBADMSG]
+<dd>Сообщение, которое должно читаться, не  является корректным для getmsg.
+<dt>[EFAULT]
+<dd>Аргумент  ctlptr, dataptr, или flags указывает за пределы отведенного процессу адресного пространства.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[EINVAL]
+<dd>Аргумент flags имеет некорректное значение,
+или поток, на который ссылается  fd,  мультиплексируется.
+<dt>[ENOSTR]
+<dd>С дескриптором fd не ассоциирован поток.
+</dl><p align=justify>
+Кроме того, системный вызов getmsg  завершается  неудачей, если, до обращения к getmsg, в истоке потока получено  сообщение об ошибке псевдоустройства. В этом случае переменной errno присваивается значение, содержащееся в сообщении.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~1.htm>intro(2)</a>, <a href=READ.htm>read(2)</a>, <a href=POLL.htm>poll(2)</a>, <a href=PUTMSG.htm>putmsg(2)</a>, <a href=WRITE.htm>write(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном  завершении  возвращается  неотрицательное
+целое  значение. Значение 0 означает, что все сообщение
+было успешно прочитано. Значение, равное MORECTL, означает, что осталась непрочитанной часть управляющей  области.  Значение,  равное MOREDATA, означает, что осталась непрочитанной часть области данных. Значение, равное MOREDATA | MORECTL, означает, что осталась непрочитанной как часть области данных, так и часть  управляющей  области.  Последующие вызовы getmsg  позволяют извлечь остаток сообщения.
+<p align=justify>
+В случае ошибки возвращается  -1,  а  переменной  errno
+присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

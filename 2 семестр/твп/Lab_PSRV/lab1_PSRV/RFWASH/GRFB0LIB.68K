@@ -1,0 +1,7 @@
+#include <tasy0def.h>
+
+
+_asm ("
+FBLDEF:
+		dc.l	0
+");

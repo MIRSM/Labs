@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>MKFS(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MKFS(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mkfs - создание файловой системы
+<p><b>СИНТАКСИС</b>
+<pre>
+    /etc/mkfs  специальный_файл [число_блоков[:число_описателей]]
+    [прототип] [промежуток число_блоков_на_цилиндре]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита mkfs создает файловую  систему  на  устройстве,
+заданном  именем  специального_файла. Последующие аргументы командной строки определяют характеристики создаваемой файловой системы. Перед  началом  содержательных
+действий утилита ждет 10 секунд, и в это время ее можно
+завершить  аварийно,  введя  символ  прерывания (обычно
+CTRL+C).
+<p align=justify>Из двух возможных вторых аргументов (число_блоков, прототип) должен быть задан ровно один.
+<p align=justify>Если второй аргумент командной строки является цепочкой
+цифр, он трактуется как десятичное число_блоков  (физических, по 1024 байта), которые будет занимать файловая
+система.  Если  число_описателей  файлов не указано, по
+умолчанию оно принимается равным количеству  логических
+(теперь  также  1024-байтных)  блоков,  деленному на 4.
+Утилита строит файловую систему, состоящую  из  единственного пустого каталога. Блок программы начальной загрузки  (блок 0) остается неинициализированным. Впрочем,
+система эту информацию все  равно  не  использует  [см.
+<a href=FS.htm>fs(4)</a>].
+<p align=justify>Если второй аргумент есть имя файла, доступного на чтение, mkfs рассматривает этот файл как прототип,  задающий  строение файловой системы. Прототип содержит поля,
+разделенные пробелами или  символами  перевода  строки.
+Ниже приводится пример файла-прототипа.
+<pre>
+     /stand/diskboot
+     4872 110
+     d--777 3 1
+     usr     d--777 3 1
+        sh      ---755 3 1 /bin/sh
+        ken     d--755 6 1
+                $
+        b0      b--644 3 1 0 0
+        c0      c--644 3 1 0 0
+        $
+     $
+</pre>
+<p align=justify>Первая строка содержит имя файла с программой начальной
+загрузки (атавизм).
+<p align=justify>Строка  2  задает количество физических (по 1024 байта)
+блоков, которые будет занимать файловая система, и  количество описателей файлов.
+<p align=justify>Строки  3-9 определяют файлы и каталоги, которые должны
+войти в файловую систему.
+<p align=justify>Строка 3: Корневой каталог.
+<p align=justify>Строки 4-6 и 8-9: Остальные каталоги и файлы.
+<p align=justify>Символ $ в седьмой строке означает, что mkfs должна завершить обработку текущей ветви файловой системы.  Символы  $  в  строках  10 и 11 завершают процесс, так как
+дальнейшие спецификации отсутствуют.
+<p align=justify>В спецификации файла указываются режим,  идентификаторы
+владельца и группы, начальное содержимое файла.  Допустимый синтаксис для определения содержимого зависит  от
+первого символа в режиме файла.
+<p align=justify>Режим файла записывается в виде цепочки из шести символов. Первый символ обозначает тип  файла.  Этот  символ
+может принимать одно из четырех значений: -bcd, которые
+означают  соответственно  обычный, специальный блочный,
+специальный символьный файл  или  файл-каталог.  Второй
+символ  может  принимать  значение u (переустанавливать
+идентификатор пользователя) или  -  (не  переустанавливать).  Третий символ может принимать значение g (переустанавливать идентификатор группы) или - (не переустанавливать). Затем указываются три  восьмеричные  цифры,
+определяющие  права  доступа владельца, группы и прочих
+пользователей [см. <a href=CHMOD.htm>chmod(1)</a>].
+<p align=justify>После указания режима файла указываются две  десятичные
+цифры; они  определяют  идентификаторы  пользователя  и
+группы для владельца файла.
+<p align=justify>Если  файл является обычным, то далее может указываться
+маршрутное имя файла, который будет в него  скопирован.
+Если  файл является специальным, то следующие две цифры
+определяют старший и младший  номера  устройства.  Если
+файл  является каталогом, то mkfs создает в нем файлы .
+и .., а затем (рекурсивно) читает список имен и  спецификаций  для  файлов  данного каталога. Как указывалось
+выше, признаком конца списка служит символ $.
+<p align=justify>Двумя  последними аргументами командной строки являются
+промежуток между последовательно читаемыми блоками  одного  цилиндра и число_блоков_на_цилиндре. Если эти аргументы не заданы или имеют недопустимые значения,  используются подразумеваемые значения, соответственно 7 и
+400.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD.htm>chmod(1)</a> в Справочнике пользователя.
+<a href=DIR.htm>dir(4)</a>, <a href=FS.htm>fs(4)</a> <a href=IO.htm>io(4)</a> в Справочнике программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+При указании файла-прототипа нельзя ни копировать  файлы,  размер  которых  превышает  64К байт, ни создавать
+ссылки.
+<p align=justify>Максимальное число описателей файлов равно 65500.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>CFLOW(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CFLOW(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+cflow - построение графа вызовов C-программ
+<p><b>СИНТАКСИС</b>
+<pre>
+  cflow  [-r] [-ix] [-i_] [-dчисло] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда cflow анализирует набор C-, YACC-, LEX-, а также ассемблерных и об ектных файлов и пытается построить
+граф внешних  ссылок.  Файлы  с  расширениями  .y  (для
+YACC), .l (для LEX), .c (для C) и .i (для промежуточного  кода)  соответствующим  образом   препроцессируются
+(файлы .i игнорируются), а затем  подвергаются  первому
+проходу программы <a href=LINT.htm>lint(1)</a>.  (Допускается  использование
+опций -I, -D и -U препроцессора C.) Файлы с расширением
+.s ассемблируются, и информация извлекается  (как  и  в
+случае .o-файлов) из таблицы имен. Результат всей  этой
+нетривиальной обработки накапливается и преобразуется в
+граф внешних ссылок, который направляется на  стандартный вывод.
+<p align=justify>
+Строки выходной информации пронумерованы, начиная с  1.
+За номером следует несколько символов табуляции, указывающих уровень вложенности. Затем идет имя  глобального
+об екта (обычно выдаются только функции, не  определенные как внешние, и с именами, не начинающимися  с  подчеркивания; см. ниже описание опции включения -i), двоеточие и определение глобального об екта. Если  определение извлечено из C-текста, оно  состоит  из  описания
+типа (например, char *), а также из заключенных в угловые скобки имени исходного файла и номера строки, в которой найдено данное определение. В определениях,  взятых из об ектных файлов, информативным является  только
+имя файла. Начальные подчеркивания из C-подобных  внешних имен удаляются.
+<p align=justify>
+После того, как определение имени напечатано, ссылки на
+него содержат  только  номер  соответствующей  выходной
+строки. Для неопределенных ссылок печатается &lt;&gt;.
+<p>
+В качестве примера рассмотрим следующий файл f1.c:
+<pre>
+   int  i;
+
+   main()
+   {
+      f();
+      g();
+      f();
+   }
+
+   f()
+   {
+      i = h();
+   }
+</pre>
+Команда
+<pre>
+   cflow  -ix f1.c
+</pre>
+сформирует результат:
+<pre>
+   1       main: int(), &lt;file.c 4&gt;
+   2               f: int(), &lt;file.c 11&gt;
+   3                       h: &lt;&gt;
+   4                       i: int, &lt;file.c 1&gt;
+   5               g: &lt;&gt;
+</pre><p align=justify>
+Если уровень вложенности слишком большой, можно использовать опцию -e команды <a href=PR.htm>pr(1)</a>, чтобы табуляция вызывала
+сдвиг менее чем на восемь позиций.
+<p align=justify>
+В дополнение к опциям -D, -I и -U, которые  интерпретируются так же, как в командах <a href=CC.htm>cc(1)</a> и  <a href=CPP.htm>cpp(1)</a>,  команда
+cflow имеет следующие опции:
+<table>
+<tr valign=top><td>-r<td>Заменить отношение "вызывающий-вызываемый" на обратное, чтобы получить инвертированный граф,  показывающий, кто вызывает каждую из функций. Вызываемые функции упорядочиваются по алфавиту.</tr>
+<tr valign=top><td>-ix<td>Учитывать внешние и статические  ссылки  на  данные. По умолчанию в граф вызовов включаются только функции.</tr>
+<tr valign=top><td>-i_<td>Учитывать имена, начинающиеся с подчеркивания. По
+умолчанию такие функции (и данные, если используется опция -ix) в граф не включаются.</tr>
+<tr valign=top><td>-dчисло<td>
+Отсекать граф вызовов на уровне, который  определяется целым десятичным числом. По умолчанию  это
+очень большое число. Уровень отсечения может быть
+только положительным.</tr>
+</table>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=AS.htm>as(1)</a>, <a href=CC.htm>cc(1)</a>, <a href=LEX.htm>lex(1)</a>, <a href=LINT.htm>lint(1)</a>, <a href=NM.htm>nm(1)</a>, <a href=PR.htm>pr(1)</a>, <a href=YACC.htm>yacc(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Команда сообщает о некорректных опциях и о  множественных определениях, из которых учитывается только первое.
+Другие сообщения могут исходить от различных используемых программ (например от C-препроцессора).
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+В файлах, сформированных программами <a href=LEX.htm>lex(1)</a> и  <a href=YACC.htm>yacc(1)</a>,
+используются операторы изменения нумерации  строк,  что
+может ввести в заблуждение cflow. Чтобы  получить  правильный результат, натравите  cflow  на  входные  файлы
+yacc'а или lex'а.
+<p align=justify>
+Если нет опции -i_, но есть имена, начинающиеся с  подчеркивания, результат может получиться неверным.
+<p align=justify>
+При наличии косвенной рекурсии программа cflow  работает неправильно, если только не указана опция -r.
+даленным компьютерам.
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=CHROOT~1.htm>chroot(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

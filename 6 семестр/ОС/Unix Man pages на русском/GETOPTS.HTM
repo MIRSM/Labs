@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>GETOPTS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETOPTS(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	getopts - разбор опций команды
+<p><b>СИНТАКСИС</b>
+<pre>
+      getopts  цепочка_опций имя [аргумент ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда getopts используется shell-процедурами для разбора позиционных параметров и проверки опций на  допустимость. Команда getopts  поддерживает  все  применимые
+	правила стандартного синтаксиса команд  [см.  <a href=INTRO.htm>intro(1)</a>, правила 3-10].
+<p align=justify>	Цепочка_опций должна  содержать  флаги,  которые  будут
+	распознаваться shell-процедурой, использующей  getopts.
+	Если за флагом следует  двоеточие,  то  предполагается,
+	что опция имеет аргумент или группу аргументов, которые
+	должны отделяться от флага пробелами или табуляциями.
+<p align=justify>	После каждого вызова getopts помещает следующую опцию в
+	переменную имя, а номер аргумента, который должен  быть
+	обработан следующим, -  в  переменную  OPTIND.  Всегда,
+	когда запускается shell или shell-процедура, OPTIND получает значение 1.
+<p align=justify>	Если опции требуется аргумент, то getopts помещает  его
+	в переменную OPTARG.
+<p align=justify>	Если встретилась некорректная опция,  то  в  переменную
+	имя помещается ?.
+<p align=justify>	Если опции кончились, getopts возвращает ненулевой  код
+	завершения. Можно использовать  специальную  опцию  --,
+	чтобы отметить конец опций.
+<p align=justify>	По  умолчанию команда getopts разбирает позиционные параметры вызвавшей ее shell-процедуры, но  если  указать дополнительные  аргументы,  то  getopts будет разбирать их.
+<p align=justify><b>ПРИМЕР</b><br>
+	Следующий фрагмент shell-процедуры cmd показывает,  как
+	можно обработать аргументы команды, допускающей опции a
+	и b, а также опцию o, которая должна иметь аргумент:
+<pre>
+     while getopts abo: c
+     do
+       case $c in
+       a | b)  FLAG=$c;;
+       o)      OARG=$OPTARG;;
+       ?)      echo $USAGE
+               exit 2;;
+       esac
+     done
+     shift `expr  $OPTIND - 1`
+</pre>
+	При такой обработке следующие строки оказываются  эквивалентными:
+<pre>
+     cmd -a -b -o "xxx z yy" file
+     cmd -a -b -o "xxx z yy" -- file
+     cmd -ab -o xxx,z,yy  file
+     cmd -ab -o "xxx z yy" file
+     cmd -o xxx,z,yy -b -a  file
+</pre>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+	Утверждение о эквивалентности предыдущих строк не вполне верно:
+<ol>
+<li>   В последней строке опции b и a идут в ином  порядке, чем в предыдущих, и так как в  данном  примере  эти опции помещаются в одну  переменную  FLAG,  то
+	     при обработке последней строки окончательное  значение этой переменной окажется  не  таким,  как  в предыдущих строках.
+<p align=justify><li>   В тех строках, в которых аргумент опции o задан  в
+	     виде "xxx z yy", OARG примет значение xxx z yy,  а
+	     в тех строках, где  аргумент  опции  o  задан  как
+	     xxx,z,yy, OARG будет равен xxx,z,yy.
+</ol>
+<p><b>ФАЙЛЫ</b>
+<pre>
+ 	/usr/bin/getopt         Старая версия программы разбора
+				опций.
+	/usr/lib/getoptcvt      Программа перевода shell-проце-
+				дур, использовавших getopt,  на
+				getopts.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	gutil(1G), <a href=INTRO.htm>intro(1)</a>, <a href=SH.htm>sh(1)</a>.
+	getopt(3C) в Справочнике программиста.
+<p><b>ДИАГНОСТИКА</b><br>
+ 	Команда getopts выводит сообщение об ошибке в стандартный протокол, когда встречается опция, не включенная  в цепочку_опций.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+	Хотя текущая  реализация  getopts  допускает  некоторые
+	отступления от правил, задающих синтаксис  команд  [см.
+	intro(1)], этим не следует пользоваться, так как подобные возможности могут  не  поддерживаться  в  следующих версиях системы. Пусть, как и в ПРИМЕРЕ, a и b -  опции
+	без аргументов, а опции o требуется аргумент:
+<pre>
+     cmd  -aboxxx file
+</pre>
+	Здесь нарушено правило 5: опция с аргументом не  должна
+	быть в одной группе с остальными опциями.
+<pre>
+     cmd  -ab -oxxx file
+</pre>
+	Нарушено правило 6: после опции, которой требуется  аргумент, должен быть пробел или табуляция.
+<p align=justify>	Изменение значения переменной OPTIND или разбор различных наборов аргументов могут привести к непредсказуемому результату.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

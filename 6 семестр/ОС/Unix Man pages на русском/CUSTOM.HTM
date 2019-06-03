@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>CUSTOM(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CUSTOM(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+custom - инсталлирует особые части системы XENIX.
+<p><b>СИНТАКСИС</b>
+<pre>
+ custom [-odt] [irl [package]] [-m device] [-f [file]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+С помощью custom вы можете оптимизировать установку системы  XENIX,
+добавляя  или  удаляя  ее  части.  custom  предназначена только для
+привилегированного  пользователя  и  может   быть  вызвана  как   в
+интерактивном  режиме,  так  и  из  командной  строки с несколькими
+опциями.
+<p align=justify>
+Файлы выделяются  или удаляются  пакетами (packages).  Пакет -  это
+набор отдельных файлов. Пакеты группируются в комплекты (sets).
+<p>
+По умолчанию всегда доступны следующие комплекты:
+<ul>
+<li>Операционная система
+<li>Расширенная система
+<li>Система текстовой обработки
+</ul><p align=justify>
+Вы  можете  установить  также  дополнительные  комплекты. Вы можете
+просмотреть список доступных пакетов с помощью команды custom,  как
+показано далее.
+<p align=justify><b>ИСПОЛЬЗОВАНИЕ</b><br>
+Для использования custom в интерактивном режиме введите:
+<pre>
+  custom
+</pre>
+Вы увидите список комплектов. Например:
+<pre>
+  1. Operating System
+  2. Development System
+  3. Text Processing System
+  4. Add a Supported Product
+</pre><p align=justify>
+Программа предлагает вам выбрать комплект программ для работы. Если
+файлы  данных  для  этого  комплекта  еще не установлены на жестком
+диске, custom запрашивает у вас гибкий диск, на котором они есть  и
+инсталлирует их. Вы можете увидеть также элементы меню для  каждого
+продукта,  добавленного  предварительно  с  помощью  опции  "Add  a
+Supported Product". Если вы добавляете новый продукт, то вам  будет
+предложено вставить носитель 1 дистрибуции этого продукта, и custom
+выделит необходимую информацию для его поддержания.
+<p align=justify>
+После выбора допустимого комплекта вы увидите следующее меню:
+<pre>
+  1. Install one or more packages
+  2. Remove one or more packages
+  3. List the files in the package
+  4. Install a single file
+  5. Select a new set to customize
+  6. Display a current disk usage
+  7. Help
+</pre><p align=justify>
+Когда вы  сделаете выбор,  вам будет  предложено ввести  дальнейшую
+информацию.  Далее  приведены  опции  и  описание   соответствующей
+реакции:
+<ol>
+<li>Install<br>
+Выдает подсказку для выбора одного или нескольких имен пакетов.
+<p align=justify>
+Определяет,   какие   инсталляционные   тома    (дистрибутивных
+носителей)  требуются,  и  затем  обеспечивает  подсказки   для
+использования  правильных  томов.   Если  в  командной   строке
+задается несколько пакетов, то  их имена должны быть  разделены
+пробелами.
+<p align=justify>
+Эта опция, а  также опции 2  и 3,высвечивают список  всех доступных
+пакетов в  выбранном на  данный момент  комплекте. В  каждой строке
+приводится следующая  информация: имя  пакета, установлен  ли пакет
+полностью (частично  или совсем  не установлен),  размер пакета  (в
+512-байтовых  блоках),  и  еще  одна  строка  отводится на описание
+содержимого пакета.
+<li>Remove<br>
+Выдает подсказку для выбора одного или нескольких имен пакетов.
+<p align=justify>
+Удаляет выбранные  файлы в  заданном пакете.  Если в  командной
+строке задается  несколько пакетов,  то   их имена  должны быть
+разделены пробелами.
+<p>
+Высвечивает доступные пакеты (смотрите опцию "1").
+<li>List files in a package<br>
+Перечисляет все файлы в заданном пакете.
+<p align=justify>
+Выдает подсказку для выбора одного или нескольких имен пакетов.
+Введите имена нужных пакетов.
+<p>
+Высвечивает доступные пакеты (смотрите опцию "1").
+<li>Install a single file<br>
+Выделяет заданный файл из комплекта дистрибуции.
+<p>
+Имя файла должны быть полным по отношению к корневому каталогу
+"/".
+<li>Select a new set<br>
+Позволяет работать  с другим  комплектом программ,  отличным от
+текущего.
+<li>Display current disk usage<br>
+Выдает информацию по использованию текущего диска.
+<li>Help<br>
+Выдает страницу вспомогательных указаний для работы с custom.
+</ol>
+<p align=justify><i>Опции</i><br>
+Для полностью неинтерактивного применения custom требуется задание
+трех аргументов:
+<pre>
+             Идентификатор комплекта
+              (-o,-d или -t)
+
+             Команда
+              ( -i,-r,-l или -f)
+
+             Одно или несколько имен пакетов или имя файла
+</pre><p align=justify>
+Если в  командной строке  не задан  хотя бы  один аргумент,  custom
+запрашивает отсутствующую информацию.
+<p align=justify>
+Может  быть  задана  только  одна  из  опций  -o,  -d  или  -t. Они
+обозначают следующее:
+<ul>
+<li><tt>-o</tt> Операционная система
+<li><tt>-d</tt> Расширенная система
+<li><tt>-t</tt> Система текстовой обработки
+</ul>
+<p align=justify>
+Может  быть   задана  только   одна  из   опций  -i,  -r, -l или   -f,
+вслед за которой должен следовать аргумент соответствующего типа (одно
+или несколько имен пакетов или имя файла). Эти опции задают следующее:
+<ul>
+<li><tt>-i</tt> установка заданного пакета(-ов)
+<li><tt>-r</tt> удаление заданного пакета(-ов)
+<li><tt>-l</tt> перчисление файлов в заданном пакете(-ах)
+<li><tt>-f</tt> Установка заданного файла
+</ul>
+Флаг  -m  позволяет  задать  устройство промежуточных носителей. По
+умолчанию  используется  /dev/install  (это  всегда 0-е устройство,
+например /dev/fd00). Эта  опция очень полезна,  когда 5.25-дюймовый
+дисковод соответствует устройству /dev/fd0, а 3.5-дюймовый дисковод
+-  устройству  .dev.fd1,  в  то  время  как  нужно   инсталлировать
+3.5-дюймовый носитель. Например:
+<pre>
+   custom -m /dev/rfd196ds9
+</pre>
+перебивает установку устройства по умолчанию и задает использование
+устройства, указанного с опцией -m.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/etc/base.perms
+/etc/soft.perms
+/etc/text.perms
+/etc/perms/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FIXPERM.htm>fixperm(8)</a>, <a href=DF.htm>df(1)</a>, <a href=DU.htm>du(1)</a>, <a href=INSTAL~1.htm>install(8)</a>
+<p align=justify><b>ПРИМЕЧАНИЕ</b><br>
+Если вы наращиваете какую-либо часть системы, то custom определяет,
+какую версию вы используете, и просит вас вставить тот гибкий диск,
+который осуществит модификацию  файлов данных. Аналогично,  если вы
+вставите диск с другим продуктом или не с тем номером, то вам будет
+предложено снова вставить правильный диск.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

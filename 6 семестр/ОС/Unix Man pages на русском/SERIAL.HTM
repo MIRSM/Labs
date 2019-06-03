@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>SERIAL(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SERIAL(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+tty[a-h], tty[A-H], tty2[a-h], tty2[A-H] - интерфейс к
+последовательным портам.
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Файлы  tty[a-h],  tty[A-H],  tty2[a-h],  tty2pA-H]  к стандартным и
+дополнительным последовательным портам  компьютера. Каждый из  этих
+файлов  соответствует  одному  последовательному  порту (с модемным
+управлением  или  без  него).  Эти   файлы  получают  свое  имя   в
+соответствии со следующими соглашениями:
+<ul>
+<li>Первое число в имени файла соответствует разъему платы
+расширения COM.
+<li>Строчные буквы указывают на отсутствие модемного управления.
+<li>Прописные буквы указывают на наличие модемного управления
+портом.
+</ul>
+Файлы tty1a и tty1A относятся к  порту COM1, а файлы tty2a и  tty2A
+относятся к порту COM2.
+<p>
+Например, если плата расширения COM1 имеет четыре порта, плата COM2
+- один, то вы можете обращаться к следующим файлам:
+<pre>
+     tty1a   tty1A
+     tty1b   tty1B
+     tty1c   tty1C
+     tty1d   tty1D
+
+     tty2a   tty2A
+</pre><p align=justify>
+Каждый  последовательный  порт  может  использоваться  в  режиме  с
+модемным управлением  и в  режиме без  модемного управления.  Имена
+устройств в следующей таблице относятся к последовательным портам с
+модемным управлениям и без него. В первой части таблицы описываются
+платы COM1, а  во второй части  - платы COM2.  "Малое число" -  это
+малое число устройства соответствующего порта (см. mknod(1)).
+<center><table border=1>
+<tr><th colspan=5>Последовательные порты</tr>
+<tr><th>Тип платы<th colspan=2>Без модемного расширения  контроля<th colspan=2>С модемным контролем</tr>
+<tr><td>&nbsp;<th>Малое число<th>Имя<th>Малое число<th>Имя</tr>
+<tr><th>1 порт<td>0<td>tty1a<td>128<td>tty1A</tr>
+<tr><th bgcolor=#C0C0C0>&nbsp;<td colspan=4></tr>
+<tr><th>4 порт<td>1<td>tty1b<td>129<td>tty1B</tr>
+<tr><th bgcolor=#C0C0C0>&nbsp;<td>2<td>tty1c<td>130<td>tty1C</tr>
+<tr><th>&nbsp;<td>3<td>tty1d<td>131<td>tty1D</tr>
+<tr><th>&nbsp;<td>4<td>tty1e<td>132<td>tty1E</tr>
+<tr><th>8 порт<td>5<td>tty1f<td>133<td>tty1F</tr>
+<tr><th>&nbsp;<td>6<td>tty1g<td>134<td>tty1G</tr>
+<tr><th>&nbsp;<td>7<td>tty1h<td>135<td>tty1H</tr>
+<tr><th colspan=5 bgcolor=#C0C0C0>&nbsp;</tr>
+<tr><th>1 порт<td>8<td>tty1a<td>136<td>tty1A</tr>
+<tr><th bgcolor=#C0C0C0>&nbsp;<td colspan=4></tr>
+<tr><th>4 порт<td>9<td>tty1b<td>137<td>tty1B</tr>
+<tr><th bgcolor=#C0C0C0>&nbsp;<td>10<td>tty1<td>138<td>tty1C</tr>
+<tr><th>&nbsp;<td>11<td>tty1d<td>139<td>tty1D</tr>
+<tr><th>&nbsp;<td>12<td>tty1e<td>140<td>tty1E</tr>
+<tr><th>8 порт<td>13<td>tty1f<td>141<td>tty1F</tr>
+<tr><th>&nbsp;<td>14<td>tty1g<td>142<td>tty1G</tr>
+<tr><th>&nbsp;<td>15<td>tty1h<td>143<td>tty1H</tr>
+</table></center>
+<p>Векторы прерывания:<ul>
+Для плат COM1   -   4<br>
+Для плат COM2   -   3</ul>
+<p align=justify>
+Список адресов ввода/вывода смотрите в "Описании", прилагаемом к
+дистрибуции.
+<p align=justify><i>Доступ к файлам</i><br>
+Доступ  к  файлам  можно  осуществить  только в том случае, если
+соответствующая плата последовательного интерфейса установлена и
+правильно задан адрес ввода/вывода перемычки.
+<p align=justify>
+В  случае   многопортовых  плат  расширения  при   необходимости
+создания дополнительных файлов вы должны использовать  программу
+mkdev(8).
+<p align=justify>
+Последовательные порты могут  быть также определены  в системной
+конфигурации.  Смотрите  документацию  по  аппаратной  части   в
+отношении  способа  установки  системной  конфигурации:  система
+может быть  сконфигурирована либо  с помощью  базы данных  CMOS,
+либо установками переключателей на главной системной плате. Если
+система сконфигурирована псредством  базы данных CMOS,  то порты
+определяются  в  этой  базе  данных  (см. cmos(HW)). В противном
+случае    определите     порты    соответствующей     установкой
+переключателей на главной  системной плате. По  поводу установки
+этих  переключателей  обращайтесь  к  документации по аппаратной
+части компьютера.
+<p align=justify>
+При  попытке  работать  с  неинсталлированным или неопределенным
+последовательным портом возникнет ошибка.
+<p align=justify>
+Последовательные порты  могут использоваться  в различных  целях
+при   осуществлении   последовательной   связи,   например,  для
+присоединения терминалов к компьютеру, подключения принтеров или
+формирования сети последовательной связи с другими компьютерами.
+Обратите    внимание,    что    последовательный    порт   может
+функционировать  на  большинстве  стандартных скоростей передачи
+данных  в  системе   UNIX  и  что  эти  порты  (на   большинстве
+компьютеров)  имеют   конфигурацию  типа   DTE  (Data   Terminal
+Equipment  -  терминальное  оборудование).  В  следующей таблице
+определяется, как  используется каждый  вывод в  25- и 9-жильных
+соединениях:
+<center><table border=1>
+<tr><th colspan=2>25-ж. 9-ж.<th>Описание</tr>
+<tr><td>2<td>2<td>Передача данных</tr>
+<tr><td>3<td>3<td>Прием данных</tr>
+<tr><td>4<td>7<td>Запрос на передачу</tr>
+<tr><td>5<td>8<td>Сброс для передачи</tr>
+<tr><td>7<td>5<td>Сигнальная земля</tr>
+<tr><td>8<td>1<td>Обнаружение несущей частоты  (установка готовности данных)</tr>
+<tr><td>20<td>4<td>Готовность терминала</tr>
+</table></center><p align=justify>
+Для терминального (или прямого) соединения требуются только  2,3
+и 7 (2,3 и 5 для 9-жильного) выводы.
+<p align=justify>
+Порт с модемным  управлением использует выводы  2, 3 и  7 также,
+как и  порт без  модемного управления:  передача -  на 2 выводе,
+прием  -  на  3  выводе.  Вывод  7  -  заземление.  Для   порта,
+работающего в  режиме без  модемного управления,  состояние всех
+прочих выводов  не устанавливается  и не  читается. Для  порта с
+модемным управлением требуется получение сигналов на выводах 4 и
+20  (RTS  и  DTR),  и  порт  не  может быть открыт без получения
+сигнала на выводе 8 (CXD).  То есть передача данных на  выводе 2
+не будет  осуществляться до  тех пор,  пока не  будет сигнала от
+другого источника на выводе 8.
+<p align=justify>
+Подробности функционирования  последовательных портов  в системе
+UNIX смотрите на страницах документации tty(5) и termio(5).
+<p><b>ФАЙЛЫ</b>
+<pre>
+/dev/tty1[a-h]
+/dev/tty1[A-H]
+/dev/tty2[a-h]
+/dev/tty2[A-H]
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+cmos(HW), csh(C), cu(C), getty(ADM), mkdev(ADM), mknod(C),
+nohup(C), open(S), termio(M), tty(M), uucp(C)
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Если  вы  подключаетесь  через  последовательный порт с модемным
+управлением, то прекращение связи на этой линии отключает вас  и
+уничтожает ваши фоновые процессы. Смотрите nohup(1) и csh(1).
+<p align=justify>
+Нельзя в одно и  то же время использовать  один и тот же  порт в
+обоих режимах  - с  модемным управлением  и без  него. Например,
+нельзя использовать одновременно tty1a и tty1A.
+<p align=justify>
+Для присоединения  модема к  компьютеру используйте  специальный
+модемный кабель.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

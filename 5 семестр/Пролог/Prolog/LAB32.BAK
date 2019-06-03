@@ -1,0 +1,22 @@
+domains
+	list=integer*
+predicates	
+	compare(list).
+	compare1(list,integer).
+	readList(list,list).
+	write_list(list).
+clauses
+	compare([H|T]):-compare1(T,H),compare(T).
+	compare([_|[]]):-write("false"),nl.
+	
+	compare1([I|_],I):-write("true"),exit.
+	compare1([_|T],I):-compare1(T,I).
+	compare1([_|[]],_).
+	
+	readList([H|T]):-write("Vvedite element->"), readint(H),!,readList(T).
+	readList([]).
+	
+	write_list([]):-nl. 
+	write_list([H|T]):-write(H),write_list(T).
+goal
+readList(L),nl,compare(L).

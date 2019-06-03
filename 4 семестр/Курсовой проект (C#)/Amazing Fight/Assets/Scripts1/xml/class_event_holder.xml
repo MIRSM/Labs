@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_event_holder" kind="class" language="C#" prot="public">
+    <compoundname>EventHolder</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_event_holder_1a3807b2e13a482cd0cbdceb730d69ae5a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_main_hero" kindref="compound">MainHero</ref></type>
+        <definition>MainHero EventHolder.pl</definition>
+        <argsstring></argsstring>
+        <name>pl</name>
+        <briefdescription>
+<para>Персонаж </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EventHolder.cs" line="10" column="1" bodyfile="EventHolder.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_event_holder_1a6861dff8974064b87d5836290e1ba4f0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventHolder.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EventHolder.cs" line="12" column="1" bodyfile="EventHolder.cs" bodystart="12" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_event_holder_1a41ff966511e546aab8e9570ec11628dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventHolder.ThrowProjectile</definition>
+        <argsstring>()</argsstring>
+        <name>ThrowProjectile</name>
+        <briefdescription>
+<para>Специальная атака </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EventHolder.cs" line="20" column="1" bodyfile="EventHolder.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8">
+        <label>EventHolder</label>
+        <link refid="class_event_holder"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>EventHolder</label>
+        <link refid="class_event_holder"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="EventHolder.cs" line="5" column="1" bodyfile="EventHolder.cs" bodystart="5" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_event_holder_1a3807b2e13a482cd0cbdceb730d69ae5a" prot="private" virt="non-virtual"><scope>EventHolder</scope><name>pl</name></member>
+      <member refid="class_event_holder_1a6861dff8974064b87d5836290e1ba4f0" prot="private" virt="non-virtual"><scope>EventHolder</scope><name>Start</name></member>
+      <member refid="class_event_holder_1a41ff966511e546aab8e9570ec11628dc" prot="public" virt="non-virtual"><scope>EventHolder</scope><name>ThrowProjectile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

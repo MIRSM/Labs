@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/frsrp.html -->
+<HTML><HEAD><TITLE>Фракталы: Треугольник Серпинского</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Треугольник Серпинского.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Треугольник Серпинского.files/lab24.gif" width=150 
+      border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Треугольник Серпинского</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<P>В 1915 году польский математик Вацлав Серпинский придумал занимательный 
+объект, известный как решето Серпинского. Этот треугольник один из самых ранних 
+известных примеров фракталов. Существует несколько способов построения этого 
+фрактала. Один из них представляет следующий процесс. Берется сплошной 
+равносторонний треугольник, на первом шаге из центра удаляется перевернутый 
+треугольник. На втором шаге удаляется три перевернутых треугольника из трех 
+оставшихся треугольников. Продолжая этот процесс, на n-ом шаге удаляем 
+3<SUP>n-1</SUP> перевернутых треугольников из центров 3<SUP>n-1</SUP> оставшихся 
+треугольников. По теории конца этому процессу не будет, и в треугольнике не 
+останется живого места, но и на части он не распадется - получится объект 
+состоящий из одних только дырок. Это и есть треугольник Серпинского. Треугольник 
+Серпинского также называют салфеткой или решетом Серпинского.<BR>
+<CENTER><IMG height=180 alt="построение треугольника Серпинского" 
+src="Фракталы Треугольник Серпинского.files/fr001.gif" width=612 
+border=0></CENTER><BR>Следующая программа реализует этот алгоритм. <PRE><B>Program</B> FracSierp2;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+  gd, gm : Integer;
+<B>Const</B>
+  iter = 5;
+
+<B>Procedure</B> tr(x1, y1, x2, y2, x3, y3: Real);
+<B>Begin</B>
+  Line(round(x1), round(y1), round(x2), round(y2));
+  Line(round(x2), round(y2), round(x3), round(y3));
+  Line(round(x3), round(y3), round(x1), round(y1));
+<B>End</B>;
+
+<B>Procedure</B> draw(x1, y1, x2, y2, x3, y3: Real; n: Integer);
+<B>Var</B>
+  x1n, y1n, x2n, y2n, x3n, y3n : Real;
+<B>Begin</B>
+  <B>If</B>  n &gt; 0  <B>then</B> <B>Begin</B>
+    x1n := (x1 + x2) / 2;
+    y1n := (y1 + y2) / 2;
+    x2n := (x2 + x3) / 2;
+    y2n := (y2 + y3) / 2;
+    x3n := (x3 + x1) / 2;
+    y3n := (y3 + y1) / 2;
+    tr(x1n, y1n, x2n, y2n, x3n, y3n);
+
+    draw(x1, y1, x1n, y1n, x3n, y3n, n - 1);
+    draw(x2, y2, x1n, y1n, x2n, y2n, n - 1);
+    draw(x3, y3, x2n, y2n, x3n, y3n, n - 1);
+  <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'');
+   tr(320,10,600,470,40,470);
+   draw(320,10,600,470,40,470,iter);{}
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+</PRE>
+<P></P><A name=ifs></A>
+<P><B>IFS- алгоритм</B></P>
+<P>Треугольник Серпинского также легко можно построить с помощью трех 
+IFS-преобразований. Эти преобразования задаются следующей матрицей аффинных 
+коэффициентов:<BR>
+<CENTER><IMG height=150 src="Фракталы Треугольник Серпинского.files/fr002.gif" 
+width=225 border=0></CENTER>
+<P></P>
+<P>Программа для построения треугольника Серпинского этим методом на языке 
+Pascal имеет вид:<BR><PRE><B>program</B> FracSierp;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+   gd,gm : Integer;
+<B>Procedure</B> draw;
+<B>const</B> iter = 50000;
+<B>Var</B>
+   t, x, y, p : Real;
+   k : LongInt;
+   mx, my, rad : Integer;
+<B>Begin</B>
+   mx := 320;
+   my := 479;
+   rad := my;
+   Randomize;
+   x := 0.0;
+   y := 0.0;
+   <B>For</B> k := 1 <B>To</B> iter <B>Do</B> <B>Begin</B>
+      p := Random;
+      t := x;
+      <B>If</B> p &lt; = 1/3 <B>Then</B> <B>Begin</B>
+         x :=  0.50 * x + 0.00 * y + 0.0;
+         y :=  0.00 * t + 0.50 * y + 0.5;
+      <B>End</B>
+      <B>Else</B>
+        <B>If</B> p &lt; = 2/3 <B>Then</B> <B>Begin</B>
+            x :=  0.50 * x + 0.00 * y - 0.25;
+            y :=  0.00 * t + 0.50 * y + 0.0;
+         <B>End</B>
+            <B>Else</B> <B>Begin</B>
+            x :=  0.50 * x + 0.00 * y + 0.25;
+            y :=  0.00 * t + 0.50 * y + 0.0;
+            <B>End</B>;
+      PutPixel(mx + Round(rad * x), my - Round(rad * y), 2);
+   <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'');
+   draw;
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+</PRE>
+<P></P>
+<P><IMG height=30 src="Фракталы Треугольник Серпинского.files/warning.gif" 
+width=30 border=0> Не забудте в процедуре инициализации графического режима 
+указать путь к графическому драйверу!</P>
+<CENTER><IMG height=713 alt="Треугольник Серпинского" 
+src="Фракталы Треугольник Серпинского.files/fr003.gif" width=703 
+border=0></CENTER><!----><A name=nol></A><BR>
+<P><B>Нелинейные преобразования.</B></P>
+<P>Еще один способ построения треугольника Серпинского, используя нелинейные 
+преобразования.</P><PRE><B>Program</B> Sierp10;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+  gd, gm: Integer;
+  l, x, y: Real;
+<B>Begin</B>
+  gd:=Detect;
+  InitGraph(gd, gm, 'c:\bp\bgi');
+  x:=0; y:=0;
+  Randomize;
+  <B>While</B> <B>not</B> Keypressed <B>Do</B> <B>Begin</B>
+    l:=2/3*pi*random(3);
+    x:=x/2+cos(l);
+    y:=y/2+sin(l);
+    PutPixel(320 + Round(x*130), 240 + Round(y*130), 14);
+  <B>End</B>;
+  Readkey;
+  CloseGraph;
+<B>End</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 01.08.04<BR>Дата последнего обновления: 10.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Треугольник Серпинского.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

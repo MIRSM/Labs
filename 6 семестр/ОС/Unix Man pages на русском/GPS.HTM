@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>GPS(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GPS(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+gps - цепочка графических примитивов, формат  графических файлов
+<p align=justify><b>ОПИСАНИЕ</b><br>
+GPS - это формат, используемый для хранения графической
+информации. Для редактирования и  вывода  на  различные
+устройства  файлов  GPS-формата  разработано  несколько
+программ. В формате GPS создают выходные файлы и  такие
+высокоуровневые  графические  программы,  как plot [см.
+<a href=STAT~1~2.htm>stat(1G)</a>] и vtoc [см. <a href=TOC.htm>toc(1G)</a>].
+<p align=justify>
+Формат GPS включает пять типов графических примитивов.
+<p align=justify><i>Примитивы</i><br>
+Примитив ломаная обрабатывает переменное  число  точек,
+из которых создается нуль или более последовательно соединенных  отрезков.  В первую точку графический курсор
+перемещается без рисования. Каждая следующая точка соединяется отрезком с предыдущей.  Параметрами  примитива
+являются также цвет, толщина и тип (см. ниже).
+<p align=justify>
+Примитив кривая обрабатывает  переменное  число  точек,
+через  которые проводится кривая. В первую точку графический курсор перемещается без рисования.  Если  заданы
+только две точки, то результатом будет отрезок, их соединяющий;  если  заданы три точки, то рисуется дуга окружности, проходящая через них; если задано больше трех
+точек, то они соединяются отрезками  (в  будущем,  если
+задано больше трех точек, будет рисоваться сплайн). Параметрами примитива являются также цвет, толщина и тип.
+<p align=justify>
+Примитив  текст служит для вывода цепочки символов. Необходимо задать координаты центра первого изображаемого
+символа, а также параметры цвет, шрифт, размер и угол.
+<p align=justify>
+Примитив аппаратура рисует аппаратные символы или  предоставляет возможность выдавать управляющие команды для
+графического устройства. Единственный параметр примитива  -  точка  - обозначает начальную позицию аппаратной
+цепочки символов.
+<p align=justify>
+Примитив комментарий занимает строку в GPS-файле, но на
+изображение  не влияет. Все GPS-файлы начинаются с комментария нулевой длины.
+<p align=justify><i>Параметры</i><br>
+Целочисленный  параметр цвет употребляется в примитивах
+ломаная, кривая и текст.
+<p align=justify>
+Целочисленный  параметр  толщина (линии) используется в
+примитивах ломаная и кривая. Значение  0  соответствует
+узкой линии, 1 - широкой и 2 - линии средней толщины.
+<p align=justify>
+Целочисленный  параметр  тип употребляется в примитивах
+линия и кривая и обозначает один из пяти различных  типов  линий,  которые  могут быть изображены на дисплеях
+серии Tektronix 4010 с запоминающей трубкой:
+<table>
+<tr><th>0<td>Сплошная линия.</tr>
+<tr><th>1<td>Точечная линия.</tr>
+<tr><th>2<td>Штрихпунктирная линия.</tr>
+<tr><th>3<td>Пунктирная линия.</tr>
+<tr><th>4<td>Длинно-пунктирная линия.</tr>
+</table><p align=justify>
+Целочисленный  параметр  шрифт используется в примитиве
+текст. В настоящее время шрифт  задается  как  4-битное
+значение  толщины  и следующее за ним 4-битное значение
+типа.
+<p align=justify>
+Целочисленный параметр  размер  также  употребляется  в
+примитиве текст; он задает высоту символов в абсолютных
+мировых единицах и хранится как одна пятая этой величины в слове размер_угол (см. ниже).
+<p align=justify>
+Целочисленный (со знаком) параметр угол, как и два предыдущих, является составной частью примитива текст;  он
+обозначает  угол  наклона, под которым выводится текст.
+Угол задается в  градусах  относительно  положительного
+направления  оси x; хранится в слове размер_угол в виде
+значения 256/360 от его абсолютной величины.
+<p align=justify><i>Структура примитивов GPS</i><br>
+Примитивы GPS имеют следующую внутреннюю организацию:
+<pre>
+ломаная   упр_слово  точка ...  цвет_тип
+
+кривая   упр_слово  точка ...  цвет_тип
+
+текст   упр_слово  точка  цвет_тип  размер_угол  [цепочка]
+
+аппаратура   упр_слово  точка  [цепочка]
+
+комментарий   упр_слово  [цепочка]
+</pre><p align=justify>
+С  управляющего  (полу)слова  упр_слово  начинаются все
+примитивы. Первые 4 бита упр_слова содержат код  примитива,  остальные  12 - число 16-битных (полу)слов, составляющих примитив.
+<p align=justify>
+Точка  задается двумя целочисленными (16-битными) координатами. В примитивах текст и аппаратура параметр точка один, в примитивах ломаная и кривая таких параметров
+может быть несколько. Диапазон каждой из координат - от
+-32768 до 32767.
+<p align=justify>
+Цвет_тип используется в примитивах  ломаная,  кривая  и
+текст.  Для  всех трех примитивов первые 8 бит содержат
+информацию о цвете. В примитивах ломаная и  кривая  остальные  8  бит  разделены на две группы по 4 бита: для
+толщины и для типа. В примитиве текст эти 8 бит  содержат шрифт.
+<p align=justify>
+Размер_угол употребляется в примитиве текст. По  8  бит
+отводится на размер текста и угол наклона.
+<p align=justify>
+Цепочка  символов  должна  оканчиваться  нулевым байтом
+(или двумя такими байтами, если это необходимо для  выравнивания по границе (полу)слова).
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GRAPHICS.htm>graphics(1G)</a>, <a href=STAT~1~2.htm>stat(1G)</a>, <a href=TOC.htm>toc(1G)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

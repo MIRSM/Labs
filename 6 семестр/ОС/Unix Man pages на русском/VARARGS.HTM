@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>VARARGS(5)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>VARARGS(5)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+varargs - обработка списка аргументов переменной длины
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;varargs.h&gt;
+        
+        va_alist
+        
+        va_dcl
+        
+        void va_start (pvar)
+        va_list pvar;
+        
+        тип va_arg (pvar, тип)
+        va_list pvar;
+        
+        void va_end (pvar)
+        va_list pvar;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Данный  набор макросов позволяет писать мобильные функции с переменным количеством аргументов. Функциям с переменным числом аргументов [таким как  <a href=PRINTF.htm>printf(3S)</a>],  не
+использующим varargs, присуща немобильность, так как на
+различных  компьютерах действуют различные соглашения о
+передаче аргументов.
+<p align=justify>
+Va_alist используется как аргумент в заголовке функции,
+которая на самом деле будет принимать переменное  число
+аргументов.
+<p align=justify>
+Макрос va_dcl  раскрывается  в  описание  va_alist.  За
+va_dcl не надо ставить точку с запятой.
+<p align=justify>
+Va_list служит типом переменной, используемой для просмотра списка аргументов.
+<p align=justify>
+Макрос va_start вызывается для инициализации pvar перед
+просмотром списка аргументов.
+<p align=justify>
+Макрос  va_arg  вернет  следующий аргумент в списке, на
+который указывает pvar. Необходимо указывать  ожидаемый
+тип  аргумента,  поскольку  во  время выполнения узнать
+его, вообще говоря, нельзя.
+<p>
+Макрос va_end используется для окончания просмотра.
+<p align=justify>
+Возможен многократный просмотр списка аргументов,  каждый просмотр открывается макросом va_start и завершается макросом va_end.
+<p><b>ПРИМЕР</b><br>
+Ниже  приводится возможная реализация системного вызова
+execl(2).
+<pre>
+   #include &lt;varargs.h&gt;
+   #define MAXARGS         100
+   
+   /* execl вызывается следующим образом:
+      execl (file, arg1, arg2, ..., (char *)0);
+   */
+   execl(va_alist)
+   va_dcl
+   {
+     va_list ap;
+     char *file;
+     char *args [MAXARGS];
+     int argno=0;
+   
+     va_start(ap);
+     file = va_arg(ap, char *);
+     while ((args [argno++] = va_arg(ap, char *))
+                               != (char *)0)
+       ;
+     va_end(ap);
+     return execv(file, args);
+   }
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=EXEC.htm>exec(2)</a>, <a href=PRINTF.htm>printf(3S)</a>, <a href=VPRINTF.htm>vprintf(3S)</a>.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Способ определения числа аргументов зависит от вызываемой функции - универсального способа  (например,  основанного на анализе стека) не существует. Так, при вызове  execl последний аргумент должен быть нулевым указателем; printf определяет количество аргументов по  формату.
+<p align=justify>
+Было  бы  ошибкой задавать в качестве второго аргумента
+макроса va_arg типы char, short или float, так как согласно правилам языка C перед вызовом функции  аргументы
+типов  char  и short приводятся к типу int, а аргументы
+типа float - к типу double.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

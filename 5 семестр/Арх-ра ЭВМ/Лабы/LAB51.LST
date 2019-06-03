@@ -1,0 +1,74 @@
+Turbo Assembler	 Version 2.5	    11/01/18 11:44:56	    Page 1
+lab51.asm
+
+
+
+      1	0000			     dseg    segment para
+      2	0000  32*(24)		     string  db	50 dup("$")
+      3	0032			     dseg ends
+      4
+      5	0000			     cseg    segment para
+      6	0000			     lab51   proc    near
+      7				     ; ввод	строки до ENTER
+      8	0000			     enterch:
+      9					     assume  cs:cseg,ds:dseg
+     10	0000  B8 0000s				     mov     ax,dseg
+     11	0003  8E D8				     mov     ds,ax
+     12	0005  B2 3E				     mov     dl, '>'
+     13	0007  B4 02			     mov     ah, 02h
+     14	0009  CD 21			     int     21h
+     15	000B  B9 0032			     mov     cx, 50
+     16	000E  BB 0000r			     mov     bx, offset	string
+     17	0011			     ech:
+     18	0011  B4 01			     mov     ah, 01h
+     19	0013  CD 21			     int     21h
+     20	0015  3C 0D			     cmp al,13
+     21	0017  7E 05			     jle quit
+     22	0019  88 07			     mov     byte ptr [bx],al
+     23	001B  43			     inc     bx
+     24	001C  E2 F3			     loop    ech
+     25	001E			     quit:
+     26	001E  E8 0001			     call    prn
+     27	0021  C3			     ret
+     28	0022				     lab51 endp
+     29
+     30	0022			     prn proc near
+     31	0022  B8 0000s		      mov ax,dseg
+     32	0025  8E D8		      mov ds,ax
+     33	0027  BA 0000r		      mov dx,offset string
+     34	002A  B4 09		      mov ah,09h
+     35	002C  CD 21		      int 21h
+     36	002E  B4 4C		      mov ah,04Ch
+     37	0030  B0 01		      mov al,1h
+     38	0032  CD 21		     int 21h
+     39	0034			     prn endp
+     40	0034			     cseg    ends
+     41					     end     lab51
+Turbo Assembler	 Version 2.5	    11/01/18 11:44:56	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "11/01/18"
+??FILENAME			  Text	 "lab51	  "
+??TIME				  Text	 "11:44:56"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 LAB51
+@WORDSIZE			  Text	 2
+ECH				  Near	 CSEG:0011
+ENTERCH				  Near	 CSEG:0000
+LAB51				  Near	 CSEG:0000
+PRN				  Near	 CSEG:0022
+QUIT				  Near	 CSEG:001E
+STRING				  Byte	 DSEG:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0034 Para	  none
+DSEG				  16  0032 Para	  none
+

@@ -1,0 +1,177 @@
+<html>
+<head>
+<title>PUTMSG(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PUTMSG(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+putmsg - посылка  сообщения  в поток, ассоциированный с
+псевдоустройством
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;stropts.h&gt;
+        
+        int putmsg (fd, ctlptr, dataptr, flags)
+        int fd;
+        struct strbuf *ctlptr;
+        struct strbuf *dataptr;
+        int flags;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов putmsg создает сообщение [см. <a href=INTRO~1.htm>intro(2)</a>]
+по  содержимому буферов, указанных пользователем, и посылает сообщение в поток. Сообщение может  состоять  из
+двух  частей: области данных и управляющей области, которые берутся из разных буферов (см.  ниже).  Семантика
+каждой части определяется модулем потока, который получает это сообщение.
+<p align=justify>
+Аргумент  fd задает дескриптор файла, ассоциированный с
+открытым потоком.
+<p align=justify>
+Аргументы ctlptr и dataptr - это указатели на структуру
+типа strbuf, содержащую следующие элементы:
+<pre>
+     int maxlen; /* Максимальная длина буфера */
+     int len;    /* Длина извлеченной информации */
+     char *buf;  /* Указатель на буфер */
+</pre><p align=justify>
+Аргумент ctlptr указывает на структуру, описывающую управляющую область сообщения, если таковая имеется. Компонент  buf  указывает  на буфер, в котором размещается
+управляющая информация, а len задает  количество  байт,
+которое  должно  быть  послано. Поле maxlen в системном
+вызове putmsg не используется [см. <a href=GETMSG.htm>getmsg(2)</a>]. Таким же
+образом dataptr задает  область  данных,  если  таковая
+имеется, которые должны быть включены в сообщение.
+<p align=justify>
+Аргумент  flags  может  принимать  два  значения: 0 или
+RS_HIPRI (см. ниже).
+<p align=justify>
+Чтобы послать данные в сообщении, аргумент dataptr должен быть отличен от NULL,  а  значение  компонента  len
+должно  быть неотрицательным. Чтобы послать управляющую
+информацию, соответствующие значения должны быть  установлены  для  ctlptr.  Область  данных (управляющая область) не будет послана, если аргумент dataptr (ctlptr)
+равен NULL, или значение  компонента  len  для  dataptr
+(ctlptr) равно -1.
+<p align=justify>
+Если  задана управляющая область и значение переменной,
+на которую указывает аргумент  flags,  равно  RS_HIPRI,
+посылается приоритетное сообщение. Если значение по адресу  flags  равно 0, посылается неприоритетное сообщение. Если не указана управляющая область и значение  по
+адресу flags равно RS_HIPRI, системный вызов putmsg завершается  неудачей, а переменная errno получает значение EINVAL. Если не указана ни управляющая  область  ни
+область  данных и значение по адресу flags равно 0, сообщение не посылается и возвращается нулевой результат.
+<p align=justify>
+В случае посылки неприоритетных сообщений процесс, вызвавший putmsg, откладывается, если  очередь  потока  на
+запись  полна вследствие внутренних условий прохождения
+сообщений. Для приоритетных сообщений  откладывания  по
+этой  причине не происходит. Для неприоритетных сообщений откладывания также не происходит, если очередь  потока на запись полна, но установлен флаг O_NDELAY; системный  вызов  завершается  неудачей,  присваивая errno
+значение EAGAIN.
+<p align=justify>
+Кроме того процесс,  вызвавший  putmsg,  откладывается,
+ожидая  доступности достаточного числа блоков для сообщений в потоке (независимо от  приоритетности  и  флага
+O_NDELAY), если при этом вызов не будет отвергнут из-за
+недостатка  системных  ресурсов. Сообщения по частям не
+посылаются.
+<p align=justify>
+Системный вызов putmsg завершается неудачей,  если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EAGAIN]
+<dd>Указано неприоритетное сообщение,  установлен  флаг O_NDELAY, а очередь потока на запись заполнена вследствие внутренних  условий прохождения сообщений.
+<dt>[EAGAIN]
+<dd>Не  удалось выделить буфера для посылаемого
+сообщения.
+<dt>[EBADF]
+<dd>Аргумент fd не является корректным дескриптором файла, открытого на запись.
+<dt>[EFAULT]
+<dd>Аргумент  ctlptr, dataptr, или flags указывает за пределы отведенного процессу адресного пространства.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[EINVAL]
+<dd>Аргумент flags имеет некорректное значение,
+или задано значение RS_HIPRI, а управляющая
+область не указана.
+<dt>[EINVAL]
+<dd>Поток, на который ссылается fd, мультиплексируется.
+<dt>[ENOSTR]
+<dd>С дескриптором fd не ассоциирован поток.
+<dt>[ENXIO]
+<dd>Ниже по потоку произошло  освобождение  линии.
+<dt>[ERANGE]
+<dd>Размер области данных сообщения не попадает
+в интервал между минимальной и максимальной
+длинами пакета, заданными самым верхним модулем потока. Это значение также  возвращается,  если управляющая область или область
+данных  имеют  длины,  превосходящие  соответствующие максимумы, заданные при генерации системы.
+</dl><p align=justify>
+Кроме того, системный вызов putmsg  завершается  неудачей, если, до обращения к putmsg, в истоке потока получено  сообщение об ошибке псевдоустройства. В этом случае переменной errno присваивается значение, содержащееся в сообщении.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~1.htm>intro(2)</a>, <a href=READ.htm>read(2)</a>, <a href=GETMSG.htm>getmsg(2)</a>, <a href=POLL.htm>poll(2)</a>, <a href=WRITE.htm>write(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При  успешном  завершении  результат  равен 0; в случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

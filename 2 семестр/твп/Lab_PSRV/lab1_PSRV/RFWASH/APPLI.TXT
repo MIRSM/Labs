@@ -1,0 +1,12 @@
+Reference        : Rf Wash
+Author           : CJ International
+Date of creation : 31/1/94
+Version number   : 1
+Description      : washing machine simulation
+                   includes a graphic
+
+From the graphic:
+
+Start the machine by double clicking on the "run" button.
+Before, you must fill the soap: click on the "soap" pack,
+beside the machine.

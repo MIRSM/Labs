@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>COL(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>COL(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+col - фильтрация кодов реверсной подачи бумаги
+<p><b>СИНТАКСИС</b>
+<pre>
+  col  [-b] [-f] [-p] [-x]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда col читает данные со стандартного ввода и записывает  на  стандартный  вывод. Она выполняет наложение
+строк, вызываемое реверсной подачей бумаги (код ESC 7),
+а также прямой и реверсной подачей бумаги на  полстроки
+(коды  ESC 9 и ESC 8). Команда col особенно полезна при
+обработке многостолбцовых файлов.
+<p align=justify>
+Если задана опция -b, то считается, что устройство  вывода не способно отработать команду возврата  назад.  В
+этом случае, если в одной позиции должно появиться  два
+или больше символов, то в файл вывода заносится  только
+последний из них.
+<p align=justify>
+Хотя команда col и распознает  коды  подачи  бумаги  на
+полстроки, она обычно не передает  их  в  файл  вывода.
+Вместо этого текст, который  должен  был  бы  появиться
+между строк, оказывается на следующей строке. Это  действие команды можно подавить опцией -f (fine); тогда  в
+файл вывода перепишутся коды подачи бумаги на полстроки
+вперед (ESC 9), но коды подачи назад  будут  все  равно
+отброшены.
+<p align=justify>
+Чтобы сократить время печати, всюду, где это  возможно,
+команда col преобразует цепочки пробелов в символы  табуляции, если не задана опция -x.
+<p align=justify>
+Управляющие  символы  ASCII  SO и SI (восьмеричные коды
+017 и 016 соответственно) используются командой col для
+маркировки начала и конца текста альтернативного  алфавита.  Запоминается, какому алфавиту принадлежит прочитываемый символ, и в файл вывода в нужные места  вставляются символы SO и SI, обеспечивающие печать в требуемом алфавите.
+<p align=justify>
+При вводе воспринимаются только  следующие  управляющие
+символы: пробел, возврат каретки на шаг назад,  табуляция, возврат каретки, переход на новую строку, SI,  SO,
+VT (код 013), ESC 7, ESC 8, ESC 9. Символ VT  -  другая
+форма кодировки реверсной подачи бумаги, включенная для
+совместимости с некоторыми  ранними  программами  этого
+типа. Все остальные непечатные символы игнорируются.
+<p align=justify>
+Обычно команда col исключает все неопознанные управляющие последовательности, встретившиеся во входном файле;
+опция -p может быть использована для  того,  чтобы  все
+такие последовательности передавались в файл вывода как
+обычные символы, подверженные наложению из-за реверсной
+подачи бумаги. Применение этой опции будет крайне обескураживающим, если пользователь не знает точного расположения в тексте управляющих последовательностей.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Невозможен возврат более чем на 128 строк назад. Допускается до 800 символов в строке, включая символы  возврата  на  шаг  назад.  Локальные движения по вертикали,
+приводящие к переходу за первую строку документа, игнорируются. Поэтому в первой строке не должно содержаться
+верхних индексов.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

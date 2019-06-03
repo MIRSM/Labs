@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>WAIT(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>WAIT(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+wait - ожидание завершения порожденного процесса
+<p><b>СИНТАКСИС</b>
+<pre>
+        int wait (stat_loc)
+        int *stat_loc;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+В результате выполнения системного вызова wait  процесс
+приостанавливается до тех пор, пока один из непосредственно  порожденных им процессов не завершится, или пока
+порожденный процесс, который находится в режиме трассировки, не остановится при достижении точки  прерывания.
+Преждевременный  выход из системного вызова wait происходит, если был получен  сигнал;  если  же  порожденный
+процесс  остановился или завершился раньше вызова wait,
+то возврат происходит немедленно.
+<p align=justify>
+Если аргумент stat_loc не равен 0, то 16  бит  информации,  называемые  статусом, помещаются в младшие 16 бит
+слова, на которое указывает stat_loc. С помощью статуса
+можно узнать, приостановлено или  завершено  выполнение
+порожденного  процесса. Если порожденный процесс завершился, то статус указывает причину  завершения.  Статус
+трактуется следующим образом:
+<ol>
+<li>Если  порожденный процесс приостановлен, старшие 8
+бит статуса содержат номер сигнала, ставшего  причиной приостановки, а младшие 8 бит устанавливаются равными 0177.
+<li>Если  порожденный  процесс  завершился посредством
+системного вызова exit, то младшие 8  бит  статуса
+будут  равны  0,  а  старшие 8 бит будут содержать
+младшие 8 бит аргумента, который порожденный  процесс   передает   системному   вызову   exit [см.
+<a href=EXIT.htm>exit(2)</a>].
+<li>Если порожденный процесс завершился из-за  получения  сигнала, то старшие 8 бит статуса будут равны
+0, а младшие 8 бит будут содержать номер  сигнала,
+вызвавшего  завершение  процесса. Кроме того, если
+младший седьмой бит (бит 0200) равен 1, будет произведен дамп оперативной памяти [см. <a href=SIGNAL.htm>signal(2)</a>].
+</ol><p align=justify>
+Если  родительский процесс завершается без ожидания завершения порожденных процессов, то для последних  идентификатор  родительского  процесса становится равным 1.
+Это означает, что процесс инициализации  наследует  порожденные процессы [см. <a href=INTRO~1.htm>intro(2)</a>].
+<p align=justify>
+Системный  вызов wait завершается неудачей и происходит
+немедленный возврат, если выполнено следующее условие:
+<dl>
+<dt>[ECHILD]
+<dd>Вызывающий процесс  не  имеет  существующих
+порожденных  процессов,  завершения которых
+не ждут.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=EXEC.htm>exec(2)</a>,   <a href=EXIT.htm>exit(2)</a>,   <a href=FORK.htm>fork(2)</a>,   <a href=INTRO~1.htm>intro(2)</a>,    <a href=PAUSE.htm>pause(2)</a>,
+<a href=PTRACE.htm>ptrace(2)</a>, <a href=SIGNAL.htm>signal(2)</a>.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ </b><br>
+Системный  вызов wait завершается неудачей и его действия не определены, если аргумент stat_loc указывает  за
+пределы отведенного процессу адресного пространства.
+<p>
+См. также ПРЕДОСТЕРЕЖЕНИЯ в <a href=SIGNAL.htm>signal(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Если  выполнение  системного  вызова  wait  завершилось
+вследствие  получения сигнала, то результат будет равен
+-1, а переменной errno будет присвоено  значение  EINTR
+(прерывание  системного  вызова).  Если wait завершился
+из-за приостановки или завершения порожденного  процесса,  то  результатом  служит идентификатор порожденного
+процесса. В противном случае возвращается -1,  а  переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

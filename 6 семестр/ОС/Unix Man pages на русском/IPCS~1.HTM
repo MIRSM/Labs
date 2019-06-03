@@ -1,0 +1,210 @@
+<html>
+<head>
+<title>IPCS(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IPCS(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ipcs - сообщает статус средств межпроцессной связи.
+<p><b>СИНТАКСИС</b>
+<pre>
+ ipcs [options]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+ipcs выдает некоторую информацию о средствах активной межпроцессной
+связи.  Если  опции  не  заданы,  то  эта  информация  выдается   в
+сокращенном виде  для активных  очередей сообщений,  общей памяти и
+семафоров   в   системе.   В   противном   случае,  эта  информация
+контролируется следующими опциями:
+<ul>
+<li><tt>-q</tt>  Выдача информации об активных очередях сообщений.
+<li><tt>-m</tt>  Выдача информации об активных сегментах общей памяти.
+<li><tt>-s</tt>  Выдача информации об активных семафорах.
+</ul><p align=justify>
+Если задана любая  из эих опций,  то выдается соответствующая  этой
+опции информация. Если не задана ни одна из этих опций, то выдается
+информация по всем трем пунктам.
+<p><table>
+<tr valign=top><td><b>-b</b><td>Выдача информации о наибольшем допустимом размере (максимальное
+количество  байтов  в  сообщениях  очередей  сообщений,  размер
+сегментов общей  памяти и  количество семафоров  в любом наборе
+семафоров). Значение колонок листинга смотрите ниже.</tr>
+<tr valign=top><td><b>-c</b><td>Выдача регистрационного  и группового имен создателя.  Смотрите приведенную ниже информацию.</tr>
+<tr valign=top><td><b>-o</b><td>Выдача  информации о характеристиках  использования (количество
+сообщений  в  очереди,  общее  количество  байтов  в сообщениях
+очереди и количество  процессов, привязанных к  сегментам общей
+памяти).</tr>
+<tr valign=top><td><b>-p</b><td>Выдача  информации об идентификаторах  процессов (идентификатор
+последнего  процесса,  пославшего  сообщение,  и  идентификатор
+последнего   процесса,   принявшего   сообщение,   в   очередях
+сообщений.  Выдается  идентификатор  порождающего  процесса   и
+идентификатор последнего  процесса, прикрепленного  к сегментам
+общей памяти  или отключенного  от них.)  Смотрите  приведенную
+ниже информацию.</tr>
+<tr valign=top><td><b>-t</b><td>Выдача информации о времени. (Время выполнения последней
+управляющей операции, изменившей режим доступа ко всем
+средствам. Время последнего использования msgsnd и msgrcv в
+очередях сообщений, shmat shmdt в общей памяти и <a href=SEMOP.htm>semop(2)</a> для
+семафоров.) Смотрите приведенную ниже информацию.</tr>
+<tr valign=top><td><b>-a</b><td>Использование всех опций выдачи. (Краткое задание опций  -b,-c, -o,-p и -t).</tr>
+<tr valign=top><td><b>-C corefile</b><td>
+Использование файла corefile вместо /dev/kmem.</tr>
+<tr valign=top><td><b>-N namelist</b><td>
+Этот аргумент используется для задания альтернативного имени
+namelist (по умолчанию - /kernel).
+</tr></table>
+<p align=justify>
+Ниже приводятся  заголовки и  назначение колонок  в листинге  ipcs;
+буквы  в  скобках  обозначают  опции,  которые  вызывают  появление
+соответствующего  заголовка;  all  означает,  что  данный заголовок
+появляется всегда.  Заметьте, что  эти опции  определяют только тип
+предоставляемой  для   некоторого  средства   информации;  они   не
+определяют, какое средство будет присутствовать в листинге.
+<p><table>
+<tr valign=top><td>T<td>(all)<td>Тип средства:
+<ul>
+<li>q   очередь сообщений;
+<li>m   сегмент общей памяти;
+<li>s   семафор.</ul></tr>
+<tr valign=top><td>ID<td>(all)<td>Идентификатор входной структуры средства. Эаметьте, что для  средств, созданных  с помощью  creatsem(2) или sdget(2), задается идентификатор "X".</tr>
+<tr valign=top><td>KEY<td>(all)<td>Ключ, используемый в качестве аргумента к   msgkey, semget или  shmget для  создания входной  структуры
+средства.  (Замечание:  Ключ  сегмента общей памяти
+изменяется  на  IPC_PRIVATE   с  момента   удаления
+сегмента  до  момента,  когда  все  прикрепленные к
+этому сегменту процессы отключатся от него.)</tr>
+<tr valign=top><td>MODE<td>(all)<td>Аргументы   и   режимы   доступа к средствам: Режим определяется 11 символами, которые интерпретируются
+следующим образом:<br>
+Первые два символа таковы:
+<ul>
+<li>R  если процесс ждет в режиме msgrcv;
+<li>S  если процесс ждет в режиме msgsnd;
+<li>D  если удален сегмент общей памяти. Он
+исчезает, когда последний прикрепленный к
+сегменту процесс отключается от него;
+<li>C  если связанный  сегмент общей  памяти должен
+быть очищен при первом обращении к нему.
+<li>-  если не установлен соответствующий специальный признак.
+</ul>
+Следующие  9  символов  интерпретируются  как   три
+набора  по   три  позиции   каждый.  Первый   набор
+относится к  разрешениям владельца;  следующий -  к
+разрешениям  прочих  в  группе пользователя входной
+структуры средства; последний - ко всем  остальным.
+Внутри  каждого  набора  первый  символ  определяет
+право   на   чтение,   второй   -   на  запись  или
+корректировку,а последний пока не используется.
+<p>
+Разрешения определяются следующим образом:
+<ul>
+<Li>r  если предоставлено право на чтение;
+<li>w  если предоставлено право на запись;
+<Li>a  если предоставлено право на корректировку;
+<li>-  если разрешение не предоставляется.</ul>
+</tr>
+<tr valign=top><td>OWNER<td>(all)<td>Регистрационное имя владельца входной структуры средства.</tr>
+<tr valign=top><td>GROUP<td>(all)<td>Групповое имя группы владельца входной структуры средства.</tr>
+<tr valign=top><td>CREATOR<td>(a,c)<td>Регистрационное имя создателя входной  структуры средства.</tr>
+<tr valign=top><td>CGROUP<td>(a,c)<td>Групповое имя группы создателя входной структуры средства.</tr>
+<tr valign=top><td>CBYTES<td>(a,o)<td>Количество байтов в  сообщениях, в текущий момент стоящих на очереди.</tr>
+<tr valign=top><td>QNUM <td>(a,o)<td>Количество сообщений, в текущий момент стоящих на очереди.</tr>
+<tr valign=top><td>QBYTES<td>(a,b)<td>Максимальное количество байтов, допускаемое в сообщениях, стоящих на очереди.</tr>
+<tr valign=top><td>LSPID<td>(a,p)<td>Идентификатор последнего процесса, отправившего сообщение в соответствующую очередь.</tr>
+<tr valign=top><td>LRPID<td>(a,p)<td>Идентификатор последнего процесса, получившего сообщение из соответствующей очереди.</tr>
+<tr valign=top><td>STIME<td>(a,t)<td>Время, когда последнее сообщение было отправлено в соответствующую очередь.</tr>
+<tr valign=top><td>RTIME<td>(a,t)<td>Время, когда последнее сообщение было получено из соответствующей очереди.</tr>
+<tr valign=top><td>CTIME<td>(a,t)<td>Время, когда соответствующая входная структура была создана или изменена.</tr>
+<tr valign=top><td>NATTCH<td>(a,o)<td>Количество процессов, прикрепленных к
+соответствующему сегменту общей памяти.</tr>
+<tr valign=top><td>SEGSZ<td>(a,b)<td>Размер соответствующего сегмента общей памяти.</tr>
+<tr valign=top><td>CPID<td>(a,p)<td>Идентификатор процесса создателя входной структуры общей памяти.</tr>
+<tr valign=top><td>LPID<td>(a,p)<td>Идентификатор последнего процесса, прикрепленного или отключенного от сегмента общей памяти.</tr>
+<tr valign=top><td>ATIME<td>(a,t)<td>Время, когда последний процесс был прикреплен к соответствующему сегменту общей памяти.</tr>
+<tr valign=top><td>DTIME<td>(a,t)<td>Время, когда последний процесс был отключен от соотвествующего сегмента общей памяти.</tr>
+<tr valign=top><td>NSEMS<td>(a,b)<td>Количество семафоров в наборе, соответствующем  семафорной входной структуре.</tr>
+<tr valign=top><td>OTIME<td>(a,t)<td>Время, когда была завершена последняя операция с набором, соответствующим семафорной входной структуре.</tr>
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+/kernel     список системных имен
+/dev/kmem   память
+/etc/passwd имена пользователей
+/etc/group  имена групп
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+creatsem(2), <a href=MSGOP.htm>msgop(2)</a>, sdget(2), <a href=SEMOP.htm>semop(2)</a>, <a href=SHMOP.htm>shmop(2)</a>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+В  процессе  работы  ipcs  параметры  могут меняться; рисуемая этой
+программой картина представляет собой лишь известное приближение.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

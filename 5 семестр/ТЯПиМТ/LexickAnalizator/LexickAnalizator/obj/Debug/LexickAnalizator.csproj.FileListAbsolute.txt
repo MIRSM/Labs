@@ -1,0 +1,30 @@
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csprojResolveAssemblyReference.cache
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.Form1.resources
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.Properties.Resources.resources
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csproj.GenerateResource.cache
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csproj.CoreCompileInputs.cache
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.exe.config
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.exe
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.pdb
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.exe
+c:\users\я\source\repos\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.pdb
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.exe.config
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.exe
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.pdb
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csprojAssemblyReference.cache
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.Form1.resources
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.Properties.Resources.resources
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csproj.GenerateResource.cache
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csproj.CoreCompileInputs.cache
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.exe
+D:\16вп1\Новая папка\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.pdb
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csprojAssemblyReference.cache
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.Form1.resources
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.Properties.Resources.resources
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csproj.GenerateResource.cache
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.csproj.CoreCompileInputs.cache
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.exe
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\obj\Debug\LexickAnalizator.pdb
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.exe.config
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.exe
+D:\16вп1\projects\LexickAnalizator\LexickAnalizator\bin\Debug\LexickAnalizator.pdb

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/tree.html -->
+<HTML><HEAD><TITLE>Фракталы: Дерево</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Дерево.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Дерево.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Дерево</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=400 alt=Фрактал src="Фракталы Дерево.files/fr049.jpg" 
+width=400 border=1></CENTER><PRE><B>Program</B> RB;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+  gd, gm: Integer;
+  x, y, a, b: Real;
+  r: Real;
+  x1, y1: Real;
+
+<B>Begin</B>
+  gd:=detect;
+  InitGraph(gd, gm, 'c:\bp\bgi');
+  x:=0;
+  y:=0;
+  a:=0;
+  b:=0;
+  r:=sqrt(2);
+  Randomize;
+  <B>While</B> <B>Not</B> KeyPressed <B>Do</B> <B>Begin</B>
+    a:=Random;
+    <B>If</B> a &lt;= 1/2 <B>Then</B> <B>Begin</B>
+      x1:=y/r+3/2;
+      y1:=-x/r+3/2;
+    <B>End</B> <B>Else</B> <B>Begin</B>
+      x1:=-y/r+1/2;
+      y1:=x/r+1/2;
+    <B>End</B>;
+    <B>If</B> random&gt;0.5 <B>Then</B> <B>Begin</B>
+      x:=x1-2;
+      y:=y1;
+    <B>End</B> <B>Else</B> <B>Begin</B>
+      x:=(x1-2)/(sqr(x1-2)+sqr(y1));
+      y:=y1/(sqr(x1-2)+sqr(y1));
+    <B>End</B>;
+    PutPixel(350 + Round(x*50), 200 + Round(y*50), 15);
+  <B>End</B>;
+  ReadLn;
+  CloseGraph;
+<B>End</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 08.11.04<BR>Дата последнего обновления: 08.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Дерево.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

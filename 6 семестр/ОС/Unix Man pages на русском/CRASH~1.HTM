@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>CRASH(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CRASH(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+crash - аварийное завершение работы системы
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Наряду  с  нормальным  завершением работы системы с помощью утилиты <a href=FINITO.htm>finito(1M)</a>, существует разновидность аварийного завершения - так называемая паника.
+<p align=justify>
+Есть ряд причин, по которым ядро ОС UNIX может  поднять
+панику:
+<ol>
+<li>Невыполнение контрольных  утверждений.  Внутренний
+контроль информации ядра обнаруживает недопустимую
+ситуацию.
+<li>Переполнение системных таблиц.
+<li>Ядро лишилось необходимого ресурса, например, корневой файловой системы.
+<li>Произошло   недопустимое  программное  прерывание,
+например, при обработке аппаратного прерывания.
+</ol><p align=justify>
+В любом случае, ядро выводит сообщение, указывающее  на
+причину паники.
+<p align=justify>
+Если во время обработки паники снова возникает  паника,
+такая ситуация называется двойной паникой.
+<p align=justify>
+При  обработке  паники ядро обновляет файловые системы,
+выдавая <a href=SYNC.htm>sync(2)</a>. Флаг очистки в суперблоке не  устанавливается, так как в файловой системе могут остаться некоторые нарушения.
+<p align=justify>
+Ядро  запрашивает оператора, следует ли вывести дамп на
+устройство дампа  (это  раздел  диска,  определенный  в
+<a href=DFILE.htm>dfile(4)</a>  при  создании ядра). По завершении дампа ядро
+выдает число записанных блоков. Позднее дамп может быть
+проанализирован с помощью утилиты <a href=CRASH.htm>crash(1M)</a>.
+<p align=justify>
+Если устройство дампа перекрывается с устройством  подкачки, надо запустить систему без устройства подкачки и
+скопировать  дамп  в обычный файл. Для этого используют
+утилиту <a href=DD.htm>dd(1)</a>, указывая число блоков дампа,  сообщенное
+при панике. Затем включают подкачку.
+<p align=justify>
+После паники следует перезагрузить систему. Если система  не  загружается,  надо восстановить ее с копии [см.
+<a href=BACKUP~2.htm>backup(8)</a>].
+<p align=justify>
+После загрузки ядра следует немедленно  запустить  коррекцию файловых систем [см. <a href=FSCK.htm>fsck(1М)</a>].
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CRASH.htm>crash(1M)</a>, <a href=FSCK.htm>fsck(1M)</a>, <a href=BACKUP~2.htm>backup(8)</a>, <a href=BOOT~1.htm>boot(8)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

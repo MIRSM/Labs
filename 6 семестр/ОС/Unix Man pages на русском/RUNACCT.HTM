@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>RUNACCT(1M) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>RUNACCT(1M) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+runacct - ежедневная обработка статистики
+<p><b>СИНТАКСИС</b>
+<pre>
+	/usr/lib/acct/runacct  [ммдд [фаза]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита  runacct  является  основной   shell-процедурой
+ежедневной обработки статистики. Обычно она планируется
+для  регулярного запуска cron'ом [см. <a href=CRON.htm>cron(1M)</a>]. Процедура runacct подытоживает накопленную за день  информации  о сеансах, о процессах, об оплате и об использовании дискового пространства. Готовится также  сводка  об
+использовании  команд.  Наконец,  отчет форматируется с
+помощью процедуры prdaily [см. <a href=ACCTSH.htm>acctsh(1M)</a>] и помещается
+в каталог сводной статистической  информации  /usr/adm/
+acct/sum.
+<p align=justify>День, за который подводятся итоги, задается  аргументом
+ммдд, где мм - номер месяца (01 - 12), а дд - номер дня
+в  месяце (01 - 31).
+<p align=justify>Смысл аргумента фаза состоит  в  следующем.  Выполнение
+процедуры runacct подразделяется на несколько независимых  фаз  и может начинаться с любой из них. Прежде чем
+приступить к некоторой фазе, runacct записывает ее  имя
+в файл statefile. Эту информацию можно использовать при
+повторном  подведении итогов за определенный день, если
+успешному завершению первой попытки помешали ошибки: по
+умолчанию, когда задан только день, выполнение процедуры runacct начинается с фазы, имя которой  сохранено  в
+файле statefile. Если фаза задана явно, содержимое файла  statefile  игнорируется.
+<p align=justify>При отсутствии аргументов процедура  runacct  выполняет
+полное подведение итогов за текущий день.
+<p align=justify>Фазы выполняются в таком порядке:
+<dl>
+<dt>SETUP<dd>
+Перемещение  текущей  учетной информации в рабочие
+файлы.
+<p><dt>WTMPFIX<dd>
+Проверка целостности файла /etc/wtmp, при  необходимости корректировка сведений о дате/времени.
+<p><dt>CONNECT1<dd>
+Получение записей о сеансах работы пользователей в
+системе.
+<p><dt>CONNECT2<dd>
+Преобразование записей о сеансах в сводный  формат
+tacct [см. <a href=ACCT~1~2.htm>acct(4)</a>].
+<p><dt>PROCESS<dd>
+Преобразование статистической информации о процессах в сводный формат tacct.
+<p><dt>MERGE<dd>
+Слияние записей о сеансах работы пользователей и о
+выполнении процессов.
+<p><dt>FEES<dd>
+Преобразование   результатов  процедуры  chargefee
+[см. <a href=ACCTSH.htm>acctsh(1M)</a>] в сводный формат и слияние с данными, полученными в предыдущей фазе.
+<p><dt>DISK<dd>
+Слияние информации об использовании диска с данными, полученными в предыдущей фазе.
+<p><dt>MERGETACCT<dd>
+Слияние текущей информации  из  файла  daytacct  с
+данными из файла-отчета /usr/adm/acct/sum/tacct.
+<p><dt>CMS<dd>
+Получение сводки по использованию команд.
+<p><dt>USEREXIT<dd>
+Выполнение  действий,  специфичных  для конкретной
+конфигурации.
+<p><dt>CLEANUP<dd>
+Форматирование итогового отчета, удаление  временных файлов и выход.
+</dl>
+<p align=justify>В процедуре runacct предусмотрена защита файлов со статистической информацией от повреждений в случае обнаружения ошибок. Процедура фиксирует ход собственной работы  в файле-журнале active (расположенном, как и другие
+рабочие файлы, в каталоге /usr/lib/acct/nite). При  обнаружении  какой-либо ошибки на устройство /dev/console
+выводится диагностическое сообщение, пользователям root
+и adm посылаются почтовые уведомления [см. <a href=MAIL.htm>mail(1)</a>],  а
+выполнение процедуры прекращается. Для защиты от одновременного   запуска  нескольких  экземпляров  процедуры
+runacct используются файлы-замки lock и lock1. Файл-замок lastdate  предохраняет  от  двукратного  подведения
+итогов за один и тот же день.
+<p align=justify>Прежде чем перезапустить runacct после неудачи, следует
+прежде всего выяснить характер ошибки (по диагностической записи в файле active), а затем  ликвидировать  некорректности  в  исходных  файлах  (таких  как  pacct и
+/etc/wtmp).  Наконец,  необходимо  удалить  файлы-замки
+lock, lock1 и lastdate.
+<p><b>ПРИМЕРЫ</b>
+Запуск runacct:
+<pre>
+	nohup runacct 2>/usr/adm/acct/nite/fd2log &
+</pre>
+Перезапуск runacct:
+<pre>
+	nohup runacct 0602 2>>/usr/adm/acct/nite/fd2log &
+</pre>
+Перезапуск runacct с определенной фазы:
+<pre>
+	nohup runacct 0602 CMS 2>>/usr/adm/acct/nite/fd2log &
+</pre>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/wtmp
+	/usr/adm/pacct*
+	/usr/adm/acct/nite/active
+	/usr/adm/acct/nite/daytacct
+	/usr/adm/acct/nite/lock
+	/usr/adm/acct/nite/lock1
+	/usr/adm/acct/nite/lastdate
+	/usr/adm/acct/nite/statefile
+	/usr/adm/acct/nite/ptacct*.ммдд
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCT.htm>acct(1M)</a>,   <a href=ACCTCMS.htm>acctcms(1M)</a>,   <a href=ACCTCON.htm>acctcon(1M)</a>,   <a href=ACCTMERG.htm>acctmerg(1M)</a>,
+<a href=ACCTPRC.htm>acctprc(1M)</a>, <a href=ACCTSH.htm>acctsh(1M)</a>, <a href=DISKUSG.htm>diskusg(1M)</a>, <a href=FWTMP.htm>fwtmp(1M)</a>.<br>
+<a href=ACCTCOM.htm>acctcom(1)</a> в Справочнике пользователя.<br>
+<a href=ACCT~1.htm>acct(2)</a>, <a href=ACCT~1~2.htm>acct(4)</a>, <a href=UTMP.htm>utmp(4)</a> в Справочнике программиста.<br>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Диагностические сообщения помещаются в различные файлы,
+выводятся на устройство /dev/console  и  посылаются  по
+почте пользователям root и adm.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Обычно  нецелесообразно  перезапускать  runacct  с фазы
+SETUP. Следует вручную выполнить начальные действия,  а
+затем произвести перезапуск командой
+<pre>
+	runacct  ммдд  WTMPFIX
+</pre>
+<p align=justify>В случае неудачного выполнения фазы PROCESS, необходимо
+удалить  последний  из файлов ptacct*, так как он неполон
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

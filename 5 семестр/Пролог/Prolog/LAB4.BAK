@@ -1,0 +1,21 @@
+/*	Угроватов, Лялин
+	Лабораторная работа №4, Вариант №7:
+	Удалить из списка заданное число последних элементов.
+*/
+
+domains
+	list=integer*
+predicates
+	delete(list,integer,integer,list).
+	delete1(list,integer,integer,list).
+	write_list(list).
+clauses
+	delete(L,I,A,X):-delete1(L,I,A,X).
+	delete1([],_,_,[]).
+	delete1([H|T],I,A,X):-New_A=A+1,delete1(T,I,New_A,X),write(New_A).
+	
+	
+	write_list([]):-nl. 
+	write_list([H|T]):-write(H),write_list(T).
+goal
+	delete([1,2,3,4,5,6],4,1,X).

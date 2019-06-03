@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>    KCLT_CREATE</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>    KCLT_CREATE</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ kclt_create   Создать клиентские выходы для ядра
+<p><b>СИНТАКСИС</b>
+<pre>
+    #include &lt;sys/types.h>
+    kclt_create(nfd, fds, trans, tsdu, pgm, vers)
+    int nfd;
+    int *fds;
+    int trans;
+    int tsdu;
+    ulong pgm;
+    ulong vers;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+    Функция kclt_create используется при создании клиентских  выходов для ядра RPC. В настоящее время различают два типа клиентов
+ядра RPC: NFS и администратор защиты.
+<p align=justify>    Nfd - число файловых дескрипторов в массиве fds.  Nfd контролирует число клиентских выходов,   создаваемых  с  использованием
+данных файловых  дескрипторов  и остальных аргументов.  Trans используется в качестве "транспортного идентификатора". Он отражает
+различия в транспортных и протокольных версиях, параллельно работающих на host-машине. Значения для trans еще не были определены,
+поэтому в  trans  следует занести 1.  Tsdu - максимальная единица
+передачи данных по транспортному протоколу.  Pgm и vers используются при  инициализации  новых  клиентских выходов.  Они являются
+частью заголовка RPC-вызова.  Кроме того,  аргументы trans, pgm и
+vers используются  для  внутренней идентификации клиентских выходов.
+<p><b>СМ. ТАКЖЕ</b><br>
+    <a href=NFSCLNT.htm>nfsclnt(8)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

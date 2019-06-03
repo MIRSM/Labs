@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>LPADMIN(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LPADMIN(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+lpadmin - конфигурирование системы накопления вывода на
+строчные принтеры
+<p><b>СИНТАКСИС</b>
+<pre>
+   /usr/lib/lpadmin  [-pпринтер [[-cкласс] [-eпринтер] [-h]
+  [-iинтерфейс] [-l] [-mобразец] [-rкласс] [-vустройство]]]
+  [-xадресат] [-d[адресат]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда lpadmin конфигурирует систему накопления вывода
+на  строчные  принтеры и служит для описания принтеров,
+классов принтеров и устройств. Она применяется для  добавления  и  исключения  адресатов,  изменения  состава
+классов, назначения принтерам других устройств,  замены
+интерфейсных  программ печати и изменения подразумеваемых системных назначений. Команду lpadmin нельзя  выдавать  при  работающем  планировщике  строчных принтеров
+lpshed(1M), кроме двух указанных ниже случаев.
+<p align=justify>Корректным  считается запуск команды lpadmin, в котором
+задана только одна из опций -p, -x, или -d.
+<dl>
+<dt>-pпринтер <dd>
+Задается принтер, к которому относятся перечисленные ниже опции (-c и т.д.). Если  принтер  не  существует, то он создается.
+<p><dt>-xадресат <dd>
+Адресат исключается из системы принтеров. Если адресат  -  принтер, а также единственный представитель класса, то класс будет уничтожен. В сочетании
+с этой опцией никакие другие недопустимы.
+<p><dt>-d[адресат] <dd>
+Указанный (существующий) адресат становится подразумеваемым. Если адресат не указан, то  в  системе
+не  остается  подразумеваемого адресата. Команда с
+этой опцией может  быть  запущена  при  работающем
+планировщике lpshed(1M). В сочетании с этой опцией
+никакие другие недопустимы.
+</dl>
+<p align=justify>Следующие  опции  задаются  только вместе с опцией -p и
+могут быть указаны в произвольном порядке. Для краткости имя принтера, заданного в опции  -p,  будет  обозначаться буквой P.
+<dl>
+<dt>-cкласс <dd>
+Вводит принтер P в указанный  класс.  Если  класса
+еще не существует, то он создается.
+<p><dt>-eпринтер <dd>
+Сопоставляет принтеру P ту интерфейсную программу,
+которая соответствует указанному (и уже существующему) принтеру.
+<p><dt>-h <dd>  Означает, что принтер P аппаратно подсоединяется к
+системе. При добавлении нового принтера используют
+либо эту опцию, либо -l.
+<p><dt>-iинтерфейс <dd>
+Сопоставляет  принтеру  P новую интерфейсную программу. Интерфейс - маршрутное имя этой программы.
+<p><dt>-l <dd>  Означает, что устройство, связанное с P, есть терминал, с которого можно войти в систему. Планировщик lpshed сразу после  своего  запуска  блокирует
+такие  принтеры-терминалы.  Прежде чем разблокировать P, следует выполнить команду lpadmin с опцией -l.
+<p><dt>-mобразец <dd>
+Выбирает интерфейсную программу  для  принтера  P.
+Образец  -  одно  из имен, имеющихся в программном
+обеспечении системы накопления вывода на  принтеры
+(см. ниже).
+<p><dt>-rкласс <dd>
+Исключает  принтер  P из указанного класса. Если P
+оказался последним представителем этого класса, то
+класс уничтожается.
+<p><dt>-vустройство <dd>
+Связывает с принтером P новое устройство.  Устройство  - маршрутное имя файла, доступное для записи
+программой <a href=LP.htm>lp(1)</a>. Отметим, что одно и то  же  устройство может быть связано с несколькими принтерами.  Если  заданы только опции -p и -v, то lpadmin
+можно запускать при работающем планировщике.
+</dl>
+<p align=justify>При создании принтера необходимо  задать  опцию  -v,  а
+также одну из опций -e, -i или -m. Опции -h и -l исключают  друг  друга.  Имена принтеров и классов не должны
+содержать более 14 символов; допустимый набор символов:
+A-Z, a-z, 0-9 и _ (подчеркивание).
+<p align=justify>Вместе с системой накопления вывода на принтеры поставляются образцы интерфейсных программ. Они  представляют
+собой  shell-процедуры, обеспечивающие связь между планировщиком lpshed и устройствами.  Образцы  хранятся  в
+каталоге /usr/spool/lp/model и доступны lpadmin с опцией -m. Копии образцов интерфейсных программ можно также
+модифицировать,  а  затем связать с принтерами командой
+lpadmin -i.
+<p><b>ФАЙЛЫ</b>
+<pre>
+   /usr/spool/lp/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCEPT.htm>accept(1M)</a>, lpshed(1M).<br>
+<a href=DISABLE.htm>disable(1)</a>, <a href=ENABLE.htm>enable(1)</a>, <a href=LP.htm>lp(1)</a>, <a href=LPSTAT.htm>lpstat(1)</a>  в  Справочнике
+пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

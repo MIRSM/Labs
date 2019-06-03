@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>GETTYDEFS(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETTYDEFS(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+gettydefs  - данные о скорости обмена и характеристиках
+терминала, используемые программой getty
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Файл  /etc/gettydefs  содержит информацию, используемую
+программой <a href=GETTY.htm>getty(1M)</a> для установки  скорости  обмена  и
+терминальных  характеристик линии. Из файла берется информация о том, как должно  выглядеть  приглашение  при
+входе в систему. В нем также указывается скорость обмена,  которую  надо  попытаться установить, если текущее
+значение некорректно (о чем пользователь сообщает нажатием клавиши прерывания).
+<p>
+Элементы файла /etc/gettydefs имеют следующий формат:
+<pre>
+метка# нач_флаги # кон_флаги #приглашение #след_метка
+</pre>
+После каждого элемента должна следовать пустая  строка.
+Строки,  начинающиеся  с  символа #, игнорируются. Поля
+могут содержать взятые в кавычки символы вида  \b,  \n,
+\c и т.д., а также конструкции \nnn, где nnn есть восьмеричное  значение  требуемого символа. Поля трактуются
+следующим образом:
+<dl>
+<dt>метка 
+<dd>Цепочка символов, с которой <a href=GETTY.htm>getty(1M)</a> пытается сопоставить свой второй аргумент. Часто (но не всегда) в качестве метки используется скорость  обмена
+с терминалом, например 9600.
+<dt>нач_флаги 
+<dd>Начальные  флаги  задают характеристики терминала,
+которые  будут  установлены   посредством   вызова
+<a href=IOCTL.htm>ioctl(2)</a>,  если для getty не указан тип терминала.
+Допустимые флаги перечислены во  включаемом  файле
+&lt;sys/termio.h&gt;  [см. <a href=TERMIO.htm>termio(7)</a>]. Обычно из начальных флагов требуется только флаг  скорости.  Getty
+автоматически   устанавливает   терминал  в  режим
+бесструктурного ввода и  заботится  о  большинстве
+остальных  флагов. Установка начальных флагов действует до тех пор, пока getty не выполнит  команду
+<a href=LOGIN.htm>login(1)</a>.
+<dt>кон_флаги 
+<dd>Конечные флаги имеют тот же смысл, что  и  начальные,  и устанавливаются непосредственно перед тем,
+как getty вызывает login. Флаг скорости также обязателен. Комплексный флаг SANE устанавливает большинство остальных флагов, необходимых, чтобы  процессор  и терминал обменивались рациональным образом. Другие два обычно указываемые флага есть TAB3
+(табуляции выводятся на  терминал  как  последовательности  пробелов)  и HUPCL (линия освобождается
+при последнем закрытии).
+<dt>приглашение 
+<dd>Поле  целиком  выдается в качестве приглашения при
+входе в систему. В отличие от вышеописанных полей,
+где пробелы, табуляции и переводы строк  игнорируются, здесь они входят в приглашение.
+<dt>след_метка 
+<dd>Метка следующего элемента файла, который getty попытается использовать, если скорость обмена оказалась неподходящей. Характеристики терминала  будут
+установлены  согласно  новым  флагам. Обычно набор
+элементов для различных скоростей образует кольцевой список. Например, элемент с меткой 2400 указывает на 1200, тот указывает на 300, а этот последний вновь указывает на 2400.
+</dl>
+<p align=justify>
+Если к <a href=GETTY.htm>getty(1M)</a> обратились без второго  аргумента,  то
+используется  первый элемент файла /etc/gettydefs. Первый элемент используется и тогда,  когда  <a href=GETTY.htm>getty(1M)</a>  не
+может   найти  заданную  метку.  Если  сам  файл  /etc/
+gettydefs отсутствует, то используется встроенный в команду вход для терминала со скоростью обмена 300 бод.
+<p align=justify>
+Настоятельно рекомендуется после создания или изменения
+файла /etc/gettydefs проверять его посредством  запуска
+getty с опцией контроля.
+<p><b>ФАЙЛЫ</b><br>
+<pre>
+/etc/gettydefs
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=IOCTL.htm>ioctl(2)</a>.<br>
+<a href=LOGIN.htm>login(1)</a> в Справочнике пользователя.<br>
+<a href=GETTY.htm>getty(1M)</a>, <a href=TERMIO.htm>termio(7)</a> в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

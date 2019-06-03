@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>HP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>HP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+hp - отработка специальных функций терминалов серии  HP
+     2640 и 2641
+<p><b>СИНТАКСИС</b>
+<pre>
+      hp  [-e] [-m]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда hp поддерживает выполнение специальных  функций
+терминалов серий 2640  и  2641  фирмы  Хьюлетт-Паккард;
+цель введения этой команды - правильно изображать  файлы, полученные в результате применения  команды  nroff.
+Типичный пример использования команды:
+<pre>
+        nroff -h files ... | hp
+</pre>
+<p align=justify>Независимо от модификации терминала команда hp пытается
+выполнить действия, связанные с  подчеркиванием  и  реверсным перемещением по вертикали. Если терминал  обладает "расширенными видеовозможностями", верхние и  нижние индексы можно изобразить разными способами. Если он
+имеет встроенный "математический алфавит", можно  изображать греческие буквы и другие специальные символы.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>-e <td>  Предполагается, что терминал обладает "расширенными видеовозможностями", так  что  максимально  используются дополнительные режимы отображения.  Наложенные символы изображаются в режиме подчеркивания. Верхние индексы изображаются в  режиме  пониженной яркости, нижние - в режиме  пониженной  яркости и подчеркивания. Если эта опция  не  задана,  то считается, что терминал не обладает  "расширенными видеовозможностями". В этом случае все  наложенные символы, верхние и нижние индексы отображаются в негативе, т.е. темными на светлом  фоне,  а не светлыми на темном, как обычно.
+<tr valign=top><th>-m <td>  Сокращение обема вывода за счет  удаления  пустых
+     строк. Любая последовательность из  трех  и  более
+     пустых строк преобразуется в последовательность из
+     двух строк; т.е. любое количество избыточных строк
+     преобразуется в одну. Это позволяет  сосредоточить
+     на экране больший обем текста.
+</table>
+<p align=justify>Греческие буквы и другие специальные символы команда hp
+изображает так же, как и команда  300,  за  исключением
+того, что значок "НЕ" изображается правой  стрелкой,  а
+значок интеграла - его верхней  половиной.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Код завершения 0 при нормальном исходе и 2 - при  любой
+ошибке.
+<pre>
+     line too long   строка содержит более 1024 символов.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=COL.htm>col(1)</a>, greek(1).
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Последовательность с наложением  -  это  последовательность, в которой между двумя печатными символами встречаются символы возврата на шаг назад. Если один из  таких символов - подчеркивание, то другой изображается  с подчеркиванием или в негативе; если же ни один из  символов не является подчеркиванием, то изображается только первый из них (также с подчеркиванием или в  негативе). Никаких специальных действий  не  предпринимается, если символ возврата на шаг назад  расположен  рядом  с
+управляющим символом ASCII. Последовательности управляющих символов (например, перемещение вверх,  шаг  назад по строке) могут привести к  "исчезновению"  текста;  в
+частности, в таблицах, созданных командой tbl и  содержащих вертикальные линии, часто пропадают строки текста
+с "основанием" вертикальной линии, пока файл  не  будет
+предварительно обработан командой <a href=COL.htm>col(1)</a>.
+<p align=justify>Хотя  некоторые  терминалы  обеспечивают   высвечивание
+верхних числовых индексов, эта возможность командой  не
+используется.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

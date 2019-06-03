@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1552990253 source:/home/mirsm/Рабочий стол/test/main.cpp
+	<fcntl.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<fstream>
+	<string>
+	<cstring>
+	<iostream>
+

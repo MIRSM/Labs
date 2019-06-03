@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_settings_menu_8cs" kind="file" language="C#">
+    <compoundname>SettingsMenu.cs</compoundname>
+    <innerclass refid="class_settings_menu" prot="public">SettingsMenu</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="SettingsMenu.cs"/>
+  </compounddef>
+</doxygen>

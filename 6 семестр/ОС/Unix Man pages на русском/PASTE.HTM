@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>PASTE(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PASTE(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+paste - слияние строк одного или нескольких файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+	paste  файл1 файл2 ...
+	paste  -dсписок файл1 файл2 ...
+	paste  -s [-dсписок] файл1 ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+В первых двух своих формах команда paste  конкатенирует
+соответственные строки указанных входных файлов  файл1,
+файл2 и т.д. Каждый файл рассматривается как  отдельный
+столбец или несколько столбцов некоторой  таблицы;  команда paste склеивает их по  горизонтали  (параллельное
+слияние). Если угодно, команда paste двойственна команде <a href=CAT.htm>cat(1)</a>, которая осуществляет вертикальную конкатенацию файлов, размещая один файл вслед за другим. В  последней из приведенных синтаксических форм команда paste
+принимает на себя функции более старой команды с  таким
+же именем, соединяя  последовательные  строки  входного
+файла (последовательное слияние). Во всех случаях строки  склеиваются  посредством символа табуляции или, как
+возможный вариант, посредством символов из списка.  Команда paste помещает результирующую строку на стандартный  вывод, поэтому она (команда) может служить началом
+конвейера или фильтром, если вместо имени файла указать
+-.
+<p align=justify>Опции имеют следующий смысл:
+<table>
+<tr valign=top><th>-dсписок <td>
+Если эта опция не указана, символы перевода строки
+во всех файлах, кроме последнего, (либо, в  случае
+опции -s, в  последней  строке  файла)  заменяются
+символами табуляции. Непосредственно следующие  за
+-d  символы  используются  при  конкатенации строк
+вместо символов табуляции.  Список  этих  символов
+рассматривается  как кольцевой, то есть будучи исчерпан, он используется повторно. При параллельном
+слиянии (то есть в отсутствие опции -s) строки  из
+последнего файла всегда завершаются символом перевода  строки, а не символами из списка. Список может содержать следующие  управляющие  символы:  \n
+(перевод  строки),  \t (символ табуляции), \\ (обратная наклонная черта), а также \0 (пустая цепочка, а не нулевой  символ).  Может  оказаться,  что
+входящим  в  список  символам приписан специальный
+смысл в языке shell - в  этом  случае  потребуются
+кавычки (например, обратная наклонная черта должна
+быть задана как -d"\\\\").
+<tr valign=top><th>-s  <td> Осуществлять слияние последовательных  строк  файла1, затем файла2 и т.д., а не единичных строк одновременно из  всех  входных  файлов.  Если  опция
+-dсписок не задана, то при конкатенации  используются символы табуляции. Вне зависимости от наличия
+или отсутствия списка каждый  файл  будет  оканчиваться символом перевода строки.
+<tr valign=top><th>-  <td>  Может использоваться в роли имени  файла.  В  этом
+случае строки будут  считываться  со  стандартного
+ввода (приглашение не выдается).
+</table>
+<p><b>ПРИМЕРЫ</b>
+<ol>
+<li> Выдача каталога в один столбец:
+<pre>
+	ls | paste </pre>
+<li> Выдача каталога в четыре столбца:
+<pre>
+	ls | paste - - - </pre>
+<li> Попарное об единение строк файла f1:
+<pre>
+	paste -s -d"\t\n" f1
+</pre>
+</ol>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CUT.htm>cut(1)</a>, <a href=GREP.htm>grep(1)</a>, <a href=PR.htm>pr(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+<dl>
+<dt>line too long <dd>
+Длина  результирующей  строки превышает 511 символов.
+<p><dt>too many files <dd>
+Число  входных  файлов не должно превышать 12. При
+наличии опции -s это ограничение отсутствует.
+</dl>
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+В режиме опции -s с несколькими файлами команда работает неверно.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

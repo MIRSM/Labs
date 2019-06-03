@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>SYSADMIN(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SYSADMIN(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+sysadmin - выполняет резервное копирование файловых систем и
+восстановление файлов.
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/sysadmin
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+sysadmin  -  утилита,  предназначенная  для  выполнения  резервного
+копирования  файловых  систем  и  восстановления  файлов  с помощью
+носителей  резервных  копий,  имеет  несколько  опций.  Ее основная
+функция  -  выполнять  подготовку  для работы  утилиты  <a href=FSPHOTO.htm>fsphoto(8)</a>,
+которая  осуществляет  резервное   копирование  в  соответствии   с
+установленным графиком. В  зависимости от дня  недели автоматически
+выбирается  либо  ежедневное   дополняющее  резервное   копирование
+(уровень 9) или периодическое полное резервное копирование (уровень
+0).  Можно  вызывать  sysadmin  и для незапланированного резервного
+копирования. Она может  предоставить листинг сохраненных  файлов, а
+также средства для восстановления отдельных файлов и целых файловых
+систем с помощью резервных копий.
+<p align=justify>
+Главное меню sysadmin выглядит следующим образом:
+<pre>
+        Filesystem Maintanance Options
+
+        1. Perform a scheduled backup
+        2. Perform a unscheduled backup
+        3. List the contents of an archive
+        4. Restore backed up file(s)
+        5. Restore an entire filesystem
+        6. Check backup archive integrity
+
+        Enter an option or enter q to quit:_
+</pre><p align=justify>
+Любой поддерживаемый архивный  носитель может быть  использован для
+создания  резервных  копий.  Любая  файловая  система  может   быть
+сохранена  в  резервной  копии.   Списки  этих  устройств  в   меню
+подгатавливаются    для    каждой    опции    с    помощью   файлов
+/tmp/backup.list, /etc/default/archive и /etc/default/filesys.
+<p align=justify>
+Чтобы использовать эту программу, вы должны быть привилегированным
+пользователем.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/tmp/backup.list
+/etc/default/archive
+/etc/default/filesys
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FSPHOTO.htm>fsphoto(8)</a>, <a href=MKFS~1.htm>mkfs(8)</a>, <a href=BACKUP.htm>backup(1)</a>, <a href=DUMPDIR.htm>dumpdir(1)</a>, <a href=RESTORE.htm>restore(1)</a>,
+archive(3), filesys(3)
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Для  подключения  устройств  или  для  удаления  записей  более  не
+используемых        устройств        файлы        /tmp/backup.list,
+/etc/default/archive и /etc/default/filesys могут редактироваться.
+<p align=justify><b>ПРЕДУПРЕЖДЕНИЕ</b><br>
+Не следует  копировать на  стримеры /dev/nrct0  и /dev/nrct2  более
+одной файловой системы. Это связано  с тем, что, хотя backup  может
+скопировать на  них больше  одной файловой  системы, restore  будет
+в  состоянии  восстановить  с  этих  устройств только одну файловую
+систему.
+<p align=justify>
+Во  время  резервного  копирования  не  забывайте закрывать защелку
+дисковода  гибких  дисков.  Если   это  произойдет  при   резервном
+копировании, требующем нескольких  дискет, процесс придется  начать
+сначала.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

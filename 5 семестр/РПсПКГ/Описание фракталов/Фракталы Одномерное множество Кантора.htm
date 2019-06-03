@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/frcnt1.html -->
+<HTML><HEAD><TITLE>Фракталы: Одномерное множество Кантора</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Одномерное множество Кантора.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Одномерное множество Кантора.files/lab24.gif" width=150 
+      border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Одномерное множество Кантора</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<P>Один из основателей теории множеств, Кантор, придумал один из старейших 
+фракталов (1883). Этот фрактал строится следующим образом. Из исходного отрезка 
+единичной длины выбрасывается интервал (1/3, 2/3). Далее операция повторяется, и 
+в пределе мы получим фрактал Кантора. На западе подобные множества называют 
+пылью Кантора.</P>
+<CENTER><IMG height=142 alt="фрактал Кантора" 
+src="Фракталы Одномерное множество Кантора.files/fr010.gif" width=614 
+border=0></CENTER>
+<P>Следующая программа на языке Pascal создает изображение одномерного множества 
+Кантора рекурсивным методом.</P><PRE><B>Program</B> Cantor1;
+<B>Uses</B> CRT, Graph;
+<B>Const</B>
+  min = 1;
+<B>Var</B>
+  gd, gm : Integer;
+
+<B>Procedure</B> Draw(x, y : Real; Size : Real);
+  <B>Var</B>
+    s : Real;
+<B>Begin</B>
+  <B>If</B> size &gt; min <B>then</B> <B>Begin</B>
+    s := size / 3;
+    Draw(x, y + 20, s);
+    Draw(x + s * 2, y + 20, s);
+  <B>End</B>;
+  Bar(Round(x), Round(y), Round(x + size), Round(y + 5));
+<B>End</B>;
+
+<B>Begin</B>
+  gd := Detect;
+  InitGraph(gd,gm,'');
+  Draw(10,30,500);
+  ReadKey;
+  CloseGraph;
+<B>End</B>.
+</PRE>
+<P><IMG height=30 src="Фракталы Одномерное множество Кантора.files/warning.gif" 
+width=30 border=0> Не забудте в процедуре инициализации графического режима 
+указать путь к графическому драйверу!</P>
+<P>Существует еще одна разновидность одномерного множества Кантора, называемая 
+гребень Кантора. Для ее построения нужно в предыдущей программе строчку <PRE>Bar(Round(x), Round(y), Round(x + size), Round(y + 5));</PRE>заменить на <PRE>Rectangle(Round(x), Round(y), Round(x + size), Round(y + 20));.</PRE>
+<P></P>
+<CENTER><IMG height=153 alt="гребень Кантора" 
+src="Фракталы Одномерное множество Кантора.files/fr011.gif" width=613 
+border=0></CENTER></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 01.08.04<BR>Дата последнего обновления: 17.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Одномерное множество Кантора.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

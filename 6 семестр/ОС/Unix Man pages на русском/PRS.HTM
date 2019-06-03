@@ -1,0 +1,239 @@
+<html>
+<head>
+<title>PRS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PRS(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+prs - печать SCCS-файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+      prs  [-d[спецификация_данных]] [-r[с_идентификатор]] [-e] [-l]
+           [-c[кон_время]] [-a] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда prs выдает на стандартный вывод части SCCS-файла  или файл целиком [см. <a href=SCCSFILE.htm>sccsfile(4)</a>] в формате, который задает пользователь. Если указано имя каталога, prs
+обрабатывает все файлы в этом каталоге, начинающиеся  с
+s.; файлы, к которым нет доступа на чтение, игнорируются  без  дополнительных  сообщений. Если указано имя -,
+происходит чтение со стандартного ввода, каждая  строка
+при  этом  трактуется   как имя SCCS-файла, подлежащего
+обработке. Файлы, не начинающиеся с s., и файлы, к  которым нет доступа на чтение, также игнорируются без дополнительных сообщений.
+<p align=justify>В командной строке prs можно в любом  порядке  задавать
+опции и имена файлов.
+<p align=justify>Каждая опция независимо применяется к каждому файлу.
+<dl>
+<dt>-d[спецификация_данных] <dd>
+     Используется для указания данных, подлежащих выводу. Спецификация_данных - это строка, состоящая из
+     ключевых слов данных [см. ниже] и  дополнительного
+     текста, задаваемого пользователем.
+<p><dt>-r[с_идентификатор] <dd>
+     Указывает, информация о  какой  версии  требуется.
+     Если с_идентификатор  не  указан,  подразумевается
+     самая поздняя версия.
+<p><dt>-e  <dd> Указывает,  что требуется информация обо всех версиях, созданных не позднее версии, определенной  в
+     опции  -r,  или  не позднее даты, заданной в опции
+     -c.
+<p><dt>-l  <dd> Указывает, что требуется информация обо всех  версиях,  созданных  не  ранее версии, определенной в
+     опции -r, или не ранее даты, заданной в опции -c.
+<p><dt>-c[кон_время] <dd>
+     Кон_время имеет формат:
+<pre>
+	 гг[мм[дд[чч[мм[сс]]]]]
+</pre>
+     Опущенные цифры  по  умолчанию  имеют  максимально
+     возможные значения, например  -c7502  эквивалентно
+     -c750228235959. Любое число любых нецифровых  символов может разделять пары  цифр;  например, можно
+     задать кон_время в виде "-c77/2/2 9:22:25".
+<p><dt>-a <dd>  Указывает, что требуется информация как о  существующих (типа D), так и об удаленных (типа R)  версиях [см. <a href=RMDEL.htm>rmdel(1)</a>]. Если опция -a не указана, выдается информация только о существующих версиях.
+</dl>
+<p align=justify><b>Ключевые слова данных </b><br>
+Ключевые слова данных определяют части SCCS-файла,  которые должны  быть  извлечены  и  выведены.  Все  части
+SCCS-файла [см. <a href=SCCSFILE.htm>sccsfile(4)</a>] имеют соответствующие ключевые слова. Каждое ключевое слово может  появляться  в
+спецификации_данных любое число раз.
+<p align=justify>Информация, печатаемая командой prs,  состоит  из:  (1)
+пользовательского текста и (2) соответствующих значений
+(извлеченных из SCCS-файла), подставленных вместо опознанных ключевых слов данных в порядке  их  появления  в
+спецификации_данных. Формат  значения  ключевого  слова
+данных может быть простым (П), при котором  осуществляется прямая подстановка и многострочным (М), при  котором за подставленным значением следует возврат каретки.
+<p align=justify>В спецификации_данных может использоваться также  любой
+другой текст,  отличный  от  ключевых  слов.  Табуляция
+представляется как \t, а возврат каретки/перевод  строки - как \n.
+<p align=justify><b>КЛЮЧЕВЫЕ СЛОВА ДАННЫХ</b><br>
+<table>
+<tr valign=top><th>Ключ. слово<th>  Элемент данных  <th> Раздел SCCS-файла  <th>   Значение  <th>  Формат
+<tr valign=top><td>:Dt:<td> Информация о фрагменте <td>Таблица фрагментов <td> см. ниже<a href=#1>*</a> <td>   П
+<tr valign=top><td>:DL:<td> Статистика строк <td>   "  <td>  :Li:/:Ld:/:Lu: <td> П
+<tr valign=top><td>:Li:<td> Число строк, вставленных в версии  <td>  " <td>  nnnnn<td>П
+<tr valign=top><td>:Ld: <td>Число строк, удаленных в версии  <td> " <td>  nnnnn<td>           П
+<tr valign=top><td>:Lu: <td>Число строк, не изменившихся в версии <td>" <td>   nnnnn <td>   П
+<tr valign=top><td>:DT:<td> Тип версии <td>"  <td> D или R  <td>   П
+<tr valign=top><td>:I: <td> СИД   <td>    " <td>   :R:.:L:.:B:.:S: <td>П
+<tr valign=top><td>:R: <td> Номер версии  <td> "  <td> nnnn <td>    П
+<tr valign=top><td>:L: <td> Номер уровня  <td>  "  <td>  nnnn <td>  П
+<tr valign=top><td>:B: <td> Номер ветви  <td>  "  <td>  nnnn  <td>  П
+<tr valign=top><td>:S: <td> Номер модификации  <td> "   <td> nnnn  <td>   П
+<tr valign=top><td>:D: <td> Дата создания версии <td>     " <td>   :Dy:/:Dm:/:Dd:<td>  П
+<tr valign=top><td>:Dy:<td> Год создания версии   <td>  "  <td>  nn <td>  П
+<tr valign=top><td>:Dm: <td>Месяц создания версии  <td>  "  <td>  nn  <td> П
+<tr valign=top><td>:Dd:<td> День создания версии <td> "  <td>  nn  <td>  П
+<tr valign=top><td>:T: <td> Время создания версии <td>   "  <td>  :Th:::Tm:::Ts:<td>  П
+<tr valign=top><td>:Th:<td> Час создания версии  <td>   "  <td>  nn <td>   П
+<tr valign=top><td>:Tm:<td> Минута создания версии <td>   "  <td>  nn   <td>  П
+<tr valign=top><td>:Ts:<td> Секунда создания версии  <td>   "   <td> nn  <td>   П
+<tr valign=top><td>:P: <td> Пользователь, создавший версию <td>  " <td>  входное имя <td>  П
+<tr valign=top><td>:DS:<td> Порядковый номер версии <td> "  <td>  nnnn <td>  П
+<tr valign=top><td>:DP:<td> Порядковый номер отца <td>    "   <td> nnnn  <td>   П
+<tr valign=top><td>:DI:<td> Порядковые номера включенных,  исключенных,проигнорированных версий <td>    "  <td>  :Dn:/:Dx:/:Dg: <td> П
+<tr valign=top><td>:Dn: <td>Порядковые номера включенных версий <td>  "  <td>  :DS: :DS:...  <td>  П
+<tr valign=top><td>:Dx:<td> Порядковые номера исключенных версий <td> "  <td>  :DS: :DS:...  <td>  П
+<tr valign=top><td>:Dg: <td>Порядковые номера проигнорированных  версий <td> " <td>   :DS: :DS:...   <td> П
+<tr valign=top><td>:MR: <td>Номера запросов <td>  " <td>  текст  <td>   М
+<tr valign=top><td>:C: <td> Комментарии <td>   "  <td>  текст  <td> М
+<tr valign=top><td>:UN:<td> Имена пользователей   <td> Имена пользователей <td> текст <td>  М
+<tr valign=top><td>:FL: <td>Список флагов <td>  Флаги<td>  текст  <td>     М
+<tr valign=top><td>:Y:  <td>Флаг типа модуля <td>"  <td>  текст <td>П
+<tr valign=top><td>:MF: <td>Флаг проверки номеров запросов  <td> " <td>   да или нет <td>  П
+<tr valign=top><td>:MP: <td>Имя программы проверки номеров запросов<td> "<td>  текст<td>   П
+<tr valign=top><td>:KF: <td>Флаг ошибок/предупреждений  <td>   "   <td> да или нет <td>   П
+<tr valign=top><td>:BF: <td>Флаг ветвления  <td>"   <td> да или нет <td>     П
+<tr valign=top><td>:J:  <td>Флаг одновременного редактирования  <td>  " <td>  да или нет  <td>  П
+<tr valign=top><td>:LK: <td>Закрытые версии <td>   "   <td> :R:... <td>  П
+<tr valign=top><td>:Q:  <td>Определяемый пользователем текст   <td>  " <td>   текст <td>   П
+<tr valign=top><td>:M: <td> Имя модуля <td>  "  <td>  текст  <td>   П
+<tr valign=top><td>:FB: <td>Минимальный номер редактируемой версии <td>"  <td> :R: <td>    П
+<tr valign=top><td>:CB:<td> Максимальный номер редактируемой версии <td>" <td> :R: <td>  П
+<tr valign=top><td>:Ds:<td> СИД по умолчанию <td>   " <td>   :I:  <td>   П
+<tr valign=top><td>:ND: <td>Флаг пустоты версии <td>  "  <td>  да или нет  <td>   П
+<tr valign=top><td>:FD:<td> Текст, описывающий файл  <td>  Комментарии <td> текст  <td>  М
+<tr valign=top><td>:BD: <td>Тело <td>   Тело  <td>   текст  <td>  М
+<tr valign=top><td>:GB:<td> Извлеченное тело <td>  "  <td>   текст  <td> М
+<tr valign=top><td>:W: <td> Строка <a href=WHAT.htm>what(1)</a>  <td>   Нет  <td>   :Z::M:\t:I:  <td>   П
+<tr valign=top><td>:A: <td> Строка <a href=WHAT.htm>what(1)</a>  <td>  Нет   <td> :Z::Y: :M: :I::Z: <td> П
+<tr valign=top><td>:Z: <td> Ограничитель строки <a href=WHAT.htm>what(1)</a> <td> Нет  <td>   @(#) <td>      П
+<tr valign=top><td>:F: <td> Простое имя SCCS-файла <td>  Нет <td>  текст  <td>   П
+<tr valign=top><td>:PN: <td>Составное имя SCCS-файла <td>  Нет  <td>   текст  <td>     П
+<tr valign=top><td colspan=5><a name=1></a>
+* :Dt: = :DT: :I: :D: :T: :P: :DS: :DP:
+</table>
+<p><b>ПРИМЕРЫ</b><br>
+<ol>
+<li> Команда
+<pre>
+        prs \
+         -d"Имена и/или идентификаторы пользователей для :F::\n:UN:"\
+         s.file
+</pre>
+может вывести на стандартный вывод:
+<pre>
+        Имена и/или идентификаторы пользователей для s.file:
+        xyz
+        131
+        abc
+</pre>
+<li> Команда
+<pre>
+        prs \
+         -d"Последнюю версию программы :M:: :I: создал :P: :D:"\
+         -r s.file
+</pre>
+может вывести на стандартный вывод
+<pre>
+        Последнюю версию программы main.c: 3.7 создал cas 77/12/1
+</pre>
+<li> Особый случай:
+<pre>
+        prs  s.file
+</pre>
+может вывести на стандартный вывод
+<pre>
+        D 1.1 77/12/1 00:00:00 cas 1 000000/00000/00000
+        MRs:
+        bl78-12345
+        bl79-54321
+        COMMENTS:
+        это строка коммментария для начальной версии
+</pre>
+для каждой версии типа D. В особом случае можно использовать только опцию -a.
+</ol>
+<p><b>ФАЙЛЫ</b>
+<pre>
+     /tmp/pr?????
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ADMIN.htm>admin(1)</a>, <a href=DELTA.htm>delta(1)</a>, <a href=GET.htm>get(1)</a>, <a href=HELP.htm>help(1)</a>, <a href=RMDEL.htm>rmdel(1)</a>.<br>
+<a href=SCCSFILE.htm>sccsfile(4)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Для раз яснений пользуйтесь командой <a href=HELP.htm>help(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

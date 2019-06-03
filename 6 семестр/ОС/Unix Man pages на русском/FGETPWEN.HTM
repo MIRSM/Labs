@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>GETPWENT(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETPWENT(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+getpwent,  getpwuid,  getpwnam,   setpwent,   endpwent,
+fgetpwent - получение элементов файла паролей
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;pwd.h>
+	
+	struct passwd *getpwent ( )
+	
+	struct passwd *getpwuid (uid)
+	int uid;
+	
+	struct passwd *getpwnam (name)
+	char *name;
+	
+	void setpwent ( )
+	
+	void endpwent ( )
+	
+	struct passwd *fgetpwent (f)
+	FILE *f;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Каждая из функций getpwent, getpwuid и getpwnam возвращает  указатель  на  структуру  типа passwd, содержащую
+разложенную на поля строку файла  паролей  /etc/passwd.
+Структура описана во включаемом файле <pwd.h>:
+<pre>
+     struct passwd {
+       char *pw_name;
+       char *pw_passwd;
+       int  pw_uid;
+       int  pw_gid;
+       char *pw_age;
+       char *pw_comment;
+       char *pw_gecos;
+       char *pw_dir;
+       char *pw_shell;
+     };
+</pre>
+По поводу смысла полей структуры см. <a href=PASSWD.htm>passwd(4)</a>.
+<p align=justify>При первом вызове функция getpwent возвращает указатель
+на первую структуру типа passwd в файле; при  следующем
+вызове  возвращается  указатель на следующую структуру;
+поэтому последовательные вызовы функции можно использовать для просмотра всего файла. Функция getpwuid ищет с
+начала файла строку, содержащую заданный  идентификатор
+пользователя  uid, и возвращает указатель на структуру,
+соответствующую искомой строке. Функция getpwnam ищет с
+начала файла строку, содержащую специфицированное входное имя name и возвращает указатель на  соответствующую
+структуру.  В случае неудачного поиска (в том числе из 
+за ошибки чтения) описанные функции  возвращают  пустой
+указатель NULL.
+<p align=justify>Вызов  функции setpwent приводит к переустановке указателя чтения на начало файла паролей, то есть после этого вызова можно снова повторить просмотр  всего  файла.
+Функция endpwent служит для закрытия файла паролей.
+<p align=justify>Функция  fgetpwent  возвращает  указатель  на очередную
+структуру типа passwd в потоке f, удовлетворяющем  формату файла /etc/passwd.
+<p><b>ФАЙЛЫ </b><br>
+<pre>
+	/etc/passwd
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GETLOGIN.htm>getlogin(3C)</a>, <a href=GETGRENT.htm>getgrent(3C)</a>, <a href=PASSWD.htm>passwd(4)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+В  случае  неудачного  поиска (в том числе из за ошибки
+чтения) возвращается пустой указатель NULL.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Описанные  функции  используют стандартный пакет ввода/
+вывода, что приводит к неожиданному увеличению  размера
+программ, не использующих стандартный ввод/вывод.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Значения, возвращаемые  описанными функциями, указывают
+на один и тот же статический массив, содержимое которого полностью изменяется после каждого вызова.  Поэтому,
+если необходимо  сохранить полученную с помощью функций
+информацию, следует скопировать ее.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

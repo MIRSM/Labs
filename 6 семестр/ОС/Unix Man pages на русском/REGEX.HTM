@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>REGCMP(3X)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>REGCMP(3X)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+regcmp, regex - компиляция и выполнение регулярного выражения
+<p><b>СИНТАКСИС</b>
+<pre>
+	char *regcmp (string1 [, string2, ...], (char *) 0)
+	char *string1, *string2, ...;
+	
+	char *regex (re, subject [, ret0, ...])
+	char *re, *subject, *ret0, ...;
+	
+	extern char *__loc1;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция regcmp компилирует регулярное выражение, состоящее из конкатенированных аргументов, и возвращает указатель на результат компиляции. Чтобы захватить  пространство   для    результата,    используется    функция
+<a href=MALLOC.htm>malloc(3C)</a>. Ответственность  за  освобождение  ставшего
+ненужным пространства, которое было выделено при помощи
+malloc, возлагается на пользователя.  Пустой  указатель
+NULL, возвращенный в качестве результата regcmp, свидетельствует о некорректности аргументов. Чтобы, в  общем
+случае,  устранить  необходимость вызова данной функции
+во время выполнения, написана команда <a href=REGCMP.htm>regcmp(1)</a>.
+<p align=justify>Функция regex сопоставляет скомпилированный  образец  с
+цепочкой символов subject. Regex возвращает пустой указатель  NULL  в случае неудачи или указатель на символ,
+следующий после сопоставленного фрагмента, в случае успеха. Если нужно получить больше  выходной  информации,
+следует передать дополнительные аргументы. В глобальной
+переменной  __loc1  возвращается  указатель на позицию,
+где сопоставление началось. Функции regcmp и regex почти впрямую заимствованы из редактора <a href=ED.htm>ed(1)</a>; синтаксис и
+семантика регулярных выражений изменены  незначительно.
+Ниже  перечислены допустимые символы и описана их трактовка.
+<dl>
+<dt>[ ]  *  .  ^<dd>
+Эти  символы  сохраняют  свой  обычный  для  <a href=ED.htm>ed(1)</a>
+смысл.
+<p><dt>
+$   <dd> Этот символ сопоставляется с концом цепочки символов; \n сопоставляется с символом перевода строки.
+<p><dt>
+-  <dd>  Минус в квадратных скобках обозначает "от  и  до".
+Например,  запись [a-z] эквивалентна [abcd...xyz].
+Минус может встречаться сам по себе,  только  если
+он  является первым или последним символом. Например, класс символов [ ]-] сопоставляется с  символами ] и -.
+<p><dt>
++ <dd>   Плюс, следующий за регулярным выражением,  обозначает "один или более раз". Например, запись [0-9]+
+эквивалентна [0-9][0-9]*.
+<p><dt>
+{m}  {m,}  {m, u}<dd>
+Целые  значения,  заключенные  в  фигурные скобки,
+указывают, сколько раз  должно  применяться  предшествующее регулярное выражение. Минимальное число
+применений  задается  величиной  m, максимальное величиной u, которая должно быть меньше, чем  256.
+Если  указано  только значение {m}, оно обозначает
+точное число применений регулярного выражения. Запись {m,} эквивалентна {m, бесконечность}.  Операции + и * эквивалентны соответственно {1,} и {0,}.
+<p><dt>
+( ... )$n<dd>
+Значение регулярного выражения  в  скобках  должно
+быть возвращено. Значение заносится в (n+1)-й  аргумент после subject. В текущей версии допускается
+максимум 10  таких  регулярных  выражений.  Данные
+присваивания выполняются безусловно.
+<p><dt>
+( ... )<dd>
+Круглые скобки используются для группировки.  Оператор (например, *, +, { }) может работать с одним
+символом или с регулярным выражением,  заключенным
+в скобки. Например, (a*(cb+)*)$0.
+</dl>
+<p align=justify>Все определенные выше символы по необходимости  трактуются особым образом. Чтобы обозначать самих  себя,  они
+должны экранироваться символом \.
+<p><b>ПРИМЕРЫ</b><br>
+<ol>
+<li> В  данном примере будет сопоставлен символ перевода
+строки, стоящий в начале цепочки символов,  на  которую
+указывает аргумент cursor:
+<pre>
+	char *cursor, *newcursor, *ptr;
+	  ...
+	newcursor =
+	  regex((ptr = regcmp("^\n", (char *)0)), cursor);
+	free (ptr);
+</pre>
+<li> В следующем примере будет сопоставлена цепочка символов "Testing3" и возвращен адрес после последнего сопоставленного  символа  (адрес  символа  "4").  Цепочка
+"Testing3" будет скопирована в массив ret0.
+<pre>
+	char ret0 [9];
+	char *newcursor, *name;
+	  ...
+	name  =  regcmp ("([A-Za-z][A-za-z0-9]{0,7})$0",
+	                (char *) 0);
+	newcursor = regex (name, "012Testing345", ret0);
+</pre>
+<li> Предварительно скомпилированное регулярное выражение
+из файла file.i [см. <a href=REGCMP.htm>regcmp(1)</a>] будет применено к аргументу string:
+<pre>
+	#include "file.i"
+	char *string, *newcursor;
+	   ...
+	newcursor = regex (name, string);
+</pre>
+</ol>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/lib/libPW.a        Библиотека, в которой  хранятся
+	                        описанные функции.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MALLOC.htm>malloc(3C)</a>.<br>
+<a href=ED.htm>ed(1)</a>, <a href=REGCMP.htm>regcmp(1)</a> в Справочнике пользователя.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+При работе программы пользователя может произойти переполнение памяти, если regcmp вызывается многократно без
+освобождения областей памяти, ставших ненужными.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

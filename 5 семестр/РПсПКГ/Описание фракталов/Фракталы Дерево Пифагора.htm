@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/dpif.html -->
+<HTML><HEAD><TITLE>Фракталы: Дерево Пифагора</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Дерево Пифагора.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Дерево Пифагора.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Дерево Пифагора</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=323 alt="Дерево Пифагора" 
+src="Фракталы Дерево Пифагора.files/fr028.gif" width=422 border=0> <IMG 
+height=346 alt="Дерево Пифагора" src="Фракталы Дерево Пифагора.files/fr029.gif" 
+width=420 border=0> </CENTER><PRE><B>Program</B> DPif;
+<B>Uses</B> Graph, CRT;
+<B>Const</B>
+  max = 3;
+<B>Var</B>
+ gd, gm : Integer;
+<B>Procedure</B> lineto1(x, y : Integer; l, u : real);
+<B>Begin</B>
+   Line(x, y, Round(x + l * cos(u)), Round(y - l * sin(u)));
+<B>End</B>;
+
+<B>Procedure</B> Draw(x, y : Integer; l, u : real);
+<B>Begin</B>
+   <B>If</B> KeyPressed <B>then</B> exit;
+   <B>If</B> l &gt; max <B>then</B> <B>Begin</B>
+      l := l * 0.7;
+      lineto1(x, y, l, u);
+      x := Round(x + l * cos(u));
+      y := Round(y - l * sin(u));
+      Draw(x, y, l, u + pi / 4);{Угол поворота 1}
+      Draw(x, y, l, u - pi / 6);{Угол поворота 2}
+   <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd, gm, 'c:\bp\bgi');
+   Draw(320, 460, 200, pi/2);
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+
+</PRE>
+<P><IMG height=30 src="Фракталы Дерево Пифагора.files/warning.gif" width=30 
+border=0> Не забудте в процедуре инициализации графического режима указать путь 
+к графическому драйверу!</P>
+<P><IMG height=30 src="Фракталы Дерево Пифагора.files/warning.gif" width=30 
+border=0> Приведенные примеры получены с углами поворота 45-45, 30-45 градусов 
+соответственно. При этом в первом случае мы получаем нормальное обнаженное 
+дерево Пифагора, а во втором обдуваемое ветром дерево.</P></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 11.10.04<BR>Дата последнего обновления: 17.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Дерево Пифагора.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

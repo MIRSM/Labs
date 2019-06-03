@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>STRING(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>STRING(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+string:  strcat,  strncat,  strdup,  strcmp,   strncmp,
+strcpy,  strncpy,  strlen,  strchr,  strrchr,  strpbrk,
+strspn, strcspn, strtok - операции с цепочками символов
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;string.h>
+	#include &lt;sys/types.h>
+	
+	char *strcat (s1, s2)
+	char *s1, *s2;
+	
+	char *strncat (s1, s2, n)
+	char *s1, *s2;
+	size_t n;
+	
+	char *strdup (s1)
+	char *s1;
+	
+	int strcmp (s1, s2)
+	char *s1, *s2;
+	
+	int strncmp (s1, s2, n)
+	char *s1, *s2;
+	size_t n;
+	
+	char *strcpy (s1, s2)
+	char *s1, *s2;
+	
+	char *strncpy (s1, s2, n)
+	char *s1, *s2;
+	size_t n;
+	
+	int strlen (s)
+	char *s;
+	
+	char *strchr (s, c)
+	char *s;
+	int c;
+	
+	char *strrchr (s, c)
+	char *s;
+	int c;
+	
+	char *strpbrk (s1, s2)
+	char *s1, *s2;
+	
+	int strspn (s1, s2)
+	char *s1, *s2;
+	
+	int strcspn (s1, s2)
+	char *s1, *s2;
+	
+	char *strtok (s1, s2)
+	char *s1, *s2;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргументы s1, s2 и s представляют  собой  указатели  на
+цепочки символов, завершающиеся  нулевым  байтом.  Ниже
+для краткости вместо выражения "цепочка, указателем  на
+которую служит s1" употребляется выражение "цепочка s1"
+или просто "s1".
+<p align=justify>Каждая из функций strcat, strncat, strcpy и strncpy изменяет цепочку s1. Эти функции не осуществляют  проверку переполнения массива, на который указывает s1.
+<p align=justify>Функция strcat подцепляет копию цепочки s2 к концу  цепочки s1. Функция strncat подцепляет не более n  символов. Каждая из них возвращает указатель  на  результат,
+завершающийся нулевым байтом.
+<p align=justify>Функция strdup возвращает указатель на  новую  цепочку,
+представляющую собой дубликат цепочки  s1.  Память  под
+новую  цепочку  отводится  путем  обращения  к  функции
+<a href=MALLOC.htm>malloc(3C)</a>. При нехватке памяти, когда новая цепочка не
+может быть создана, функция  strdup  возвращает  пустой
+указатель NULL.
+<p align=justify>Функция strcmp сравнивает свои аргументы  и  возвращает
+целое число, меньшее нуля, равное ему или большее  него
+в соответствии с тем, предшествует ли цепочка s1 лексикографически цепочке s2, совпадает с ней,  или  следует
+за ней. Функция strncmp осуществляет такое  же  сравнение, но принимает во внимание не более n первых  символов.
+<p align=justify>Функция strcpy осуществляет копирование  цепочки  s2  в
+s1, прекращая его сразу после того, как скопирован  нулевой байт. Функция strncpy осуществляет копирование  в
+точности n символов, при необходимости  усекая  s2  или
+добавляя нулевые байты в s1. Результат не будет  завершаться нулевым байтом, если s2 имеет длину n или более.
+Обе функции возвращают указатель s1.
+<p align=justify>Функция strlen возвращает число символов,  содержащихся
+в цепочке s, не считая завершающего нулевого байта.
+<p align=justify>Функция  strchr (strrchr) возвращает значение указателя
+на первое (последнее) вхождение символа c в цепочку  s,
+либо  значение  NULL, если цепочка этого символа не содержит. Завершающий нулевой байт цепочки рассматривается при этом как ее составная часть.
+<p align=justify>Функция strpbrk возвращает значение указателя на первое
+вхождение  в  цепочку s1 какого-либо символа из цепочки
+s2, либо значение NULL, если  цепочка  s1  не  содержит
+символов из цепочки s2.
+<p align=justify>Функция  strspn  (strcspn)  возвращает длину начального
+фрагмента цепочки s1, состоящего из  символов,  которые
+содержатся (не содержатся) в цепочке s2.
+<p align=justify>Функция  strtok рассматривает цепочку s1, как состоящую
+из некоторого (быть может, нулевого) числа лексем,  отделенных  друг от друга одним или несколькими символами
+из набора разделителей s2. При первом вызове (с  заданным  s1) возвращается указатель на первый символ первой
+лексемы, а в цепочку s1 сразу, вслед за найденной  лексемой,  записывается  нулевой байт. Функция отслеживает
+его положение в цепочке от вызова  к  вызову,  так  что
+последующие  вызовы (при которых значение первого аргумента должно задаваться  как  NULL)  будут  работать  с
+фрагментом  цепочки  s1,  непосредственно  следующим за
+этой лексемой. Таким образом, за несколько вызовов  цепочка s1 будет просмотрена и все лексемы исчерпаны. Цепочка  разделителей s2 может меняться от вызова к вызову. По исчерпании лексем функцией strtok будет  возвращено значение NULL.
+<p align=justify>Для удобства пользователя все эти  функции  описаны  во
+включаемом файле &lt;string.h>.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MALLOC.htm>malloc(3C)</a>, <a href=MALLOC.htm>malloc(3X)</a>.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Функции strcmp и strncmp используют аппаратное  сравнение символов. Поэтому результаты сравнения цепочек, содержащих символы со старшим битом, равным единице,  машинно-зависимы. В данной системе подобные символы трактуются как отрицательные числа.
+<p align=justify>Так как пересылка символов осуществляется по-разному  в
+различных реализациях, перекрытие областей памяти может
+привести к неожиданным результатам.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

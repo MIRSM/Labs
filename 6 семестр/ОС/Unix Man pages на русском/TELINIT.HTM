@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>TELINIT(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TELINIT(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+telenit, mkinittab - представляют альтернативный метод включения и
+выключения терминалов.
+<p><b>СИНТАКСИС</b>
+<pre>
+ telenit state
+ mkinittab [ttysfyle]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+telenit   управленяет   действиями   init(5).   Она   предоставляет
+альтернативный метод  разрешения входа  в систему  на терминалах по
+отношению к методу команд <a href=ENABLE.htm>enable(1)</a> и <a href=DISABLE.htm>disable(1)</a>.
+<p align=justify>
+telenit  формирует  новый  файл  /etc/ttys  из  файла /etc/inittab.
+Строки  из  файла  inittab(3),  соответствующие  параметру   state,
+преобразуются в свои эквиваленты в файле ttys(3). После этого  init
+сигнализирует о  разрешении или  запрете подключения  к системе  на
+терминалах в соответствии с /etc/ttys.
+<p>
+Допустимые значения state таковы:
+<dl>
+<dt>0-6
+<dd>Файл  /etc/ttys  формируется  из  строк  файла  /etc/inittab,
+соответствующих заданному значению state.
+<dt>q, Q
+<dd>Новый  файл  /etc/ttys  не  генерируется, а  программе   init
+посылается  сигнал,  задающий  проверку  существующего  файла
+/etc/ttys.
+<dt>s, S
+<dd>Программе  init    посылается  сигнал  для  входа   в   режим
+обслуживания системы (однопользовательский режим).
+</dl><p align=justify>
+Только  привилегированный  пользователь  может  запускать  telenit.
+Пользователи,  подключенные   к  системе   в  текущий   момент   на
+заблокированных терминалах,  резко отключаются.  Вход в  систему на
+терминалах, не перечисленных в /etc/ttys, не разрешается.
+<p align=justify>
+mkinittab  выводит  на  стандартный  вывод  файл  формата  inittab,
+сгенерированный с помощью файлов  ttysfiles. Каждый файл из  списка
+ttyfiles должен иметь  формат файла ttys.  Если файлы ttysfiles  не
+заданы, то выполняется чтение стандартного ввода.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/ttys
+ /etc/inittab
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=DISABLE.htm>disable(1)</a>, <a href=ENABLE.htm>enable(1)</a>, getty(5), init(5), inittab(3), login(5),
+ttys(3)
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+inittab  предназначается  для   пользователей,  более  знакомых   с
+управлением  терминалами  по  способу  telenit,  чем со стандартным
+подходом по методу enable и disable. Предполагается,что в следующей
+версии системы  UNIX будет достигнуто полное объединение этих  двух
+подходов.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

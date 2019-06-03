@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>VCP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>VCP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+vcp, vls, vcat, vrm, minit - работа с дискетами  операционной системы PDOS
+<br>vcp   - копировать файлы на(с) дискету(ы).
+<br>vls   - показать каталог дискеты.
+<br>vcat  - показать файлы, удовлетворяющие шаблону и  принадлежащие определенному уровню.
+<br>vrm   - удалить специфицированные  в  командной  строке
+файлы.
+<br>minit - инициализировать (не форматировать,  а  создать
+файловую систему) дискету.
+<p><b>СИНТАКСИС</b>
+<pre>
+	vcp  -o [-c] [-l уровень] [-a AC|BN|OB|SY|BX|EX|TX|DR|]файл1 [файл2 ...]
+	vcp  -i [-c] [-l уровень] шаблон1 [шаблон2...]имя_каталога
+	vls  [-sn|l|s] [-l уровень] [шаблон]
+	vcat [-l уровень] шаблон
+	vrm  [-l уровень] файл1 [файл2...]
+	minit [имя_диска]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Программа vcp копирует файлы с дискеты или на  дискету,
+в зависимости от первой опции (-i или  -o).  При  любом
+копировании могут выдаваться необязательные опции -c и
+-l. Если указана опция -c, то при копировании с дискеты
+все символы CR заменяются на NL, а при  копировании  на
+дискету все символы NL преобразуются в CR. Преобразованию подвергаются только файлы, имеющие атрибуты AC,  TX
+и EX. Опция -l задает уровень, на котором находится копируемый файл. В случае использования опции -i  последний аргумент означает имя каталога UNIX-а,  куда  будут
+копироваться файлы. Использование  опции  -a  позволяет
+указать атрибут файла. Значение по умолчанию для  атрибута файла - TX.
+<p align=justify>Программа vls изображает каталог PDOS-ой дискеты. Опция
+-s задает способ сортировки файлов, где n означает сортировку по имени, l - по номеру уровня и s - по  размеру. При указании опции -l будут показаны только  файлы,
+находящиеся на данном уровне. Так как командный интерпретатор shell заменяет мета-символы '*' и '?' на  удовлетворяющие шаблону файлы в рабочем каталоге, то  может
+понадобиться средство отмены назначения этих  специальных символов с помощью '\'.
+<p align=justify>Программа vcat показывает файлы, удовлетворяющие данному шаблону и при задании уровня - находящиеся  на  указанном уровне. Текстовые файлы преобразуются по  принятым в UNIX-е соглашениям.
+<p align=justify>Программа vrm  удаляет  специфицированные  в  командной
+строке файлы. Если задан уровень с помощью опции -l, то
+удаляются только файлы, расположенные на данном уровне.
+<p align=justify>Программа minit инициализирует дискету для операционной
+системы PDOS. Также  можно  задать  необязательное  имя
+дискеты. Дискета должна быть предварительно  отформатирована  с  256   байтами/сектор   (   команда   "format
+/dev/dsk/fd256" ).
+<p align=justify><b>ПРИМЕРЫ</b><br>
+<dl>
+<dt><tt>vcp -i -c \* /tmp</tt><dd>
+Скопировать все файлы с дискеты в каталог /tmp,
+преобразовав при этом ASCII файлы (файлы с  атрибутами AC, TX, EX).
+<p><dt><tt>
+vls -l 1 -ss *:C</tt><dd>
+Показать список файлов на дискете,  находящихся
+на первом уровне, имеющих расширение  :C,  этот
+список должен быть отсортирован по размеру файлов.
+<p><dt><tt>
+vcat \*</tt><dd>
+Выдать текст всех файлов, находящихся на дискете.
+<p><dt><tt>
+vrm *:C</tt><dd>
+Удалить на дискете все файлы с расширением :C.
+<p><dt><tt>
+vcp -o -a SY * </tt><dd>
+Скопировать все файлы текущего каталога на дискету и присвоить им атрибут файла SY.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/dev/rdsk/fd256
+	/dev/dsk/fd256
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

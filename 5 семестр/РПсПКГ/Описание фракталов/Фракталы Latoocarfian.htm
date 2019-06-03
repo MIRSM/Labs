@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/lato.html -->
+<HTML><HEAD><TITLE>Фракталы: Latoocarfian</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY background="Фракталы Latoocarfian.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Latoocarfian.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Latoocarfian</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify><PRE><B>Program</B> Lato;
+<B>Uses</B> Graph, Crt;
+<B>Var</B>
+   x, t, y  : Real;
+   xp, yp   : Integer;
+   gd, gm   : Integer;
+   a,b,c,d  : Real;
+   m        : Real;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   x:=1;
+   y:=1;
+   a:=-0.97;
+   b:=2.87;
+   c:=0.76;
+   d:=0.74;
+   m:=100;
+   <B>While</B> <B>Not</B> KeyPressed <B>Do</B> <B>Begin</B>
+     t:=x;
+     x:=sin(y*b)+c*sin(x*b);
+     y:=sin(t*a)+d*sin(y*a);
+     xp:=round(x*m)+320;
+     yp:=round(y*m)+240;
+     PutPixel(xp, yp, GetPixel(xp, yp)+1)
+   <B>End</B>;
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+
+
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 02.12.04<BR>Дата последнего обновления: 02.12.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Latoocarfian.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>ERRDEAD(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ERRDEAD(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        errdead - извлечение из дампа записей об ошибках
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/errdead  файл_с_дампом [файл_с_таблицей_имен]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Когда система обнаруживает ошибки оборудования, генерируется запись с информацией об ошибке. Если  демон  регистрации ошибок  <a href=ERRDEMON.htm>errdemon(1M)</a>  не активен  или система аварийно завершается до того, как успевает сбросить запись об ошибке в файл ошибок, информация об ошибке сохраняется в буферах системы. Утилита  errdead  исследует системный  дамп  (или  память), извлекает информацию об ошибке и передает ее для анализа программе <a href=ERRPT.htm>errpt(1M)</a>.
+<p align=justify>  Файл_с_дампом задает файл (или память), подлежащий исследованию.  Подразумеваемый  файл_с_таблицей_имен  есть
+        /unix.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /dev/mem             Память.
+ /unix                Файл с системной таблицей имен.
+ /usr/bin/errpt       Программа анализа.
+ /usr/tmp/errXXXXXX   Временный файл.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+        <a href=ERRDEMON.htm>errdemon(1M)</a>, <a href=ERRPT.htm>errpt(1M)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+        Диагностические  сообщения  могут   исходить   как   от
+        errdead, так и от <a href=ERRPT.htm>errpt(1M)</a>. В любом случае они не нуждаются в пояснениях.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

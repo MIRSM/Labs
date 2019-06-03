@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>VIDI(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>VIDI(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+vidi - Устанавливает шрифт и видеорежим для видеоустройства.
+<p><b>СИНТАКСИС</b>
+<pre>
+	vidi [-d] [-f fontfile] command
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда vidi  устанавливает видеореежим или загружает/выделяет
+шрифт из устройства, которое является текущим стандартным устройством ввода;  без  аргументов  она перечисляет все действительные команды по установке видеорежима и шрифтов.
+<p align=justify>Некоторые видеоадаптеры поддерживают загружаемые шрифты символов. Команды  программы  vidi по установке шрифтов ("font8*8",
+"font8*14" и "font8*16) используются для загрузки и  выделения
+шрифтов из таблиц,  хранящихся в ядре системы. Если ни одна из
+опций, -d, -r, не указана, программа vidi попытается загрузить
+определенный шрифт  из файла /usr/lib/vidi/fontname.  Опция -d
+заставляет vidi читать определенный шрифт из ядра и записывать
+шрифт в стандартное устройство вывода.
+<p align=justify>Опция -f используется для загрузки шрифтов, отличных от хранящихся в каталоге /usr/lib/vidi,  или для определения выходного
+файла, отличного от стандартного устройства вывода.
+<p align=justify>При загрузке  шрифта,  указание  -f  filename  будет загружать
+шрифт из файла filename вместо  файла  /usr/lib/vidi/fontname.
+При выделении  шрифта  (опция  -d) -f filename заставляет vidi
+записывать выделенный шрифт  в  файл  filename  вместо  записи
+шрифта в стандартное устройство вывода.
+<p align=justify>Другие команды программы vidi устанавливают видеорежим для видеоадаптера, подключенного к стандартному вводу vidi. Это следующие команды:
+<table>
+<tr valign=top><th>mono<td>
+Настраивает текущий экран на монохромный адаптер.
+<tr valign=top><th>cga<td>
+Настраивает текущий   экран  на  цветной  графический  адаптер
+(Color Graphic Adapter - CGA).
+<tr valign=top><th>ega<td>
+Настраивает текущий  экран  на расширенный графический адаптер
+(Enhanced Graphic Adapter - EGA).
+<tr valign=top><th>vga<td>
+Настраивает текущий  экран  на видеоадаптер VGA (Video Graphic
+Array - Видеографический массив).
+</table>
+<p><b>Текстовый режим </b>
+<table border=1>
+<tr valign=top><th>  Команда <th>  Столбцы <th>  Строки  <th> Шрифт <th>   Адаптер      
+<tr><td>  c40*25 <td>  40  <td>  25 <td>  8*8  <td>  CGA (EGA, VGA)
+<tr><td>  e40*25 <td>   40 <td>   25  <td>  8*14 <td>  EGA (VGA)      
+<tr><td>  v40*25 <td>  40 <td>  25 <td>   8*16 <td>  VGA             
+<tr><td>  m80*25 <td>  80  <td>25 <td>  8*14  <td>  MONO(EGA_MONO, VGA_MONO)    
+<tr><td>  c80*25  <td>  80 <td>  25 <td>   8*8  <td>  CGA (EGA, VGA)     
+<tr><td>  em80*25 <td>  80 <td>  25 <td>  8*14 <td>  EGA_MONO (VGA_MONO) 
+<tr><td>  e80*25 <td>  80  <td> 25 <td>  8*14  <td>  EGA (VGA)         
+<tr><td>  vm80*25  <td>  80  <td>   25  <td>  8*16  <td> VGA_MONO           
+<tr><td>  v80*25 <td>   80 <td>25 <td>   8*14 <td>   EGA (VGA)           
+</table>
+<p><b> Графический режим        </b>           
+<table border=1>
+<tr valign=top><th>  Команда  <th>    Разрешение экрана (пиксели) <th>  Цвета
+<tr><td>  mode5  <td>     320*200     <td>         4 
+<tr><td>  mode6  <td>      640*200   <td>     2
+<tr><td>  modeD  <td>    320*200   <td>     16
+<tr><td>  modeE  <td>    640*200    <td>     16
+<tr><td>  modeF  <td>     640*350   <td>        2 (mono)
+<tr><td>  mode10  <td>      640*350    <td>      16     
+<tr><td>  mode11  <td>      640*480   <td>    2     
+<tr><td>  mode12   <td>    640*480   <td>          16   
+<tr><td>  mode13   <td>   320*200   <td>    256 
+</table>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

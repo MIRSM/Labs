@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>BACKUP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>BACKUP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+backup - Производит наращиваемое резервирование файловой системы.
+<p><b>СИНТАКСИС</b>
+<pre>
+backup [ key [arguments] filesystem ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда backup  копирует все файлы,  измененные после определенной даты  в  date  параметра  filesystem.   Параметр   key
+задает дату и другие опции  резервной копии backup и  состоит
+из  символов  следующего  множества 0123456789kfusd. Значения
+этих символов описаны ниже:
+<table>
+<tr valign=top><td>f<td>
+Помещает  резервную  копию в следующий файл argument
+вместо устройства по умолчанию.</tr>
+<tr valign=top><td>u<td>
+Если резервирование завершается успешно, пишет дату
+начала резервирования  в файл /etc/ddate.  Этот файл
+фиксирует свою дату для каждой  файловой  системы  и
+каждого уровня резервирования.</tr>
+<tr valign=top><td>0-9<td>
+Это число является "уровнем резервирования".Резервирует все файлы,  измененные  после  последней  даты,
+хранящейся в  файле  /etc/ddate,  для одной и той же
+файловой системы на меньших уровнях. Если уровень не
+определяет никакой  даты,  то начало отсчета времени
+предполагается; так опция 0  вызывает резервирование
+всей файловой системы.</tr>
+<tr valign=top><td>s<td>
+Для резервирования на магнитную ленту размер  ленты
+указывается в футах. Число футов берется из следующего параметра argument.  После того как будет достигнут указанный обьем, команда backup будет ждать смены катушки.  Обьем, принимаемый по умолчанию - 2,300
+футов.</tr>
+<tr valign=top><td>d<td>
+Для резервирования на магнитную ленту  плотность магнитной ленты, выраженная в битах на дюйм BPI берется
+из следующего параметра argument.  Эта величина  используется в  вычислении  обьема магнитной ленты,требуемого на запись. По умолчанию - 1600.</tr>
+<tr valign=top><td>k<td>
+Эта опция используется при резервировании на устройство, имеющее  блочную  структуру,  такое, как гибкий
+диск. Объем тома (в К-байтах) берется  из  следующего
+параметра argument. Если указан аргумент k,  то аргументы s и d опускаются. По умолчанию используются s и
+d.</tr>
+</table><p align=justify>
+Если параметры не заданы, параметр key принимается равным 9u,
+а по умолчанию файловая система резервируется  на устройство,
+принятое по умолчанию.
+<p align=justify>
+Первое резервирование  должно  быть  полным резервированием с
+уровнем 0:
+<pre>
+backup 0u
+</pre><p align=justify>
+Далее, периодические резервирования с уровнем 9 должны производиться в  экспоненциальной  прогрессии  лент  или    гибких
+дисков:
+<pre>
+backup 9u
+</pre>
+Эта прогрессия выглядит так:
+<pre>
+1 2 1 3 1 4 ...
+</pre><p align=justify>
+где резервирование 1 используется через раз, резервирование 2каждый четвертый раз, резервирование 3 - каждый восьмой раз и
+т.д. Когда 9-ти уровневое инкрементное резервирование  становится трудно  поддающимся контролю из-за того,  что заполнена
+лента или требуется слишком много гибких дисков,  должно быть
+произведено резервирование уровня 1:
+<pre>
+backup 1u
+</pre><p align=justify>
+После этого  экспоненциальные  серии  должны  прогрессировать
+так,как будто они не прерывались.Эти 9-ти уровневые  резервирования основываются  на 1-уровневом резервировании,  которое
+основывается на полном резервировании с уровнем 0.  Эта прогрессия уровней  резервирования  может  продолжаться  столько,
+сколько требуется.
+<p align=justify>
+Файловая система,  принимаемая по умолчанию, и устройство резервирования зависят  от установок переменных DISK и TAPE соответственно, в файле /etc/default/backup.
+<p align=justify><b>ФАЙЛЫ</b>
+<dl>
+<dt><tt>/etc/ddate</tt>
+<dd>Записывают  даты  резервирования  файловой системы/
+уровня
+<dt><tt>/etc/default/backup</tt>
+<dd>Информация о резервировании, принимаемая по умолчанию
+</dl>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=CPIO.htm>cpio(1)</a>, default(1),   <a href=DUMPDIR.htm>dumpdir(1)</a>,   <a href=RESTORE.htm>restore(1)</a>,   <a href=SDDATE.htm>sddate(1)</a>,
+backup(3)
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Если для резервирования требуется более одного тома (где том,
+вероятно, либо гибкий диск,  либо лента),  вас попросят заменить тома. Нажмите RETURN после замены томов.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Размеры рассматриваются с учетом плотности   1600 BPI   (бит
+на  дюйм)  для ленты, разбитой на блоки;  для получения такой
+плотности необходимо использовать  лентопротяжное устройство,
+не выполняющее первичной обработки данных.  Ошибки записи  на
+резервное устройство обычно фатальные.  Ошибки чтения в файловой системе  игнорируются.
+<p align=justify>
+Если принятый по умолчанию архивный носитель данных,  указанный в  /etc/default/backup  или  /etc/default/restor является
+носителем с блочной структурой (например, гибкий диск), тогда
+размер тома в Кбайтах должен быть указан в командной  строке.
+Никакая сервисная работа не является правильной без этой  информации. Например,  используя  в команде backup по умолчанию
+устройство (ниже), вводим следующее: backup k 360. По умолчанию устройством    ввода    для   /etc/default/backup   (лента=/dev/xxx) и /etc/default/restor  (архив=/dev/xxx) является
+/dev/rfd02.
+<p align=justify>
+Невозможно успешно восстановить всю активную корневую файловую
+систему.
+<p align=justify><b>ПРЕДУПРЕЖДЕНИЕ</b><br>
+При резервировании на гибкие диски будьте уверены в  том, что
+имеете достаточное  количество форматированных гибких дисков,
+готовых до начала резервирования. Вы также должны быть уверены в том,что защелка гибкого диска закроется, когда вы будете
+вставлять гибкие диски.  Если вам не удается сделать это  при
+резервировании с несколькими гибкими дисками,  то резервирование в целом будет неудачным, и вам придется начать снова.
+<p align=justify>
+Вам не удастся резервирование более,  чем одной файловой системы на ленточные устройства /dev/nrct0 и /dev/nrct2.Это происходит потому,  что хотя команда backup может  писать  более
+одной файловой   системы   на   устройства   /dev/nrct0   или
+/dev/nrct2, restor может быть не в  состоянии восстанавливать
+более одной файловой системы с этих устройств.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

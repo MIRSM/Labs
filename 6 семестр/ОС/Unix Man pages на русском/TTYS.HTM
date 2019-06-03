@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>TTYS(5)<br>XENIX System V (1 €нвap€ 1989)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">—ервер поддерживаетс€<br><a class="plain" href="http://www.citmgu.ru">÷ентром »нформационных “ехнологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">—ервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TTYS(5)<br>XENIX System V (1 €нвap€ 1989)</h3>
+<p><b>Ќј«¬јЌ»≈</b><br>
+ttys - фaйл peгиcтpaции тepминaлoв
+<p align=justify><b>ќѕ»—јЌ»≈</b><br>
+B фaйлe /etc/ttys coдepжитc€ cпиcoк cпeциaльныx фaйлoв,
+cв€зaнныx c тepминaлaми, дocтyпными дл€ peгиcтpaции, и
+oпpeдeл€eтc€ кaкиe из фaйлoв oткpывaютc€ пpoгpaммoй <a href=INIT~1.htm>init(7)</a>
+вo вpeм€ зaгpyзки.
+<p>
+‘aйл coдepжит oднy или нecкoлькo cтpoк в фopмaтe:
+<pre>
+  state mode name
+</pre><p align=justify>
+Name - им€ cпeциaльнoгo фaйлa ycтpoйcтвa (тpeбyeтc€ тoлькo
+им€, пoдpaзyмeвaeтc€ кaтaлoг /dev). Peгиcтpaци€ paзpeшeнa,
+ecли state paвнo "1", и зaпpeщeнa, ecли state paвнo "0".
+Mode иcпoльзyeтc€ кaк apгyмeнт пpoгpaммы <a href=GETTY~1.htm>getty(7)</a>.
+<p align=justify>
+Haпpимep, cтpoкa "1mtty02" oзнaчaeт, чтo пocлeдoвaтeльнa€
+лини€ tty02 дocтyпнa, cкopocть пepeдaчи 9600 бoд.
+<p align=justify><b>‘ј…Ћџ</b>
+<pre>
+/etc/ttys
+</pre>
+<p><b>—ћ. “ј ∆≈</b><br>
+<a href=DISABLE.htm>disable(1)</a>, <a href=ENABLE.htm>enable(1)</a>, <a href=GETTY~1.htm>getty(7)</a>, <a href=INIT~1.htm>init(7)</a>, terminal(HW),
+<a href=TERMIN~1.htm>terminals(7)</a>, <a href=TTY.htm>tty(5)</a>
+<p align=justify><b>«јћ≈„јЌ»я</b><br>
+‘aйл /etc/ttys мoжeт быть oтpeдaктиpoвaн тoлькo в
+oднoпoльзoвaтeльcкoм peжимe. Ecли тaкa€ peдaкци€ выпoлнeнa,
+нa paбoтy cиcтeмы этo нe пoвли€eт дo тex пop, пoкa нe бyдyт
+дaны кoмaнды enable или disable, или нe бyдeт выпoлнeнa
+пepeзaгpyзкa
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

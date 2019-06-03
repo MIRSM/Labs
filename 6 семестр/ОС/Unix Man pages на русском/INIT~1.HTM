@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>INIT(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>INIT(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+init, inir - Инициализация управления процессами.
+<p><b>СИНТАКСИС</b>
+<pre>
+     /etc/init
+     /etc/inir
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Программа init вызывается на последнем шаге процедуры начальной загрузки и на первом  шаге  включения  терминалов  для
+вводов пользователей.    init  является одной из трех программ
+(init, getty  (7) и login (1)), используемых для инициализации
+системы с целью вычисления.
+<p align=justify>
+init создает процесс для каждого терминала, в который может войти пользователь.  Он начинается с открытия  консольного
+усторйства /dev/console для считывания и записи.  Затем он вызывает командный процессор,  требующий пароль для запуска системы в режиме обслуживания.  Так как при этом считывается файл
+EOF, система входит  в  "многопользовательский  режим".   Если
+вводится корневой  пароль,   командный  процессор стартуется и
+подключается к консоле. Когда этот процессор выключается, система переходит к "многопользовательскому режиму".
+<p align=justify>
+Если система  будет  автоматически загружена во время начальной загрузки, init будет автоматически передан -a флаг при
+старте. init также передает этот флаг программам,  которые она
+выполняет, с тем,  чтобы они могли выбрать различное поведение
+при условиях <a href=AUTOBO~1.htm>autoboot(8)</a>.
+<p align=justify>
+Пользователь может использовать команду boot,  и файловая
+система может быть загрязнена.  В этом случае  2inir 0  приглашает
+пользователя, спрашивающего, где выполнять fsck (8). (Смотри
+более подробно fsck (8).)
+<p align=justify>
+Пользователь может использовать boot,  и файловая система
+может быть  чистой.   В  этом случае inir считывает команды из
+файла /etc/rc. Это выполняется с помощью процедур
+"multi-user/rc" и "getty/login", описанных ниже.
+<p align=justify>
+<i>"multi-user/rc" procedure:</i>   Как  только файловая система
+становится чистой,  командный процессор завершает свою работу,
+и init выполняет несколько шагов для того чтобы начать обычное
+действие. Она    вызывает  процессор  и  считывает  команды  в
+/etc/ttys файле. Этот командный файл выполняет служебные задачи, такие как удаление временных файлов, монтирование файловых
+систем и запуск демонов.  Затем он читает /etc/ttys файл и делит на несколько частей для того,  чтобы  начать  процесс  для
+каждого терминального устройства в файле. Каждая строка в /etc
+/ttys печатает состояние строки (0 для закрытой и 1 для открытой), режим    строки  и  последовательную строку (смотри ttys
+(3)). Каждый  процесс открывает соответственную последовательную строку для чтения и записи, присваивая файловые дискрипторы 0 ,  1 и 2 сторке и устанавливая ее как  стандартные  файлы
+ввода, вывода и ошибок. Если последовательная строка связана с
+модемом, процесс  задерживает открытие строки до тех пор, пока
+кто-нибудь не вызовет ее,  и в этой строке не осуществится передача.
+<p align=justify>
+<i>"getty/login" procedure:</i> Как только init открывает строку, она   выполняет программу getty,  передавая режим строки в
+качестве аргумента. Программа getty читает имя файла и вызывает <a href=LOGIN.htm>login(1)</a>  для завершения входного процесса (детально смотри
+getty(M7)). init  ждет до тех пор,  пока пользователь не выйдет
+из системы,  печатая конец файла ASCII (Ctrl-D) или зависая. В
+ответ он вызывает и удаляет предыдущий ввод  пользователей  из
+файла utmp,  и входит в файл wtmp, который хранит информацию о
+вводах и выводах.  Затем соответствующая строка еще раз открывается, а getty еще раз вызывается.
+<p align=justify>
+init имеет последовательные ответы при зависании,  прерывании и сигналах окончания.  По сигналу зависания SIGHUP программа init вызывает изменения системы от режима нормальной работы к режиму обслуживания.  По сигналу прерывания SIGINT init
+повторно считывает  файл ttys,  чтобы открыть какие-либо новые
+строки и закрыть строки, которые были ранее удалены. По сигналу окончания SIGQUIT программа init запрещает любые дальнейшие
+вводы. В общем случае, эти сигналы оказывают серьезное влияние
+на систему и не должны использоваться неопытными пользователями. Вместо  этого,  аналогичные функции могут с  безопасностью
+быть выполнены   с  помощью  команд  <a href=ENABLE.htm>enable(1)</a>,  <a href=DISABLE.htm>disable(1)</a>  и
+<a href=SHUTDOWN.htm>shutdown(8)</a>.
+<p><b>ФАЙЛЫ</b>
+<pre>
+     /dev/tty*
+     /etc/utmp
+     /usr/adm/wtmp
+     /etc/default/boot
+     /etc/ttys
+     /etc/rc
+     /etc/gettydefs
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=AUTOBO~1.htm>autoboot(8)</a>, telenit(8), <a href=DISABLE.htm>disable(1)</a>, <a href=ENABLE.htm>enable(1)</a>,
+<a href=LOGIN.htm>login(1)</a>, <a href=KILL.htm>kill(1)</a>,  <a href=SH.htm>sh(1)</a>,  <a href=SHUTDOWN.htm>shutdown(8)</a>,  ttys(3), <a href=GETTY~1.htm>getty(7)</a>,
+gettydefs(3), inittab(3)
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Если в  течение  пяти  минут  или менее на одной и той же
+строке стартуются семь или более процессов getty, init записывает сообщение об ошибках в /dev/console и отказывается запускать другую getty на той же строке, по крайней мере, в течение
+30 минут.  Если требуется, init стартует немедленно снова, для
+работы init нужно запустить SIGINT.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+init может  быть  вызвана только ядром как процесс 1.  Не
+может быть вызвана из запроса командного процессора.
+<p align=justify>
+Для пользователей,  хорошо знакомых с подходом telenit  к
+администратору терминала,  предполагается inittab. Для большей
+информации смотри telenit(8) и inittab(3).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

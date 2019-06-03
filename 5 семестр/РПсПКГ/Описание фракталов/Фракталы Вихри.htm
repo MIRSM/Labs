@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/vihr.html -->
+<HTML><HEAD><TITLE>Фракталы: Вихри</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Вихри.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Вихри.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Вихри</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=420 alt="Фрактал Вихри" src="Фракталы Вихри.files/fr021.gif" 
+width=400 border=0> </CENTER>В приведенной ниже программе используются два 
+нелинейных преобразования, каждое из которых применяется с некоторой 
+вероятностью. <PRE><B>Program</B> Vihr;
+<B>Uses</B> Graph, CRT;
+<B>Const</B>
+   max = 12;
+   iter = 50000;
+<B>Var</B>
+  gd, gm : Integer;
+<B>Procedure</B> draw;
+<B>Var</B>
+   x, y, p, c0, s0 : Real;
+   k : Longint;
+   q : Word;
+   c, s : Array[0..max - 1] Of real;
+   mx, my, rad : Integer;
+   dx, dy : Array[0..5] Of Real;
+
+   <B>Procedure</B> A (k : Word; <B>Var</B> x, y : Real);
+   <B>Const</B>
+      r = 0.75;
+   <B>Var</B>
+      t : Real;
+   <B>Begin</B>
+      t := x;
+      x := r * (c0 * x + s0 * y);
+      y := r * (-s0 * t + c0 * y);
+   <B>End</B>;
+
+   <B>Procedure</B> B (k : Word; <B>Var</B> x, y : Real);
+   <B>Const</B>
+      r = 0.14;
+   <B>Begin</B>
+      x := r * x + c[k];
+      y := r * y + s[k];
+   <B>End</B>;
+<B>Begin</B>
+   mx := GetMaxX Div 2;
+   my := GetMaxY Div 2;
+   rad := trunc(0.8 * my);
+   c0 := Cos(-0.05 * Pi);
+   s0 := Sin(-0.05 * Pi);
+   <B>For</B> k := 0 <B>To</B> max - 1 <B>Do</B> <B>Begin</B>
+      c[k] := Cos(2.0 * k * Pi / max);
+      s[k] := Sin(2.0 * k * Pi / max);
+   <B>End</B>;
+   Randomize;
+   x := 0.0;
+   y := 0.0;
+   <B>For</B> k := 1 <B>To</B> iter <B>Do</B> <B>Begin</B>
+      p := Random;
+      q := Random(max);
+      <B>If</B> p &lt; 0.25 <B>Then</B> B(q, x, y)
+      <B>Else</B> A(q, x, y);
+      PutPixel(mx + Round(rad * x), my + Round(rad * y), 15);
+   <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd:=Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   draw;
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+</PRE>
+<P><IMG height=30 src="Фракталы Вихри.files/warning.gif" width=30 border=0> Не 
+забудте в процедуре инициализации графического режима указать путь к 
+графическому драйверу!</P>
+<P><IMG height=30 src="Фракталы Вихри.files/warning.gif" width=30 border=0> 
+Использованы метериалы книги С.А.Немнюгина "Turbo Pascal. Практикум"</P>
+<P><IMG height=30 src="Фракталы Вихри.files/warning.gif" width=30 border=0> 
+Приведенный рисунок построен с <I>max=7</I></P></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 17.10.04<BR>Дата последнего обновления: 17.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Вихри.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

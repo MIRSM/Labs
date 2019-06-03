@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>HSEARCH(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>HSEARCH(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+hsearch,  hcreate,  hdestroy - управление хеш-таблицами
+поиска
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;search.h>
+	
+	ENTRY *hsearch (item, action)
+	ENTRY item;
+	ACTION action;
+	
+	int hcreate (nel)
+	unsigned nel;
+	
+	void hdestroy ( )
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция hsearch предназначена для выполнения  поиска  в
+хеш-таблице в соответствии с  алгоритмом,  описанным  в
+книге Д. Кнута: Искусство программирования для ЭВМ.  Т.
+3. Сортировка, поиск. - М.: Мир, 1978. Раздел 6.4,  алгоритм D.
+<p align=justify>Функция hsearch возвращает указатель внутрь таблицы  на
+искомые данные. Аргумент  item  -  это  структура  типа
+ENTRY (определенная во  включаемом  файле  &lt;search.h>),
+содержащая два указателя: item.key указывает на сравниваемый ключ, а item.data указывает  на  любые  дополнительные данные, ассоциированные с этим ключом. Указатели на переменные типов, отличных от символьного, следует преобразовывать к типу "указатель на символ".  Аргумент action имеет тип ACTION и задает способ действий в
+случае неудачного поиска: значение ENTER означает,  что
+искомый элемент следует поместить в  таблицу;  значение
+FIND означает, что в случае неудачи нужно вернуть  пустой указатель NULL.
+<p align=justify>Функция hcreate выделяет достаточное количество  пространства для таблицы и должна вызываться перед использованием функции hsearch. Значением переменной nel  является ожидаемое максимальное количество элементов таблицы. Это число можно взять с  запасом,  чтобы  уменьшить
+среднее время поиска.
+<p align=justify>Функция hdestroy ликвидирует таблицу поиска, за вызовом
+этой функции может следовать последующий вызов  функции
+создания таблицы hcreate.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Функция hsearch использует открытую адресацию  с  мультипликативной хеш-функцией. Исходный текст функции предоставляет и другие возможности, которые можно выбрать,
+компилируя  hsearch  с  определением  для препроцессора
+следующих имен:
+<table>
+<tr valign=top><th>DIV  <td colspan=2>Вместо мультипликативной хеш-функции  использовать
+остаток от деления на размер хеш-таблицы.
+<tr valign=top><th>USCR <td colspan=2>При поиске вызывать функцию сравнения,  предоставляемую  пользователем.  Функция  должна называться
+hcompar и вести себя подобно функции  strcmp  [см.
+<a href=STRING.htm>string(3C)</a>].
+<tr valign=top><th>CHAINED <td colspan=2>
+Для разрешения коллизий использовать списки  синонимов. Если выбирается эта  опция,  то  становятся
+доступными также следующие опции:
+<tr valign=top><td><th>START  <td>  Помещать новые элементы в  начало  списка
+         синонимов (по умолчанию - в конец).
+<tr valign=top><td><th>SORTUP <td>  Поддерживать списки синонимов  отсортированными по ключу в порядке возрастания.
+<tr valign=top><td><th>SORTDOWN <td>Поддерживать списки синонимов  отсортированными по ключу в порядке убывания.
+</table>
+<p align=justify>Кроме того, есть флаги препроцессора для получения  отладочной печати (-DDEBUG) и для включения драйвера  отладки в вызываемую функцию  (-DDRIVER).  Для  получения
+более детальной информации следует обратиться к  исходному тексту функции.
+<p align=justify><b>ПРИМЕР </b><br>
+Следующая программа считывает тройки: цепочка  символов
+и два числа, и размещает их в  хеш-таблице,  отбрасывая
+дубликаты. Затем считываются цепочки символов, находятся и распечатываются соответствующие элементы  хеш-таблицы.
+<pre>
+	#include &lt;stdio.h> 
+	#include &lt;search.h> 
+
+	struct info {         /* Дополнительная информация, ас- 
+	                         социированная с ключом */ 
+	  int age, room; 
+	}; 
+
+	#define NUM_EMPL 5000 /* Количество элементов в таблице 
+	                         поиска */ 
+
+	main () 
+	{ 
+	/* Массив для размещения цепочек символов */ 
+	  char string_space [NUM_EMPL*20]; 
+
+	/* Массив для размещения информации о служащих */ 
+	  struct info info_space [NUM_EMPL]; 
+
+	/* Указатель на свободное место в массиве цепочек */ 
+	  char *str_ptr = string_space; 
+
+	/* Указатель на свободное место в массиве служащих */ 
+	  struct info *info_ptr = info_space; 
+
+	  ENTRY item, *found_item, *hsearch (); 
+
+	  char name_to_find [30]; /* Искомое имя */ 
+	  int i; 
+
+	/* Создать таблицу */ 
+	  (void) hcreate (NUM_EMPL); 
+
+	/* Цикл чтения исходной информации */ 
+	  while (scanf ("%s%d%d", str_ptr, &info_ptr->age, 
+	          &info_ptr->room) != EOF && i++ &lt; NUM_EMPL) { 
+
+	/* Сформировать элемент таблицы */ 
+	    item.key = str_ptr; 
+	    item.data = (char *) info_ptr; 
+	    str_ptr += strlen (str_ptr) + 1; 
+	    info_ptr++; 
+
+	/* Поместить элемент в таблицу */ 
+	    (void) hsearch(item, ENTER); 
+	  }; 
+
+	/* Доступ к таблице */ 
+	  item.key = name_to_find; 
+	  while (scanf ("%s", item.key) != EOF) { 
+
+	    if ((found_item = hsearch (item, FIND)) != NULL) { 
+
+	    /* Если элемент найден в таблице */ 
+	      (void) printf ("found %s, age= %d, room= %d\n", 
+	         found_item->key, 
+	         ((struct info *) found_item->data)->age, 
+	         ((struct info *) found_item->data)->room); 
+	     
+	    } else { 
+	    /* Если элемент не найден в таблице */ 
+	      (void) printf ("no such employee %s\n", 
+	         name_to_find) 
+	    } 
+	  } 
+	} 
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BSEARCH.htm>bsearch(3C)</a>,   <a href=LSEARCH.htm>lsearch(3C)</a>,   <a href=MALLOC.htm>malloc(3C)</a>,   <a href=MALLOC.htm>malloc(3X)</a>,
+<a href=STRING.htm>string(3C)</a>, <a href=TSEARCH.htm>tsearch(3C)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функция hsearch возвращает пустой указатель NULL,  если
+значение переменной action равно FIND и элемент не  может быть найден или  если  значение  переменной  action
+равно ENTER и таблица заполнена.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Функции hsearch и hcreate используют функцию <a href=MALLOC.htm>malloc(3C)</a>
+для выделения памяти.
+<p align=justify><b>ОГРАНИЧЕНИЯ </b><br>
+В каждый момент времени может быть активна только  одна
+хеш-таблица.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

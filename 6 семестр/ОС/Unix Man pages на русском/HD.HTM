@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>HD(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>HD(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	hd - шестнадцатеричный дамп
+<p><b>СИНТАКСИС</b>
+<pre>
+     hd  файл [позиция длина] ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда hd выдает на стандартный вывод дамп файла. Каждая строка дампа содержит следующую информацию:
+<ol>
+<li>   Шестнадцатеричный адрес.
+<li>   Данные в шестнадцатеричном виде, сгруппированные в
+	     32-разрядные слова.
+<li>   Данные в коде ASCII.
+</ol>
+<p align=justify>	Если  длина и позиция не указаны, то команда hd выводит
+	весь файл. В противном случае для каждой пары  [позиция
+	длина]  ищется  начальная позиция и выводится указанное
+	количество байт. Последняя из длин может быть  опущена.
+	В  таком  случае выдается весь остаток файла, начиная с
+	указанной позиции.
+<p align=justify>	Позиция и длина являются шестнадцатеричными целыми числами. Если за числом стоит символ k или x, то  значение
+	умножается на 1024 или 512 соответственно.  Если  стоит
+	символ i, то значение умножается на 64 и  к  результату
+	прибавляется 2k-64.
+<p align=justify><b>ПРИМЕРЫ</b><br>
+<ol>
+<li> Вывести дамп текущего каталога:
+<pre>
+     hd  .
+</pre>
+<li> Вывести дамп физической памяти с адреса 0 выдать 200
+	байт, а с адреса 4C0 - 20 байт:
+<pre>
+     hd  /dev/mem 0 200 4C0 20
+</pre>
+<li> Вывести дамп суперблока файловой системы:
+<pre>
+     hd  /dev/dsk/hd0s0 1x 1x
+</pre>
+<li> Вывести дамп описателя корневого каталога:
+<pre>
+     hd  /dev/dsk/hd0s0 2i 40
+</pre>
+</ol>
+<p><b>СМ. ТАКЖЕ</b><br>
+	hpt(1), <a href=OD.htm>od(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

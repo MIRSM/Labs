@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>SHUTDOWN(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SHUTDOWN(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+shutdown - остановка системы, изменение уровня выполнения
+<p><b>СИНТАКСИС</b>
+<pre>
+/etc/shutdown  [-y] [-gзадержка] [-iуровень_выполнения]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита shutdown служит для изменения уровня выполнения
+системы. По умолчанию система переводится в однопользовательский режим, в котором ОС UNIX доступна  только  с
+консоли.
+<p align=justify>Перед началом действий по изменению  уровня  выполнения
+утилита  посылает  сначала предупреждающее, а после задержки и финальное сообщения. По умолчанию перед  остановкой  демонов  и  завершением процессов запрашивается
+подтверждение.
+<p align=justify>Допустимы следующие опции:
+<dl>
+<dt>-y <dd>  Отменить запрос подтверждения. Команда будет работать без вмешательства пользователя. По умолчанию,
+между предупреждающим и финальным сообщениями предусмотрена задержка в 60 секунд; такая же задержка
+выполняется  между финальным сообщением и запросом
+подтверждения.
+<p><dt>-gзадержка <dd>
+Изменить стандартную величину задержки.
+<p><dt>-iуровень_выполнения <dd>
+Уровень_выполнения  передается  утилите  <a href=INIT.htm>init(1М)</a>.
+Система  перейдет на этот уровень после всех сообщений, задержек и  подтверждений.  Подразумеваемый
+уровень  есть  S (то же, что s, и почти то же, что
+1).
+</dl>
+<p align=justify>Рекомендуемые уровни_выполнения и действия при переходе
+на них:
+<dl>
+<dt>0  <dd>  Остановить систему, подготовив  ее  к  безопасному
+выключению питания. Выключить питание, если позволяет  аппаратура. Для выполнения этих действий вызывается процедура /etc/rc0.
+<p><dt>1, s, S <dd>
+Перевести систему  в  однопользовательский  режим,
+используя  процедуру /etc/rc0. Разница между уровнями S и 1 состоит в том, что на уровне S все процессы, порожденные init,  завершены,  но  файловые
+системы не размонтированы. На уровне 1 размонтированы  все  файловые системы, кроме корневой, и завершены все пользовательские процессы, кроме  консольных.
+<p><dt>6   <dd> Остановить систему и выполнить перезагрузку.
+</dl>
+<p align=justify>Утилита  shutdown написана на языке shell; ее может выполнять только суперпользователь.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INIT.htm>init(1M)</a>, <a href=RC0.htm>rc0(1M)</a>, <a href=RC2.htm>rc2(1M)</a>.<br>
+<a href=INITTAB.htm>inittab(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

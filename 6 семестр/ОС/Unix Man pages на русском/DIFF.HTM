@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>DIFF(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DIFF(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	diff - выявление различий между файлами
+<p><b>СИНТАКСИС</b>
+<pre>
+ diff  [-e] [-f] [-b] [-h] файл1 файл2
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда diff выдает на стандартный вывод те строки файлов, которые нужно изменить, чтобы привести файлы в соответствие друг с другом. Если вместо файла1 или файла2 стоит -, то используется стандартный ввод.  Если  файл1 (файл2) является каталогом,  то  используется  файл  из
+	этого каталога с именем файл2 (файл1).  При  нормальной
+	работе вывод содержит строки следующего вида:
+<pre>
+  n1  a  n3,n4
+  n1,n2  d  n3
+  n1,n2  c  n3,n4
+</pre>
+<p align=justify>Эти строки напоминают команды редактора ed для преобразования файла1 в файл2. Номера после букв  относятся  к
+	файлу2. Равным образом при взаимной замене  a  на  d  и
+	чтении строк в обратном порядке получается информация о
+	том, как преобразовать файл2 в файл1. Как и в редакторе
+	ed, пары, состоящие из одинаковых номеров n1 =  n2  или
+	n3 = n4, сокращаются до одного номера.
+<p align=justify>За каждой из этих строк следуют затрагиваемые ею строки
+	файла1, отмеченные знаком <,  а  затем  соответствующие
+	строки файла2, отмеченные знаком >.
+<p align=justify><b>Допустимые опции:</b><br>
+<table>
+<tr valign=top><th>-b <td> Проигнорировать пробелы и символы табуляции в конце строк; остальные цепочки пробелов  и  табуляций считать одинаковыми.
+<tr valign=top><th>-e<td> Сгенерировать набор команд a, c и d редактора  ed, который  может  быть  использован  для воссоздания файла2 из файла1.
+<tr valign=top><th>-f <td> Выдать аналогичный набор, но в  обратном  порядке; для ed этот набор не используется.
+<tr valign=top><th>-h <td> Выполнить сравнение быстро, но без  гарантий.  Команда с этой опцией  работоспособна,  только  если различающиеся фрагменты коротки и четко разделены; однако в таком случае она применима к файлам неограниченной длины. Опции -e и -f несовместимы с -h.
+</table>
+<p align=justify>В сочетании с опцией -e приведенная ниже shell-процедура может быть полезной для поддержки нескольких  версий файла.  При  этом необходим только файл-источник ($1) и цепочка наборов команд для ed ($2, $3,  ...),  преобразующих одну версию в другую и изготовленных посредством diff. "Последняя версия" получается как стандартный вывод процедуры
+<pre>
+ (shift; cat $*; echo '1,$p') | ed - $1
+</pre>
+	За исключением редких случаев diff  находит  наименьшее
+	достаточное множество отличий в файлах.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /tmp/d?????
+ /usr/lib/diffh  Для опции -h.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	cmp(1), <a href=COMM.htm>comm(1)</a>, <a href=ED.htm>ed(1)</a>
+<p><b>КОДЫ ЗАВЕРШЕНИЯ </b><br>
+<pre>
+ 0    Различий нет.
+ 1    Различия есть.
+ 2    При выполнении команды зафиксированы ошибки.
+</pre>
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+	Наборы команд, получаемые по опциям -e и -f, не  учитывают  возможности  возникновения  строк,  состоящих  из единственной точки (.).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

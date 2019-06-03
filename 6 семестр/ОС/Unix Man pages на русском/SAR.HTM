@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>SAR(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SAR(1) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+sar - информация о функционировании системы
+<p><b>СИНТАКСИС</b>
+<pre>
+	sar  [-u] [-b] [-d] [-y] [-c] [-w] [-a] [-q] [-v] [-m] [-A]
+	     сек [число_интервалов] [-o файл]
+	sar  [-u] [-b] [-d] [-y] [-c] [-w] [-a] [-q] [-v] [-m] [-A]
+	     [-o файл] [-f файл] [-s время] [-e время] [-i сек]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Есть два способа использования команды sar. При  первом
+способе sar опрашивает и накапливает счетчики активности  операционной  системы на заданном числе_интервалов,
+каждый из которых  длится  заданное  число  секунд.  По
+умолчанию  число_интервалов равно 1. При втором способе
+(когда не указан интервал опроса сек) sar выбирает данные из файла, куда они предварительно должны быть записаны.  Этот файл либо указывается явно опцией -f, либо,
+по умолчанию, используется стандартный ежедневный  протокол /usr/adm/sa/saдд для текущего дня дд.
+<p align=justify>Смысл опций команды sar:
+<dl>
+<dt>-o файл <dd>
+Задается файл, в  котором  сохраняются  результаты
+работы команды sar; результаты записываются в двоичном виде.
+<p><dt>-f файл <dd>
+Файл, в который данные были записаны ранее  командой sar. На основании этих данных выдаются результаты.
+<p><dt>-s время <dd>
+Время начала интересующего интервала; имеет формат
+чч[:мм[:сс]].
+<p><dt>-e время <dd>
+Время окончания интересующего интервала; имеет тот
+же формат.
+<p><dt>-i сек <dd>
+Выбираются записи с интервалом сек, иначе  используются все интервалы, находящиеся в файле.
+</dl>
+<p align=justify>При обоих способах  использования  команды  sar  нужные
+счетчики активности выбираются следующими опциями:
+<table>
+<tr valign=top><th>-u <td>  Использование ЦП (по умолчанию):
+<dir>
+%usr, %sys, %wio, %idle - время ЦП в режиме  пользователя, в режиме системы, ожидание блочного ввода/вывода для  какого-либо процесса,  ожидание  по
+другим причинам.
+</dir>
+<tr valign=top><th>-b <td>  Использование буферов:
+<dir>
+bread/s, bwrit/s - количество  передач  в  секунду
+между системными буферами и  дисками  или  другими
+блочными устройствами;
+<br>lread/s, lwrit/s - количество обращений к  системным буферам;
+<br>%rcache, %wcache - процент попадания в кэш,  соответственно  (1-bread/lread)*100%  и   (1-bwrit/lwrit)*100%
+<br>pread/s, pwrit/s - количество небуферизованых  передач.
+</dir>
+<tr valign=top><th>-d <td>  Использование блочных устройств,  то  есть  дисков
+или магнитофонов:
+<dir>
+%busy, avque - время занятости устройства, средняя
+длина очереди обращений к устройству в это время;
+<br>r+w/s, blks/s - количество передач данных на  устройство и с него, количество переданных блоков;
+<br>avwait, avserv - среднее  время  (мс)  ожидания  в
+очереди к устройству, среднее  время  обслуживания
+запроса устройством (для диска, например, это время установки головок на дорожку, поиска нужной записи и передачи данных).
+</dir>
+<tr valign=top><th>-y <td>  Использование терминалов:
+<dir>
+rawch/s, canch/s, outch/s - скорость ввода  символов,  скорость  канонической  обработки  символов,
+скорость вывода символов (в символах/сек);
+<br>rcvin/s, xmtin/s, mdmin/s - скорости приема, передачи и модемных прерываний (в символах/сек).
+</dir>
+<tr valign=top><th>-c <td>  Использование системных вызовов
+<dir>
+scall/s - системные вызовы всех типов в секунду
+<br>sread/s, swrit/s, fork/s, exec/s - соответствующие
+системные вызовы в секунду
+<br>rchar/s, wchar/s - число символов, переданных системными вызовами <a href=READ.htm>read(2)</a> и <a href=WRITE.htm>write(2)</a> в секунду.
+</dir>
+<tr valign=top><th>-w <td>  Подкачка и переключение процессов:
+<dir>
+swpin/s,  swpot/s,  bswin/s,  bswot/s - количество
+передач и количество переданных блоков при откачке
+и подкачке процессов (включая  начальную  загрузку
+некоторых программ) в секунду;
+<br>pswch/s -  переключение процессов в секунду.
+</dir>
+<tr valign=top><th>-a <td>  Доступ к файловой системе:
+<dir>iget/s, namei/s, dirblk/s.</dir>
+<tr valign=top><th>-q  <td> Средняя длина очереди  и процент времени занятости:
+<dir>
+runq-sz, %runocc - очередь  готовых  к  выполнению
+процессов в памяти;
+<br>swpq-sz, %swpocc - очередь  готовых  к  выполнению
+процессов, вытесненных из памяти.
+</dir>
+<tr valign=top><th>-v  <td> Таблицы сегментов, процессов, описателей  и файлов:
+<dir>
+text-sz, proc-sz, inod-sz, file-sz - число элементов/размер каждой страницы в момент опроса;
+<br>text-ov, proc-ov, inod-ov, file-ov -  переполнения
+между моментами опроса.
+</dir>
+<tr valign=top><th>-m  <td> Использование сообщений и семафоров:
+<dir>msg/s, sema/s - количество примитивов в секунду.</dir>
+<tr valign=top><th>-A <td>  Все данные. Эквивалентно -udqbwcayvm.
+</table>
+<p><b>ПРИМЕРЫ</b>
+<ol>
+<li> Сегодняшняя загрузка ЦП:
+<pre>
+	sar
+</pre>
+<li> 10 минут измерять загрузку ЦП, сохранив результаты в
+файле temp:
+<pre>
+	sar  -o temp 60 10
+</pre>
+<li> Анализ данных об использовании дисков и магнитофонов
+(если данные накоплены в файле temp):
+<pre>
+	sar  -d -f temp
+</pre>
+</ol>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/adm/sa/saдд   Ежедневный протокол, где дд  - номер
+		           дня в месяце.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=SAG.htm>sag(1G)</a>.<br>
+<a href=READ.htm>read(2)</a>, <a href=WRITE.htm>write(2)</a> в Справочнике программиста.<br>
+<a href=SAR.htm>sar(1M)</a> в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

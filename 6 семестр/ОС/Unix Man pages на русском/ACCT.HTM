@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>ACCT(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCT(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acct: acctdisk, acctdusg, accton, acctwtmp - обзор возможностей сбора статистики
+<p><b>СИНТАКСИС</b>
+<pre>
+  /usr/lib/acct/acctdisk
+  /usr/lib/acct/acctdusg [-u файл1] [-p файл2]
+  /usr/lib/acct/accton [файл]
+  /usr/lib/acct/acctwtmp "причина"
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Для  сбора статистики предоставляется ряд утилит, среди
+которых имеются как C-программы, так и shell процедуры;
+описанию последних посвящена статья <a href=ACCTSH.htm>acctsh(1M)</a>. Основываясь на этих утилитах,  можно  создать  статистическую
+службу,  приспособленную  к  нуждам конкретной вычислительной установки.
+<p align=justify>
+Сведения о времени начала/конца сеансов помещаются различными  программами  в файл /etc/utmp, формат которого
+описан в <a href=UTMP.htm>utmp(4)</a>. Утилиты группы <a href=ACCTCON.htm>acctcon(1M)</a> преобразуют эти сведения в записи о сеансах и  об  использовании
+таких ресурсов, как терминальные линии; затем с помощью
+утилиты <a href=ACCTMERG.htm>acctmerg(1M)</a> можно получить итоговый отчет.
+<p align=justify>
+Сбор информации о  процессах  осуществляется  ядром  ОС
+UNIX.  При завершении процесса в файл (обычно /usr/adm/
+pacct) добавляется одна запись.  Утилиты,  описанные  в
+<a href=ACCTPRC.htm>acctprc(1M)</a>,   выдают   сводную   информацию;   утилита
+<a href=ACCTCMS.htm>acctcms(1M)</a> служит для получения статистики использования команд. Сведения о процессах, завершившихся  недавно, можно запросить с помощью команды <a href=ACCTCOM.htm>acctcom(1)</a>.
+<p align=justify>
+Утилита acctmerg позволяет получить сводную  информацию
+не только о процессах и о сеансах работы пользователей;
+она пригодна для обработки любых файлов, записи в которых имеют формат acct [см. <a href=ACCT~1~2.htm>acct(4)</a>]. Генерируемая сводная  информация  состоит  из  записей  типа  tacct  [см
+<a href=ACCT~1~2.htm>acct(4)</a>]. Для форматирования  и  вывода  сводок  служит
+процедура prtacct [см. <a href=ACCTSH.htm>acctsh(1M)</a>].
+<p align=justify>
+Утилита acctdisk читает со стандартного  ввода  строки,
+содержащие идентификатор пользователя, его входное имя,
+количество  дисковых  блоков,  преобразует эти строки в
+формат сводной информации tacct и выдает результаты  на
+стандартный  вывод. Обычно исходные данные для acctdisk
+готовятся с помощью утилит <a href=DISKUSG.htm>diskusg(1M)</a> или acctdusg,  а
+результаты  используются при подготовке ежедневных сводок [см. dodisk и runacct в <a href=ACCTSH.htm>acctsh(1M)</a>].
+<p align=justify>
+Утилита acctdusg читает со  стандартного  ввода  список
+полных маршрутных имен файлов (обычно - результат работы  команды find / -print) и выдает сведения об использовании  дискового пространства (включая косвенные блоки) различными пользователями. Если указана  опция  -u,
+то  в  файл1 помещаются записи о тех каталогах, которые
+не являются подкаталогами основных каталогов каких-либо
+пользователей, на основании чего можно выявить лиц, уклоняющихся от учета дискового пространства. Если указана опция -p, то файл2 рассматривается как файл со  сведениями о пользователях; по умолчанию используется файл
+/etc/passwd [см. также <a href=DISKUSG.htm>diskusg(1M)</a>].
+<p align=justify>
+Утилита  accton, будучи вызванной без аргумента, выключает сбор статистики о процессах. Если файл указан,  то
+он должен существовать; к этому файлу ядро ОС будет добавлять  учетную  информацию о процессах [см. <a href=ACCT~1.htm>acct(2)</a> и
+<a href=ACCT~1~2.htm>acct(4)</a>].
+<p align=justify>
+Утилита acctwtmp помещает на стандартный вывод записи в
+формате  wtmp(4). Эти записи, получающие тип ACCOUNTING
+[см. <a href=UTMP.htm>utmp(4)</a>], содержат текущее время и цепочку  символов,  описывающую  причину.  Причина должна состоять не
+более чем из 11 символов, в число которых могут входить
+буквы, цифры, знаки $ и пробелы. Например, в  процедуре
+остановки системы рекомендуется иметь строку вида
+<pre>
+   acctwtmp  "file save" &gt;&gt; /etc/wtmp
+</pre>
+<p align=justify><b>ФАЙЛЫ</b>
+<dl>
+<dt><tt>/etc/passwd</tt>
+<dd>Файл со сведениями о пользователях.
+<dt><tt>/usr/lib/acct</tt>
+<dd>Каталог команд сбора статистики.
+<dt><tt>/usr/adm/pacct</tt>
+<dd>Текущий файл сбора статистики о процессах.
+<dt><tt>/etc/wtmp</tt>
+<dd>Файл  со  сведениями  о времени начала/конца сеансов.
+</dl>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCTCMS.htm>acctcms(1M)</a>,  <a href=ACCTCON.htm>acctcon(1M)</a>,  <a href=ACCTMERG.htm>acctmerg(1M)</a>,  <a href=ACCTPRC.htm>acctprc(1M)</a>,
+<a href=ACCTSH.htm>acctsh(1M)</a>, <a href=DISKUSG.htm>diskusg(1M)</a>, <a href=FWTMP.htm>fwtmp(1M)</a>, <a href=RUNACCT.htm>runacct(1M)</a>.<br>
+<a href=ACCTCOM.htm>acctcom(1)</a> в Справочнике пользователя.<br>
+<a href=ACCT~1.htm>acct(2)</a>, <a href=ACCT~1~2.htm>acct(4)</a>, <a href=UTMP.htm>utmp(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

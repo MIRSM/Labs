@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.ilab24.narod.ru/fract/frmartin.html -->
+<HTML><HEAD><TITLE>Фракталы: Martin, Hopalong, Chip, Quadruptwo, Threeply</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY 
+background="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/lab24.gif" 
+      width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Martin, Hopalong, Chip, Quadruptwo, 
+  Threeply</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER>
+<H3>Martin</H3><IMG height=300 alt="Фрактал Martin" 
+src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/fr062.gif" 
+width=300> </CENTER>При построении используются следующие 
+формулы:<BR><I>x'=y-sin(x)<BR>y'=a-x,<BR></I>где <I>a</I>, например, равен 
+<I>3.14</I>. Следующая программа строит этот фрактал. <PRE><B>Program</B> Martin;
+<B>Uses</B> Graph, Crt;
+<B>Var</B>
+   x, t, y  : Real;
+   n        : Integer;
+   gd, gm   : Integer;
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'e:\bp\bgi');
+   x:=0;
+   y:=0;
+   n:=0;
+   <B>While</B> <B>Not</B> KeyPressed <B>Do</B> <B>Begin</B>
+     t:=x;
+     x:=y-sin(x);
+     y:=3.14-t;
+     inc(n);
+     PutPixel(round(x*2)+320,round(y*2)+240,n mod 16)
+   <B>End</B>;
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+</PRE>
+<CENTER><A name=hopalong>
+<H3>Hopalong</H3><IMG height=380 alt="Фрактал Hopalong" 
+src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/fr063.gif" 
+width=380> </CENTER>Здесь используются формулы 
+вида:<BR><I>x'=y-sign(x)*sqrt(abs(b*x-c))<BR>y'=a - x<BR></I>Примеры параметров: 
+
+<DD><I>a=0.4</I>,<I> b=1</I>,<I>с=0</I>.<BR>
+<DD><I>a=1</I>,<I> b=4</I>,<I>с=60</I>.<BR>
+<DD><I>a=-1</I>,<I> b=-2</I>,<I>с=-3</I>.<BR>
+<DD><I>a=-1000</I>,<I> b=0.1</I>,<I>с=-10</I>.<BR>Функция сигнала определена как 
+<I>sign=x/|x|</I> <A name=chip>
+<CENTER>
+<H3>Chip</H3><IMG height=315 alt="Фрактал Chip" 
+src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/fr059.gif" 
+width=315> </CENTER><I>x'=y-sign(x)*cos(sqr(ln(abs(b*x-c))))<BR>y'=a - 
+x<BR></I><I>a=-15, b=-19, c=1.</I> <A name=quadruptwo>
+<CENTER>
+<H3>Quadruptwo</H3><IMG height=265 alt="Фрактал Hopalong" 
+src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/fr060.gif" 
+width=265> 
+</CENTER><I>x'=y-sign(x)*sin(ln(abs(b*x-c)))*arctan(sqr(ln(abs(c*x-b))))<BR>y'=a-x<BR></I><I>a=34, 
+b=1, c=5</I> <A name=threeply>
+<CENTER>
+<H3>Threeply</H3><IMG height=416 alt="Фрактал Threeply" 
+src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/fr061.gif" 
+width=421> </CENTER><I>x' = y-sign(x)*(abs(sin(x)*cos(b)+c-x*sin(a+b+c)))<BR>y' 
+= a - x<BR></I><I>a=-55, b=-1, c=-42</I> </DD></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.10.04<BR>Дата последнего обновления: 20.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Martin, Hopalong, Chip, Quadruptwo, Threeply.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

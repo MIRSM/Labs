@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>FREXP(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>FREXP(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+frexp,  ldexp,  modf - манипуляции над компонентами вещественных чисел
+<p><b>СИНТАКСИС</b>
+<pre>
+	double frexp (value, eptr)
+	double value;
+	int *eptr;
+	
+	double ldexp (value, exp)
+	double value;
+	int exp;
+	
+	double modf (value, iptr)
+	double value, *iptr;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Всякое ненулевое число может быть единственным  образом
+записано в форме
+<pre>
+	x * 2^n
+</pre>
+<p align=justify>где мантисса (x) находится в диапазоне 0.5   |x| &lt; 1.0,
+а порядок (n) являет собой целое число.  Для  аргумента
+value, заданного как вещественное число двойной точности,  функция frexp возвращает значение мантиссы с двойной точностью и помещает значение  порядка  по  адресу,
+задаваемому указателем eptr. В случае value, равного 0,
+функция frexp оба результата выдает нулевыми.
+<p align=justify>Функция ldexp  возвращает величину (value * 2^exp).
+<p align=justify>Функция modf возвращает дробную часть  аргумента  value
+(со  знаком),  а  целую часть (получаемую отбрасыванием
+дробной) помещает  по  адресу,  задаваемому  указателем
+iptr.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Если при обращении к функции ldexp возникнет переполнение, то будет возвращено, в зависимости от знака value,
+значение +HUGE или -HUGE [см. <a href=INTRO~~7.htm>intro(3)</a>],  а  переменной
+errno будет присвоено значение ERANGE. Если же  результирующее число, напротив, окажется слишком малым, чтобы
+его можно было представить,  то  функцией  ldexp  будет
+возвращено нулевое значение, а переменной  errno  будет
+присвоено значение ERANGE.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

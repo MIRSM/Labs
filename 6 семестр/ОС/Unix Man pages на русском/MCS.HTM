@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>MCS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MCS(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mcs - операции с секцией комментариев об ектного файла
+<p><b>СИНТАКСИС</b>
+<pre>
+    mcs  [-a цепочка_символов] [-c] [-d] [-n имя] [-p] об ектный_файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+С помощью команды mcs манипулируют секцией комментариев
+об ектного файла (обычно секция  называется  .comment).
+Команда используется для добавления, удаления, выдачи и
+сжатия содержимого секции комментариев в об ектном файле системы UNIX. Команда mcs по очереди берет указанные
+в командной строке опции и применяет их ко всем  заданным об ектным_файлам.
+<p align=justify>Если об ектный_файл является архивом, то он  трактуется
+как набор отдельных об ектных  файлов.  Например,  если
+задана опция -a, то цепочка_символов добавляется к секции комментариев каждого элемента архива.
+<p align=justify>Допускаются следующие опции:
+<dl>
+<dt>-a цепочка_символов <dd>
+Добавить цепочку_символов  к  секции  комментариев
+об ектных_файлов. Если цепочка  содержит  пробелы,
+ее следует заключить в кавычки.
+<p><dt>-c <dd>  Сжать содержимое  секции  комментариев,  при  этом
+дублирующиеся элементы удаляются.  Порядок  оставшихся элементов сохраняется.
+<p><dt>-d  <dd> Удалить из об ектного файла содержимое секции комментариев. Заголовок данной секции также  удаляется.
+<p><dt>-n имя <dd>
+Задание имени обрабатываемой секции. По  умолчанию
+команда  mcs  работает   с   секцией,   называемой
+.comment. Данную опцию можно применить для  указания другой секции.
+<p><dt>-p  <dd> Выдать на стандартный вывод содержимое секции комментариев. Если указано  более  одного  имени,  то
+каждому выводимому элементу предшествует имя  файла, из которого он был выделен. Формат сообщения в
+этом случае таков: имя_файла:цепочка_символов.
+</dl>
+<p><b>ПРИМЕРЫ</b>
+<br>   Добавить цепочку символов  и  выдать  новое  содержимое
+секции комментариев:
+<pre>
+    mcs -a цепочка_символов -p об ектный_файл
+</pre>
+<p><b>ФАЙЛЫ</b>
+<pre>
+   TMPDIR/mcs*     Временные файлы.
+   TMPDIR/*        Временные файлы.
+</pre>
+Обычно каталог TMPDIR -  это  /usr/tmp,  однако  данное
+соглашение можно изменить, присвоив переменной  окружения   TMPDIR   другое   значение   [см.   tempnam( )  в
+<a href=TMPNAM.htm>tmpnam(3S)</a>].
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CPP.htm>cpp(1)</a>.<br>
+a.out(4) в Справочнике программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Команда mcs не может добавить новые секции или  удалить
+существующие из выполняемых об ектных файлов с магическим числом 0413 [см. a.out(4)].
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

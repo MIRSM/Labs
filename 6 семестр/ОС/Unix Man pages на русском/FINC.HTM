@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>FINC(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FINC(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        finc - быстрое выборочное копирование
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/finc  [критерий_выбора] файловая_система магнитофон
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Утилита finc выборочно копирует исходную  файловую_систему на магнитную ленту (магнитофон задается как бесструктурное  устройство,  обычно  /dev/mt). Для получения
+        аккуратной копии следует монтировать исходную  файловую
+        _систему доступной только на чтение, хотя и  при монтировании  с  доступом  как  для чтения, так и для записи
+        можно получить приемлемый результат. Копируются  только
+        те  описатели/файлы,  которые удовлетворяют логическому
+        выражению - критерию_выбора.
+<p align=justify>        Рекомендуется перед выполнением команды finc  выполнять
+        команду  <a href=FF.htm>ff(1M)</a> и ее результат сохранить как оглавление
+        ленты. Файлы, сохраненные  командой  finc,  могут  быть
+        извлечены с помощью команды <a href=FREC.htm>frec(1M)</a>.
+<p align=justify>        В критерии_выбора аргумент число задается как целое десятичное число, быть может со знаком. Конструкция +число  означает "больше, чем число", -число - "меньше, чем число", число - "в точности число".  День  определяется как 24-часовой период.
+<dl>
+<p><dt>  -a число <dd> Истина, если последний доступ к файлу производился
+             заданное число дней назад.
+<p><dt>  -m число <dd>  Истина, если последняя модификация файла  выполнялась заданное число дней назад.
+<p><dt>  -c число <dd> Истина,  если  последнее изменение описателя файла
+             выполнялось заданное число дней назад.
+<p><dt>  -n файл <dd>  Истина, если файл модифицировался позднее  указанного файла.
+</dl>
+<p><b>ПРИМЕРЫ</b><br>
+        Для записи на магнитную ленту всех файлов файловой сис-
+        темы  hd0s1, изменявшихся в течение последних 48 часов,
+        можно воспользоваться командой
+<pre>
+   finc  -m -2 /dev/rdsk/hd0s1 /dev/mt
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+        <a href=FF.htm>ff(1M)</a>, <a href=FREC.htm>frec(1M)</a>, <a href=LABELIT.htm>labelit(1M)</a>.<br>
+        <a href=CPIO.htm>cpio(1)</a> в Справочнике пользователя.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+        Если  на  ленте  нет   метки,   записанной   программой
+        <a href=LABELIT.htm>labelit(1M)</a>,  утилита finc выдаст предупреждающее сообщение, но отработает нормально.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

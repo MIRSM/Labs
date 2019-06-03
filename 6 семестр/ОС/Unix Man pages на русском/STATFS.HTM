@@ -1,0 +1,174 @@
+<html>
+<head>
+<title>STATFS(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>STATFS(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+statfs, fstatfs - получение информации о файловой  системе
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/types.h&gt;
+        #include &lt;sys/statfs.h&gt;
+        
+        int statfs (path, buf, len, fstyp)
+        char *path;
+        struct statfs *buf;
+        int len, fstyp;
+        
+        int fstatfs (fildes, buf, len, fstyp)
+        int fildes;
+        struct statfs *buf;
+        int len, fstyp;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов statfs возвращает "родовой  суперблок",
+описывающий файловую систему. Вызов может использоваться для запроса информации как о смонтированной, так и о
+несмонтированной файловой системе; использование вызова
+несколько различается в этих двух случаях. В обоих случаях аргумент  buf  является  указателем  на  структуру
+(описываемую ниже), поля которой заполняются в  результате выполнения системного вызова, а аргумент len задает количество байт информации, которые  система  должна
+поместить в структуру. Значение len не должно превышать
+размер структуры: sizeof (struct statfs) и  обычно  len
+содержит именно этот размер; если аргумент len содержит
+меньшее значение, то система поместит в структуру ровно
+заданное количество байт, что дает возможность в  более
+поздних версиях добавлять к структуре statfs новые поля
+без перетрансляции старых программ.
+<p align=justify>
+Если исследуемая  файловая  система  в  текущий  момент
+смонтирована, то маршрутное имя path должно быть именем
+файла, который располагается в данной файловой системе.
+В этом случае тип файловой системы известен ОС, и аргумент fstyp должен быть  нулевым.  Для  несмонтированной
+файловой системы маршрутное имя path должно быть именем
+специального блочного файла, содержащего ее, и аргумент
+fstyp должен содержать (ненулевой) тип файловой  системы. В обоих случаях право доступа на чтение, запись или
+выполнение названного файла не требуется, но все  каталоги, перечисленные в  маршрутном  имени,  должны  быть
+доступны на поиск.
+<p align=justify>
+Структура statfs, на которую  указывает  аргумент  buf,
+состоит из следующих полей:
+<pre>
+	short f_fstyp;     /* Тип файловой системы */
+	short f_bsize;     /* Размер блока */
+	short f_frsize;    /* Размер сегмента */
+	long  f_blocks;    /* Общее количество блоков */
+	long  f_bfree;     /* Счетчик свободных блоков */
+	long  f_files;     /* Общее кол-во описателей файлов */
+	long  f_ffree;     /* Счетчик свобод. описат. файлов */
+	char  f_fname [6]; /* Имя тома */
+	char  f_fpack [6]; /* Имя пакета */
+</pre><p align=justify>
+Системный  вызов  fstatfs  отличается  от statfs только
+тем, что файл идентифицируется не маршрутным именем,  а
+дескриптором  открытого  файла fildes, сформированным в
+результате успешного завершения следующих системных вызовов: <a href=OPEN.htm>open(2)</a>, <a href=CREAT.htm>creat(2)</a>, <a href=DUP.htm>dup(2)</a>, <a href=FCNTL.htm>fcntl(2)</a> или <a href=PIPE.htm>pipe(2)</a>.
+<p align=justify>
+Системный вызов statfs является более поздним вариантом
+системного вызова <a href=USTAT.htm>ustat(2)</a> и в новых  программах  предпочтение следует отдавать statfs.
+<p align=justify>
+Системные вызовы statfs и fstatfs завершаются неудачей,
+если выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[ENOTDIR]
+<dd>Компонент маршрута не является каталогом.
+<dt>[ENOENT]
+<dd>Заданный файл не существует.
+<dt>[EACCES]
+<dd>Нет права на поиск для компонента маршрута.
+<dt>[EFAULT]
+<dd>Аргументы buf или path указывают за пределы
+отведенного процессу адресного  пространства.
+<dt>[EBADF]
+<dd>Аргумент  fildes  не  является   корректным
+дескриптором открытого файла.
+<dt>[EINVAL]
+<dd>Аргумент fstyp  содержит  некорректный  тип
+файловой системы; path задает не  специальный блочный файл и аргумент fstyp не  равен
+0; аргумент len отрицателен  или  превышает
+sizeof (struct statfs).
+<dt>[ENOLINK]
+<dd>Маршрутное имя path указывает на  удаленный
+компьютер, связи с которым в данный  момент
+нет.
+<dt>[EMULTIHOP] Компоненты path требуют многократного обращения к удаленным компьютерам.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD~1.htm>chmod(2)</a>,  <a href=CHOWN~1.htm>chown(2)</a>,   <a href=CREAT.htm>creat(2)</a>,   <a href=LINK~1.htm>link(2)</a>,   <a href=MKNOD~1.htm>mknod(2)</a>,
+<a href=PIPE.htm>pipe(2)</a>,   <a href=READ.htm>read(2)</a>,   <a href=TIME.htm>time(2)</a>,   <a href=UNLINK.htm>unlink(2)</a>,   <a href=UTIME.htm>utime(2)</a>,
+<a href=USTAT.htm>ustat(2)</a>, <a href=WRITE.htm>write(2)</a>, <a href=FS.htm>fs(4)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

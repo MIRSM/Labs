@@ -1,0 +1,250 @@
+<html>
+<head>
+<title>EXEC(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>EXEC(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+exec: execl, execv, execle, execve,  execlp,  execvp   
+выполнение файла
+<p><b>СИНТАКСИС</b>
+<pre>
+        int execl (path, arg0, arg1, ..., argn, (char*) 0)
+        char *path, *arg0, *arg1, ..., *argn;
+        
+        int execv (path, argv)
+        char *path, *argv [];
+        
+        int execle (path, arg0, arg1, ..., argn, (char*) 0, envp)
+        char *path, *arg0, *arg1, ..., *argn, *envp [];
+        
+        int execve (path, argv, envp)
+        char *path, *argv [], *envp [];
+        
+        int execlp (file, arg0, arg1, ..., argn, (char*) 0)
+        char *file, *arg0, *arg1, ..., *argn;
+        
+        int execvp (file, argv)
+        char *file, *argv [];
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Все формы системного вызова exec  превращают  вызвавший
+процесс в новый процесс, который строится  из  обычного
+выполняемого  файла,  называемого  в  дальнейшем  новым
+выполняемым файлом. Выполняемый файл состоит  из  заголовка [см. a.out(4)], сегмента команд (.text) и данных.
+Данные состоят из инициализированной (.data) и неинициализированной (.bss) частей. Если системный вызов  exec
+закончился успешно, то он не может вернуть  управление,
+так как вызвавший процесс уже заменен новым процессом.
+<p align=justify>
+При запуске C-программы ее вызывают следующим образом:
+<pre>
+     main (argc, argv, envp)
+     int argc;
+     char **argv, **envp;
+</pre><p align=justify>
+где argc равен количеству  аргументов,  argv  -  массив
+указателей собственно на аргументы и envp - массив указателей на цепочки символов, образующие окружение. Принято соглашение, по которому значение argc не меньше 1,
+а первый элемент массива argv указывает на цепочку символов, содержащую имя нового выполняемого файла.
+<p align=justify>
+Аргументам системных вызовов группы exec приписан  следующий смысл.
+<p align=justify>
+Аргумент path указывает на маршрутное имя нового выполняемого файла.
+<p align=justify>
+Как и path, аргумент file указывает  новый  выполняемый
+файл, но маршрут этого файла определяется в  результате
+просмотра каталогов, переданных через переменную  окружения PATH [см. <a href=ENVIRON.htm>environ(5)</a>].  Окружение  поддерживается
+shell'ом [см. <a href=SH.htm>sh(1)</a>].
+<p align=justify>
+Аргументы arg0, arg1, ..., argn - это указатели на  цепочки символов, ограниченные нулевыми байтами. Эти  цепочки образуют доступный новому процессу  список  аргументов. По соглашению, как  минимум  arg0  должен  присутствовать и указывать  на  цепочку  символов,  равную
+path (или последнему компоненту path).
+<p align=justify>
+Массив argv содержит указатели на цепочки символов, ограниченные нулевыми байтами. Эти цепочки образуют  доступный новому процессу список аргументов.  По  соглашению, в argv должен присутствовать  как  минимум  первый
+элемент, указывающий на цепочку символов,  равную  path
+(или последнему компоненту path). За последним  занятым
+элементом массива argv должен следовать  пустой  (нулевой) указатель.
+<p align=justify>
+Массив envp содержит указатели на цепочки символов, ограниченные нулевыми байтами. Эти цепочки образуют окружение нового процесса. За последним  занятым  элементом
+массива envp должен следовать пустой указатель.
+<p align=justify>
+Перед началом выполнения любой программы во внешнюю переменную environ, описание которой выглядит как
+<pre>
+     extern char **environ;
+</pre><p align=justify>
+помещается адрес массива указателей на  цепочки  символов,  образующие окружение процесса. С помощью этой переменной (как и с помощью аргумента envp функции  main)
+в новом процессе всегда можно получить доступ к окружению, независимо от использовавшегося варианта системного  вызова exec. Разница лишь в том, что в случае вызовов execle и execve окружение нового процесса  задается
+явно,  а  в  остальных случаях наследуется у вызвавшего
+процесса.
+<p align=justify>
+Файлы, открытые в вызвавшем процессе, остаются открытыми в новом процессе, за исключением тех, у которых  установлен флаг "закрыть при выполнении вызова exec" [см.
+<a href=FCNTL.htm>fcntl(2)</a>]. Если файл остался открытым, то указатель текущей позиции в файле сохраняется.
+<p align=justify>
+Реакция  на  сигналы  сохраняется, за исключением того,
+что сигналы, которые перехватывались в  вызвавшем  процессе,  вызывают  терминирование  нового  процесса [см.
+<a href=SIGNAL.htm>signal(2)</a>].
+<p align=justify>
+В  случае, когда реакция на сигналы устанавливалась вызовом <a href=SIGSET.htm>sigset(2)</a> и задавалась как SIG_DFL,  SIG_IGN  или
+SIG_HOLD,  эта реакция наследуется у вызвавшего процесса. Однако, если сигнал перехватывался, то устанавливается реакция SIG_DFL и все полученные, но не обработанные сигналы этого типа откладываются.
+<p align=justify>
+Если у нового выполняемого файла установлен бит  разрешения переустанавливать действующий идентификатор пользователя<dt>[см.  <a href=CHMOD~1.htm>chmod(2)</a>], то действующий идентификатор
+пользователя  нового  процесса  устанавливается  равным
+идентификатору  владельца  нового  выполняемого  файла.
+Аналогично, если у нового выполняемого файла установлен
+бит разрешения переустанавливать действующий  идентификатор группы, то действующий идентификатор группы нового процесса устанавливается равным идентификатору группы  нового  выполняемого  файла. Реальный идентификатор
+пользователя и  реальный  идентификатор  группы  нового
+процесса наследуются у вызвавшего процесса.
+<p align=justify>
+Присоединенные разделяемые сегменты памяти не  наследуются новым процессом [см. <a href=SHMOP.htm>shmop(2)</a>].
+<p align=justify>
+У нового процесса выключено профилирование.
+<p align=justify>
+Кроме того, новый процесс наследует у процесса, вызвавшего exec, следующие характеристики:
+<ol>
+<li>Значение поправки к приоритету [см. <a href=NICE.htm>nice(2)</a>].
+<li>Идентификатор процесса.
+<li>Идентификатор родительского процесса.
+<li>Идентификатор группы процессов.
+<li>semadj значения [см. <a href=SEMOP.htm>semop(2)</a>].
+<li>Идентификатор группы терминала [см. <a href=EXIT.htm>exit(2)</a>].
+<li>Режим трассировки [см. <a href=PTRACE.htm>ptrace(2)</a>].
+<li>Время,  оставшееся до срабатывания будильника [см.
+<a href=ALARM.htm>alarm(2)</a>].
+<li>Текущий рабочий каталог.
+<li>Корневой каталог.
+<li>Маска режима создания файлов [см. <a href=UMASK.htm>umask(2)</a>].
+<li>Ограничение на размер файла [см. <a href=ULIMIT.htm>ulimit(2)</a>].
+<li>Счетчики  времени,  потраченного  для обслуживания
+этого процесса (tms_utime, tms_stime,  tms_cutime,
+tms_cstime) [см. <a href=TIMES.htm>times(2)</a>].
+<li>Блокировки   доступа   к   сегментам  файлов<dt>[см.
+<a href=FCNTL.htm>fcntl(2)</a> и <a href=LOCKF.htm>lockf(3C)</a>].
+</ol><p align=justify>
+Системный вызов exec завершается неудачей и  управление
+возвращается,  если выполнено хотя бы одно из следующих
+условий:
+<dl>
+<dt>[ENOENT]
+<dd>Компонент маршрута нового выполняемого файла не существует.
+<dt>[ENOTDIR]
+<dd>Компонент маршрута нового выполняемого файла не является каталогом.
+<dt>[EACCES]
+<dd>Один из каталогов, перечисленных в маршруте
+нового выполняемого файла, не доступен  для
+просмотра.
+<dt>[EACCES]
+<dd>Новый  выполняемый файл не является обычным
+файлом.
+<dt>[EACCES]
+<dd>Нет прав на выполнение нового файла.
+<dt>[ENOEXEC]
+<dd>Права на выполнение нового файла  есть,  но
+его  заголовок  не начинается с допустимого
+магического числа [см. a.out(4)].
+<dt>[ETXTBSY]
+<dd>Новый выполняемый файл в  настоящий  момент
+открыт для записи некоторым процессом.
+<dt>[ENOMEM]
+<dd>Новый процесс требует  больше  памяти,  чем
+позволяет системное ограничение MAXMEM.
+<dt>[E2BIG]
+<dd>Суммарная длина списка аргументов превышает
+системное ограничение, равное 5120 байт.
+<dt>[EFAULT]
+<dd>Отсутствует требуемое оборудование.
+<dt>[EFAULT]
+<dd>Некорректные адреса в качестве аргументов.
+<dt>[EAGAIN]
+<dd>Не хватает памяти.
+<dt>[ELIBACC]
+<dd>К  требуемой разделяемой библиотеке не разрешен доступ на выполнение.
+<dt>[ELIBEXEC]
+<dd>Попытка непосредственно выполнить разделяемую библиотеку.
+<dt>[EINTR]
+<dd>Во время выполнения вызова exec  перехвачен
+сигнал.
+<dt>[ENOLINK]
+<dd>Аргумент path указывает на удаленный компьютер, связи с которым в данный момент нет.
+<dt>[EMULTIHOP] Компоненты path требуют многократного обращения к удаленным компьютерам.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ALARM.htm>alarm(2)</a>,    <a href=EXIT.htm>exit(2)</a>,   <a href=FCNTL.htm>fcntl(2)</a>,   <a href=FORK.htm>fork(2)</a>,   <a href=NICE.htm>nice(2)</a>,
+<a href=PTRACE.htm>ptrace(2)</a>, <a href=SEMOP.htm>semop(2)</a>,  <a href=SHMOP.htm>shmop(2)</a>,  <a href=SIGNAL.htm>signal(2)</a>,  <a href=SIGSET.htm>sigset(2)</a>,
+<a href=TIMES.htm>times(2)</a>,  <a href=ULIMIT.htm>ulimit(2)</a>,  <a href=UMASK.htm>umask(2)</a>,  <a href=LOCKF.htm>lockf(3C)</a>,  a.out(4),
+<a href=ENVIRON.htm>environ(5)</a>.<br>
+<a href=SH.htm>sh(1)</a> в Справочнике пользователя.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Возврат из системного вызова  exec  свидетельствует  об
+ошибке. В таком случае результат равен -1, а переменной
+errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

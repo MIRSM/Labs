@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>READ(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>READ(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+read - чтение из файла
+<p><b>СИНТАКСИС</b>
+<pre>
+        int read (fildes, buf, nbyte)
+        int fildes;
+        char *buf;
+        unsigned nbyte;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргумент fildes - это дескриптор файла, полученный после  выполнения  системных  вызовов  <a href=CREAT.htm>creat(2)</a>,  <a href=OPEN.htm>open(2)</a>,
+<a href=DUP.htm>dup(2)</a>, <a href=FCNTL.htm>fcntl(2)</a> или <a href=PIPE.htm>pipe(2)</a>.
+<p align=justify>
+Системный вызов read пытается прочитать nbyte  байт  из
+файла, ассоциированного с дескриптором fildes, в буфер,
+указателем на который является аргумент buf.
+<p align=justify>
+Для устройств, допускающих позиционирование,  системный
+вызов  read выполняет чтение из файла, начиная с указателя текущей позиции, ассоциированного  с  дескриптором
+fildes. После завершения чтения указатель текущей позиции файла увеличивается на количество прочитанных байт.
+<p align=justify>
+Для  устройств  без возможности позиционирования чтение
+всегда выполняется с текущей позиции. Значение указателя текущей позиции файла для такого устройства  неопределено.
+<p align=justify>
+При успешном завершении системного вызова read  возвращается  количество байт, реально прочитанных и помещенных в буфер; это количество может быть меньше  значения
+аргумента  nbyte, если файл ассоциирован с линией связи
+[см. <a href=IOCTL.htm>ioctl(2)</a> и <a href=TERMIO.htm>termio(7)</a>] или  если  количество  байт,
+оставшихся  в  файле,  меньше значения аргумента nbyte.
+Если текущая позиция совпадала с концом файла,  результат будет равен 0.
+<p align=justify>
+Чтение с псевдоустройств [см.  <a href=INTRO~1.htm>intro(2)</a>] может  выполняться  в трех различных режимах: байтном, режиме сообщений без сброса и режиме сообщений со  сбросом.  Стандартным  является  байтный  режим. С помощью системного
+вызова ioctl режим может быть изменен (опция   I_SRDOPT
+[см. <a href=STREAMIO.htm>streamio(7)</a>]) и опрошен (опция I_GRDOPT). В байтовом  режиме системный вызов read выбирает данные из потока до тех пор, пока не получит nbyte байт или пока не
+выберет все данные потока. В этом режиме границы  сообщений игнорируются.
+<p align=justify>
+В режиме сообщений без сброса системный вызов read  выбирает  данные  до  тех пор, пока не получит nbyte байт
+или пока не встретит границу сообщения. Если  сообщение
+прочитано не полностью, то оставшиеся данные помещаются
+в  поток  и  могут быть извлечены последующими вызовами
+read или <a href=GETMSG.htm>getmsg(2)</a>. В режиме сообщений со сбросом также
+выбираются данные до тех пор, пока  не  будет  получено
+nbyte  байт  или  пока не встретится граница сообщения;
+однако непрочитанные данные, оставшиеся в сообщении  по
+завершении системного вызова read, теряются, и их нельзя получить последующими вызовами read или getmsg.
+<p align=justify>
+При попытке чтения из обычного  файла  с  установленным
+флагом  учета  блокировки [см. <a href=CHMOD~1.htm>chmod(2)</a>] и при наличии
+блокировки на запись (другим процессом)  того  сегмента
+файла,  который  должен быть прочитан, в зависимости от
+значения флага O_NDELAY системный вызов read ведет себя
+следующим образом:
+<ol>
+<li>Если  установлен  флаг  O_NDELAY,  то возвращается
+значение -1, а переменной errno присваивается  код
+ошибки EAGAIN.
+<li>Если флаг O_NDELAY не установлен, то читающий процесс откладывается до снятия блокировки.
+</ol>
+При попытке чтения из пустого канала:
+<ol>
+<li>Если установлен флаг O_NDELAY, то системный  вызов
+read возвращает значение 0.
+<li>Если не установлен флаг O_NDELAY, то читающий процесс  откладывается до тех пор, пока данные не будут записаны в файл, или пока файл  не  перестанет
+быть открытым на запись.
+</ol>
+При попытке чтения из файла, ассоциированного с  терминалом, когда нет данных, предназначенных для чтения:
+<ol>
+<li>Если установлен  флаг  O_NDELAY,  то  возвращается
+значение 0.
+<li>Если не установлен флаг O_NDELAY, то читающий процесс откладывается до тех пор, пока данные не появятся.
+</ol>
+При попытке чтения из файла, ассоциированного  с  потоком, в котором нет данных:
+<ol>
+<li>Если  установлен  флаг  O_NDELAY,  то возвращается
+значение -1, а переменной errno присваивается  код
+ошибки EAGAIN.
+<li>Если не установлен флаг O_NDELAY, то читающий процесс откладывается до тех пор, пока данные не появятся.
+</ol><p align=justify>
+При чтении с псевдоустройства реакция на пустое сообщение (то есть сообщение, содержащее 0 байт) определяется
+установленным режимом чтения. В байтном режиме  системный  вызов  read  читает  байты,  пока не получит nbyte
+байт, или пока не выберет все данные из потока, или пока не встретит пустое сообщение. Затем read  возвращает
+количество прочитанных байт и помещает пустое сообщение
+назад в поток для последующего извлечения с помощью вызовов read или getmsg. В двух других режимах при извлечении  пустого сообщения возвращается значение 0 и само
+сообщение удаляется из потока.  Если  пустое  сообщение
+читается  как  первое сообщение в потоке, то значение 0
+возвращается независимо от режима чтения.
+<p align=justify>
+При чтении с псевдоустройств системный вызов read может
+обрабатывать только сообщения с данными. Он не в состоянии обработать протокольное  сообщение  и  завершается
+неудачей, если встретит подобное сообщение в истоке потока.
+<p align=justify>
+Если в потоке происходит освобождение линии, то системный вызов read будет нормально работать,  пока  очередь
+чтения в истоке не станет пустой. После этого read вернет значение 0.
+<p align=justify>
+Системный вызов read завершается неудачей, если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EAGAIN]
+<dd>Установлены  флаги учета блокировки файла и
+O_NDELAY, и требуемый сегмент файла  заблокирован.
+<dt>[EAGAIN]
+<dd>Общее  количество системной памяти, предоставленной для бесструктурного ввода/вывода,
+временно оказалось недостаточным.
+<dt>[EAGAIN]
+<dd>При установленном флаге O_NDELAY  в  потоке
+нет сообщений, ожидающих чтения.
+<dt>[EBADF]
+<dd>Аргумент  fildes  не  является   корректным
+дескриптором файла, открытого на чтение.
+<dt>[EBADMSG]
+<dd>Сообщение,  считываемое из потока, не является сообщением с данными.
+<dt>[EDEADLK]
+<dd>Попытка ожидания чтения приводит к тупику.
+<dt>[EFAULT]
+<dd>Аргумент buf указывает за пределы  отведенного процессу адресного пространства.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[EINVAL]
+<dd>Попытка  чтения из потока, который мультиплексируется.
+<dt>[ENOLCK]
+<dd>Нет свободного места  в  системной  таблице
+блокировок.
+<dt>[ENOLINK]
+<dd>Аргумент fildes является дескриптором файла
+на  удаленном компьютере, связи с которым в
+данный момент нет.
+</dl><p align=justify>
+Чтение  с  псевдоустройства также завершается неудачей,
+если в истоке потока получено сообщение  об  ошибке.  В
+этом  случае  переменной  errno присваивается значение,
+содержащееся в сообщении.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CREAT.htm>creat(2)</a>,   <a href=DUP.htm>dup(2)</a>,   <a href=FCNTL.htm>fcntl(2)</a>,   <a href=IOCTL.htm>ioctl(2)</a>,   <a href=INTRO~1.htm>intro(2)</a>,
+<a href=OPEN.htm>open(2)</a>, <a href=PIPE.htm>pipe(2)</a>, <a href=GETMSG.htm>getmsg(2)</a>.
+<a href=STREAMIO.htm>streamio(7)</a>, <a href=TERMIO.htm>termio(7)</a> в Справочнике администратора.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат равен неотрицательному целому числу - количеству реально прочитанных  байт;
+в случае ошибки возвращается  -1,  а  переменной  errno
+присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

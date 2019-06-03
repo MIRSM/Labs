@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>NEWGRP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>NEWGRP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+newgrp - переход в новую группу
+<p><b>СИНТАКСИС</b>
+<pre>
+     newgrp  [-] [группа]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда newgrp изменяет идентификацию группы для  пользователя. Пользователь остается в системе и текущий каталог не изменяется, но права доступа к файлам вычисляются в соответствии с  новыми  реальным  и  действующим
+идентификаторами группы. По команде newgrp пользователь
+вместо старого всегда получает новый  shell  независимо
+от того, закончилось выполнение newgrp  успешно  или  с
+ошибкой (из-за неизвестной группы).
+<p align=justify>Экспортируемые переменные окружения сохраняют свои значения  после выполнения команды newgrp; однако всем неэкспортируемым переменным присваиваются подразумеваемые
+или пустые значения. Системным  переменным  (таким  как
+PS1, PS2, PATH, MAIL и HOME), если они не экспортируются  системой  или  явно  пользователем, устанавливаются
+подразумеваемые значения. Например, если основное приглашение (PS1) отличается от "$ " (значение  по  умолчанию),  и переменная PS1 не экспортируется, то после выполнения команды newgrp, успешного  или  нет,  значение
+переменной  PS1  будет установлено равным "$ ". Следует
+отметить, что команда shell'а export [см. <a href=SH.htm>sh(1)</a>]  является тем средством, с помощью которого переменные окружения   сохраняют   свои  значения  при  запуске  новых
+shell'ов.
+<p align=justify>Если не заданы аргументы, команда newgrp изменяет идентификатор группы  обратно  на  группу,  определенную  в
+соответствующей строке файла /etc/passwd.
+<p align=justify>Если первым аргументом команды newgrp  является  -,  то
+окружение становится таким, которым оно было  бы,  если
+пользователь вошел в систему  заново,  как  член  новой
+группы.
+<p align=justify>Запрашивается пароль, если группа имеет пароль, а пользователь нет, или если группа имеет пароль, а пользователь не указан в файле /etc/group как член новой  группы.
+<p><b>ФАЙЛЫ</b>
+<pre>
+     /etc/group      Системный файл групп.
+     /etc/passwd     Системный файл паролей.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LOGIN.htm>login(1)</a>, <a href=SH.htm>sh(1)</a>.<br>
+<a href=GROUP.htm>group(4)</a>, <a href=PASSWD.htm>passwd(4)</a>, <a href=ENVIRON.htm>environ(5)</a> в Справочнике  программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Не существует удобного способа занесения паролей в файл
+/etc/group. Использование паролей групп не  поддерживается, так как по своей сути они плохо обеспечивают секретность. В будущем пароли групп, видимо, отомрут.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

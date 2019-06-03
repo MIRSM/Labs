@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>TAPE(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TAPE(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+tape - устройство кассетного стримера.
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Устройство tape обеспечивает системный интерфейс к стримеру. Обычно
+для работы со стримером используются команды tar(1), cpio(1), dd(1)
+backup(1), dump(1) и restore(1).
+<p align=justify>
+Поддерживается   одиночный   стример   с   первичным   (символьным,
+неблочным) интерфейсом. Существует три типа стандартных  устройства
+стримеров.  Устройства,  имена  которых  начинаются  с "r" ("raw" первичный,  без   обработки  данных),   следует  использовать   для
+выполнения большинства обычных операций, в то время как устройства,
+имена которых начинаются с "n" ("no rewind on hold" - без перемотки
+в  процессе  обработки),  следует   использовать  для  хранения   и
+восстановления  большого  количества   файлов.  Устройства,   имена
+которых  начинаются  с  "e"  (ECC  - проверка и исправление ошибок)
+поддерживают схему восстановления из состояний с ошибками 2/64. Это
+означает,  что  два  512-байтовых  блока  из  64  блоков могут быть
+сбойными,  и  драйвер  скорректирует  ошибки.  Подобная программная
+поддержка   ECC   обеспечивает   высокий   уровень   восстановления
+испорченных данных.
+<p align=justify>
+В   следующей   таблице   суммируются   основные   соглашения    по
+наименованиям поддерживаемых стримеров:
+<p><table>
+<tr><td>ct0,1<td>стример типа QIC24 unit 0,1</tr>
+<tr><td>ct2,3<td>стример типа QIC11 unit 0,1</tr>
+<tr><td>ctmini<td>кассетный стример на базе контроллера гибких дисков</tr>
+<tr><td>mt0,1<td>двухкатушечный стример unit 0,1 1600 бит/дюйм</tr>
+<tr><td>mt2,3<td>двухкатушечный стример unit 0,1  800 бит/дюйм</tr>
+<tr><td>mt4,5<td>двухкатушечный стример unit 0,1 6250 бит/дюйм</tr>
+</table>
+Команды работы со стримером описаны в разделе tape(1).
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /dev/rct0
+ /dev/nrct0
+ /dev/rct2
+ /dev/nrct2
+ /dev/erct0
+ /dev/rctmini
+</pre>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+После  выполнения  определенных   операций  со  стримером   система
+возвращает подсказку прежде, чем контроллер стримера завершит  свои
+действия. Если пользователь вставит очередную ленту слишком быстро,
+то появится сообщение об ошибке "device busy" (устройство  занято),
+которое не исчезнет, пока контроллер не закончит свою работу.
+<p align=justify>
+Для продолжительного  и бесперебойного  функционирования стримерной
+подсистемы необходимо периодически перенатягивать ленту в кассете и
+чистить головку стримера. Для перенатяжки ленты используйте команду
+tape(1).
+<p><b>СМ. ТАКЖЕ</b><br>
+backup(1), cpio(1), dd(1), dump(1), format(1), tape(1), tar(1),
+restore(1).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

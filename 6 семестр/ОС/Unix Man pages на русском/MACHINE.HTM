@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>MACHINE(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MACHINE(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+Machine - описание главной машины
+<p align=justify><b>ОПИСАНИЕ</b><br>
+На   этой   странице   перечисляются   внутренние    характеристики
+персональных компьютеров,  использующих процессоры  семейства Intel
+8086  и   соответственные  аппаратные   средства.  Эта   информация
+предназначается  для  разработчиков  программных  средств,  которые
+хотели бы перенести объектные или выполняемые файлы с другой машины
+на  свой  персональный  компьютер,  а  не  подготавливать  файлы  к
+исполнению на этом компьютере.
+<dl>
+<dt>Центральный процессор
+<dd>Intel 8086, 8088, 80186, 80286, 80386
+<dt>Размер блоков на диске
+<dd>1024 байта
+<dt>Схема управления памятью
+<dd>Несегментированная (8086,8088,80186)<br>
+Сегментированная (80826)<br>
+Сегментированная и страничная (80386)
+<dt>Разделение данных и команд
+<dd>Поддерживается
+<dt>Переменный размер стека
+<dd>Поддерживается только на 8086,80386
+(конфигурация для 8086, 80386
+устанавливается по умолчанию)
+<dt>Фиксированный размер стека
+<dd>Поддерживается
+(конфигурация для  80286
+устанавливается по умолчанию)
+<dt>Интервал между "тиками" часов
+<dd>.05 сек (8086, 8088, 80186)
+.02 сек (80286, 80386)
+</dl><p align=justify><i>Программная совместимость</i><br>
+Программы, созданные С-компилятором  cc(1) с  использованием  малой
+и  средней  моделей  памяти,  работают  на  многих  процессорах.  В
+следующей  таблице  показано,  какие  системы   UNIX  и  на   каких
+процессорах  генерируют  коды,  пригодные  для выполнения на других
+машинах.  Предполагается,  что  при  генерации  машинного  кода  не
+используются специфические системные вызовы.  cc(1) генерирует  код
+по  умолчанию,  но   может  быть  также   использован  в   качестве
+компилятора с расширенными возможностями для   кросс-разработки при
+задании соответствующих аргументов.
+<p align=justify>
+Системы   UNIX  SCO-nn  поставляются  фирмой Santa Cruz Operations,
+Inc.    Системы    UNIX   MS-nn   поставляются   фирмой   Microsoft
+Corporation.  Системы  Intel    UNIX  поставляются  фиромой   Intel
+Corporation. Системы Atlos  UNIX поставляются фирмой Atlos Computer
+Systems.  Здесь  nn  обозначает  тип  процессора.   UNIX обозначает
+версию системы UNIX, 2.3, 3.0 или System V.
+<center><table border=1>
+<tr><th colspan=4>Программная совместимость</tr>
+<tr><th>Процессор на вашей системе<th>Компилятор генерирует по умолчанию программы, работающие на процессоре в системе<th>Программы, скомпилированные по умолчанию на процессоре в системе<th>Программы, скомпилированные в режиме кросс-разработки для процессора в системе</tr>
+<tr valign=top>
+<td>SCO-86 3.0
+<td>SCO-86 [3.0,Sys V]<br>SCO-186 3.0<br>SCO-286 Sys V
+<td>SCO-86 3.0<br>SCO-186 3.0<br>Intel,Altos-86 2.3,3.0
+<td>DOS*
+</tr>
+<tr valign=top>
+<td>SCO-86<br>SystemV
+<td>SCO-86 Sys V<br>SCO-186 Sys V<br>SCO-286 Sys V<br>MS-286 SysV
+<td>SCO-86 [3.0,Sys V]<br>SCO-186 [3.0,Sys V]<br>SCO-286 Sys V<br>Intel,Altos-86 2.3,3.0
+<td>MS-286 3.0+<br>DOS*
+</tr>
+<tr valign=top>
+<td>SCO-186 3.0
+<td>SCO-86 [3.0,Sys V]<br>SCO-186[3.0,Sys V]<br>SCO-286 Sys V
+<td>SCO-86 3.0<br>SCO-186 3.0<br>Intel,Altos-86 2.3,3.0
+<td>DOS*
+</tr>
+<tr valign=top>
+<td>SCO-86<br>SystemV
+<td>SCO-86 Sys V<br>SCO-186 Sys V<br>SCO-286 Sys V<br>MS-286 SysV
+<td>SCO-86 [3.0,Sys V]<br>SCO-186[3.0,Sys V]<br>SCO-286 Sys V<br>Intel,Altos-86 2.3,3.0
+<td>MS-286 3.0+<br>DOS*
+</tr>
+<tr valign=top>
+<td>SCO-286 3.0
+<td>SCO-286[3.0,Sys V]<br>MS-286 [3.0+,SysV]
+<td>SCO-286 Sys 3.0<br>MS-286 3.0+
+<td>DOS*
+</tr>
+<tr valign=top>
+<td>SCO-86<br>SystemV
+<td>SCO-86 Sys V<br>SCO-186 Sys V<br>SCO-286 Sys V<br>MS-286 Sys V
+<td>SCO-86 [3.0,Sys V]<br>SCO-186[3.0,Sys V]<br>SCO-286[3.0,Sys V]<br>MS-286 [3.0+,SysV]
+<td>SCO-286 3.0<br>MS-286 3.0+<br>DOS*
+</tr>
+<tr valign=top>
+<td>SCO-386<br>SystemV
+<td>SCO-86 Sys V<br>SCO-186 Sys V<br>SCO-286 Sys V<br>SCO-386 Sys V<br>MS-286 Sys V<br>MS-386 Sys V
+<td>SCO-86 [3.0,Sys V]<br>SCO-186[3.0,Sys V]<br>SCO-286[3.0,Sys V]<br>SCO-386[Sys V]<br>MS-286 [3.0+,SysV]<br>MS-386 [Sys V]
+<td>SCO-286 3.0<br>MS-286 3.0+<br>DOS*
+</tr>
+<tr valign=top>
+<td>MS-286 3.0+
+<td>MS-286[3.0+,Sys V]<br>SCO-286 Sys V
+<td>SCO-286 3.0
+<td>DOS*
+</tr>
+<tr valign=top>
+<td>MS-286<br>System V
+<td>MS-286 Sys V<br>SCO-286 Sys V
+<td>SCO-86 [3.0,Sys V]<br>SCO-186[3.0,Sys V]<br>SCO-286[3.0,Sys V]
+<td>DOS*
+</tr>
+<tr valign=top>
+<td>MS-386<br>System V
+<td>MS-386 Sys V<br>SCO-386 Sys V
+<td>SCO-86 [3.0,Sys V]<br>SCO-186[3.0,Sys V]<br>SCO-286[3.0,Sys V]<br>SCO-386[Sys V]
+<td>DOS*
+</tr>
+<tr valign=top><td colspan=4>
+*  MS-DOS для процессоров i8086/8088, i80186 и i80286.<br>
++  MS-286 3.0 UNIX эквивалентна системе Intel 286 3.0 UNIX<br>
+#  непроверено в ожидании версии этой разработки</tr>
+</table></center>
+<p><b>СМ. ТАКЖЕ</b><br>
+clockrate(HW), cc(1), ld(1), a.out(3).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

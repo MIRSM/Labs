@@ -1,0 +1,28 @@
+#info=WSGE1EDT
+@I:0,0=1;spin - pos 1
+@T:1,0=1;
+@S:2,0=2;spin - pos 2
+@T:3,0=2;
+@J:4,0=1;
+#endinfo
+_step _init GS1;
+#sfc=GS1(0,0)
+spin (N);
+#sfc=end
+_next GT1;
+
+_trans GT1;
+#sfc=GT1(0,1)
+gs1.t > t#300ms;
+#sfc=end
+_next GS2;
+
+_step GS2;
+_next GT2;
+
+_trans GT2;
+#sfc=GT2(0,3)
+gs2.t > t#300ms;
+#sfc=end
+_next GS1;
+

@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>TIMEX(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TIMEX(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+timex - измерение характеристик процесса  и  активности
+всей системы
+<p><b>СИНТАКСИС</b>
+<pre>
+	timex  [-p [-f] [-h] [-k] [-m] [-r] [-t]] [-o] [-s] команда
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Указанная команда выполняется, после чего, как и в случае <a href=TIME~1.htm>time(1)</a>, выводятся данные о времени ее работы.  Может быть получена дополнительная информация о  процессе
+и его потомках, а также об общей  системной  активности
+во время выполнения команды.
+<p align=justify>Результаты измерений выдаются командой  timex  в  стандартный протокол.
+<p align=justify>Опциям команды timex приписан следующий смысл:
+<table>
+<tr valign=top><th>-p  <td> Вывести данные о процессе и его потомках. Дополнительные опции -f, -h, -k, -m, -r и  -t  указывают,
+какие именно сведения выводить [см. <a href=ACCTCOM.htm>acctcom(1)</a>]:
+<tr valign=top><th>-f <td>Выводить флаг fork/exec и системный код  завершения.
+<tr valign=top><th>-h <td>Вместо расхода  памяти  сообщать,  какую  часть
+   доступного времени ЦП  использовал  процесс  во
+   время своего выполнения. Этот  коэффициент  нахальства  вычисляется  как   отношение   (время
+   ЦП)/(общее время выполнения).
+<tr valign=top><th>-k <td>Вместо расхода памяти выводить произведение количества килобайт памяти на число минут ЦП.
+<tr valign=top><th>-m<td> Выводить расход памяти (это  опция  по  умолчанию).
+<tr valign=top><th>-r <td>Выводить коэффициент использования  ЦП:  (время
+   пользователя)/(время системы + время  пользователя).
+<tr valign=top><th>-t<td> Выводить отдельно время ЦП, затраченное пользователем и системой.
+Количество прочитанных или записанных блоков и количество переданных символов выдается всегда.
+<tr valign=top><th>-o <td>  Вывести количество прочитанных или записанных блоков и количество переданных символов как самой командой, так и всеми ее потомками.
+<tr valign=top><th>-s  <td> Вывести сведения о всей системной  активности  (не
+только относящейся к команде),  имевшей  место  во
+время выполнения команды.  Выводятся  все  данные,
+перечисленные в <a href=SAR.htm>sar(1)</a>.
+</table>
+<p><b>ПРИМЕРЫ</b>
+<ol>
+<li> Простой пример:
+<pre>
+	timex  -ops sleep 60
+</pre>
+<li> Деятельность  любой  сложности  может быть замерена следующим образом:
+<pre>
+	timex -opskmt sh
+	   команды
+	CTRL+D
+</pre>
+</ol>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/adm/pacct          Информация о процессах.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCTCOM.htm>acctcom(1)</a>, <a href=SAR.htm>sar(1)</a>.<br>
+<a href=ACCTCMS.htm>acctcms(1M)</a> в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Сведения о команде  берутся  из  файла  /usr/adm/pacct.
+Сведения о фоновых процессах, имеющих одинаковый  идентификатор пользователя, идентификатор терминала  и  выполнявшихся в один и тот же  промежуток  времени, будут
+перемешиваться.
+<p align=justify>Команда timex выполняет команду <a href=ACCTCOM.htm>acctcom(1)</a> с опциями -S
+и -E, которые работают неверно. В результате и в  самой
+команде timex опции -p и -o не работают.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>PWADMIN(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PWADMIN(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+pwadmin -  служит для  административного обслуживания  "возрастной"
+информации пароля.
+<p><b>СИНТАКСИС</b>
+<pre>
+ pwadmin [-min weeks -max weeks] options
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+pwadmin  используется  для  контроля  и  модификации   "возрастной"
+информации в  файле паролей.  С этой  командой могут использоваться
+следующие опции:
+<dl>
+<dt>-d user
+<dd>Высвечивает "возрастную" информацию паролей.
+<dt>-f user
+<dd>Заставляет пользователя менять пароль при очередном
+входе в систему.
+<dt>-c user
+<dd>Не дает пользователю изменить пароль.
+<dt>-a user
+<dd>Активизирует  "возрастной"  контроль  пароля  для  данного
+пользователя.   Эта   опция   устанавливает    минимальное
+количество  недель,  которое  должно  пройти,  прежде  чем
+пользователь сможет изменить  свой пароль, и  максимальное
+количество недель, в  течение которого пользователь  может
+держать свой пароль  без изменения. Эти  величины задаются
+переменными    MINWEEKS    и    MAXWEEKS       в     файле
+/etc/default/passwd. Если этот файл не найден, или  данные
+величины  выходят  за  пределы  диапазона  0  -  63, то по
+умолчанию используются величины 2 и 4.
+<dt>-n user
+<dd>Снимает "возрастной" контроль пароля.
+<dt>-min weeks
+<dd>Активизирует "возрастной" контроль пароля и  устанавливает
+минимальное количество  недель weeks,  в течение  которого
+пользователь не может изменять свой пароль.(Это удерживает
+пользователя от  слишком быстрой  замены нового  пароля на
+старый.)
+<dt>-max weeks
+<dd>Активизирует "возрастной"  контроль пароля  и устанавливает
+        количество недель  weeks, в  течение которого  пользователь
+        может держать свой пароль без изменений.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/paaswd
+ /etc/default/passwd
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PASSWD~2.htm>passwd(1)</a>, passwd(3)
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Пользователь   не   должен   пытаться   установить   новый   пароль
+принудительно, устанавливая обе  величины -min и  -max в нуль.  Для
+этого используйте опцию -f.
+<p align=justify>
+Пользователь не должен  пытаться предотвратить очередное  изменение
+пароля, устанавливая значение величины  -min, больше чем -max.  Для
+этого используйте опцию -c.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

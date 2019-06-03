@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>SYSADMSH(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SYSADMSH(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+sysadmsh - утилита системного администрирования с управлением из
+меню.
+<p><b>СИНТАКСИС</b>
+<pre>
+ sysadmsh
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+sysadmsh  -  простой  в  употреблении интерфейс, разработанный так,
+чтобы   предоставить   начинающим   пользователям   инструментарий,
+необходимый  для  повседневного   системного  администрирования   в
+системе UNIX.
+<p align=justify>
+ПРЕДУПРЕЖДЕНИЕ: sysadmsh не заменяет документацию по системе  UNIX,
+а   лишь   обеспечивает   обзор   доступных   средств    системного
+администрирования  и  напоминает  о  тех  задачах,  которые  должны
+выполняться  регулярно.  Для   использования  sysadmsh   необходимо
+понимание  Руководства  по  инсталляции  системы  UNIX, Руководства
+администратора системы и Руководства пользователя.
+<p align=justify>
+Для   использования    этой    утилиты   введите    на    системную
+login-подсказку:
+<pre>
+  sysadm
+</pre>
+При этом вашей программной оболочкой станет иерархия меню sysadmsh.
+Вы  получите  доступ  ко  многим  полезным командам и уровням меню,
+представленным в простой, нагладной форме.
+<p align=justify>
+Меню  sysadmsh  может  быь  вызвано  другим  способом   посредством
+подключения к системе в качестве привилегированного пользователя  и
+введения на системную login-подсказку:
+<pre>
+  sysadmsh
+</pre>
+<p align=justify>
+Находясь     в     среде     sysadmsh,     вы     можете   получить
+контекстно-ориентированную помощь, нажав клавишу &lt;F1&gt;.
+<p align=justify>
+Некоторые опции  sysadmsh должны  запускаться с  системной консоли.
+Некоторые  из  этих  опций  требуют  однопользовательского   режима
+(режима  системного  обслуживания).  Для  получения  дополнительной
+информации смотрите соответствующие страницы документации.
+<p><b>СМ. ТАКЖЕ</b><br>
+acctcom(8), <a href=ACCTON.htm>accton(8)</a>, alias(5), <a href=ASKTIME.htm>asktime(8)</a>, <a href=AT.htm>at(1)</a>, <a href=BADTRK.htm>badtrk(8)</a>,
+checklist(3), <a href=CHGRP.htm>chgrp(1)</a>, <a href=CHMOD~1.htm>chmod(2)</a>, <a href=CHOWN.htm>chown(1)</a>, <a href=CONFIGUR.htm>configure(8)</a>,  
+<a href=COPY.htm>copy(1)</a>, <a href=CRON.htm>cron(1)</a>, <a href=CSH.htm>csh(1)</a>, <a href=CUSTOM.htm>custom(8)</a>, <a href=DF.htm>df(1)</a>,
+<a href=DIFF.htm>diff(1)</a>, <a href=DIRCMP.htm>dircmp(1)</a>, <a href=DISABLE.htm>disable(1)</a>, <a href=DISKCMP.htm>diskcmp(1)</a>, <a href=DMESG.htm>dmesg(8)</a>,
+<a href=DOS.htm>dos(1)</a>, <a href=DTYPE.htm>dtype(1)</a>, <a href=DU.htm>du(1)</a>, <a href=ENABLE.htm>enable(1)</a>, <a href=FDISK~1.htm>fdisk(8)</a>, <a href=FIND.htm>find(1)</a>, <a href=FINGER.htm>finger(1)</a>,
+<a href=FIXPERM.htm>fixperm(8)</a>, <a href=FORMAT.htm>format(1)</a>, <a href=FSCK~1.htm>fsck(8)</a>, fstab(3), <a href=GRPCHECK.htm>grpcheck(1)</a>,
+init(5),  <a href=KILL.htm>kill(1)</a>,  login(5),  <a href=LP.htm>lp(1)</a>,  <a href=LPADMI~1.htm>lpadmin(8)</a>,   <a href=LPINIT.htm>lpinit(8)</a>,
+<a href=LPSTAT.htm>lpstat(1)</a>,    mfil(1),     <a href=MKDEV.htm>mkdev(8)</a>,    <a href=MKUSER.htm>mkuser(8)</a>,     <a href=MORE.htm>more(1)</a>,
+<a href=MOUNT~~2.htm>mount(8)</a>,   <a href=NETUTIL.htm>netutil(8)</a>,   <a href=PS.htm>ps(1)</a>,   <a href=PWADMIN.htm>pwadmin(8)</a>,    <a href=PWCHECK.htm>pwcheck(1)</a>,
+<a href=QUOT.htm>quot(1)</a>,      <a href=RMUSER.htm>rmuser(8)</a>,      <a href=SHUTDOWN.htm>shutdown(8)</a>,       <a href=SYSADMIN.htm>sysadmin(8)</a>,
+systemid(3), <a href=TAR.htm>tar(1)</a>, ttys(3), unmount(8), <a href=UUINSTAL.htm>uuinstall(8)</a>,  <a href=VI.htm>vi(1)</a>,
+<a href=WALL.htm>wall(8)</a>, <a href=WHO.htm>who(1)</a>, <a href=WRITE~1.htm>write(1)</a>.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Для  выбора  опций  редактирования  файлов  предполагается   знание
+редактора  <a href=VI.htm>vi(1)</a>.  Однако,  если  доступен  редактор  SCO Lyrix, то
+используется он.
+<p align=justify>
+Эта  утилита  разработана  по  образцу  SCO  LYrix  Word Processing
+System.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

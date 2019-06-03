@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>ERRPT(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ERRPT(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        errpt - обработка зарегистрированных ошибок системы
+<p><b>СИНТАКСИС</b>
+<pre>
+ errpt  [-s дата] [-e дата] [-a] [-p число_страниц] [-f] [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Утилита errpt обрабатывает данные, собранные механизмом регистрации ошибок системы [см. <a href=ERRDEMON.htm>errdemon(1M)</a>] и генерирует  отчет об этих ошибках. Отчетом по умолчанию является сводная информация обо всех ошибках, зарегистрированных в указанных файлах. Опции  применяются  ко  всем файлам  и описываются ниже. Если имена файлов не указаны, errpt пытается использовать файл /usr/adm/errfile.
+<p align=justify>        Сводный отчет сообщает об опциях, которые могут ограничить его полноту, выводит время, когда зарегистрирована самая  ранняя и самая поздняя ошибка, и сообщает об общем количестве ошибок различных типов. Для каждого устройства выводится общее число неисправимых ошибок, исправимых ошибок, ошибок, которые не могли быть зарегистрированы, количество операций ввода/вывода на устройстве и информацию о других  событиях,  связанных  с  устройством.  Ошибки  чтения  своих  входных  данных errpt трактует как ошибки чтения на устройстве.
+<p align=justify>        В детальном отчете, кроме специфической  информации  об ошибках, сообщается обо всех началах и завершениях процессов  регистрации  ошибок  и  обо всех проведенных во время, охваченное процессом регистрации, установках часов [с помощью <a href=DATE.htm>date(1)</a>]. К сводной информации по каждому типу ошибок добавляется детальная информация.
+<p align=justify>        Ограничить число обрабатываемых записей об ошибках можно с помощью следующих опций:
+<table>
+<tr valign=top><th> -s дата<td>Игнорировать  все записи, занесенные в файлы ранее указанной даты, где дата имеет вид ммддччммгг, такой же, как и в команде <a href=DATE.htm>date(1)</a>.
+<tr valign=top><th> -e дата <td> Игнорировать  все записи, занесенные в файлы позже указанной даты, где дата имеет вид, описанный  выше.
+<tr valign=top><th> -a <td> Вывести детальный отчет обо всех видах ошибок.
+<tr valign=top><th>-p число_страниц <td> Ограничить  размер детального отчета указанным количеством страниц.
+<tr valign=top><th> -f <td>  В детальном отчете для блочных устройств  выводить информацию только о неисправимых ошибках.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /usr/adm/errfile   Файл регистрации ошибок системы.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+        <a href=ERRDEAD.htm>errdead(1M)</a>, <a href=ERRDEMON.htm>errdemon(1M)</a>.<br>
+        <a href=DATE.htm>date(1)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

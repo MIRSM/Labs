@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>HD(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>HD(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+hd - встроенный дисковод жесткого диска
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Блочно-буферизованный   доступ   к   первичному   жесткому    диску
+обеспечивается  с  помощью  следующих  специальных файлов  блочного
+типа:   hd00,  hd01  ...   hd04,  hd0a   и  hd0d,   root  и   swap.
+Блочно-буферизованный  доступ   к    первичному   жесткому    диску
+обеспечивается   с    помощью следующих  специальных файлов:  hd10,
+hd11 ... hd14, hd1a,
+<p align=justify>
+hd00 относится к целому физическому диску; hd01 ... hd04  относятся
+к разделам  физического диска.  root относится  к корневой файловой
+системе;  swap  относится  к  области  свопинга.  Специальные файлы
+блочных  устройств  осуществляют  доступ  к дискам через посредство
+обычного буферного  механизма системы  и могут  быть прочитаны  или
+записаны, невзирая на размер физических записей на диске.
+<p align=justify>
+Специальные  файлы  символьного  типа  следуют  тем  же соглашениям
+по  наименованиям,  что  и  специальные  файлы  блочного  типа,  за
+исключением  того,  что  имя  специального  файла  символьного типа
+начинается  с  "r".  Например,  специальный  файл символьного типа,
+относящийся к целому физическому диску, носит имя /dev/rhd00.
+<p align=justify>
+Далее  приведены  имена  разделов  жесткого  диска. Доступ к любому
+разделу   осуществляется   посредством   соответствующего  блочного
+интерфейса,   например,   /dev/hd01,   и   посредством  символьного
+интерфейса (без обработки данных), например, /dev/rhd01.
+<center><table border=1>
+<tr><th colspan=3>Имена файлов устройств для жесткого диска</tr>
+<tr><th>Диск 1<th>Диск 2<th>Раздел</tr>
+<tr valign=top><td><tt>/dev/hd00<br>/dev/rhd00</tt><td><tt>/dev/hd10<br>/dev/rhd10</tt><td>весь диск</tr>
+<tr valign=top><td><tt>/dev/hd01<br>/dev/rhd01</tt><td><tt>/dev/hd11<br>/dev/rhd11</tt><td>первый раздел</tr>
+<tr valign=top><td><tt>/dev/hd02<br>/dev/rhd02</tt><td><tt>/dev/hd12<br>/dev/rhd12</tt><td>второй раздел</tr>
+<tr valign=top><td><tt>/dev/hd03<br>/dev/rhd03</tt><td><tt>/dev/hd13<br>/dev/rhd13</tt><td>третий раздел</tr>
+<tr valign=top><td><tt>/dev/hd04<br>/dev/rhd04</tt><td><tt>/dev/hd14<br>/dev/rhd14</tt><td>четвертый раздел</tr>
+<tr valign=top><td><tt>/dev/hd0a<br>/dev/rhd0a</tt><td><tt>/dev/hd1a<br>/dev/rhd1a</tt><td>активный раздел</tr>
+<tr valign=top><td><tt>/dev/hd0d<br>/dev/rhd0d</tt><td><tt>/dev/hd1d<br>/dev/rhd1d</tt><td>раздел DOS</tr>
+<tr valign=top><td><tt>/dev/root<br>/dev/rroot<td>&nbsp;<td>корневая файловая    
+система</tr>
+<tr valign=top><td><tt>/dev/swap<br>/dev/rswap<td>&nbsp;<td>область свопинга</tr>
+</table></center>
+<p align=justify>
+Обратите внимание,  что имена  файлов корневой  файловой системы  и
+области свопинга для второго диска отсутствуют.
+<p align=justify>
+Для осуществления доступа к разделам DOS задавайте буквы, наподобие
+"C:"  или  "D:",  которые  указывают  на  первый или второй разделы
+диска.  В  файле  /etc/default/msdos  содержатся  строки,   которые
+назаначают буквенные аббревиатуры для имен устройств DOS.  Смотрите
+dos(C).
+<p align=justify>
+В следующей таблице перечисляются определения малых чисел устройств
+для специальных файлов жестких дисков вместе с примерами.  Обратите
+внимание, что  специальные устройства  блочного и  символьного типа
+имеют  одинаковые  определения  малых  чисел устройств. Определение
+малого числа устройства интерпретируется так: биты 7 и 6 обозначают
+физический  дисковод,  биты  5  -  3 обозначают виртуальные разделы
+диска (созданные  с помощью   fdisk), а   биты 2   - 0   обозначают
+разделы,  созданные с помощью divvy.
+<center><table border=1>
+<tr><th colspan=5>Биты малого числа устройства</tr>
+<tr><td align=center>Физ.<br><tt>7 6</tt><td align=center>Вирт.<br><tt>5 4 3</tt><td align=center>divvy<br><tt>2 1 0</tt><td align=center>Имя спец. файла<td align=center>Описание устройства</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>0 0 0</tt><td align=center><tt>0 0 0</tt><td align=center><tt>/dev/hd00</tt><td>весь PD 0</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>0 0 0</tt><td align=center><tt>0 0 0</tt><td align=center><tt>/dev/hd10</tt><td>весь PD 1</tr>
+<tr><td align=center><tt>1 0</tt><td align=center><tt>0 0 0</tt><td align=center><tt>0 0 0</tt><td align=center><tt>/dev/hd20</tt><td>весь PD 2</tr>
+<tr><td align=center><tt>1 1</tt><td align=center><tt>0 0 0</tt><td align=center><tt>0 0 0</tt><td align=center><tt>/dev/hd30</tt><td>весь PD 3</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>0 0 1</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd01</tt><td>PD 0, весь VD 1</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>0 1 0</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd02</tt><td>PD 0, весь VD 2</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>0 1 1</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd03</tt><td>PD 0, весь VD 3</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 0 0</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd04</tt><td>PD 0, весь VD 4</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 0 1</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd0a</tt><td>PD 0, весь активный VD</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 1 0</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd0d</tt><td>PD 0, весь VD DOS</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 0 1</tt><td align=center><tt>0 0 0</tt><td align=center><tt>/dev/root</tt><td>PD 0, акт.вирт., DP 0</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 0 1</tt><td align=center><tt>0 0 1</tt><td align=center><tt>/dev/swap</tt><td>PD 0, акт.вирт., DP 1</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 0 1</tt><td align=center><tt>0 1 0</tt><td align=center><tt>/dev/usr</tt><td>PD 0, акт.вирт., DP 2</tr>
+<tr><td align=center><tt>0 0</tt><td align=center><tt>1 0 1</tt><td align=center><tt>1 1 0</tt><td align=center><tt>/dev/recover</tt><td>PD 0, акт.вирт., DP 6</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>0 0 1</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd11</tt><td>PD 1, весь VD 1</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>0 1 0</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd12</tt><td>PD 1, весь VD 2</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>0 1 1</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd13</tt><td>PD 1, весь VD 3</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>1 0 0</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd14</tt><td>PD 1, весь VD 4</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>1 0 1</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd1a</tt><td>PD 1, весь активный VD</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>1 1 0</tt><td align=center><tt>1 1 1</tt><td align=center><tt>/dev/hd1d</tt><td>PD 1, весь VD DOS</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>1 0 1</tt><td align=center><tt>0 0 0</tt><td align=center><tt>/dev/u0</tt><td>PD 0, акт.вирт., DP 0 +</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>1 0 1</tt><td align=center><tt>0 0 1</tt><td align=center><tt>/dev/u1</tt><td>PD 0, акт.вирт., DP 0 +</tr>
+<tr><td align=center><tt>0 1</tt><td align=center><tt>1 0 1</tt><td align=center><tt>0 1 0</tt><td align=center><tt>/dev/u2</tt><td>PD 0, акт.вирт., DP 0 +</tr>
+<tr><td colspan=5>
+Ключ<ul>
+<li>VD = виртуальный диск
+<li>PD = физический дисковод
+<li>DP = раздел divvy
+<li>+ = имя, определенное пользователем
+</ul></tr>
+</table></center>
+<p align=justify>
+Файлы  устройств  usr  и  u[0-2]  являются  необязательными именами
+файловых систем;  эти дескрипторы  отсутствуют, если  их не создаст
+администратор системы.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/dev/hd0a       /dev/hd1a          /dev/usr
+/dev/rhd0a      /dev/rhd1a         /dev/rusr
+/dev/hd0[0-4]   /dev/hd1[0-4]      /dev/root
+/dev/rhd0[0-4]  /dev/rhd1[0-4]     /dev/rroot
+/dev/hd0d       /dev/hd1d          /dev/swap
+/dev/rhd0d      /dev/rhd1d         /dev/rswap
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+fdisk(5), badtrk(8), divvy(8), dos(8), mkdev(8)
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Следующие сообщения могут быть выведены на консоль:
+<pre>
+  invalid fixed disk parameter table
+</pre>
+и
+<pre>
+  error on fixed disk (minor n), block = nnnnn,
+  cmd=nnnnn, status=nnnn,
+  Sector = nnnnn, Cylinder/head = nnnnn
+</pre>
+Среди возможных причин первой ошибки:
+<ul>
+<li>Ядро  системы  не в  состоянии получить  спецификации дисковода,
+например, количество головок, цилиндров и секторов на дорожку из
+ПЗУ контроллера диска.
+<li>Неверная конфигурация.
+<Li>Неправильно подключен диск.
+<li>Диск не поддерживается системой.
+</ul>
+Вторая ошибка выдает следующую инфоормацию:
+<ul>
+<li>block: Номер блока устройства.
+<li>cmd: Последняя команда, посланная контроллеру.
+<li>status: Статус ошибки контроллера диска.
+<li>Sector и Cylinder/head задает местоположение возможного дефекта.
+Эта информация используется вместе с badtrk(8).
+</ul>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Для  первого  диска  hd00  обозначает  весь диск и используется для
+доступа  к  блоку  главного  загрузчика,  который  включает таблицу
+разделов,  созданную  с  помощью  fdisk.  Для  второго  диска  hd10
+обозначает  весь  диск  и  используется  для  доступа к его таблице
+разделов, созданной с помощью fdisk. Не записываете ничего на место
+hd10 и hd00.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

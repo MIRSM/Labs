@@ -1,0 +1,648 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+    Copyright (C)  2009  Sukharev Dmitriy, Dzyuban Yuriy, Voitova Anastasiia.
+    
+    This file is part of Petri nets Emulator.
+    
+    Petri nets Emulator is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    Petri nets Emulator is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with Petri nets Emulator. If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta name="author" content="Sukharev Dmitriy, Voitova Anastasiia" />
+<meta name="description" content="Petri nets Emulator. User Guide" />
+<meta name="keywords" content="petri nets emulator help user guide" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Petri nets Emulator. Руководство пользователя</title>
+
+ <style type="text/css">
+    body { 
+      background-color: #ffffff;
+	  color: #000000;
+	  font-family: Verdana;
+	  font-size: 12px;
+	  font-style: normal;
+	  font-weight: normal;
+    }
+    
+    h1 {
+	  color: #990000;
+	  font-size: 20px;
+	  margin-bottom: 7px;
+      text-shadow: 0.1em 0.1em 0.3em #999999
+    }
+    
+    h2 {
+	  color: #990000;
+	  font-size: 14px;
+	  margin-bottom: 7px;
+      text-shadow: 0.1em 0.1em 0.3em #999999
+    }
+    
+    a {
+	  text-decoration: none;
+	  color: blue;
+    }
+  </style> 
+</head>
+
+<body>
+<h1>Petri nets Emulator<br /><br />Руководство пользователя</h1>
+
+  <ol>
+    <h2>
+      <li type="1" value="1">Запуск</li>
+    </h2>
+    <ul>
+      <li type="circle">Программа запускается через запуск файла petrinets.jar из каталога Petri-nets\dist.</li>
+      <li type="circle">
+        После запуска открывается пустая рабочая область, в которую можно начать добавлять элементы.<br />
+      </li>
+    </ul>
+    
+    <p>
+      <img width="625" height="390" src="UserGuide.files/image001.png" /><br />Рис.1. Интерфейс программы
+    </p>
+    <p>&nbsp;</p>
+
+
+
+    <h2>
+      <li type="1">Создание новой модели сети</li>
+    </h2>
+    <p>2.1&nbsp; Создать новый файл можно такими способами:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="32" height="34" src="UserGuide.files/image003.png" />
+      </li>
+
+      <li type="circle"> выбрать File - New</li>
+
+      <li type="circle"> нажать Ctrl + N</li>
+    </ul>
+    <p>&nbsp;</p>
+
+    <p>2.2&nbsp; Добавить позицию можно такими способами:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="37" height="38" src="UserGuide.files/image005.png" />
+      </li>
+
+      <li type="circle"> выбрать Edit – Add Position</li>
+
+      <li type="circle"> нажать Ctrl + P</li>
+    </ul>
+
+    <p>
+      После чего нажать левой клавишей мыши на желаемое место в
+      рабочей области. Позиции нумеруются автоматически. Для добавления фишек в
+      позицию, следует нажать правой клавишей мыши на позиции и ввести количество
+      фишек.
+    </p>
+    <p>&nbsp;</p>
+
+    <p>2.3&nbsp; Добавить мгновенный переход можно такими способами:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="39" height="37" src="UserGuide.files/image007.png" />
+      </li>
+
+      <li type="circle"> выбрать Edit – Add Immediate Transition</li>
+
+      <li type="circle"> нажать Ctrl + I</li>
+    </ul>
+
+    <p>
+      После чего нажать левой клавишей мыши на желаемое место в
+      рабочей области. Переходы нумеруются автоматически.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>2.4&nbsp; Добавить временной переход можно такими способами:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="35" height="35" src="UserGuide.files/image009.png" />
+      </li>
+
+      <li type="circle"> выбрать Edit – Add Time Transition</li>
+
+      <li type="circle"> нажать Ctrl + T</li>
+    </ul>
+
+    <p>
+      После чего нажать левой клавишей мыши на желаемое место в
+      рабочей области. Переходы нумеруются автоматически. Для задания величин
+      интенсивности (&#955;), вариации (g) и вероятности решения конфликта (r),
+      следует нажать правой клавишей мыши на переходе и ввести данные.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>2.5&nbsp; Добавить линию связи (дугу) можно такими способами:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="34" height="36" src="UserGuide.files/image011.png" />
+      </li>
+
+      <li type="circle"> выбрать Edit – Add Arc</li>
+
+      <li type="circle"> нажать Ctrl + A</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>
+      После чего нажать левой клавишей мыши на желаемый элемент
+      (позицию или переход), от которого будет идти линия связи.
+    </p>
+
+    <p>
+      При нажатии на левую клавишу мыши, линия связи
+      продлевается до указанной точки. Если связь начинается с перехода, то считается
+      связью выхода из перехода (обозначается оранжевым цветом, кружок расположен у
+      позиции, к которой ведет связь). А если заканчивается на переходе – связью входа
+      в переход (обозначается бордовым цветом, кружок расположен у перехода, к
+      которому ведет связь).  Невозможно
+      соединять одинаковые элементы (переходы с переходами, вершины с вершинами).
+    </p>
+
+
+    <p>
+      <img width="625" height="390" src="UserGuide.files/image013.png" />
+    </p>
+    <p>Рис.2. Программа с набранной моделью сети Петри.</p>
+
+    <p>&nbsp;</p>
+
+
+
+
+    <h2>
+      <li type="1">Работа с файлами</li>
+    </h2>
+
+    <p>3.1&nbsp; Открыть уже существующий можно такими способами:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width='34' height='35' src="UserGuide.files/image015.png" />
+      </li>
+
+      <li type="circle"> выбрать File - Open</li>
+
+      <li type="circle"> нажать Ctrl + O</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>3.2&nbsp; Сохранить уже существующий можно такими способами:</p>
+
+    <ul>
+      <li type="circle">нажать на кнопку
+        <img width="35" height="36" src="UserGuide.files/image017.png" />
+      </li>
+
+      <li type="circle"> выбрать File – Save as...</li>
+
+      <li type="circle"> нажать Ctrl + S</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>
+      3.3&nbsp; Экспортировать изображение набранной модели в файл .png
+      можно такими способами:
+    </p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="35" height="35" src="UserGuide.files/image019.png" />
+      </li>
+
+      <li type="circle"> выбрать File – Export...</li>
+
+      <li type="circle"> нажать Ctrl + E</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>3.4&nbsp; Закрыть редактирование текущего файла можно такими способами:</p>
+
+    <ul>
+      <li type="circle"> выбрать File – Close...</li>
+
+      <li type="circle"> нажать Ctrl + W</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>3.5&nbsp; Выйти из программы можно такими способами:</p>
+
+    <ul>
+      <li type="circle"> Стандартным выходом из приложения в среде Windows</li>
+
+      <li type="circle"> выбрать File – Exit...</li>
+
+      <li type="circle"> нажать Ctrl + Q</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+
+
+
+    <h2>
+      <li type="1">Редактирование</li>
+    </h2>
+
+    <p>4.1&nbsp; Отменить предыдущее действие можно такими способами:</p>
+
+    <ul>
+      <li type="circle"> выбрать Edit – Undo...</li>
+
+      <li type="circle"> нажать Ctrl + Z</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>4.2&nbsp; Повторить отмененное действие можно такими способами:</p>
+
+    <ul>
+      <li type="circle"> выбрать Edit – Redo...</li>
+
+      <li type="circle"> нажать Ctrl + Y</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+
+
+
+    <h2>
+      <li type="1">Таблицы описания</li>
+    </h2>
+
+    <p>
+      Таблицами описания являются матрицы входов-переходов Di, матрицы выходов-переходов Dq, вектора начальной маркировки и вектор интенсивности
+      переходов (&#955;)
+    </p>
+
+    <p>Матрицы достижимости можно посмотреть во вкладке Descriptive Tables</p>
+
+    <p>&nbsp;</p>
+
+
+
+    <h2>
+      <li type="1">Построение дерева достижимости</li>
+    </h2>
+
+    <p>
+      Для построения дерева достижимости следует открыть уже
+      готовую или набрать новую модель сети.
+    </p>
+
+    <p>
+      1.1 Открыть таблицу достижимости
+      можно на вкладке Transitions Table, где указаны слева-направо:
+    </p>
+
+    <ul>
+      <li type="circle"> Порядковый номер шага построения</li>
+
+      <li type="circle"> Номер ветки дерева</li>
+
+      <li type="circle"> Предыдущая маркировка</li>
+
+      <li type="circle"> Сработавший переход</li>
+
+      <li type="circle"> Текущая маркировка</li>
+
+      <li type="circle"> Тип маркировки</li>
+
+      <li type="circle"> Уровень (ярус) дерева</li>
+    </ul>
+
+    <p>
+      <img width='625' height='390' src="UserGuide.files/image021.png" />
+    </p>
+
+    <p>Рис.3. Таблица достижимости в программе</p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      1.2&nbsp; Открыть дерево достижимости можно на вкладке Reachability Graph, где
+      изображено дерево достижимости сети. При
+      чем, цвет вершин обозначает их тип, таким образом:
+    </p>
+
+    <ul>
+      <li type="circle"> Зеленая – корневая вершина, начальная маркировка</li>
+
+      <li type="circle">
+        Желтая – впервые встретившаяся внутренняя вершина (реальное состояние
+        модели)
+      </li>
+
+      <li type="circle"> Оранжевая – повторяющаяся вершина/маркировка</li>
+
+      <li type="circle"> Красная – тупиковая вершина/маркировка</li>
+    </ul>
+
+
+    <p>
+      <img width="625" height="390" src="UserGuide.files/image023.png" />
+    </p>
+
+    <p>Рис.4. Дерево достижимости в программе</p>
+
+    <p>&nbsp;</p>
+
+    <h2>
+      <li type="1">Построение Марковского графа</li>
+    </h2>
+
+    <p>
+      Для построения Марковского графа достижимости следует
+      открыть уже готовую или набрать новую модель сети.
+    </p>
+
+    <ul>
+      <li type="circle"> Открыть Марковский граф можно на вкладке Markov Graph. Возможные переходы между вершинами обозначены стрелками по направлению к вершине перехода</li>
+    </ul>
+
+    <p>
+      <img width='625' height='390' src="UserGuide.files/image025.png" />
+    </p>
+    <p>Рис.5. Марковский граф в рабочей области приложения</p>
+
+    <p>&nbsp;</p>
+
+
+
+
+    <h2>
+      <li type="1">Моделирование сетей Петри</li>
+    </h2>
+
+    <p>
+      Для моделирования необходимо открыть готовую или создать
+      новую модель, выставить её параметры:
+    </p>
+
+    <ul>
+      <li type="circle"> фишки в позициях</li>
+
+      <li type="circle"> интенсивности, коэффициенты вариации и разрешения конфликтов в переходах</li>
+    </ul>
+
+    <p>Для наблюдения за эмуляцией стоит перейти на вкладку Emulating. </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <b>1 Запуск моделирования</b>
+    </p>
+
+    <p>
+      1.1 Запустить эмуляцию на одно
+      событие можно так:
+    </p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width='34' height='34' src="UserGuide.files/image027.png" />
+      </li>
+
+      <li type="circle"> выбрать Emulation – One Event</li>
+
+      <li type="circle"> нажать Ctrl + Space</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>1.2 Запустить эмуляцию на N событий можно так:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="34" height="33" src="UserGuide.files/image029.png" />
+      </li>
+
+      <li type="circle"> выбрать Emulation – While N Events</li>
+
+      <li type="circle"> нажать Ctrl + Shift + Space</li>
+    </ul>
+
+    <p>В открывшемся диалоге следует задать количество событий.</p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      1.3 Запустить эмуляцию на время T можно так:
+    </p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="34" height="32" src="UserGuide.files/image031.png" />
+      </li>
+
+      <li type="circle"> выбрать Emulation – While T Time</li>
+
+      <li type="circle"> нажать Ctrl + Shift + T</li>
+    </ul>
+
+    <p>В открывшемся диалоге следует задать время в мс.</p>
+
+    <p>&nbsp;</p>
+
+    <p>1.4 Сбросить эмуляцию можно так:</p>
+
+    <ul>
+      <li type="circle">
+        нажать на кнопку
+        <img width="36" height="34" src="UserGuide.files/image033.png" />
+      </li>
+
+      <li type="circle"> выбрать Emulation – Reset</li>
+
+      <li type="circle"> нажать Ctrl + R</li>
+    </ul>
+
+    <p>
+      В таком случае эмуляция прекратиться, а модель будет
+      сброшена до начальной маркировки.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <b>2. Наблюдение за моделированием</b>
+    </p>
+
+    <p>
+      В случае пошагового моделирования, сработавший переход
+      будет подсвечиваться красным цветом, а фишки в позициях передвигаться.
+    </p>
+
+    <p>
+      В случае моделирования за время или количество событий,
+      будет подсвечен последний сработавший переход.
+    </p>
+
+    <p>&nbsp;</p>
+
+    <p>
+      <b>
+        3.&nbsp;&nbsp;Статистика моделирования
+      </b>
+    </p>
+
+    <p>
+      Вся статистика представлена во вкладке Emulation Table, которая заполняется в процессе
+      моделирования.
+    </p>
+
+    <p>3.1 Таблица результатов эмуляции содержит поля:</p>
+
+    <ul>
+      <li type="circle"> Текущее время</li>
+
+      <li type="circle"> Предыдущая маркировка</li>
+
+      <li type="circle"> Текущая маркировка</li>
+
+      <li type="circle"> Сработавший переход</li>
+
+      <li type="circle"> Запущенные переходы</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>3.2 Таблица статистики маркировок содержит поля:</p>
+
+    <ul>
+      <li type="circle"> Текущая маркировка</li>
+
+      <li type="circle"> Частота появления маркировки</li>
+
+      <li type="circle"> Суммарное время пребывания в маркировке</li>
+
+      <li type="circle"> Суммарное время возвращения в маркировку</li>
+
+      <li type="circle"> Вероятность пребывания в маркировке</li>
+
+      <li type="circle"> Частота испытаний</li>
+    </ul>
+    <p>&nbsp;</p>
+
+    <p>
+      3.3 Таблицы частоты и вероятности переходов между
+      маркировками содержат поля:
+    </p>
+
+    <ul>
+      <li type="circle"> По вертикали маркировки, из которых совершен переход</li>
+
+      <li type="circle"> По горизонтали маркировки, в которые совершен переход</li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p>3.4 Вектор состояния эмуляции содержит поля:</p>
+
+    <ul>
+      <li type="circle"> Текущая маркировка</li>
+
+      <li type="circle"> Текущий шаг</li>
+
+      <li type="circle"> Текущее время</li>
+    </ul>
+    <p>&nbsp;</p>
+
+    <p>
+      <b>
+        4.&nbsp;&nbsp;Гистограммы
+      </b>
+    </p>
+
+    <ul>
+      <li type="circle">
+        Частота попадания в маркировку. Для &#969;j маркировки количество раз попадания в данную маркировку за время
+        выполнения сети.
+      </li>
+
+      <li type="circle"> Среднее время пребывания в данной j маркировке.</li>
+
+      <li type="circle"> Среднее время возвращения в данную j маркировку.</li>
+
+      <li type="circle"> Вероятность пребывания в данной j маркировке.</li>
+    </ul>
+    <p>&nbsp;</p>
+
+    
+    
+    
+    <h2>
+      <li type="1">Справка и дополнительная информация</li>
+    </h2>
+
+    <p>Руководство пользователя можно увидеть такими способами:</p>
+
+    <ul>
+      <li type="circle"> выбрать Help – Context Help…</li>
+      <li type="circle"> нажать F1</li>
+    </ul>
+    <p>&nbsp;</p>
+    
+    <p>Лицензионное соглашение можно прочесть такими способами:</p>
+
+    <ul>
+      <li type="circle"> выбрать Help – License Notice…</li>
+      <li type="circle"> нажать Ctrl + F1</li>
+    </ul>
+    <p>&nbsp;</p>
+
+    <p>О программе и авторах можно прочесть такими способами:</p>
+
+    <ul>
+      <li type="circle"> выбрать Help – About…</li>
+      <li type="circle"> нажать Ctrl + B</li>
+    </ul>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+  </ol>
+</body>
+
+</html>

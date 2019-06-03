@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>uuq(8)<br>ОС ДЕМОС. Сопровождение системы.</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>uuq(8)<br>ОС ДЕМОС. Сопровождение системы.</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+uuq - Опрос очереди заданий в системе UUCP
+<p><b>СИНТАКСИС</b>
+<pre>
+ uuq -sимя [опции]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда uuq выдает состояние очереди заданий  для  удаленной  машины  имя.  Кроме того, администратор системы
+UUCP (имеющий доступ к каталогам спулинга  UUCP)  может
+удалять задания из очереди с ее помошью.
+<p align=justify>
+По умолчанию uuq выдает список  заданий,  имеющихся  на
+данную  машину.   Каждое  задание  имеет уникальный 4-х
+символьный номер, который вместе с именем системы идентифицирует его.
+<p align=justify>
+С ключом -l uuq выдает подробную расшифровку заданий  тип работы например:
+<pre>
+ alex: 20 jobs, 51636 bytes, 10.6 minutes (@ effective baudrate of 840)
+ 7Sd5  2 dvv@hq.demos.su        1868  0.4 Mar 11 12:51 S rmail ex
+ 7Se5  2 dvv@hq.demos.su        1106  0.2 Mar 11 12:51 S rmail alex
+ 7Xa5  2 flash@sunvice.east.s   6205  1.2 Mar 11 13:37 S rmail alex
+</pre><p align=justify>
+ 'S' означает  'передача', 'R' - запрос  файла.   Время
+оценивается  для  скорости 1200bps (если не указан ключ
+-bскорость).
+<p align=justify>
+Ключ '-h' отменяет выдачу  списка  сообщений,  выдается
+только  сводная  информация. Если нет ключа '-l', выдается число работ, ключи '-h -l'  вызывают  печать  всей
+первой строки из предыдущего примера.
+<p align=justify>
+Ключ -dИдентификатор позволяет исключить задание с указанным   идентификатором.  Команда  выполняется  только
+администратором системы UUCP.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Команда 'uuq' с ключом '-l' работает сравнительно  медленно.   Команда  обычно  открыта  на выполнение только
+администраторам UUCP, либо не должна содержать признака
+'Set-User-Id'  в режимах доступа, иначе обычные пользователи смогут удалять чужие задания.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /usr/spool/uucp - Буфер системы UUCP,
+ /usr/lib/uucp/* - Файлы настройки системы uucp
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=UUSTAT.htm>uustat(1)</a>, <a href=UUNAME.htm>uuname(1)</a>,  <a href=UUQ.htm>uuq(8)</a>,  <a href=UUX.htm>uux(1)</a>,  <a href=UUCP-FIL.htm>uucp-files(5)</a>,
+uucp-admin(8)
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

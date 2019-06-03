@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>GRAPH(1G)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GRAPH(1G)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	graph - рисование графика
+<p><b>СИНТАКСИС</b>
+<pre>
+    graph  [-a [шаг [начальная_абсцисса]]] [-b] [-c метка] [-g [тип_сетки]]
+           [-l метка_графика] [-m [тип_линии]] [-s]
+           [-x [l] [начальная_абсцисса [конечная_абсцисса [шаг_сетки]]]]
+           [-y [l] [начальная_ордината [конечная_ордината [шаг_сетки]]]]
+           [-h высота] [-w ширина] [-r вправо] [-u вверх] [-t]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда  graph  без  указания опций берет пары чисел со
+	стандартного ввода, рассматривая их как  значения  абсциссы  и ординаты точек графика. Последовательные точки соединяются отрезками прямых. Стандартный вывод команды
+	graph преобразуется в картинку фильтром <a href=TPLOT.htm>tplot(1G)</a>.
+<p align=justify>	Если за координатами точки следует  нецифровая  цепочка
+	символов, она (цепочка) выводится как метка точки. Если
+	метку заключить в кавычки ", в нее можно включить  пробелы, цифры или сделать пустой; перевод строки не может
+	входить в метку.
+<p align=justify>	Команда graph распознает следующие опции, причем каждая
+	должна быть задана как отдельный аргумент:
+<dl>
+<p><dt> -a [шаг [начальная_абсцисса]] <dd>  Автоматическое назначение абсцисс (при вводе задаются только ординаты). Значение шага по  умолчанию
+	     равно 1, начальной_абсциссы равно нулю или нижнему
+	     пределу, заданному при помощи опции -x).
+<p><dt> -b  <dd> Разрывать график после каждой метки.
+<p><dt> -c метка <dd> Подразумеваемая метка для каждой точки.
+<p><dt> -g [тип_сетки] <dd>   Значения типа_сетки: 0 - нет сетки, 1  -  разметка
+	     осей, 2 - полная сетка (значение по умолчанию).
+<p><dt> -l метка_графика <dd>     Задается метка всего графика.
+<p><dt> -m [тип_линии] <dd>  Значения  типа_линии:  0  -  не  соединять  точки,
+	     1 - соединять сплошной линией (значение по умолчанию).  Некоторые  устройства  могут воспринимать и
+	     другие  типы  линий.   Например,   для   терминала
+	     Tektronix 4014 тип_линии 2 - это точечная линия, 3
+	     - штрихпунктирная,  4  -  пунктирная,  5 - длинно 
+	     пунктирная).
+<p><dt> -s <dd>  Сохранить экран, не очищать перед рисованием.
+<p><dt> -x [l] [начальная_абсцисса [конечная_абсцисса [шаг_сетки]]] <dd> Если l присутствует, ось x трактуется как логарифмическая. Обычно значения трех  последующих  аргументов определяются автоматически.
+<p><dt> -y [l] [начальная_ордината [конечная_ордината [шаг_сетки]]] <dd> Аналогично опции -x.
+<p><dt> -h высота <dd>  Высота - часть экрана (листа) по  высоте,  которую
+	     займет график.
+<p><dt> -w ширина <dd>  То же для ширины.
+<p><dt> -r вправо <dd>  На какую часть  экрана  (листа)  нужно  сместиться
+	     вправо перед началом рисования.
+<p><dt> -u вверх <dd>  То же для смещения вверх.
+<p><dt> -t  <dd> Поменять местами оси абсцисс и ординат.
+</dl>
+<p align=justify>	Информация о диапазоне изменения x и y выводится вместе
+	с сеткой, кроме случая, когда указана  опция  -s.  Если
+	заданный нижний предел превышает  верхний,  направление
+	оси меняется на обратное.
+<p><b>СМ. ТАКЖЕ</b><br>
+	graphics(1G), <a href=SPLINE.htm>spline(1G)</a>, <a href=TPLOT.htm>tplot(1G)</a>.
+<p align=justify><p align=justify><b>СЮРПРИЗЫ</b><br>
+	Graph запоминает все точки в оперативной памяти и  отбрасывает те из них, на которые не хватает места.
+<p align=justify>	Отрезки, которые выходят за границы, не выводятся.
+<p align=justify>	Направление логарифмической оси не может быть  изменено
+	на обратное.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

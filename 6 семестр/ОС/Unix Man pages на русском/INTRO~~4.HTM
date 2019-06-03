@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>INTRO(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>INTRO(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+intro - введение в описание специальных файлов
+<p align=justify><b>ОПИСАНИЕ</b><br>
+В этом разделе описываются различные специальные файлы,
+соответствующие периферийным устройствам, а также драйверы  устройств.  Описываются также драйверы псевдоустройств [см. <a href=INTRO~1.htm>intro(2)</a>],  модули  и  средства  управления
+псевдоустройствами [см. <a href=IOCTL.htm>ioctl(2)</a>].
+<p align=justify>
+Названия статей, относящихся к оборудованию, обычно образуются  по  названию соответствующего оборудования, а
+не по именам специальных файлов. Там, где это необходимо, обсуждаются  характеристики  оборудования  и  соответствующих драйверов ОС UNIX.
+<p align=justify>
+Каждое  устройство идентифицируется специальным файлом,
+находящимся в каталоге /dev. Этот специальный файл  наделен  старшим  и  младшим номерами устройства. Старший
+номер идентифицирует драйвер устройства и, следовательно, соответствующий контроллер. Младший номер идентифицирует устройство, привод, канал или что-либо еще, присоединенное к контроллеру. В некоторых случаях,  например  для  диска,  младший  номер есть номер логического
+диска (раздела физического диска, или  тома).  Ядро  ОС
+UNIX распознает два различных типа устройств: блочные и
+символьные.
+<p align=justify><i>Блочные устройства</i><br>
+Это устройства типа магнитных дисков, использующие имеющийся в ядре механизм буферизации.
+<pre>
+  /dev/dsk/hd*    Диск.
+  /dev/dsk/fd*    Дискета.
+</pre>
+<p><i>Символьные устройства</i>
+<pre>
+  /dev/console    Системная консоль.
+  /dev/tty*       Терминалы.
+  /dev/mt         Магнитофон.
+</pre>
+<p align=justify><i>Бесструктурные устройства</i><br>
+Специальные  символьные устройства, обеспечивающие прямой доступ к устройствам типа магнитных  дисков,  минуя
+механизм буферизации, называются бесструктурными. Нельзя по отношению к одному устройству одновременно выполнять блочный и бесструктурный ввод/вывод. Перед использованием бесструктурного ввода/вывода следует выполнить
+команду   umount   [см.  <a href=MOUNT.htm>mount(1M)</a>]  или  крайней  мере
+<a href=SYNC~1~2.htm>sync(1M)</a>.
+<pre>
+  /dev/rdsk/hd*   Бесструктурный ввод/вывод на диск.
+  /dev/rdsk/fd*   Бесструктурный ввод/вывод на дискету.
+  /dev/rmt        Магнитофон.
+</pre><p align=justify>
+В  общем случае имена специальных файлов, соответствующих дисковым устройствам, имеют следующий формат:
+<pre>
+     /dev/[r]dsk/{контроллер}{том}s{логический_диск}
+</pre>
+где
+<ul>
+<li><b>r</b> Означает, что устройство является бесструктурным.
+<li><b>контроллер</b> Префикс, задающий имя контроллера, например hd.
+<li><b>том</b> Номер тома, подсоединенного к контроллеру.
+<li><b>логический_диск</b> Номер  логического  диска на томе; должен лежать в
+диапазоне от 0 до 7.
+</ul>
+<p align=justify><i>Прочие устройства</i>
+<pre>
+  /dev/tty        Виртуальный  терминал;  всегда связан с физическим терминалом пользователя.
+  /dev/mem        Физическая память.
+  /dev/kmem       Виртуальная память ядра ОС.
+  /dev/error      Устройство фиксации ошибок системы.
+  /dev/null       Пустое  устройство:  при  вводе  всегда возвращает признак
+                  конца файла, при выводе поглощает все данные.
+  /dev/prf        Устройство,  используемое системой профилирования [см. <a href=PROFILER.htm>profiler(1M)</a>].
+  /dev/sxt/*      Виртуальные терминалы [для <a href=SHL.htm>shl(1)</a>].
+</pre>
+<p align=justify><i>Диски, тома, младшие номера</i><br>
+Томом  называется  физически  существующий диск. Размер
+тома в блоках равен:
+<pre>
+    число_цилиндров * число_головок * блоков_на_дорожке
+</pre><p align=justify>
+Размер  типичного  тома равен 3160*5*19=300200. Том делится на разделы - логические диски. Рассмотрим следующий простой пример деления тома на разделы A, B,  и  C.
+Совокупность A+B+C составляет полный том.
+<pre>
+     |--------A--------|----B----|--------C--------|
+
+     A    Корневая файловая система.
+     B    Область подкачки.
+     C    Дополнительная  файловая  система  или  место  для
+          быстрого сохранения информации.
+</pre>
+<p align=justify>
+Старший и младший номера устройства хранятся в описателе соответствующего специального файла; их можно узнать
+с помощью команды <a href=LS.htm>ls(1)</a>. Пример:
+<pre>
+     ls -log /dev/dsk/hd0s*
+     
+     crw-rw-r--   1   7, 0 Jan 27 08:30 /dev/rdsk/hd0s0
+     crw-rw-r--   1   7, 1 Feb  1 09:01 /dev/rdsk/hd0s1
+     crw-rw-r--   1   7, 2 Dec  1 08:42 /dev/rdsk/hd0s2
+     crw-rw-r--   1   7, 7 Jan 27 08:30 /dev/rdsk/hd0s7
+</pre><p align=justify>
+Старший  и  младший  номера  перечисленных   символьных
+(бесструктурных) устройств выведены перед датой.
+<p align=justify>
+Старший  номер  используется  как  указатель  в таблице
+старших номеров устройств для получения доступа к драйверу. Младший номер устройства передается драйверу  для
+выбора  тома  и раздела на томе: 5 старших бит младшего
+номера определяют том, а 3 младших - раздел, или  логический диск. Логические диски не обязаны быть непересекающимися:  один  логический  диск может содержать несколько других. Пример:
+<pre>
+     |--------0--------|                            
+                       |----2----|                  
+                                 |--------1--------|
+     |----------------------7----------------------|
+</pre><p align=justify>
+Устройство с младшим номером 7  должно  соответствовать
+полному  тому.  Оно  начинается с блока 0 и имеет длину
+A+B+C.
+<p align=justify>
+Устройство с младшим номером 0 обычно используется  как
+основная  файловая  система,  начинающаяся  с блока 0 и
+имеющая длину A.
+<p align=justify>
+Устройство с младшим номером 2 может использоваться как
+область подкачки, начинающаяся после области A и  имеющая длину B.
+<p align=justify>
+Устройство с младшим номером 1 может использоваться как
+область  для быстрого сохранения файлов или, как вторая
+файловая система, которая может быть смонтирована.  Эта
+область начинается с блока A+B и имеет длину C.
+<p align=justify>
+Специальные файлы, соответствующие дискам, нужно создавать  в  каталоге /dev/dsk или /dev/rdsk, с помощью команды <a href=MKNOD.htm>mknod(1M)</a>.
+<p align=justify>
+Младшие номера, кроме последнего, можно переопределить,
+чтобы  изменить разбиение на логические диски. Во включаемом файле  &lt;sys/io.h&gt;  хранится  перечень  известных
+системе дисковых устройств и разбиение томов. Используемые структуры описаны во включаемом файле &lt;sys/disk.h&gt;
+и  применяются  всеми  драйверами  дисков и программами
+обслуживания.  Текущая  конфигурация  описана  в  файле
+/usr/src/uts/dfile.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=IO.htm>io(4)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

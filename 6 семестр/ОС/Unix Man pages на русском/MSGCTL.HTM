@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>MSGCTL(2)                                             MSGCTL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MSGCTL(2)                                             MSGCTL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+msgctl - операции управления очередью сообщений
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/types.h&gt;
+        #include &lt;sys/ipc.h&gt;
+        #include &lt;sys/msg.h&gt;
+
+        int msgctl (msqid, cmd, buf)
+        int msqid, cmd;
+        struct msqid_ds *buf;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов msgctl позволяет выполнять операции управления очередью сообщений. Операция определяется значением аргумента cmd, которое должно быть одним из следующих:
+<Dl>
+<dt>IPC_STAT 
+<dd>Поместить текущее значение каждого поля  структуры
+данных, ассоциированной с идентификатором  очереди
+сообщений msqid, в структуру, на которую указывает
+buf.  Содержимое  структуры  описано  в  <a href=INTRO~1.htm>intro(2)</a>.
+{Требуется право на чтение.}
+<dt>IPC_SET 
+<dd>Присвоить следующим полям структуры данных,  ассоциированной с идентификатором msqid, соответствующие значения, находящиеся в структуре, на  которую
+указывает buf:
+<pre>
+   msg_perm.uid
+   msg_perm.gid
+   msg_perm.mode /* Только младшие 9 бит */
+   msg_qbytes
+</pre>
+Это действие может выполняться  только  процессом,
+действующий  идентификатор  пользователя  которого
+равен либо идентификатору суперпользователя,  либо
+значению поля  msg_perm.cuid  или  msg_perm.uid  в
+структуре данных, ассоциированной с msqid.  Только
+суперпользователь может увеличивать значение  поля
+msg_qbytes.
+<dt>IPC_RMID 
+<dd>Удалить из системы идентификатор  очереди  сообщений, определяемый значением  msqid,  ликвидировать
+очередь сообщений и ассоциированную с ней структуру данных. Эта команда  может  выполняться  только
+процессом, который имеет действующий идентификатор
+пользователя, равный  либо  идентификатору  суперпользователя, либо значению поля msg_perm.cuid или
+msg_perm.uid в структуре данных, ассоциированной с
+msqid.
+</dl><p>
+Системный вызов msgctl завершается неудачей,  если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EINVAL]
+<dd>Значение аргумента msgid не  является  корректным идентификатором очереди сообщений.
+<dt>[EINVAL]
+<dd>Некорректное значение аргумента cmd,  определяющее выполняемое действие.
+<dt>[EACCES]
+<dd>Значение аргумента cmd равно IPC_STAT и нет
+прав на чтение у вызывающего процесса<dt>[см.
+<a href=INTRO~1.htm>intro(2)</a>].
+<dt>[EPERM]
+<dd>Значение аргумента cmd равно  IPC_RMID  или
+IPC_SET и действующий идентификатор пользователя вызывающего  процесса  не  равен  ни
+идентификатору суперпользователя, ни значению поля msg_perm.cuid или  msg_perm.uid  в
+структуре данных, ассоциированной с msqid.
+<dt>[EPERM]
+<dd>Значение аргумента cmd равно IPC_SET и была
+предпринята попытка увеличить значение поля
+msg_qbytes,   а  действующий  идентификатор
+пользователя вызывающего процесса не  равен
+идентификатору суперпользователя.
+<dt>[EFAULT]
+<dd>Аргумент buf указывает за пределы  отведенного процессу адресного пространства.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~1.htm>intro(2)</a>, <a href=MSGGET.htm>msgget(2)</a>, <a href=MSGOP.htm>msgop(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,9 @@
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\bin\Release\SIAODKurs.exe
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\bin\Release\SIAODKurs.pdb
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.csprojResolveAssemblyReference.cache
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.Form1.resources
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.Properties.Resources.resources
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.csproj.GenerateResource.cache
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.csproj.CoreCompileInputs.cache
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.exe
+C:\Users\я\source\repos\SIAODKurs\SIAODKurs\obj\Release\SIAODKurs.pdb

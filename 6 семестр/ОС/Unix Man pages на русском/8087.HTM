@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>8087(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>8087(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+8087
+<p><b>СИНТАКСИС</b>
+<pre>
+ 8087
+ 80287
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+8087 -  это математический  сопроцессор INTEL  для процессора 8086.
+80287 - это математический сопроцессор INTEL для процессора  80286.
+Ядро  проверяет  присутствие  сопроцессоров  8087  и 80287 во время
+загрузки.
+<p align=justify>
+Если на вашей  машине имеется один  из этих сопроцессоров,  то  для
+активизации  его  прерываний  вам  нужно выключить  соответствующий
+переключатель  на  главной  системной  плате.  Для нахождения этого
+переключателя   и   определения   правильной   установки   смотрите
+документацию по аппаратной части.  Если у вас нет  сопроцессора или
+данный  переключатель  находится  во  включенном  положении,   ядро
+системы  запустит  пакет  процедур  эмуляции, которые функционируют
+гораздо медленнее.
+<p align=justify>
+Транслятор с языка Си,  поставляемый в пакете программ  Расширенной
+системы,  генерирует  соответственные  операционные  коды 8087 (или
+80287). Процедуры,  скомпилированные с  помощью этого  транслятора,
+работают в 200 раз быстрее, чем соответствующие им коды эмуляции. В
+частности, стандартные процедуры математической библиотеки работают
+значительно быстрее, если у вас есть сопроцессор 8087 или 80287.
+<p align=justify>
+Переполнение,  деление  на  нуль  и  ошибки  некорректных операндов
+возвращают  сигнал  SIGFPE.  Этот  сигнал  может  быть  перехвачен.
+Остальные ошибки операций с  плавающей точкой сопроцессоров 8087  и
+80287  (машинный  нуль,  ошибка  нормализации  операнда  и   ошибка
+точности ) маскируются.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+При  делении  на  нуль  эмулятор  возвращает информацию, не имеющую
+смысла.
+<p align=justify>
+Не  существует   простого  способа   определить,  какое   состояние
+сгенерировало сигнал SIGFPE.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

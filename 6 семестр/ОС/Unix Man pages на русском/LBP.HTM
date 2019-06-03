@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>LBP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LBP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+lbp - фильтр для лазерного принтера
+<p><b>СИНТАКСИС</b>
+<pre>
+   lbp  [-k] [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда lbp прочитывает данные  со  стандартного  ввода
+или из файла  и  интерпретирует  встретившиеся  команды
+форматирования. По этим командам генерируются управляющие последовательности  для  лазерного  принтера  Canon
+LBP-8.
+<p align=justify>Опция -k используется для игнорирования команд форматирования. Она может оказаться полезной при выводе файла,
+содержащего команды форматирования для lbp,  на  другой
+принтер.
+<p align=justify>Все команды форматирования для lbp начинаются с символа
+CTRL+B (код ASCII 2). В приводимом ниже описании команд
+этот символ не указан, но подразумевается.
+<p align=justify><b>Команды управления шрифтом:</b><br>
+<table>
+<tr valign=top><th>B  <td>  Включить жирный шрифт.
+<tr valign=top><th>I  <td>  Использовать курсив.
+<tr valign=top><th>L  <td>  Выбрать тонкий шрифт.
+<tr valign=top><th>U  <td>  Включить подчеркивание.
+<tr valign=top><th>N  <td>  Выключить подчеркивание.
+<tr valign=top><th>D  <td>  Аннулировать действие команд из данного списка.
+</table>
+<p align=justify>Эти команды не обязательно исключают друг друга, но относятся только к набору 10 символов/дюйм (кроме  режима
+подчеркивания); курсив и жирный шрифт взаимно исключают
+друг друга (при использовании встроенного алфавита).
+<p align=justify><b>Стандартные форматы вывода:</b><br>
+<table>
+<tr valign=top><th>H  <td>  Установить режим заголовка: 6 строк/дюйм, 10  сим     волов/дюйм, размер полей слева = 5.
+<tr valign=top><th>T  <td>  Установить текстовый режим: 8 строк/дюйм, 15  сим     волов/дюйм, размер полей слева = 14
+</table>
+<p align=justify><b>Специальные  функции:</b><br>
+<table>
+<tr valign=top><th>Sx <td>  Выбрать расстояние между строками (x = 0, 1, 2, 3,
+     4  означает,  соответственно, 6, 4, 3, 12, 8 строк
+     на дюйм).
+<tr valign=top><th>Px <td>  Выбрать число символов на дюйм (x = 0 или  2,  что
+     означает,  соответственно,  10  или 15 символов на
+     дюйм).
+<tr valign=top><th>Ex  <td> Включить или выключить укрупнение по горизонтали и
+     вертикали (x = 0/1 означает выкл/вкл).
+<tr valign=top><th>MS <td>  Установить границу полей слева в текущей позиции.
+<tr valign=top><th>MC <td>  Аннулировать установку границы полей слева.
+</table>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LPX.htm>lpx(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Диагностические сообщения команды не нуждаются в  пояснениях.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>TZ(5)<br>XENIX System V (1 €нвap€ 1989)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">—ервер поддерживаетс€<br><a class="plain" href="http://www.citmgu.ru">÷ентром »нформационных “ехнологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">—ервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TZ(5)<br>XENIX System V (1 €нвap€ 1989)</h3>
+<p><b>Ќј«¬јЌ»≈</b><br>
+TZ - чacoвoй пo€c (пepeмeннa€ кoмaнднoй cpeды)
+<p><b>—»Ќ“ј —»—</b>
+<pre>
+TZ=sssn[ddd[m][;start[/time],end[/time]]]; export TZ
+setenv TZ sssn[ddd[m][;start[/time],end[/time]]]
+/etc/tz
+</pre>
+<p align=justify><b>ќѕ»—јЌ»≈</b><br>
+ѕepeмeннa€ кoмaнднoй cpeды TZ пpeднaзнaчeнa дл€ зaдaни€
+чacoвoгo пo€ca, ee знaчeниe мoжeт быть ycтaнoвлeнo в фaйлax
+/etc/rc, /.profile, /etc/default/login.
+<p align=justify>
+‘aйл /etc/tz, выпoлн€eмый, глaвным oбpaзoм, вo вpeм€
+нacтpoйки, зaпpaшивaeт чacoвo пo€c и выпoлн€eт нeoбxoдимыe
+измeнeни€ в cooтвeтcтвyющиx фaйлax.
+<p align=justify>
+«aпpaшивaютc€ тaкжe дaты пepexoдa нa лeтнee вpeм€ и oбpaтнo,
+чacoвa€ paзницa мeждy лeтним и cтaндapтным вpeмeнeм.
+<p align=justify>
+ѕoльзoвaтeли, нaxoд€щиec€  в инoм чacoм пo€ce, чeм гoлoвнa€
+мaшинa, мoгyт измeнить TZ cвoи фaйлы $HOME/.profile или
+$HOME/.login.  TZ coдepжит cлeдyющyю инфopмaцию:
+<table>
+<tr valign=top><td>(sss)<td>Oт oднoй дo дeв€ти бyкв, oпpeдeл€ющиx
+cтaндapтный чacoвoй пo€c.</tr>
+<tr valign=top><td>(n)<td>„acoвa€ paзницa co вpeмeнeм пo √pинвичy.
+(ѕoлoжитeльнoe чиcлo - дл€ пo€coв, зaпaднee
+√pинвичa, oтpицaтeльнoй - дл€ пo€coв,
+вocтoчнee).</tr>
+<tr valign=top><td>(ddd)<td>Oт oднoй дo дeв€ти бyкв, oпpeдeл€ющиx мecтнoe
+лeтнee вpeм€. Ecли нe yкaзaнo, лeтнeгo
+вpeмeни нe cyщecтвyeт.</tr>
+<tr valign=top><td>(m)<td>„acoвa€ paзницa c лeтним вpeмeнeм пo
+√pинвичy. Ecли oпyщeнo, пoдpaзyмeвaeтc€
+oднoчacoвa€ paзницa c мecтным вpeмeнeм.</tr>
+<tr valign=top><td>(start)<td>ѕpaвилo, oпpeдeл€ющee дeнь нaчaлa лeтнeгo
+вpeмeни. B южнoм пoлyшapии дeнь oкoнчaни€
+лeтнeгo вpeмeни дoлжeн быть paньшe, чeм дeнь
+нaчaлa.</tr>
+<tr valign=top><td>(end)<td>ѕpaвилo, oпpeдeл€ющee дeнь oкoнчaни€ лeтнeгo
+вpeмeни.</tr>
+<tr valign=top><td>(time)<td>Bpeм€ дн€, в кoтopoe ocyщecтвл€eтc€ пepexoд
+нa лeтнee вpeм€.  пo yмoлчaнию, 02:00:00
+мecтнoгo вpeмeни.</tr>
+</table>
+ѕpaвилa, oпpeдeл€ющиe start и end лeтнeгo вpeмeни cлeдyющиe:
+<table>
+<tr valign=top><td>Jn<td>1 бaзoвый июльcкий дeнь n(1&lt;=n&lt;=365)</tr>
+<tr valign=top><td>n<td>0 бaзoвый июльcкий дeнь n(1&lt;=n&lt;=364)</tr>
+<tr valign=top><td>Wn.d<td>n-ый(1&lt;=n&lt;=53) дeнь нeдeли d(0&lt;=d&lt;=6)</tr>
+<tr valign=top><td>Mm.n.d<td>n-ый(1&lt;=n&lt;=5) дeнь нeдeли d в мec€цe m(1&lt;=m&lt;=12)</tr>
+</table>
+<p align=justify>
+Ћишний дeнь в виcoкocнoм гoдy нe yчитывaeтc€ (в пepвыx двyx
+пpaвилax), зa 28-м фeвpaл€(J59) cлeдyeт 1 мapтa(J60).
+<p align=justify>
+Bocкpeceньe €вл€eтc€ пepвым днeм нeдeли (0). Ecли d oпyщeнo,
+пoдpaзyмeвaeтc€ вocкpeceньe.
+<p align=justify>
+ƒл€ тoгo, чтoбы измeнить чacoвoй пo€c, тpeбyeтc€ зaпycтить
+etc/tz или oтpeдaктиpoвaть фaйлы /etc/rc, /.profile,
+<p align=justify><b>‘ј…Ћџ</b>
+<pre>
+/etc/rc
+/etc/default/login
+$HOME/.profile
+$HOME/.login
+</pre>
+<p><b>—ћ. “ј ∆≈</b><br>
+<a href=ENVIRON.htm>environ(5)</a>, <a href=DATE.htm>date(1)</a>, ctime(1)
+<p align=justify><b>«јћ≈„јЌ»я</b><br>
+Date(1) aвтoмaтичecки вocпpинимaeт пepexoд нa лeтнee вpeм€.
+<p align=justify>
+»змeнeниe TZ нeмeдлeннo cкaзывaeтc€ нa paбoтe cиcтeмы,
+cлeдyющий вызoв пpoцeдypы ctime(2) вoзвpaщaeт знaчeниe,
+бaзиpyющeec€ нa нoвoм знaчeнии
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

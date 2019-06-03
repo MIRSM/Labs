@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>SNO(1)  </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SNO(1)  </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+sno - интерпретатор СНОБОЛа
+<p><b>СИНТАКСИС</b>
+<pre>
+	sno [ файлы ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда sno - это компилятор и интерпретатор СНОБОЛа (с
+незначительными отличиями). На вход команде sno подается конкатенация названных файлов и стандартного  ввода.
+Весь входной текст  вплоть  до  оператора,  содержащего
+метку end, считается программой и компилируется. Доступ
+к остальной части текста можно получить через псевдопеременную syspit.
+<p align=justify>Sno имеет следующие отличия от СНОБОЛа:
+<p align=justify>Отсутствует незакрепленный поиск. Тот же самый результат можно получить с помощью следующих  конструкций:
+<pre>
+       a ** b        незакрепленный поиск b.
+       a *x* b = x c незакрепленное присваивание
+</pre>
+Отсутствуют обратные ссылки.
+<pre>
+       x = "abc"
+       a *x* x       незакрепленный поиск abc.
+</pre>
+<p align=justify>Определение функций осуществляется в режиме компиляции при помощи (неуникальной) метки define.  Выполнение вызова функции  начинается  с  оператора,
+который следует за define. Функции не  могут  быть
+определены  в  режиме  выполнения  программы,  имя
+define зарезервировано. Кроме формальных  параметров, других автоматических переменных  не  предусмотрено. Примеры:
+<pre>
+       define f( )
+       define f(a, b, c)
+</pre>
+Все метки за исключением define (даже end)  должны
+помечать непустой оператор.
+<p align=justify>Все метки, функции и переменные должны иметь  различные имена. В частности, непустой оператор,  помеченный end'ом, не может просто называть метку.
+<p align=justify>Если начало - это метка программы, то стартует выполнение этой программы. В противном  случае,  выполнение начинается с первого выполняемого  оператора; define не является выполняемым оператором.
+<p align=justify>Встроенные функции отсутствуют.
+<p align=justify>Скобки в арифметических выражениях  необязательны.
+Поддерживается обычное соглашение  о  приоритетах.
+По этой причине  арифметические  операции  /  и  *
+должны окаймляться пробелами.
+<p align=justify>Правая часть присваиваний должна быть непустой.
+<p align=justify>Для выделения литералов можно использовать как  ',
+так и ".
+<p align=justify>Псевдопеременная sysppt недоступна.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=AWK.htm>awk(1)</a>.
+<p align=justify><i>SNOBOL, A String Manipulation Language, by D.  J.  Farber, R. E.  Griswold,  and  I.  P.  Polonsky,  JACM  11 (1964), pp. 21-30.</i>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>FDISK(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FDISK(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+fdisk - работает с разделами диска.
+<p><b>СИНТАКСИС</b>
+<pre>
+ fdisk [[-p] [-ad partition] [-c partition start size] [-f devicename]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+fdisk высвечивает  информацию о  разделах диска.  Кроме того,  fdisk
+создает  и  удаляет  разделы  диска,  меняет  активный раздел. fdisk
+представляет расширенный  набор функций  по сравнению  с одноименной
+командой MS-DOS.  fdisk обычно  используется с  меню в интерактивном
+режиме.
+<p align=justify>
+Жесткий диск может иметь самое  большее четыре раздела. Но в  данный
+момент может  быть активным  только один  раздел. Коль  скоро раздел
+сделан  активным,  операционная  система  этого  раздела загружается
+автоматически при остановке текущей операционной системы.
+<p align=justify>
+Для использования системы  UNIX ей должен быть отведен хотя бы  один
+раздел.
+<p align=justify>
+При  выборе  опции  "Use  Entire  Disk  for   UNIX" утилита fdisk не
+резервирует  первую  дорожку  и  последний  цилиндр  жесткого диска.
+Первая дорожка жесткого диска резервируется под главный загрузчик, а
+последний  цилиндр  обычно  используется  для  диагностики  жесткого
+диска.  Если  вы  намерены  запускать программы диагностики жесткого
+диска, вам не следует занимать его последний цилиндр.
+<p align=justify>
+Например, если на диске 2442  дорожки, то fdisk воспринимает их  под
+номерами 0 - 2441. Если   у жесткого диска четыре головки, то  fdisk
+будет использовать (опция "Use  Entire  Disk  for   UNIX" )  дорожки
+1-2437.  (Нулевая  дорожка  резервируется  для главного загрузчика.)
+Последний цилиндр (дорожки 2438-2441) при выборе опции "Use   Entire
+Disk for UNIX" не используется.
+<p align=justify>
+Разделы определяются  в "таблице  разделов" в  конце блока  главного
+загрузчика.  Эта  таблица  содержит  информацию  о  расположении   и
+размерах разделов на диске. Она определяет также, какой из  разделов
+является  активным.  Любой  раздел  может  быть  отведен под систему
+UNIX,  DOS  или  какую-нибудь  другуя  операционную  систему.   Если
+сформирован  раздел  DOS,  то  доступ  к  файлам  и  каталогам  DOS,
+находящимся в  этом разделе,  может быть  получен посредством команд
+<a href=DOS.htm>dos(1)</a>  системы  UNIX.   Система   DOS  может  быть  загружена   без
+активизации  раздела  DOS  с  помощью  команды  "boot:dos".
+<p align=justify><i>Аргументы</i><br>
+<tt>-p,-a,-d,-c</tt><br>
+Эти  аргументы  используются  для  вызова  fdisk  в неинтерактивном
+режиме:
+<dl>
+<dt>-p
+<dd>выдает таблицу разделов диска.
+<dt>-a number
+<dd>активизирует заданный раздел диска.
+<dt>-d number
+<dd>удаляет заданный раздел диска.
+<dt>- number start size
+<dd>создает раздел с заданными началом и размером.
+<dt>-f name
+<dd>Откройте  устройство   name  и   прочитайте  таблицу   разделов,
+связанную  с  этим  устройством.  По  умолчанию этим устройством
+является /dev/rhd00.
+</dl>
+<p align=justify><i>Опции</i><br>
+Команда  fdisk  высвечивает  подсказку  и  меню  с  пятью  опциями.
+Модификация диска не производится, пока вы не введете 'q' в главном
+меню.
+<ol>
+<li>Display Partition Table<br>
+Эта  опция  выдает  таблицу  с  информацией  по  каждому разделу
+жесткого диска.  В колонке  PARTITION содержится  номер раздела.
+Колонка  STATUS  сообщает,  какой  из разделов явялется активным
+(A), а какой - нет (I). Колонка TYPE говорит о том, какой раздел
+содержит систему  UNIX,  какой - DOS  и какой "other"  (прочую).
+Эта опция высвечивает также начальную дорожку, конечную  дорожку
+и общее количество в каждом разделе.
+<li>Use Entire Disk for UNIX<br>
+fdisk формирует только один раздел, который включает все дорожки
+на диске  за исключением  первой дорожки  и последнего цилиндра.
+Этот раздел отводится системе UNIX и назначается активным.
+<li>Create UNIX Partition<br>
+Эта  опция  разрешает  создание  раздела  посредством  изменения
+таблицы разделов. fdisk сообщает количество дорожек, доступных в
+каждом разделе, и количество занятых дорожек. fdisk обеспечивает
+подсказки для создания раздела, а также ввода начальной  дорожки
+и  размера   раздела  в   дорожках.  Изменения   записываются  в
+операционную систему  и на  жесткий диск,  когда вы  выходите из
+главного меню, вводя 'q'.
+<li>Activate Partition<br>
+Эта опция активизирует заданный раздел. Из всех разделов  только
+один раздел может быть активным. Изменение будет  действительным
+только после выхода из меню. Операционная система, находящаяся в
+активизированном  разделе,  загрузится  после  остановки текущей
+операционной системы.
+<li>Delete Partition<br>
+Эта  опция  спрашивает,  какой  раздел  вы хотите удалить. fdisk
+сообщает освобождаемый объем дискового пространства в  дорожках.
+Изменение будет действительным только после выхода из меню.
+</ol><p align=justify>
+Выйдите из программы fdisk, набрав 'q' в главном меню fdisk. Теперь
+изменения будут записаны в операционную систему и на жестком диске.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Минимальный  рекомендуемый  размер   раздела   UNIX  составляет   5
+мегабайт.
+<p align=justify>
+fdisk предназначается для работы с системой DOS и не может работать
+со всеми комбинациями  различных операционных систем.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=DOS.htm>dos(1)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

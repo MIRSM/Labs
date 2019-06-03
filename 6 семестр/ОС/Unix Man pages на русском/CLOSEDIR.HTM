@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>DIRECTORY(3X)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DIRECTORY(3X)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+directory:   opendir,   readdir,   telldir,    seekdir,
+rewinddir, closedir - операции над каталогами
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;sys/types.h>
+	#include &lt;dirent.h>
+	
+	DIR *opendir (filename)
+	char *filename;
+	
+	struct dirent *readdir (dirp)
+	DIR *dirp;
+	
+	long telldir (dirp)
+	DIR *dirp;
+	
+	void seekdir (dirp, loc)
+	DIR *dirp;
+	long loc;
+		
+	void rewinddir (dirp)
+	DIR *dirp;
+	
+	void closedir (dirp)
+	DIR *dirp;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция opendir открывает каталог с именем  filename  и
+связывает  с  ним  поток каталога. Opendir возвращает в
+качестве результата указатель, который  используется  в
+последующих  операциях для идентификации потока каталога. Пустой указатель возвращается, если  файл  filename
+не доступен или не является каталогом, либо,  если  команда  malloc(1M) не может выделить достаточного об ема
+памяти для структуры типа DIR или для буферов.
+<p align=justify>Функция  readdir выдает указатель на следующий активный
+элемент каталога. Указатели на неактивные элементы  каталога  не  выдаются. При достижении конца каталога или
+при выявлении некорректной позиции в каталоге возвращается пустой указатель.
+<p align=justify>Функция telldir выдает текущую позицию в указанном  потоке каталога.
+<p align=justify>Функция  seekdir  устанавливает позицию для последующей
+операции readdir над потоком каталога.  Данная  позиция
+совпадает с той, которая была получена в результате выполнения  операции  telldir, вычислившей loc. Значения,
+которые возвращает telldir, корректны только в том случае, если каталог не сжимался и  не  расширялся.  Такая
+проблема  не возникает в случае версии 5, но может возникнуть для некоторых других типов файловых систем.
+<p align=justify>Операция rewinddir переустанавливает в начало позицию в
+указанном потоке каталога.
+<p align=justify>Операция closedir  закрывает указанный поток каталога и
+освобождает структуру DIR.
+<p align=justify>При выполнении перечисленных операций могут  возникнуть
+следующие ошибки:
+<P><B>opendir:</B>
+<table>
+<tr valign=top><th>[ENOTDIR] <td>  Компонент маршрутного имени filename не является каталогом.
+<tr valign=top><th>[EACCES] <td>   Для  компонента  маршрутного имени filename
+отсутствует право на поиск.
+<tr valign=top><th>[EMFILE]  <td>  Будет превышено максимально допустимое число описателей файлов.
+<tr valign=top><th>[EFAULT]  <td>  Аргумент  filename указывает за пределы отведенного процессу адресного пространства.
+</table>
+<P><B>readdir:</B>
+<table>
+<tr valign=top><th>[ENOENT] <td>   Текущая позиция каталога  не  соответствует
+корректному элементу.
+<tr valign=top><th>[EBADF]  <td>   Описатель  файла,  определенный  аргументом
+dirp,  в данный момент некорректен. Возможная причина - поток был закрыт.
+</table>
+<P><B>telldir, seekdir и closedir:</B>
+<table>
+<tr valign=top><th>[EBADF]   <td>  Описатель  файла,  определенный  аргументом
+dirp,  в данный момент некорректен. Возможная причина - поток был закрыт.
+</table>
+<p><b>ПРИМЕР</b><br>
+Приведем  фрагмент программы для поиска в каталоге элемента name:
+<pre>
+     dirp = opendir (".");
+     while ((dp = readdir (dirp)) != NULL)
+       if (strcmp (dp->d_name, name) == 0) {
+         closedir (dirp);
+         return FOUND;
+       }
+     closedir (dirp);
+     return NOT_FOUND;
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GETDENTS.htm>getdents(2)</a>, <a href=DIRENT.htm>dirent(4)</a>.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Rewinddir реализован как макрос, поэтому к нему  нельзя
+применить операцию вычисления адреса функции.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

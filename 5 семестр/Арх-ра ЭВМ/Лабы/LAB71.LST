@@ -1,0 +1,86 @@
+Turbo Assembler	 Version 2.5	    12/06/18 12:10:39	    Page 1
+lab71.asm
+
+
+
+      1	0000			     code	 segment
+      2	0000			      prog	  proc	  far
+      3					     assume cs:code, ds:code
+      4					     org     100h
+      5	0100				     begin:
+      6	0100  8C C8			     mov ax,cs
+      7	0102  8E D8			     mov ds,ax
+      8	0104  B9 0006			     mov cx,6
+      9
+     10					     ; установка видеорежима
+     11	0107  B4 00			     mov ah, 0
+     12	0109  B0 10			     mov al, 10H
+     13	010B  CD 10			     int 10h
+     14	010D  B3 01		     mov bl,1
+     15	010F  BE 013Cr			     lea si,nme
+     16				     ; ввод	символов
+     17	0112			     nloop:
+     18					     ;вывод символа
+     19	0112  B4 0E			     mov ah,0eH
+     20	0114  8A 04			     mov al,[si]
+     21
+     22	0116  CD 10			     int 10h
+     23	0118  46			     inc     si
+     24	0119  FE C3			     inc bl
+     25	011B  E2 F5			     loop nloop
+     26
+     27	011D  B4 02		     mov     ah,02H
+     28	011F  B7 00		     mov bh,0
+     29	0121  B6 01		     mov dh,1
+     30	0123  B2 00		     mov dl,0
+     31	0125  CD 10		     int 10h
+     32
+     33	0127  B9 0009		     mov cx,9
+     34	012A  BE 0142r			     lea si,fml
+     35	012D			     floop:
+     36	012D  B4 0E			     mov ah,0eH
+     37	012F  8A 04			     mov     al,[si]
+     38	0131  CD 10			     int 10h
+     39	0133  46			     inc si
+     40	0134  FE C3			     inc bl
+     41	0136  E2 F5			     loop floop
+     42				     ; выход из программы
+     43	0138				     exit:
+     44	0138  B4 4C			     mov ah, 4ch
+     45	013A  CD 21			     int 21h
+     46
+     47	013C  44 6D 69 74 72 79	     nme db 'Dmitry'
+     48	0142  55 67 72 6F 76 61	74+  fml db  'Ugrovatov'
+     49	      6F 76
+     50				     ;crlf db 0ah, 0dh,	'$'
+     51	014B			     prog endp
+     52	014B			     code	 ends
+     53				     end begin
+Turbo Assembler	 Version 2.5	    12/06/18 12:10:39	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "12/06/18"
+??FILENAME			  Text	 "lab71	  "
+??TIME				  Text	 "12:10:39"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB71
+@WORDSIZE			  Text	 2
+BEGIN				  Near	 CODE:0100
+EXIT				  Near	 CODE:0138
+FLOOP				  Near	 CODE:012D
+FML				  Byte	 CODE:0142
+NLOOP				  Near	 CODE:0112
+NME				  Byte	 CODE:013C
+PROG				  Far	 CODE:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  014B Para	  none
+

@@ -1,0 +1,10 @@
+Target=SIMULATE
+NbPass=1
+Constant=NO
+Label=NO
+Copy=NO
+Expression=NO
+DeadCode=NO
+Arithmetic=NO
+Boolean=NO
+BDD=NO

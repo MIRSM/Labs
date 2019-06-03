@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>MATHERR(3M) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>MATHERR(3M) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+matherr - функция обработки ошибок
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;math.h>
+	
+	int matherr (x)
+	struct exception *x;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция matherr вызывается функциями из  математической
+библиотеки при обнаружении ошибок.  Пользователи  могут
+определить  собственные  процедуры  обработки   ошибок,
+включая  в  свои  программы  функцию  с именем matherr.
+Функция matherr должна иметь описанный  выше  вид.  При
+возникновении ошибки указатель x на структуру exception
+будет   передан   разработанной  пользователем  функции
+matherr. Эта структура, определенная во включаемом фай-
+ле &lt;math.h>, имеет следующий вид:
+<pre>
+	struct exception {
+	  int type;
+	  char *name;
+	  double arg1, arg2, retval;
+	};
+</pre>
+Элемент type представляет собой целое число,  описываю-
+щее тип случившейся ошибки, из следующего списка  конс-
+тант (определенных во включаемом файле):
+<table>
+<tr valign=top><th>DOMAIN  <td>   Выход за пределы области определения.
+<tr valign=top><th>SING     <td>   Попадание аргумента в точку сингулярности.
+<tr valign=top><th>OVERFLOW  <td>  Переполнение.
+<tr valign=top><th>UNDERFLOW <td>  Исчезновение порядка.
+<tr valign=top><th>TLOSS    <td>   Полная потеря значащих цифр.
+<tr valign=top><th>PLOSS    <td>   Частичная потеря значащих цифр.
+</table>
+Элемент  name указывает на цепочку символов, содержащую
+имя функции, при обращении к которой произошла  ошибка.
+Компоненты arg1 и arg2 содержат значения аргументов при
+вызове функции. Полю retval присвоено значение, которое
+будет  возвращено  функцией по умолчанию, то есть в том
+случае, если пользовательская функция matherr не  прис-
+воит ей иного значения.
+Если пользовательская функция matherr возвращает  нену-
+левое значение, то не  будет  выдаваться  сообщение  об
+ошибке и не будет устанавливаться  значение  переменной
+errno.
+Если функция matherr пользователем не предоставлена, то
+при возникновении ошибки по умолчанию будут  вызываться
+процедуры, описанные вместе с соответствующими  матема-
+тическими функциями. Сведения об этих  процедурах  об -
+единены в таблице, приводимой далее.  В  каждом  случае
+переменной  errno  присваивается  значение  EDOM   либо
+ERANGE и выполнение программы продолжается.
+<p><b>ПРИМЕР</b>
+<pre>
+	#include &lt;math.h>
+	int
+	matherr (x)
+	register struct exception *x;
+	{
+	  switch (x->type) {
+	  case DOMAIN:
+	    /* Возврат значения sqrt(-arg1) вместо 0 */
+	    if (!strcmp(x->name, "sqrt")) {
+	      x->retval=sqrt(-x->arg1);
+	      return(0); /* Выдать сообщ., устан. errno */
+	    }
+	  case SING:
+	    /* Для остальных DOMAIN и SING ошибок:
+	       выдать сообщение и прекратить выполнение */
+	    fprintf(stderr,"обл.определения в %s\n",x->name);
+	    abort();
+	  case PLOSS:
+	    /* Выдать подробное сообщение об ошибке */
+	    fprintf(stderr,"потеря знач.цифр в %s(%g)=%g\n",
+	             x->name,x->arg1,x->retval);
+	    return(1); /* Больше никаких действий */
+	  }
+	  return(0); /* Остальные ошибки - по умолчанию */
+	}
+</pre>
+<p><b>Подразумеваемые процедуры обработки ошибок </b><br>
+ <table border=1 width=100%>
+<tr valign=top><th colspan=6> Типы ошибок                     
+<tr valign=top><th> тип <th> DOMAIN <th> SING <th>OVERFLOW <th> UNDERFLOW <th> TLOSS    
+<tr valign=top><th>errno <th> EDOM <th> EDOM <th>  ERANGE  <th>  ERANGE  <th> ERANGE   
+<tr valign=top><td>BESSEL: <td> - <td> - <td> - <td> - <td> M,0     
+<tr valign=top><td> y0,y1,yn (арг&lt;=0)<td>M,-H<td>-<td>-<td>-<td>-
+<tr valign=top><td>EXP:  <td>  - <td> - <td> H  <td>   0 <td>   -      
+<tr valign=top><td colspan=6>LOG, LOG10:                                                               
+<tr valign=top><td> (арг&lt;0) <td>   M,-H  <td>  - <td>  -  <td>   -   <td>   -      
+<tr valign=top><td>(арг=0) <td>  -  <td>  M,-H  <td>  -  <td>  -   <td>  -      
+<tr valign=top><td colspan=6>POW:                                                                      
+<tr valign=top><td> (отр ** нецел) <td>   -   <td>   -  <td> +/-H  <td>  0   <td>  -      
+<tr valign=top><td> (0 ** неполож) <td>   M,0 <td>  -  <td> -   <td>   -  <td>   -      
+<tr valign=top><td>SQRT: <td>  M,0 <td>   - <td>  - <td>  - <td>   -      
+<tr valign=top><td>GAMMA:<td> - <td> M,H <td>  H <td>   -  <td>    -      
+<tr valign=top><td>HYPOT: <td>  - <td>  - <td> H <td>  - <td>   -      
+<tr valign=top><td>SINH: <td>  - <td> - <td>  +/-H <td>   - <td>    -      
+<tr valign=top><td>COSH: <td>   -  <td>   -  <td>   H   <td>    -   <td> -      
+<tr valign=top><td>SIN, COS, TAN:<td>  -  <td>   -   <td>  -   <td>   -   <td> M,0     
+<tr valign=top><td>ASIN, ACOS, ATAN2: <td> M,0  <td> - <td>  - <td>    -<td>   -      
+</table>                                                                           
+<p><b> Сокращения:</b><br>
+<table>
+<tr valign=top><th>  *  <td>   Значение возвращается со всеми неутерянными значащими цифрами   
+<tr valign=top><th>  M  <td>   Выдается сообщение (ошибка EDOM)                                
+<tr valign=top><th>  H   <td>  Возвращается HUGE                                               
+<tr valign=top><th>  -H  <td>  Возвращается -HUGE                                              
+<tr valign=top><th> +/-H <td>  Возвращается HUGE или -HUGE                                     
+<tr valign=top><th>  0   <td>  Возвращается 0                                                  
+</table>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

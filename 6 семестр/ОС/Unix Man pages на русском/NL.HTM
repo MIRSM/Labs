@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>NL(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>NL(1) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+nl - нумерация строк
+<p><b>СИНТАКСИС</b>
+<pre>
+	nl  [-hтип] [-bтип] [-fтип] [-vнач_ном] [-iшаг] [-p] [-lчисло]
+            [-sразделитель] [-wчисло] [-nформат] [-dразделитель] файл
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда nl читает строки  из  заданного  файла  или  со
+стандартного ввода, если аргумент файл не задан, и  помещает их на стандартный вывод. Строки нумеруются слева
+в соответствии с действующими опциями команды.
+<p align=justify>Предполагается, что прочитываемый текст разбит на логические страницы. При переходе к новой логической  странице нумерация  строк  начинается  сначала.  Логическая
+страница состоит из секций заголовка, тела  и  заключения. Допускаются пустые секции. Опции действуют независимо на заголовок, тело и заключение  (например,  можно
+не нумеровать строки заголовка и заключения, хотя нумеровать пустые строки только в теле).
+<p align=justify>Начало  секций  логических страниц маркируется строками
+специального    вида,     содержащими   лишь  следующие
+символы-разделители:
+<table>
+<tr valign=top><th>  Содержимое строки  <th>   Обозначает начало
+<tr valign=top><td>   \:\:\:    <td>    заголовка
+<tr valign=top><td>   \:\:    <td>     тела
+<tr valign=top><td>   \:    <td>   заключения
+</table>
+<p align=justify>По умолчанию считается, что исходный текст  размещен  в
+теле единственной логической страницы.
+<p align=justify>Опции команды можно задавать в любом порядке вперемежку
+с необязательным именем файла. Можно задать только один
+файл. Опции команды:
+<dl>
+<dt>-bтип <dd> Указание  типов  строк  тела логической страницы,
+ подлежащих нумерации. Допустимые  значения  пара метра тип и их смысл:
+<dl>
+<dt> a  <dd> Нумеровать  все  строки.
+<p><dt> t <dd>  Нумеровать только строки, содержащие текст.
+<p><dt> n  <dd> Не нумеровать строки.
+<p><dt> pцепочка_символов <dd> 
+Нумеровать только те строки, которые содержат указанную цепочку_символов.
+</dl>
+Подразумеваемое значение аргумента  тип  для  тела
+страницы  равно  t  (нумеровать  только  текстовые
+строки).
+<p><dt>-hтип <dd> То же самое, что и -bтип, но для заголовка  логи ческой  страницы,  и  с подразумеваемым значением
+ аргумента n (не нумеровать строки).
+<p><dt>-fтип <dd> То же самое, что и -bтип, но для хвостовика логи ческой страницы, и  с  подразумеваемым  значением
+ аргумента n (не нумеровать строки).
+<p><dt>-p  <dd> Установка сквозной нумерации, невзирая на разделители логических страниц.
+<p><dt>-vнач_ном <dd>
+Установка начального значения счетчика строк логической страницы. Подразумеваемое значение аргумента нач_ном равно 1.
+<p><dt>-iшаг <dd> Установка шага нумерации строк логической страни цы. Подразумеваемое значение равно 1.
+<p><dt>-sразделитель <dd>
+Задается цепочка символов, отделяющих номер строки
+от текста. По умолчанию используется табуляция.
+<p><dt>-wчисло <dd>
+Установка числа цифр в номере строки. Подразумеваемое значение равно 6.
+<p><dt>-nформат <dd>
+Задается формат записи номеров  строк.  Допустимые
+форматы и их смысл:
+<dl>
+<dt> ln <dd> Выравнивание по левой границе с подавлением
+незначащих нулей.
+<p><dt>rn <dd> Выравнивание по правой границе с подавлением незначащих нулей.
+<p><dt>rz <dd> Выравнивание по правой границе с сохранением незначащих нулей.
+</dl>
+<p><dt>-lчисло <dd>
+Число пустых строк, рассматриваемых как одна. Например, -l2 означает, что нумеруется только  вторая
+из  двух  соседних пустых строк (если задана опция
+-ha, -ba и/или -fa). Подразумеваемое значение равно 1.
+<p><dt>-dразделитель <dd>
+Переопределение пары символов, разделяющих  секции
+логических  страниц  (по умолчанию \:). Если задан
+только один символ, то второй (:)  остается  неизменным.  Между  -d  и  разделителем не должно быть
+пробелов. Символ \ кодируется парой символов \.
+</dL>
+<p><b>ПРИМЕР </b><br>
+Команда
+<pre>
+	nl  -v10 -i10 -d!+ f1
+</pre>
+нумерует  строки  файла  f1,  начиная с 10, с шагом 10.
+Предполагается, что для  разделения  секций  логических
+страниц используется комбинация символов !+.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PR.htm>pr(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

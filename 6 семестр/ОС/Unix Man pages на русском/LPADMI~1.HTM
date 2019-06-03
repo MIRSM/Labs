@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>LPADMIN(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LPADMIN(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+lpadmin - устанавливает конфигурацию системы спулинга печати.
+<p><b>СИНТАКСИС</b>
+<pre>
+/usr/lib/lpadmin -p printer [options...]
+/usr/lib/lpadmin -x dest
+/usr/lib/lpadmin -d[dest]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+lpadmin конфигурирует систему  спулинга печати, описывая  принтеры,
+классы и  устройства. Она  используется для  добавления и  удаления
+назначений,   изменения   членского   состава   классов,  изменения
+устройств, связанных с принтерами, и интерфейсных программ  печати,
+а также  для изменения  назначения, устанавливаемого  в системе  по
+умолчанию. Администратор системы  может использовать lpadmin  также
+для добавления  к системе  новых назначений  печати. lpadmin нельзя
+использовать  при  работающем  планировщике  печати <a href=LPSCHE~1.htm>lpsched(8)</a>,  за
+исключением указанных ниже случаев.
+<p align=justify>
+Для правильного запуска lpadmin  нужно использовать только одну  из
+опций -p, -d или -x.
+<dl>
+<dt>-d[dest]
+<dd>Задает  новое  системное назначение  dest, используемое в
+системе  по  умолчанию.  Если   dest  не  задано,   тогда
+системное   назначение,   используемое   по    умолчанию,
+отсутствует.   Эта   опция   может   использоваться   при
+работающем <a href=LPSCHE~1.htm>lpsched(8)</a>. Совместное использование с другими 
+опциями не разрешается.
+<dt>-xdest
+<dd>Удаляет назначение  dest из  системы печати.  Если dest принтер, единственный в классе,  тогда удаляется и   этот
+класс.  Совместное  использование  с  другими  опциями не
+разрешается.
+<dt>-pprinter
+<dd>Называет имя  printer, к  которому относятся  приведенные
+ниже  опции.  Если  printer  не  существует,  то он будет
+создан. Совместное  использование  с  другими  опциями не
+разрешается.
+</dl>
+<p align=justify>
+Следующие опции используется только  совместно с опцией -p  и могут
+набираться в любом порядке.  Для простоты принтер будет  называться
+ниже p.
+<dl>
+<dt>-cclass
+<dd>Вводит   принтер p  в заданный  класс. Если  класс class
+не существует, то он будет создан.
+<dt>-eprinter
+<dd>Копирует      существующую   интерфейсную     программу,
+соответствующую  устройству  printer,  в  качестве новой
+интерфейсной программы для p.
+<p>
+Указывает, что устройство, связанное с p,  присоединено.
+Задание  этой  опции  подразумевается  при   подключении
+нового принтера, если не задана опция -l.
+<p>
+Устанавливает  новую  интерфейсную   программу  для   p.
+Interface - полное имя этой программы.
+<p>
+Указывает,  что  устройство,  связанное  с  p,  является
+подключаемым     терминалом.     Планировщик      печати
+lpsched(ADM),   стартуя,    отключает   все    терминалы
+автоматически. Перед  тем, как  снова активизировать  p,
+нужно установить его текущее устройство device с помощью
+lpadmin.
+<p>
+Версия интерфейсной  программы печати  dumb поставляется
+вместе с программными  средствами печати системы  XENIX.
+Она  представляет   собой  процедуру-оболочку,   которая
+служит интерфейсом между lpsched и устройствами  печати.
+Ее можно   найти    в    каталоге    /usr/spool/lp/model
+и использовать в  поставляемом виде  с помощью   lpadmin
+-p или  <a href=LPINIT.htm>lpinit(8)</a>.  Эта  программа служит интерфейсом  к
+принтеру   без    специальных   функций    и протоколов.
+Предполагается  обработка  символов перевода  на   новую
+страницу.  Администратор  системы может   модифицировать
+копию  dumb  и  затем  связать  ее с принтером с помощью
+lpadmin -i.
+<p>
+Удаляет принтер p из заданного класса class. Если  p   последний член класса, то удаляется этот класс.
+<p>
+Связывает новое устройство device с принтером p.  Device
+-  это  полное  имя  файла,  который доступен для записи
+программе lp. Заметьте, что  ничто не мешает lp  связать
+одно и то же устройство device с несколькими принтерами.
+Если задаются  только опции  -p и  -v, то  lpadmin можно
+использовать при работающем планировщике.
+</dl>
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+При подключении нового принтера  должны задаваться опции -v  и одна
+из -e, -i или -m. Из последних трех опций можно задать только одну.
+Ключевые опции -h и -l являются взаимоисключющими. Имена  принтеров
+и классов  должны быть  не длиннее  строки из  14 символов  и могут
+состоят  только  из  символов  A  -  Z,  a  -  z,  0 - 9 и _(символ
+подчеркивания).
+<p align=justify><b>ИНТЕРФЕЙСНЫЕ ПРОГРАММЫ ПЕЧАТИ</b><br>
+Эти  программы  являются  процедурами-оболочками,  которые   служат
+интерфейсами  между  <a href=LPSCHE~1.htm>lpsched(8)</a> и устройствами. Они располагаются в
+каталоге /usr/spool/lp/model  и могут  быть использованы  с помощью
+lpadmin -m.  Если ими  владеют lp  & bin,  то они  должны иметь 644
+разрешения, а  если ими  владеют bin  & bin,  то -  664 разрешения.
+Системный  администратор  может  модифицировать  их  копии  и затем
+связывать их с принтерами с помощью lpadmin -i. Если принтеры имеют
+специальные опции, то их можно включать в интерфейсную программу.
+<p align=justify>
+После этого пользователи могут выбирать опции с помощью команды lp
+-o.
+Одна   версия   интерфейсной   программы   поставляется   вместе  с
+программными средствами печати системы  UNIX. Это - программа dumb,
+которая представляет из себя  интерфейс к принтеру без  специальных
+функций и протокола. Предполагается обработка символов перевода  на
+новую   строку.     Это   хорошая   программа,   которую  системный
+администратор может скопировать и модифицировать.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/usr/spool/lp/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCEPT.htm>accept(1)</a>, <a href=ENABLE.htm>enable(1)</a>, <a href=LP.htm>lp(1)</a>, <a href=LPINIT.htm>lpinit(8)</a>, <a href=LPSCHE~1.htm>lpsched(8)</a>, <a href=LPSTAT.htm>lpstat(1)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

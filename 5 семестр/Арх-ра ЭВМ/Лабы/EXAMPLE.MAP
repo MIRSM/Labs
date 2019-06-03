@@ -1,0 +1,15 @@
+
+ Start  Stop   Length Name               Class
+
+ 00000H 0001AH 0001BH DATA               
+ 00020H 000BDH 0009EH CODE               
+
+
+Detailed map of segments
+
+ 0000:0000 001B C=       S=DATA           G=(none)  M=EXAMPLE.ASM ACBP=60
+ 0002:0000 009E C=       S=CODE           G=(none)  M=EXAMPLE.ASM ACBP=60
+
+Program entry point at 0002:0000
+Warning: No stack
+

@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1555409132 source:/home/mirsm/Рабочий стол/lab7/main.cpp
+	<iostream>
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	<sys/time.h>
+	<signal.h>
+	<unistd.h>
+	<time.h>
+	<fcntl.h>
+

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/lorenz.html -->
+<HTML><HEAD><TITLE>Фракталы: Странный Аттрактор Лоренца</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY background="Фракталы Странный Аттрактор Лоренца.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Странный Аттрактор Лоренца.files/lab24.gif" width=150 
+      border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Странный Аттрактор Лоренца</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<P>Аттрактор Лоренца является знаменитым примером, наглядно демонстрирующим то, 
+что стоит за термином «динамика хаоса». </P>
+<CENTER><IMG height=435 
+src="Фракталы Странный Аттрактор Лоренца.files/fr058.gif" width=445 border=0> 
+</CENTER>
+<P>Эдвард Лоренц из Массачусетского технологического института в 1961 году 
+занимался численными исследованиями метеосистем, в частности моделированием 
+конвекционных токов в атмосфере. Он написал программу для решения следующей 
+системы дифференциальных уравнений:<BR><I>
+<DD>dx/dt = a(-x + y)<BR>
+<DD>dy/dt = bx - y - xz<BR>
+<DD>dz/dt = -cz + xy<BR></I>Согласно описанию эксперимента, принадлежащему 
+самому Лоренцу, он вычислял значения решения в течение длительного времени, а 
+затем остановил счет. Его заинтересовала некоторая особенность решения, которая 
+возникала где-то в середине интервала счета, и поэтому повторил вычисления с 
+этого момента. Результаты повторного счета, очевидно, совпали бы с результатами 
+первоначального счета, если бы начальные значения для повторного счета в 
+точности были равны полученным ранее значениям для этого момента времени. Лоренц 
+слегка изменил эти значения, уменьшив число верных десятичных знаков. Ошибки, 
+введенные таким образом, были крайне невелики. Но самое неожиданное было 
+впереди. Вновь сосчитанное решение некоторое время хорошо согласовывалось со 
+старым. Однако по мере счета расхождение возрастало, и постепенно стало ясно, 
+что новое решение не напоминает старое.
+<P></P>
+<P>Лоренц вновь повторял и проверял вычисления, прежде чем осознал важность 
+эксперимента. То, что он наблюдал, называется существенной зависимостью от 
+начальных условий – основной чертой, присущей хаотической динамике. Существенную 
+зависимость иногда называют эффектом бабочки. Такое название относится к 
+невозможности делать долгосрочные прогнозы.</P>
+<P>Приведем программу, которая строит аттрактор Лоренца.</P>
+<P><B>C:</B></P><PRE>#include &lt;graphics.h&gt;
+#include &lt;conio.h&gt;
+<B>void</B> main()
+{
+    <B>double</B> x = 3.051522, y = 1.582542, z = 15.62388, x1, y1, z1;
+    <B>double</B> dt = 0.0001;
+    <B>int</B> a = 5, b = 15, c = 1;
+    <B>int</B> gd=DETECT, gm;
+    initgraph(&amp;gd, &amp;gm, "C:\\BORLANDC\\BGI");
+    <B>do</B> {
+	x1 = x + a*(-x+y)*dt;
+	y1 = y + (b*x-y-z*x)*dt;
+	z1 = z + (-c*z+x*y)*dt;
+	x = x1;	y = y1;	z = z1;
+	putpixel((<B>int</B>)(19.3*(y - x*0.292893) + 320),
+		 (<B>int</B>)(-11*(z + x*0.292893) + 392), 9);
+    } <B>while</B> (!kbhit());
+    closegraph();
+}
+</PRE><BR>
+<P><B>Pascal:</B></P><PRE><B>Program</B> Lorenz;
+<B>Uses</B> CRT, Graph;
+<B>Const</B>
+  x: Real = 3.051522;
+  y: Real = 1.582542;
+  z: Real = 15.62388;
+  dt = 0.0001;
+  a = 5;
+  b = 15;
+  c = 1;
+<B>Var</B>
+  gd, gm: Integer;
+  x1, y1, z1: Real;
+<B>Begin</B>
+  gd:=Detect;
+  InitGraph(gd, gm, 'c:\bp\bgi');
+  <B>While</B> <B>not</B> KeyPressed <B>Do</B> <B>Begin</B>
+      x1 := x + a*(-x+y)*dt;
+      y1 := y + (b*x-y-z*x)*dt;
+      z1 := z + (-c*z+x*y)*dt;
+      x := x1;
+      y := y1;
+      z := z1;
+      PutPixel(Round(19.3*(y - x*0.292893) + 320),
+               Round(-11*(z + x*0.292893) + 392), 9);
+    <B>End</B>;
+    CloseGraph;
+    ReadKey;
+<B>End</B>.
+</PRE>
+<P><SMALL>Литература: Кроновер Р.М. Фракталы и хаос в динамических системах. 
+Основы теории.</SMALL></P></DD></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 25.11.04<BR>Дата последнего обновления: 25.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Странный Аттрактор Лоренца.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

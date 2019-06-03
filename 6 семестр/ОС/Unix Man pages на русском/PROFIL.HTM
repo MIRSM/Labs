@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>PROFIL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PROFIL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+profil - подготовка временного профиля программы
+<p><b>СИНТАКСИС</b>
+<pre>
+        void profil (buff, bufsiz, offset, scale)
+        char *buff;
+        int bufsiz, offset, scale;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргумент buff указывает на область памяти, размер которой в байтах задается аргументом bufsiz. После выполнения  данного  системного  вызова при каждом такте часов
+анализируется счетчик команд: из него вычитается значение offset и полученная разность умножается на  коэффициент  scale.  Если результат соответствует какому-либо
+элементу внутри области buff, то данный элемент  увеличивается  на 1. Элемент определяется как последовательность байт длины sizeof(short).
+<p align=justify>
+Коэффициент scale интерпретируется как беззнаковая  денормализованная  двоичная дробь с фиксированной точкой,
+стоящей слева от границы  полуслова.  Так,  коэффициент
+0177777 (восьмеричное) дает взаимно-однозначное отображение  значений  счетчика  команд  на  элементы области
+buff; 077777 отображает на один элемент  пару  соседних
+команд.  При  значении  scale,  равном  02, все команды
+отобразятся на первый элемент области buff,  который  в
+результате превратится в непрерываемые часы.
+<p align=justify>
+Если значение аргумента scale задано равным  0  или  1,
+получение профиля выключается. При bufsiz равном 0 профилирование не выключается, однако его результаты нигде
+не фиксируются. Профилирование выключается при выполнении  системного вызова exec, но остается в процессе-потомке и родительском процессе после вызова fork. Профилирование отключается, если обращение к элементу области buff приведет к выходу за границы памяти, отведенной
+процессу.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=TIMES.htm>times(2)</a>, <a href=MONITOR.htm>monitor(3C)</a>.
+<a href=PROF~1.htm>prof(1)</a> в Справочнике пользователя.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Не предусмотрена.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

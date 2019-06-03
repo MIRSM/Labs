@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>PASSWD(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PASSWD(1) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+passwd,yppasswd - смена входного пароля
+<p><b>СИНТАКСИС</b>
+<pre>
+     passwd  [входное_имя]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда passwd меняет (или устанавливает) пароль,  связанный с входным_именем пользователя.
+<p align=justify>Обычный пользователь может менять только  пароль,  связанный с его собственным входным_именем.
+<p align=justify>Команда запрашивает у обычных пользователей старый  пароль (если он был), а затем дважды  запрашивает  новый.
+После первого запроса проверяется, достаточен ли  "возраст" старого пароля. Возраст - это промежуток  времени
+(обычно несколько дней), который  должен  пройти  между
+сменами пароля. Если возраст недостаточен, новый пароль
+отвергается и passwd завершается; см. <a href=PASSWD.htm>passwd(4)</a>.
+<p align=justify>Если возраст достаточен,  делается  проверка  на  соответствие нового пароля техническим  требованиям.  Когда
+новый пароль вводится во второй раз, две  копии  нового
+пароля сравниваются. Если они не совпали, цикл  запроса
+нового пароля повторяется, но не более двух раз.
+<p align=justify>Технические требования к паролям:
+<ol>
+<li> Каждый пароль должен содержать не менее  6  симво     лов. Значащими являются только первые 8.
+<li> Каждый пароль должен  содержать  как  минимум  две
+     буквы (большие или малые) и хотя бы одну цифру или
+     знак.
+<li> Каждый пароль должен отличаться от входного_имени,
+     прочитанного слева направо или задом наперед, и от
+     его циклических сдвигов. При сравнении не делается
+     различий между большими и малыми буквами.
+<li> Новый пароль должен отличаться от старого хотя  бы
+     тремя символами. При сравнении не делается  разли     чий между большими и малыми буквами.
+</ol>
+<p align=justify>Пользователь, у которого действующий идентификатор есть
+ноль,  называется  суперпользователем  [см.   <a href=ID.htm>id(1)</a>   и
+<a href=SU.htm>su(1)</a>]. Суперпользователь имеет  право  изменять  любые
+пароли, поэтому у него старый пароль не  запрашивается.
+Суперпользователь не связан  ограничениями  на  возраст
+пароля и соответствие техническим  требованиям.  Суперпользователь может создать пустой пароль, нажимая  возврат каретки в ответ на запрос нового пароля.
+<p><b>ФАЙЛЫ</b>
+<pre>
+     /etc/passwd
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ID.htm>id(1)</a>, <a href=LOGIN.htm>login(1)</a>, <a href=SU.htm>su(1)</a>.<br>
+<a href=CRYPT.htm>crypt(3C)</a>, <a href=PASSWD.htm>passwd(4)</a> в Справочнике программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Пустой пароль не равнозначен отсутствию пароля и запрашивается каждый раз при входе.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

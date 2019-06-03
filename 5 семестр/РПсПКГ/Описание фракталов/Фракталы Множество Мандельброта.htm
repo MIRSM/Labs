@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.ilab24.narod.ru/fract/frmandel.html -->
+<HTML><HEAD><TITLE>Фракталы: Множество Мандельброта</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY background="Фракталы Множество Мандельброта.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Множество Мандельброта.files/lab24.gif" width=150 
+      border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Множество Мандельброта</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify><IMG height=230 alt="Множество Мандельброта" 
+src="Фракталы Множество Мандельброта.files/fr016.jpg" width=260 align=right 
+border=1> 
+<P>Фрактал Мандельброта назван по имени французского математика польского 
+происхождения Бенуа Мандельброта, известного исследователя фракталов.</P>
+<P>Множество Мандельброта получают следующим образом: строится отображение 
+z'=f<SUB>c</SUB>(z), где числя z и c - комплексные. </P>
+<P>Алгоритм построения множества Мандельброта выглядит следующим образом: 
+<OL>
+  <LI>выбираем значение c 
+  <LI>z:=0 n:=0 
+  <LI>z:=f(z) 
+  <LI>inc(n) 
+  <LI>Если не достигнуто максимальное значение итераций или значение z не 
+  превысило максимального значения, то повторять шаги 3 и 4.
+  <P></P></LI></OL>
+<P>Наиболее часто используется формула <I>z = z<SUP>2</SUP> + c</I>, так как она 
+наиболее проста в применении. Раскладывая уравнение на действительную и мнимую 
+часть, получаем следующее:<BR><I>
+<DD>Re: x<SUP>2</SUP> - y<SUP>2</SUP> + a<BR>
+<DD>Im: 2xy + b,<BR></I>приняв, что z = x + yi и c = a + bi.
+<P></P>
+<P>Цвет обычно выбирают по числу итераций, но есть и другие способы.</P>
+<P>Текст программы выглядит следующим образом.</P><PRE><B>Program</B> M2;
+<B>Uses</B> Graph, Crt;
+<B>Type</B>
+   TComplex = Record
+     X : Real;
+     Y : Real;
+   <B>End</B>;
+<B>Const</B>
+   iter = 50;
+   max  = 16;
+<B>Var</B>
+   z, t, c : TComplex;
+   x, y, n : Integer;
+   Cancel  : Boolean;
+   gd, gm  : Integer;
+   mx, my  : Integer;
+<B>Begin</B>
+   Cancel := False;
+   Randomize;
+   gd := Detect;
+   InitGraph(gd,gm,'e:\bp\bgi');
+   Mx := GetMaxX div 2;
+   My := GetMaxY div 2;
+   <B>For</B> y := -my <B>to</B> my <B>do</B>
+      <B>For</B> x := -mx <B>to</B> mx <B>do</B> <B>Begin</B>
+         n := 0;
+         C.X := X * 0.005;
+         C.Y := Y * 0.005;
+         z.X := 0;
+         z.Y := 0;
+         <B>While</B> (sqr(z.X) + sqr(z.Y) &lt; max) <B>and</B> (n &lt; iter) <B>do</B> <B>Begin</B>
+            t := z;
+            Z.X := sqr(t.X) - sqr(t.Y) + C.X;
+            Z.Y := 2 * t.X * t.Y+ C.Y;
+            Inc(n);
+            <B>If</B> keypressed <B>then</B> cancel := true;
+         <B>End</B>;
+         <B>If</B> n &lt; iter <B>then</B> <B>Begin</B>
+            PutPixel(mx + x,my + y,16 - (n mod 16));
+         <B>End</B>;
+         <B>If</B> cancel <B>then</B> exit;
+      <B>End</B>;
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+</PRE>
+<P>А теперь опишем программу словами. Для всех точек на комплексной плоскости в 
+некотором интервале вычисляем достаточно большое количество раз z = 
+z<SUP>2</SUP> + c, каждый раз проверяя абсолютное значение z. Если это значение 
+больше максимального, то рисуем точку с цветом, вычисляемым по количеству 
+итераций, иначе рисуем точку черного цвета.</P>
+<P>Черный цвет в середине показывает, что в этих точках функция стремится к нулю 
+- это и есть множество Мандельброта. За пределами этого множества функция 
+стремится к бесконечности. А самое интересное - это границы множества. Они то и 
+являются фрактальными. Если рассмотреть увеличение, то можно увидеть самоподобие 
+фигуры.</P>
+<CENTER>
+<H3>Увеличение фракталов.</H3></CENTER><IMG height=230 
+alt="Множество Мандельброта" 
+src="Фракталы Множество Мандельброта.files/fr018.jpg" width=260 align=right 
+border=1> 
+<P>Для того чтобы увеличить данный объект, необходимо изменить коэффициенты в 
+следующем куске кода: <PRE>C.X:=X*0.005;
+C.Y:=Y*0.005;
+</PRE>Чем меньше число, тем больше увеличение и наоборот.
+<P></P>
+<P>Для того чтобы сместить множество, нужно прибавлять или вычитать числа в том 
+же куске кода. Рассмотрим в общем случае: <PRE>C.X := X*m + dx;
+C.Y := Y*m + dy;
+</PRE>Здесь m задет увеличение, dx - смещение по горизонтали, а dy - смещение по 
+вертикали. Например, положив, что m=0.0001, dx=-1.2, dy=-0.3, мы получим 
+примерно то, что изображено на рисунке.
+<P></P>
+<CENTER>
+<H3>Раскраска фракталов.</H3></CENTER><IMG height=230 
+alt="Множество Мандельброта" 
+src="Фракталы Множество Мандельброта.files/fr017.jpg" width=260 align=left 
+border=1> 
+<P>Также можно изменить вид фрактала (см. рисунок), если контроль значения z 
+вести другим образом. Наиболее употребляемый способ уже рассмотрен - z достигает 
+определенного максимального числа. Другими способами являются:<BR>- 
+действительная часть z меньше определенного числа;<BR>- мнимая часть z меньше 
+определенного числа;<BR>- и мнимая и действительная части z меньше какого-либо 
+числа.<BR>Есть и другие способы.</P>
+<P>Для того чтобы реализовать эти способы, необходимо изменить условие цикла 
+sqr(z.X) + sqr(z.Y) &lt; max на другое. Для первого выше предложенного способа 
+это будет abs(z.x)&lt; max, для второго - abs(z.y)&lt; max, для третьего - 
+(abs(z.x)&lt;max)and(abs(z.y)&lt;max).</P>
+<P>И наконец рассмотрим один интересный эффект - изменение палитры. После того 
+как изображение построено, можно изменять цвета, и тогда и без того удивительное 
+изображение начнет переливаться. В Pascal'е для этого можно использовать 
+следующий код: <PRE><B>While</B> <B>not</B> keypressed <B>do</B> <B>begin</B>
+  SetPallete(Random(16),Random(16));
+  Delay(500);
+<B>End</B>
+</PRE>
+<P></P>
+<CENTER>Конец первой части.</CENTER><BR>Исходник программы на Pascal <A 
+href="http://www.ilab24.narod.ru/fract/frfiles/m2.rar">Скачать</A> </DD></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.10.04<BR>Дата последнего обновления: 10.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Множество Мандельброта.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

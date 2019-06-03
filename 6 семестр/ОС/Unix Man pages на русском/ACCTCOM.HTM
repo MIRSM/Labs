@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>ACCTCOM(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCTCOM(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acctcom - поиск и печать информации о процессах
+<p><b>СИНТАКСИС</b>
+<pre>
+  acctcom  [[-a] [-b] [-f] [-h] [-i] [-k] [-m] [-q] [-r] [-t] [-v]
+  [-l линия] [-u пользователь] [-g группа] [-s время] [-e время]
+  [-S время] [-E время] [-n шаблон] [-o выходной_файл]
+  [-H коэффициент] [-O сек] [-C сек] [-I число] [файл]] ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда acctcom читает указанный файл, стандартный ввод
+или  файл /usr/adm/pacct [формат исходных данных описан
+в <a href=ACCT~1~2.htm>acct(4)</a>], выбирает оттуда некоторые записи и  выводит
+информацию  о  них  на стандартный вывод. Каждая запись
+описывает выполнение одного  процесса.  Выводятся:  имя
+команды  (COMMAND  NAME),  имя пользователя (USER), имя
+терминала (TTYNAME), время начала (START  TIME),  время
+окончания  (END TIME), астрономическое время выполнения
+(сек, REAL), время ЦП (сек,  CP),  расход  памяти  (Кб,
+MEAN  SIZE)  и,  в зависимости от опций, флаг fork/exec
+(F: 1 для fork  без  exec),  системный  код  завершения
+(STAT),  "коэффициент нахальства" (HOG FACTOR, см. ниже
+опцию -h), килобайтоминуты (KCORE MIN, см.  опцию  -k),
+коэффициент  использования  ЦП  (CPU  FACTOR, см. опцию
+-r), количество переданных символов  (CHARS  TRNSFD)  и
+общее  число  прочитанных  и записанных блоков (BLOCKS/
+WD).
+<p align=justify>
+Перед именем команды изображается #, если она была  выполнена с привилегией суперпользователя. Если терминал,
+связанный с процессом, неизвестен, вместо имени  терминала выводится ?.
+<p align=justify>
+Если аргумент файл не указан и стандартный ввод  назначен на терминал или устройство  /dev/null  (что  бывает
+при асинхронном запуске процесса), происходит чтение из
+файла /usr/adm/pacct, в противном случае чтение  происходит со стандартного ввода.
+<p align=justify>
+Если указан один или несколько файлов, они читаются  по
+порядку.  Записи  в файле упорядочены хронологически по
+времени окончания процессов. Как правило, в  таком  порядке  они  и  читаются. Обычно просматривается текущий
+файл /usr/adm/pacct; в сильно загруженных системах  для
+хранения  истории  могут  использоваться дополнительные
+файлы с именами вида /usr/adm/pacct*.
+<p>
+Допустимые опции:
+<table>
+<tr valign=top><td>-a<td>Показать средние значения характеристик  выбранных
+процессов. Эти значения будут выведены после  всех
+записей.</tr>
+<tr valign=top><td>-b<td>Обратный порядок чтения: сначала  выбираются  последние записи. Эта опция не действует, если чтение
+производится со стандартного ввода.</tr>
+<tr valign=top><td>-f<td>Выводить флаг fork/exec и системный  код  завершения.</tr>
+<tr valign=top><td>-h<td>Вместо  расхода  памяти сообщать, какую часть доступного времени ЦП использовал  процесс  во  время
+своего  выполнения.  Этот "коэффициент нахальства"
+вычисляется как отношение (время ЦП)/(общее  время
+выполнения).</tr>
+<tr valign=top><td>-i<td>Выводить счетчики ввода/вывода.</tr>
+<tr valign=top><td>-k<td>Вместо  расхода памяти выводить произведение количества килобайт памяти на число минут ЦП.</tr>
+<tr valign=top><td>-m<td>Выводить расход памяти (это опция по умолчанию).</tr>
+<tr valign=top><td>-q<td>Не выводить никаких записей, вывести только  средние значения характеристик, как в опции -a.</tr>
+<tr valign=top><td>-r<td>Выводить  коэффициент  использования  ЦП:   (время
+пользователя)/(время системы + время пользователя).</tr>
+<tr valign=top><td>-t<td>Выводить отдельно время ЦП, затраченное  пользователем и системой.</tr>
+<tr valign=top><td>-v<td>Не выводить названия колонок.</tr>
+<tr valign=top><td>-l линия<td>Выбрать только процессы, относящиеся  к  терминалу /dev/линия.</tr>
+<tr valign=top><td>-u пользователь<td>Выбрать только процессы, относящиеся к пользователю, который может быть задан:<ol>
+<li>Идентификатором пользователя.
+<li>Входным  именем,  которое затем преобразуется в
+идентификатор пользователя.
+<li>Знаком #, означающим все процессы, выполнявшиеся с привилегией суперпользователя.
+<li>Знаком ?, означающим все процессы с неизвестным
+идентификатором пользователя.</ol></tr>
+<tr valign=top><td>-g группа<td>Выбрать  только  процессы,  относящиеся  к  данной
+группе. Группа может быть указана либо идентификатором, либо именем группы.</tr>
+<tr valign=top><td>-s время<td>Выбрать процессы, существовавшие в заданное  время
+или позже. Время задается в формате чч[:мм[:сс]].</tr>
+<tr valign=top><td>-e время<td>Выбрать процессы, существовавшие в заданное  время
+или раньше. Указав одно и то же время для -s и -e,
+получим процессы, которые существовали в  заданное
+время.</tr>
+<tr valign=top><td>-S время<td>Выбрать процессы, начавшиеся в заданное время  или
+позже.</tr>
+<tr valign=top><td>-E время<td>Выбрать процессы, закончившиеся в  заданное  время
+или раньше.</tr>
+<tr valign=top><td>-n шаблон<td>Выбрать только процессы, команды которых  удовлетворяют шаблону, который может быть любым  регулярным выражением. Синтаксис регулярных выражений соответствует синтаксису редактора <a href=ED.htm>ed(1)</a>, с тем исключением, что + означает одно или более вхождений.</tr>
+<tr valign=top><td>-o выходной_файл<td>Направить выбранные записи без изменения формата в
+выходной_файл; подавить стандартную выдачу.</tr>
+<tr valign=top><td>-H коэффициент<td>Выбрать только процессы, "коэффициент  нахальства"
+которых (см. выше опцию -h) превосходит заданный.</tr>
+<tr valign=top><td>-O сек<td>Выбрать только процессы, системное время ЦП  которых превосходит сек.</tr>
+<tr valign=top><td>-C сек<td>Выбрать только процессы, общее  время  ЦП  которых
+(системное + пользователя) превосходит сек.</tr>
+<tr valign=top><td>-I число<td>Выбрать только процессы, в которых количество  переданных символов превосходит заданное число.</tr>
+</table><p>
+Совместное использование опций вызывает эффект логического И.
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+/etc/passwd
+/usr/adm/pacct
+/etc/group
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=PS.htm>ps(1)</a>, <a href=SU.htm>su(1)</a>.<br>
+<a href=ACCT~1.htm>acct(2)</a>, <a href=ACCT~1~2.htm>acct(4)</a>, <a href=UTMP.htm>utmp(4)</a> в Справочнике программиста.<br>
+<a href=ACCT.htm>acct(1M)</a>,   <a href=ACCTCMS.htm>acctcms(1M)</a>,   <a href=ACCTCON.htm>acctcon(1M)</a>,   <a href=ACCTMERG.htm>acctmerg(1M)</a>,
+<a href=ACCTPRC.htm>acctprc(1M)</a>, <a href=ACCTSH.htm>acctsh(1M)</a>, <a href=FWTMP.htm>fwtmp(1M)</a>, <a href=RUNACCT.htm>runacct(1M)</a> в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Команда acctcom дает информацию только о  завершившихся
+процессах, для активных  процессов  используйте  <a href=PS.htm>ps(1)</a>.
+<p align=justify>
+Если время превосходит текущее время и не  использована
+опция -d, считается, что речь идет о вчерашнем дне.
+<p align=justify>
+Опции -s, -e, -S, -E работают неверно, выявляя  не  все
+подходящие процессы.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

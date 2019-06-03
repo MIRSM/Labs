@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>PARALLEL(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PARALLEL(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+parallel - параллельные интерфейсные устройства.
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Существует несколько подобных параллельных устройств:
+<pre>
+/dev/lp0  Главный параллельный адаптер.
+/dev/lp1  Адаптер платы монохромного дисплея.
+/dev/lp2  Альтернативный параллельный адаптер
+          (на подходящих машинах).
+</pre><p align=justify>
+Невозможно иметь на одной системе все три параллельных  устройства.
+Компьютеры  XT  позволяют  использовать  только /dev/lp0. Некоторые
+компьютеры  класса  AT  позволяют  использовать  два   параллельных
+устройства, /dev/lp2 и  любое из /dev/lp0  и /dev/lp1. Впрочем,  на
+разных машинах  доступные устройства  бывают разными  и могут быть,
+например, /dev/lp0 и любое из /dev/lp1 и /dev/lp2.
+<p align=justify>
+Если  параллельное  устройство  не  генерирует  прерывания  должным
+образом, тогда параллельный  драйвер устанавливает "режим  опроса".
+Если  эти  прерывания  идут  от  устройства  нормально,  то драйвер
+переключается в исходный режим.
+<p align=justify>
+Когда параллельное устройство закрывается, драйвер этого устройства
+делает  задержку   на  некоторое   время.  Эта   задержка     может
+воздействовать   на   функционирование   принтера,   но    является
+необходимой для компенсации различных размеров буферов и  скоростей
+печати.  Например,  следующая  команда  устанавливает  время   этой
+задержки порядка 1 секунды, выраженное в десятых долях секунды:
+<pre>
+  stty time 10&lt; /dev/lp0
+</pre><p align=justify>
+Если эту команду ввести с подсказки, то она сработает только в  том
+случае, если порт открыт. Рекомендуется помещать подобную команду в
+интерфейсную программу, используемой параллельным устройством,  для
+достижения того же эффекта:
+<pre>
+  stty time 10 0&lt; &1
+</pre>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Параллельные адаптеры могут функционировать с дополнительных  плат,
+но  переключатели  при  этом  должны  быть  установлены  правильно.
+На некоторых совместимых компьютерах порты lp0 и lp1 переставлены.
+<p align=justify>
+Команда stty(1) обработки выдачи предусматривает выдачу данных   на
+параллельное  устройство.  Опции  stty,  не  имеющие воздействия на
+параллельное устройство,  игнорируются, и  сообщения об  ошибках не
+выдаются.
+<p align=justify><b>ПРИМЕНЕНИЕ</b><br>
+Обычно вызывается через lp(1), но запись можно вести и напрямую.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /dev/lp0
+ /dev/lp1
+ /dev/lp2
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+lp(1), lp(HW), lpadmin(8), lpinit(8), lpsched(8),
+serial(HW)
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

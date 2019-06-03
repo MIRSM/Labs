@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>TALK(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TALK(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+talk - разговор с другим пользователем
+<p><b>СИНТАКСИС</b>
+<pre>
+	talk person [ ttyname ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+talk - это программа визуальной связи, которая копирует строки
+с Вашего терминала на терминал другого пользователя.
+<p align=justify>Если Вы хотите поговорить с кем-то на Вашей собственной машине, тогда
+person - это просто входное имя пользователя (login name). Если Вы хотите
+использовать talk с пользователем другого узла, тогда person принимает
+одну из следующих форм:
+<pre>
+	host!user
+	host.user
+	host:user
+	user@host
+</pre>
+хотя  user@host - возможно предпочтительнее.
+<p align=justify>Если Вы хотите провести сеанс talk с пользователем, который имеет
+более, чем один вход на машину, можно использовать аргумент ttyname
+для индикации соответствующего терминального имени.
+<p align=justify>При первом вызове talk выдает сообщение:
+<pre>
+     Message from TalkDaemon@his_machine...
+     talk: connection requested by your_name@your_machine.
+     talk: respond with: talk your_name@your_machine
+</pre>
+<p align=justify>Не имеет значения, с какой машины отвечает вам получатель,
+пока его входное имя (login) остается тем же самым. Как только связь
+установлена, оба участника могут одновременно печатать,
+строки вывода появляются  в раздельных окнах.  Нажатие
+CTRL l вызывает распечатку экрана, в то время,  как символы
+"стереть", "уничтожить", и "уничтожить слово" отрабатываются
+нормально.  Для выхода просто нажмите символ "прерывания";
+talk переместит курсор на дно экрана и восстановит терминал.
+<p align=justify>Разрешение использовать talk может быть запрещено или предоставлено
+применением команды mesg. Вначале talk разрешен.  несколько
+команд, особенно nroff и  <a href=PR.htm>pr(1)</a>, запрещают сообщения
+в целях предотвращения беспорядочного вывода.
+в режиме реального времени.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/hosts    
+	/var/run/utmp
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MAIL.htm>mail(1)</a>,  <a href=MESG.htm>mesg(1)</a>,  <a href=WHO.htm>who(1)</a>,  <a href=WRITE~1.htm>write(1)</a>
+<p align=justify><b>ИСТОРИЯ</b><br>
+Команда talk появилась в 4.2BSD.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

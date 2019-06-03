@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>LDLREAD(3X)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LDLREAD(3X)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ldlread,  ldlinit,  ldlitem - работа с таблицей номеров
+строк, хранящейся в объектном файле обычного формата
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	#include &lt;filehdr.h>
+	#include &lt;linenum.h>
+	#include &lt;ldfcn.h>
+	
+	int ldlread (ldptr, fcnindx, linenum, linent)
+	LDFILE *ldptr;
+	long fcnindx;
+	unsigned short linenum;
+	LINENO *linent;
+	
+	int ldlinit (ldptr, fcnindx)
+	LDFILE *ldptr;
+	long fcnindx;
+	
+	int ldlitem (ldptr, linenum, linent)
+	LDFILE *ldptr;
+	unsigned short linenum;
+	LINENO *linent;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция ldlread предназначена для поиска  информации  в
+таблице номеров строк, хранящейся  в  объектном  файле,
+указанном аргументом ldptr. Поиск начинается с информа-
+ции о первой строке некоторой функции и  ограничивается
+данными, относящимися к этой функции. Функция  задается
+аргументом fcnindx - индексом имени функции  в  таблице
+имен объектного файла. Ldlread читает информацию о пер-
+вой из строк, номер которой не меньше  linenum,  в  об-
+ласть памяти с адресом linent.
+<p align=justify>Функции ldlinit и ldlitem совместно делают то же, что и
+ldlread. Вызов ldlinit (или ldlread) инициализирует по-
+иск, после чего  ldlitem  используется  для  извлечения
+последовательности элементов таблицы номеров строк, от-
+носящихся к одной функции. Ldlinit определяет, где  на-
+ходятся  данные  о   строках,   принадлежащих   функции
+fcnindx. Ldlitem ищет и читает информацию о  первой  из
+строк, номер которой не меньше linenum, в область памя-
+ти с адресом linent.
+<p align=justify>Все  три  функции  возвращают  значения   SUCCESS   или
+FAILURE. Ldlread возвращает FAILURE, если:
+<ol>
+<li> В объектном файле нет таблицы номеров строк.
+<li>  Аргумент fcnindx не является  индексом  функции  в
+     таблице имен.
+<li> В таблице номеров строк нет элемента с номером, не
+     меньшим linenum.
+</ol>
+Функция ldlinit возвращает FAILURE, если:
+<ol>
+<li> В объектном файле нет таблицы номеров строк.
+<li> Аргумент fcnindx не является  индексом  функции  в
+     таблице имен.
+</ol>
+Функция ldlitem возвращает FAILURE, если:
+<ol>
+<li> В таблице номеров строк нет элемента с номером, не
+     меньшим linenum.
+</ol>
+При редактировании связей вызывающей программы  следует
+подключить библиотеку программ доступа к объектным фай-
+лам libld.a.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LDCLOSE.htm>ldclose(3X)</a>, <a href=LDOPEN.htm>ldopen(3X)</a>, <a href=LDTBINDE.htm>ldtbindex(3X)</a>, <a href=LDFCN.htm>ldfcn(4)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

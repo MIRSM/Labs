@@ -1,0 +1,246 @@
+<html>
+<head>
+<title>SIGNAL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SIGNAL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+signal - спецификация действий по обработке сигнала
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;signal.h&gt;
+        
+        void (*signal (sig, func)) ( )
+        int sig;
+        void (*func) ( );
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов signal позволяет  вызывающему  процессу
+выбрать один из трех возможных способов реакции на  получение определенного сигнала.  Аргументы  sig  и  func
+специфицируют, соответственно, сигнал и выбор.
+<p align=justify>
+Аргумент sig может иметь одно из следующих значений, за
+исключением SIGKILL:
+<table>
+<tr valign=top><td>SIGHUP<td>01<td><td>Освобождение линии (hangup).</tr>
+<tr valign=top><td>SIGINT<td>02<td><td>Прерывание (interrupt).</tr>
+<tr valign=top><td>SIGQUIT<td>03<td>[1]<td>Выход (quit).</tr>
+<tr valign=top><td>SIGILL<td>04<td>[1]<td>Некорректная команда (illegal instruction). Не переустанавливается при перехвате.</tr>
+<tr valign=top><td>SIGTRAP<td>05<td>[1]<td>Трассировочное прерывание (trace  trap). Не переустанавливается при перехвате.</tr>
+<tr valign=top><td>SIGIOT<td>06<td>[1]<td>Машинная команда IOT.</tr>
+<tr valign=top><td>SIGABRT<td>06<td>[1]<td>Рекомендуемый синоним предыдущего.</tr>
+<tr valign=top><td>SIGEMT<td>07<td>[1]<td>Машинная команда EMT.</tr>
+<tr valign=top><td>SIGFPE<td>08<td>[1]<td>Исключительная ситуация  при  выполнении операции с вещественными числами (floating-point exception).</tr>
+<tr valign=top><td>SIGKILL<td>09<td><td>Уничтожение процесса (kill). Не перехватывается и не игнорируется.</tr>
+<tr valign=top><td>SIGBUS<td>10<td>[1]<td>Ошибка шины (bus error).</tr>
+<tr valign=top><td>SIGSEGV<td>11<td>[1]<td>Некорректное обращение к сегменту памяти (segmentation violation).</tr>
+<tr valign=top><td>SIGSYS<td>12<td>[1]<td>Некорректный параметр системного  вызова (bad argument to system call).</tr>
+<tr valign=top><td>SIGPIPE<td>13<td><td>Запись в канал, из которого  некому  читать (write on a pipe  with no one to read it).</tr>
+<tr valign=top><td>SIGALRM<td>14<td><td>Будильник (alarm clock).</tr>
+<tr valign=top><td>SIGTERM<td>15<td><td>Программный сигнал завершения  (software termination signal).</tr>
+<tr valign=top><td>SIGUSR1<td>16<td><td>Определяемый  пользователем   сигнал   1 (user-defined signal 1).</tr>
+<tr valign=top><td>SIGUSR2<td>17<td><td>Определяемый  пользователем   сигнал   2 (user-defined signal 2).</tr>
+<tr valign=top><td>SIGCLD<td>18<td>[2]<td>Завершение порожденного процесса  (death of a child).</tr>
+<tr valign=top><td>SIGPWR<td>19<td>[2]<td>Ошибка питания (power fail).</tr>
+<tr valign=top><td>SIGPOLL<td>22<td>[3]<td>Регистрация выборочного  события (selectable event pending).</tr>
+</table>
+<p align=justify>
+Аргумент  func  может  иметь  одно  из  трех  значений:
+SIG_DFL, SIG_IGN или адрес_функции. Макросы  SIG_DFL  и
+SIG_IGN определены во включаемом файле &lt;signal.h&gt;. Каждый из макросов  порождает  уникальную  константу  типа
+"указатель на функцию типа  void",  заведомо  не  соответствующую определяемой функции.
+<p align=justify>
+Действия, предписываемые  аргументом  func,  состоят  в
+следующем:
+<dl>
+<dt>SIG_DFL - стандартная реакция на сигнал 
+<dd>При получении сигнала sig терминировать процесс со
+всеми   завершающими   действиями,   описанными  в
+<a href=EXIT.htm>exit(2)</a>; см. замечание [1] ниже.
+<dt>SIG_IGN - игнорирование сигнала 
+<dd>Игнорировать сигнал sig. Сигнал SIGKILL  не  может
+игнорироваться.
+<dt>адрес_функции - перехват сигнала 
+<dd>При получении сигнала sig выполнить функцию  обработки сигнала func; в качестве единственного аргумента  функции  func передается номер сигнала sig;
+дополнительные аргументы передаются для  сигналов,
+вырабатываемых   аппаратурой.   Перед  выполнением
+функции func устанавливается  стандартная  реакция
+на  полученный  сигнал, если только этот сигнал не
+есть SIGILL или SIGTRAP. Таким образом, чтобы  перехватить  следующий сигнал sig, нужно вновь обратиться к signal, задав в качестве  аргумента  func
+адрес_функции.
+<p>
+После завершения функции  обработки  сигнала  процесс, получивший сигнал, возобновляет выполнение с
+точки прерывания.
+<p>
+Если сигнал, который должен быть перехвачен,  поступил  во  время  выполнения   системных   вызовов
+<a href=READ.htm>read(2)</a>, <a href=WRITE.htm>write(2)</a>, <a href=OPEN.htm>open(2)</a> или <a href=IOCTL.htm>ioctl(2)</a>  для  медленных устройств (таких, как терминал, но не  дисковый  файл),  <a href=PAUSE.htm>pause(2)</a>  или   системного   вызова
+<a href=WAIT.htm>wait(2)</a>, который не возвращает немедленно управление из-за того, что порожденный процесс остановлен
+или терминирован, то функция обработки сигнала выполняется, а  затем  прерванный  системный  вызов,
+скорее всего, возвращает вызывающему процессу значение -1 и присваивает переменной  errno  значение
+EINTR.
+<p>
+Системный вызов signal не  проверяет  корректность
+аргумента func. Последствия выполнения функции обработки сигнала,  заданной  некорректным  адресом,
+непредсказуемы.
+<p>
+Сигнал SIGKILL перехватить нельзя.
+</dl>
+<p align=justify>
+Выполнение системного вызова signal  отменяет  полученный, но еще не обработанный  сигнал  sig,  если  только
+этот сигнал не есть SIGKILL.
+<p>
+Системный вызов signal завершается неудачей, если:
+<dl>
+<dt>[EINVAL]
+<dd>Значение аргумента sig является  недопустимым номером сигнала, включая SIGKILL.
+</dl>
+<p><b>ПРИМЕЧАНИЯ</b><br>
+<b>[1]</b>
+<blockquote>
+<p>Если для  сигналов,  помеченных<dt>[1],  назначается
+стандартная реакция (SIG_DFL), то в  дополнение  к
+тому, что процесс терминируется, в текущем рабочем
+каталоге создается файл с образом памяти, если выполняются следующие условия:
+<ol>
+<li>Действующий и реальный идентификаторы пользователя процесса, получившего сигнал, совпадают.
+<li>Обычный файл с именем core существует и в  него
+можно писать, или файл core может быть  создан;
+создаваемый файл core будет обладать следующими
+характеристиками:
+<ol start=2.1>
+<li>Режим доступа 0666, модифицированный  маской режима создания файлов [см. <a href=UMASK.htm>umask(2)</a>].
+<li>Идентификатор владельца файла равен действующему идентификатору  пользователя  процесса, получившего сигнал.
+<li>Идентификатор группы файла равен действующему идентификатору группы процесса, получившего сигнал.
+</ol></ol>
+</blockquote>
+<b>[2]</b>
+<blockquote>
+<p>Для сигналов SIGCLD и SIGPWR, как и для других,  в
+качестве func может использоваться  одно  из  трех
+значений: SIG_DFL, SIG_IGN или адрес функции обработки  сигнала.  Однако  действия,  предписываемые
+этими значениями, отличаются от описанных выше:
+<p>
+SIG_DFL - игнорирование сигнала<br>
+SIG_IGN - игнорирование сигнала 
+<p>
+Если значение sig равно  SIGCLD,  то  процессы,
+порожденные вызывающим процессом, не перейдут в
+состояние  зомби  при  своем  завершении [см.
+<a href=EXIT.htm>exit(2)</a>].
+<p><i>адрес_функции - перехват сигнала</i><br>
+Если получен сигнал SIGCLD, то на время  выполнения функции обработки  сигнала  любой  другой
+сигнал SIGCLD игнорируется.
+<p>
+Сигнал SIGCLD  взаимодействует  с  системными  вызовами
+wait и exit следующим образом:
+<dl>
+<dt>wait
+<dd>Если значение func для сигнала SIGCLD  установлено
+равным SIG_IGN и выполняется системный вызов wait,
+то после получения сигнала SIGCLD wait блокируется
+до завершения всех процессов, порожденных вызывающим процессом; затем wait возвращает -1,  а  переменной errno присваивается значение ECHILD.
+<dt>exit
+<dd>Если процесс, родительский по отношению к  процессу,  выполняющему  exit,  установил  для   сигнала
+SIGCLD действие SIG_IGN, то завершающийся  процесс
+не переходит в состояние зомби.
+</dl><p>
+При использовании конвейера следует иметь в  виду,  что
+интерпретатор команд  shell  делает  последний  процесс
+конвейера родительским  для  предшествующих  процессов.
+Процесс, который входит в конвейер (и таким образом может стать родительским процессом), не должен перехватывать сигнал SIGCLD.
+</blockquote>
+<b>[3]</b>
+<blockquote>
+Сигнал SIGPOLL посылается, когда  для  дескриптора
+файла,   соответствующего   псевдоустройству [см.
+<a href=INTRO~1.htm>intro(2)</a>], установлена регистрация выборочных  событий.  Процесс  должен специально запрашивать посылку этого сигнала посредством системного  вызова
+ioctl  с аргументом I_SETSIG, иначе сигнал SIGPOLL
+никогда не будет получен.
+</blockquote>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~1.htm>intro(2)</a>,  <a href=KILL~1.htm>kill(2)</a>,   <a href=PAUSE.htm>pause(2)</a>,   <a href=PTRACE.htm>ptrace(2)</a>,   <a href=WAIT.htm>wait(2)</a>,
+<a href=SETJMP.htm>setjmp(3C)</a>, <a href=SIGSET.htm>sigset(2)</a>.
+<a href=KILL.htm>kill(1)</a> в Справочнике пользователя.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении системного вызова signal  возвращается предыдущее значение func для указанного сигнала  sig.  В  противном  случае  возвращается   значение
+SIG_ERR, а переменной errno присваивается  код  ошибки.
+Значение  SIG_ERR  определено   во   включаемом   файле
+&lt;sys/signal.h&gt;.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+При попытке  изменить  стандартную  реакцию  на  сигнал
+SIGKILL возвращается значение SIG_DFL  (а  не  SIG_ERR,
+как должно быть), а переменная errno получает  значение
+EINVAL.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

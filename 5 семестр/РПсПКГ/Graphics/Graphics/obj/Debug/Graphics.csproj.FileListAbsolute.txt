@@ -1,0 +1,10 @@
+C:\Users\я\source\repos\Graphics\Graphics\bin\Debug\GraphicsLab.exe.config
+C:\Users\я\source\repos\Graphics\Graphics\bin\Debug\GraphicsLab.exe
+C:\Users\я\source\repos\Graphics\Graphics\bin\Debug\GraphicsLab.pdb
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\Graphics.csprojResolveAssemblyReference.cache
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\GraphicsLab.Form1.resources
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\GraphicsLab.Properties.Resources.resources
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\Graphics.csproj.GenerateResource.cache
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\Graphics.csproj.CoreCompileInputs.cache
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\GraphicsLab.exe
+C:\Users\я\source\repos\Graphics\Graphics\obj\Debug\GraphicsLab.pdb

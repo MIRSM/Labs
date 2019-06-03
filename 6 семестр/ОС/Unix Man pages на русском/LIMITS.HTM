@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>LIMITS(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LIMITS(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+limits  - включаемый файл, содержащий реализационно-зависимые константы
+<p><b>СИНТАКСИС</b>
+<pre>
+#include &lt;limits.h&gt;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Включаемый файл &lt;limits.h&gt; содержит список важных ограничений,  налагаемых спецификой реализации операционной
+системы. Все значения являются десятичными.
+<pre>
+#define ARG_MAX   5120    /* Макс. длина аргументов
+                             системного вызова exec */
+#define CHAR_BIT  8       /* Кол-во бит в типе char */
+#define CHAR_MAX  255     /* Макс. целое знач. в типе
+                             char */
+#define CHAR_MIN  0       /* Мин.  целое знач. в типе
+                             char */
+#define CHILD_MAX 25      /* Макс. кол-во процессов у
+                             пользователя */
+#define CLK_TCK   100     /* Кол-во тактов часов в
+                             секунде */
+#define DBL_DIG   15      /* Кол-во цифр в мантиссе
+                             типа double */
+#define DBL_MAX   1.79769313486231470e+308 /* Макс.
+                             значение типа double */
+#define DBL_MIN   4.94065645841246544e-324 /* Мин.
+                             значение типа double */
+#define FCHR_MAX  1048576 /* Макс. размер файла в
+                             байтах */
+#define FLT_DIG   7       /* Кол-во цифр в мантиссе
+                             типа float */
+#define FLT_MAX   3.40282346638528860e+38 /* Макс.
+                             значение типа float */
+#define FLT_MIN   1.40129846432481707e-45 /* Мин.
+                             значение типа float */
+#define HUGE_VAL  3.40282346638528860e+38 /* Результат
+                             функций из матем. библ. в
+                             случае ошибки */
+#define INT_MAX   2147483647  /* Макс. знач. типа int */
+#define INT_MIN   -2147483648 /* Мин. знач. типа int */
+#define LINK_MAX  1000        /* Макс. кол-во ссылок на
+                                 файл */
+
+#define LONG_MAX  2147483647  /* Макс. знач. типа long */
+#define LONG_MIN  -2147483648 /* Мин. знач. типа long */
+#define NAME_MAX  14      /* Макс. кол-во  символов  в
+                             имени файла */
+#define OPEN_MAX  20      /* Макс. кол-во открытых файлов
+                             у процесса */
+#define PASS_MAX  8       /* Макс. кол-во символов в
+                             пароле */
+#define PATH_MAX  256     /* Макс. кол-во символов в
+                             маршрутном имени файла */
+#define PID_MAX   30000   /* Макс. знач. идентификатора
+                             процесса */
+#define PIPE_BUF  5120    /* Макс. кол-во байт, атомарное
+                             при записи в канал */
+#define PIPE_MAX  5120    /* Макс. кол-во байт, записыва- 
+                             емых в канал за один раз */
+#define SHRT_MAX  32767   /* Макс. знач. типа short */
+#define SHRT_MIN  -32768  /* Мин. знач. типа short */
+#define STD_BLK   1024    /* Кол-во байт в  физ. блоке
+                             ввода/вывода */
+#define SYS_NMLN  9       /* Кол-во символов в имени
+                             данной UNIX-системы */
+#define UID_MAX   60000   /* Макс. знач. идент. пользо- 
+                             вателя или группы */
+#define USI_MAX   4294967295 /* Макс. знач. типа
+                                unsigned */
+#define WORD_BIT  32      /* Кол-во бит в слове или в
+                             типе int */
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

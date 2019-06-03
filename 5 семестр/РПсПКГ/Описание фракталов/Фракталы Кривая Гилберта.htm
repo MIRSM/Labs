@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/gilb.html -->
+<HTML><HEAD><TITLE>Фракталы: Кривая Гилберта</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Кривая Гилберта.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Кривая Гилберта.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Кривая Гилберта</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=446 alt="Кривая Гильберта" 
+src="Фракталы Кривая Гилберта.files/fr045.gif" width=446 border=0></CENTER>
+<P>В 1890 году Джузеппе Пеано открыл плоскую кривую с удивительным свойством 
+"заполнения пространства". Такая кривая заполняла единичный квадрат и проходила 
+через каждую его точку по меньшей мере один раз.</P>
+<P>Кривая Пеано основана на разделении каждой стороны единичного квадрата на три 
+равные части, которые делят его на девять меньших квадратов. Кривая проходит эти 
+девять квадратов в определенном порядке. Затем каждый из девяти малых квадратов 
+аналогично делится на девять частей, и кривя модифицируется таким образом, чтобы 
+обойти все части в определенном порядке.</P>
+<P>В 1891 году Давид Гильберт открыл вариант кривой Пеано, основанной на делении 
+каждой стороны единичного квадрата на две равные части, что делит квадрат на 
+четыре равные части. Затем каждый из четырех получившихся квадратов, в свою 
+очередь, аналогично делится на четыре меньших квадрата и т.д. На каждой стадии 
+такого деления Гильберт строит кривую, которая обходила все имеющиеся квадраты. 
+Кривая Гильберта представляет собой предельную кривую, полученную в результате 
+такого построения.</P><PRE><B>Program</B> Gilb;
+<B>uses</B> Crt, Graph;
+<B>Const</B>
+  u=10;
+  p=5;
+<B>var</B>
+  i: Integer;
+  gd,gm : Integer;
+
+<B>procedure</B> a(i: integer); <B>forward</B>;
+<B>procedure</B> b(i: integer); <B>forward</B>;
+<B>procedure</B> c(i: integer); <B>forward</B>;
+<B>procedure</B> d(i: integer); <B>forward</B>;
+
+<B>procedure</B> a(i: integer);
+<B>begin</B>
+  <B>if</B> i &gt; 0 <B>then</B>
+  <B>begin</B>
+    d(i - 1);
+    LineRel( + u, 0);
+    a(i - 1);
+    LineRel(0, u);
+    a(i - 1);
+    LineRel(-u, 0);
+    c(i - 1);
+  <B>end</B>;
+<B>end</B>;
+
+<B>procedure</B> b(i: integer);
+<B>begin</B>
+  <B>if</B> i &gt; 0 <B>then</B>
+  <B>begin</B>
+    c(i - 1);
+    LineRel(-u, 0);
+    b(i - 1);
+    LineRel(0, -u);
+    b(i - 1);
+    LineRel(u, 0);
+    d(i - 1);
+  <B>end</B>;
+<B>end</B>;
+
+<B>procedure</B> c(i: integer);
+<B>begin</B>
+  <B>if</B> i &gt; 0 <B>then</B>
+  <B>begin</B>
+    b(i - 1);
+    LineRel(0, -u);
+    c(i - 1);
+    LineRel(-u, 0);
+    c(i - 1);
+    LineRel(0, u);
+    a(i - 1);
+  <B>end</B>;
+<B>end</B>;
+
+<B>procedure</B> d(i: integer);
+<B>begin</B>
+  <B>if</B> i &gt; 0 <B>then</B>
+  <B>begin</B>
+    a(i - 1);
+    LineRel(0, u);
+    d(i - 1);
+    LineRel(u, 0);
+    d(i - 1);
+    LineRel(0, -u);
+    b(i - 1);
+  <B>end</B>;
+<B>end</B>;
+
+<B>begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   MoveTo(100, 100);
+   a(p);
+   ReadKey;
+   CloseGraph;
+<B>end</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 15.10.04<BR>Дата последнего обновления: 20.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Кривая Гилберта.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

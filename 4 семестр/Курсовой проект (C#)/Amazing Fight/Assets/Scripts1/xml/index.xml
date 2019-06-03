@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.14">
+  <compound refid="class_ai_character" kind="class"><name>AiCharacter</name>
+    <member refid="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64a" kind="enum"><name>AIState</name></member>
+    <member refid="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64aadcab9fe534ddc53ff8b5a328303dfcd1" kind="enumvalue"><name>closeState</name></member>
+    <member refid="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64aa4269669589c5aff2ddcfca013aa26e3f" kind="enumvalue"><name>normalState</name></member>
+    <member refid="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64aa37e4d50e5b9736d445cb19f8de52da57" kind="enumvalue"><name>resetAI</name></member>
+    <member refid="class_ai_character_1a83acb0de9a2d457596f7912914a41b5b" kind="variable"><name>pc</name></member>
+    <member refid="class_ai_character_1a4f816bb5e677750d32ceca53e13eac5d" kind="variable"><name>en</name></member>
+    <member refid="class_ai_character_1a1d7581dec36bf9739be76335063b5f29" kind="variable"><name>nrmTimer</name></member>
+    <member refid="class_ai_character_1a6d52181deb96d2a9fd9d5857e7662924" kind="variable"><name>clTimer</name></member>
+    <member refid="class_ai_character_1a0c02f37893035e588d4d42ab735b3bce" kind="variable"><name>blTimer</name></member>
+    <member refid="class_ai_character_1adcceec75b3b73ad31435ea5295dac16d" kind="variable"><name>aiTimer</name></member>
+    <member refid="class_ai_character_1aa6c19d12b0b64c9818dd3ba575136460" kind="variable"><name>initiateAI</name></member>
+    <member refid="class_ai_character_1a7c69ca54d76049653d245667659edf9a" kind="variable"><name>closeCombat</name></member>
+    <member refid="class_ai_character_1a6382ef7556fb60a910029d59f36ea4c4" kind="variable"><name>gotRandom</name></member>
+    <member refid="class_ai_character_1a50bcb840f72ec4cb5eda149bdd9fb05a" kind="variable"><name>storeRandom</name></member>
+    <member refid="class_ai_character_1a9dffc5c052bd94c8871b2dd35a550309" kind="variable"><name>blocking</name></member>
+    <member refid="class_ai_character_1a12b639ba66976b96a19f35725b52a2ea" kind="variable"><name>randomizeAttacks</name></member>
+    <member refid="class_ai_character_1abbd1188fab389f2266e44da81858bf4f" kind="variable"><name>numberOfAttacks</name></member>
+    <member refid="class_ai_character_1a30fcd9cb633bfb5d18996de8a2367b75" kind="variable"><name>curNumAttacks</name></member>
+    <member refid="class_ai_character_1a16ac12ee3f8dee05338abc3f011167af" kind="variable"><name>jRate</name></member>
+    <member refid="class_ai_character_1ade84b69b3013c662b5e56b8e6027d672" kind="variable"><name>jump</name></member>
+    <member refid="class_ai_character_1a6cfc305195b586445fc360136f6bee44" kind="variable"><name>jtimer</name></member>
+    <member refid="class_ai_character_1a66d71727e76d925f7e39a3054eeec7cc" kind="variable"><name>changeStateTolerance</name></member>
+    <member refid="class_ai_character_1a110ef2e2617c81909ca96f4ceea622be" kind="variable"><name>normalRate</name></member>
+    <member refid="class_ai_character_1a2b249bfa1c6b978d71476cc46a544974" kind="variable"><name>closeRate</name></member>
+    <member refid="class_ai_character_1aa16f6b3e1e586215ce88fdd2dab8bc99" kind="variable"><name>blockingRate</name></member>
+    <member refid="class_ai_character_1a5c3bcd6073f4d8b52bb4835f5018e4fc" kind="variable"><name>aiStateLife</name></member>
+    <member refid="class_ai_character_1a63521ebe1e7f0e656c64faa367c088de" kind="variable"><name>JumpRate</name></member>
+    <member refid="class_ai_character_1aab87620294650d977ac6686be2e6006e" kind="variable"><name>aiState</name></member>
+    <member refid="class_ai_character_1a080c134e72a3eb28a9cb3bfcc2d17b33" kind="function"><name>Start</name></member>
+    <member refid="class_ai_character_1a0f425edffedad5fd3741d86219cb6552" kind="function"><name>Update</name></member>
+    <member refid="class_ai_character_1afb012d564777c9cadd451d13669755a2" kind="function"><name>States</name></member>
+    <member refid="class_ai_character_1af3c08dc2ad82915a33182c81f1008352" kind="function"><name>AIAgent</name></member>
+    <member refid="class_ai_character_1a81ad80fd115f31feae47ae04d630a955" kind="function"><name>Attack</name></member>
+    <member refid="class_ai_character_1ada2911b458ab4f306a342f8e618fa085" kind="function"><name>Movement</name></member>
+    <member refid="class_ai_character_1a2543bf2df066fd7a8e49c304ae05a7c0" kind="function"><name>ResetAI</name></member>
+    <member refid="class_ai_character_1a4b7fe3bb23be8163e9c5db644b4c7c77" kind="function"><name>CheckDistance</name></member>
+    <member refid="class_ai_character_1acdbd4ae94ac603e55efe95e302e9496a" kind="function"><name>Blocking</name></member>
+    <member refid="class_ai_character_1a49e7b9dbd317b18efed851ae1002040e" kind="function"><name>NormalState</name></member>
+    <member refid="class_ai_character_1a34a9735adf6b92f3f43324c20a385b77" kind="function"><name>CloseState</name></member>
+    <member refid="class_ai_character_1af837c0595d0536a8889c8ab72673725e" kind="function"><name>Jumping</name></member>
+    <member refid="class_ai_character_1af65c5c7a0919e6a5010d177e38a07c17" kind="function"><name>ReturnRandom</name></member>
+  </compound>
+  <compound refid="class_damage_script" kind="class"><name>DamageScript</name>
+    <member refid="class_damage_script_1a137dcae01bf44cac6b2397e4e3d41588" kind="variable"><name>damage</name></member>
+    <member refid="class_damage_script_1a2eabd0b9e164ffcb5c7c6099c0439243" kind="function"><name>OnTriggerEnter2D</name></member>
+  </compound>
+  <compound refid="class_event_holder" kind="class"><name>EventHolder</name>
+    <member refid="class_event_holder_1a3807b2e13a482cd0cbdceb730d69ae5a" kind="variable"><name>pl</name></member>
+    <member refid="class_event_holder_1a6861dff8974064b87d5836290e1ba4f0" kind="function"><name>Start</name></member>
+    <member refid="class_event_holder_1a41ff966511e546aab8e9570ec11628dc" kind="function"><name>ThrowProjectile</name></member>
+  </compound>
+  <compound refid="class_main_hero" kind="class"><name>MainHero</name>
+    <member refid="class_main_hero_1a47c80b0f5d32a77fdacdea62076845c4" kind="variable"><name>PlayerNumber</name></member>
+    <member refid="class_main_hero_1a30ba91a2a6e7be6f4dacbbc8e73a9b59" kind="variable"><name>AiCharacter</name></member>
+    <member refid="class_main_hero_1ad247170f696108dd3bf9e929cd1876e1" kind="variable"><name>enemy</name></member>
+    <member refid="class_main_hero_1a8fc688d97bfbe1fc1d8e459057a0cb48" kind="variable"><name>horizontal</name></member>
+    <member refid="class_main_hero_1a9a11f2f3536455ae8019bf744da5e3d2" kind="variable"><name>vertical</name></member>
+    <member refid="class_main_hero_1a395b9931293e395b27fc804ce4272a43" kind="variable"><name>maxSpeed</name></member>
+    <member refid="class_main_hero_1a5e52c322f3cce8300ad60740fbbb2f3e" kind="variable"><name>JumpForce</name></member>
+    <member refid="class_main_hero_1acd428461dbe00a90d6dad2128f012e06" kind="variable"><name>JumpDuration</name></member>
+    <member refid="class_main_hero_1a245b3b695b71d7298af91adeab630415" kind="variable"><name>jumpKey</name></member>
+    <member refid="class_main_hero_1a6ff3ed3e889eb7c46aabf37983735d48" kind="variable"><name>attackRate</name></member>
+    <member refid="class_main_hero_1a005360ba8f19552eaa2f73a86594f234" kind="variable"><name>attack</name></member>
+    <member refid="class_main_hero_1a3ef0dcd75e28d0663b016cb256002fe3" kind="variable"><name>damage</name></member>
+    <member refid="class_main_hero_1a98b2abb15c653eb4249dd72cdeb99ea1" kind="variable"><name>noDamage</name></member>
+    <member refid="class_main_hero_1ac6f0080f1c2cbf89acaadd91b7b7fcef" kind="variable"><name>blocking</name></member>
+    <member refid="class_main_hero_1ada5d79cca7de2fcad882109617dae859" kind="variable"><name>blockingRate</name></member>
+    <member refid="class_main_hero_1a41a9f62b04b30cca902162a380c71ce2" kind="variable"><name>specialAttack</name></member>
+    <member refid="class_main_hero_1a79571ab18a21ba0dab6eee4bc9b4c703" kind="variable"><name>projectile</name></member>
+    <member refid="class_main_hero_1a7e7eeaead779109700e1ccf43f67b60a" kind="variable"><name>am</name></member>
+    <member refid="class_main_hero_1a5db70a2ac699ac7a9b1942d0af58ef93" kind="variable"><name>Au</name></member>
+    <member refid="class_main_hero_1abd66bd306992caa999b7d93fffd0206d" kind="variable"><name>die</name></member>
+    <member refid="class_main_hero_1a9182063d4ea93cf31eb122fba30bd8a7" kind="variable"><name>healthBar</name></member>
+    <member refid="class_main_hero_1aab76d5b7811c2d4e585dd3287b61855d" kind="variable"><name>ContinueText</name></member>
+    <member refid="class_main_hero_1a809808699db116feac7e834ab0d1cca1" kind="variable"><name>WinText</name></member>
+    <member refid="class_main_hero_1a14dfba97685e97d31594c71eb0874ae3" kind="variable"><name>plH</name></member>
+    <member refid="class_main_hero_1a1476dfc2449bcdb3594c56965905daea" kind="variable"><name>paused</name></member>
+    <member refid="class_main_hero_1a829b7fe572aff712cd2bd19388bb102a" kind="variable"><name>volume</name></member>
+    <member refid="class_main_hero_1af9393539691edc358ffbe388cef3b47d" kind="variable"><name>pauseMenu</name></member>
+    <member refid="class_main_hero_1a398bc1a49cf1bda351377e21f8db57a2" kind="variable"><name>rb</name></member>
+    <member refid="class_main_hero_1ae8e54335c1a1f16e6b6f6e26becf37b1" kind="variable"><name>anim</name></member>
+    <member refid="class_main_hero_1a1dae22837ace84fc6fc659718aa6014a" kind="variable"><name>movement</name></member>
+    <member refid="class_main_hero_1afae4fb42d5ade6a4ebf48ecb8fb54ee6" kind="variable"><name>crouch</name></member>
+    <member refid="class_main_hero_1a7bf7029314e4a7b18aab291fee314ce9" kind="variable"><name>jmpForce</name></member>
+    <member refid="class_main_hero_1a78a26df4394899de5ac2ec8b2c9c642e" kind="variable"><name>jmpDuration</name></member>
+    <member refid="class_main_hero_1aeba0bd4babf12c7b9f5c8e5ac3319131" kind="variable"><name>falling</name></member>
+    <member refid="class_main_hero_1aa62a69998e041190cafdea609860d257" kind="variable"><name>onGround</name></member>
+    <member refid="class_main_hero_1a31fa7830fae0bc2318619d4731661577" kind="variable"><name>attacktimer</name></member>
+    <member refid="class_main_hero_1aca3a0447648b7ed329b769c3bf91ffe3" kind="variable"><name>timesPressed</name></member>
+    <member refid="class_main_hero_1aa0b6f17e9c402270ce31d45281443152" kind="variable"><name>noDamageTimer</name></member>
+    <member refid="class_main_hero_1ab94056603eb289082b8d0de3f8c2ddb0" kind="variable"><name>blTimer</name></member>
+    <member refid="class_main_hero_1aea136ff26c619aa1ef78e559870009f5" kind="variable"><name>prLifeTime</name></member>
+    <member refid="class_main_hero_1ab8e47199280a374f4018e2cc895e52b5" kind="variable"><name>gotRandom</name></member>
+    <member refid="class_main_hero_1a0f2b45bfe74f948453d35edf1a4bb727" kind="variable"><name>storeRandom</name></member>
+    <member refid="class_main_hero_1a1fe3fa79ba69ead59634f83146bfed9e" kind="variable"><name>deathAnimLife</name></member>
+    <member refid="class_main_hero_1a5893efee1b923f8dfce478270ec0e434" kind="variable"><name>deathAnimTimer</name></member>
+    <member refid="class_main_hero_1a5bd669e8c8781e60f238d55f6e23484f" kind="property"><name>CurrentHealth</name></member>
+    <member refid="class_main_hero_1a4f1c88d396447fb5e8a783fa0c18c344" kind="property"><name>MaxHealth</name></member>
+    <member refid="class_main_hero_1a5c279f00e37eac576d05d2fe2a468669" kind="function"><name>Start</name></member>
+    <member refid="class_main_hero_1a9f21ef3e52061b94d7763cc971686f24" kind="function"><name>Update</name></member>
+    <member refid="class_main_hero_1a255c657574c8e62f04e361bcc8530db4" kind="function"><name>FixedUpdate</name></member>
+    <member refid="class_main_hero_1ad4fc632b007098a349699b7a9d1cd06d" kind="function"><name>OnGroundCheck</name></member>
+    <member refid="class_main_hero_1a75e405ed78015b03bfdf7e804d23cce6" kind="function"><name>AttackInput</name></member>
+    <member refid="class_main_hero_1ac1507b9df304fa8fc7c2c05fc0a83e4a" kind="function"><name>Damage</name></member>
+    <member refid="class_main_hero_1a9176c11a6d2e6e46eba6841dc17b6870" kind="function"><name>SpecialAttack</name></member>
+    <member refid="class_main_hero_1a5463437c4b593b05697569f67bd96f85" kind="function"><name>UpdateAnimator</name></member>
+    <member refid="class_main_hero_1abd2a3437b34c664713c74116852c903c" kind="function"><name>OnCollisionEnter2D</name></member>
+    <member refid="class_main_hero_1a7253c6b7ab7687ad7da27d4810b3a963" kind="function"><name>OnCollisionExit2D</name></member>
+    <member refid="class_main_hero_1a6ecf0df3b4886d935ac5a73cae262b98" kind="function"><name>ScaleCheck</name></member>
+    <member refid="class_main_hero_1ad0634aac3defa9c2912b88d0973c601e" kind="function"><name>GameOver</name></member>
+    <member refid="class_main_hero_1a42a4d6b72a9f987a8360968a2d4b65bd" kind="function"><name>CalculateHealth</name></member>
+    <member refid="class_main_hero_1a794da6f7c5196a9686b49d99ad017607" kind="function"><name>Blocking</name></member>
+    <member refid="class_main_hero_1af49ad3b57e50b29ef470d39b72466c93" kind="function"><name>ReturnRandom</name></member>
+    <member refid="class_main_hero_1ae68619678819e53647d7f4c109e73786" kind="function"><name>PauseApp</name></member>
+    <member refid="class_main_hero_1a5d46fe9152a712bc54f3ce4e2f6d1640" kind="function"><name>ContinueBut</name></member>
+    <member refid="class_main_hero_1aa4a0e7705e219e50099bc27ce794f846" kind="function"><name>MenuBut</name></member>
+    <member refid="class_main_hero_1a761eb5bd14b9e8a87868ad668193e21c" kind="function"><name>QuitBut</name></member>
+  </compound>
+  <compound refid="class_player1_set_up" kind="class"><name>Player1SetUp</name>
+    <member refid="class_player1_set_up_1ab1e946bdce83fe3fa9d7fb15c84ebb0b" kind="function"><name>PlayVs</name></member>
+  </compound>
+  <compound refid="class_player2_set_up" kind="class"><name>Player2SetUp</name>
+    <member refid="class_player2_set_up_1a79cfe06cca4f13ae8c57aaa8c0abc143" kind="function"><name>PlayVs</name></member>
+  </compound>
+  <compound refid="class_redirect" kind="class"><name>Redirect</name>
+    <member refid="class_redirect_1a9c36af103c357b2f29f7a1278459e099" kind="variable"><name>logoDuration</name></member>
+    <member refid="class_redirect_1acad70707d9a5e7c6ca8c5a95e1b8c3b9" kind="variable"><name>maxLogoDuration</name></member>
+    <member refid="class_redirect_1acfb96a95ddb3b11a900f2dad76b808fd" kind="function"><name>Start</name></member>
+    <member refid="class_redirect_1a11c1b9cf32f3354c34bf081e43597507" kind="function"><name>Update</name></member>
+  </compound>
+  <compound refid="class_settings_menu" kind="class"><name>SettingsMenu</name>
+    <member refid="class_settings_menu_1aa7b3c4cfb87c9f317fbb517ed6390475" kind="variable"><name>audioMixer</name></member>
+    <member refid="class_settings_menu_1a383590e535f34f8e8bf25885d6cf67ff" kind="variable"><name>volumeSlider</name></member>
+    <member refid="class_settings_menu_1a6c5a6bc61adb1fa4e1f69ffc9d99c562" kind="variable"><name>volume1</name></member>
+    <member refid="class_settings_menu_1a35da40be7f9d0ba22b141c4df968a237" kind="variable"><name>fullScr</name></member>
+    <member refid="class_settings_menu_1a27c59d87a06348cc36448ac5a505dfe1" kind="variable"><name>resolutionDropDown</name></member>
+    <member refid="class_settings_menu_1af0c46a77506918328a63bb22c0a5cb1d" kind="variable"><name>curRes</name></member>
+    <member refid="class_settings_menu_1a210d41a46c4293e55b5366b1437bd7f3" kind="variable"><name>resolutions</name></member>
+    <member refid="class_settings_menu_1ab9c235acaf0040ded2587591c5626179" kind="function"><name>Start</name></member>
+    <member refid="class_settings_menu_1ae1a101f20fa5dd16dc00b881c112ac14" kind="function"><name>SetResolution</name></member>
+    <member refid="class_settings_menu_1acadc846d5d76eceeb43fa72bbcc732cc" kind="function"><name>SaveSettings</name></member>
+    <member refid="class_settings_menu_1a18d841ef0a70fe51fdc9876392df55e3" kind="function"><name>SetVolume</name></member>
+    <member refid="class_settings_menu_1ac4b16fdfe934136a376f665c389090b5" kind="function"><name>SetFullscreen</name></member>
+    <member refid="class_settings_menu_1ae1af9e9f118c234701c4f3b5b5d56df1" kind="function"><name>PlayButton</name></member>
+    <member refid="class_settings_menu_1ac6396a2966db7460965badeb77367e47" kind="function"><name>HelpButton</name></member>
+    <member refid="class_settings_menu_1abbbf52328e6430bc846cb4eace7af07f" kind="function"><name>QuitButton</name></member>
+  </compound>
+  <compound refid="class_start_play" kind="class"><name>StartPlay</name>
+    <member refid="class_start_play_1a66613db046d639cfa97b6b7a7e7adf78" kind="function"><name>BackBut</name></member>
+  </compound>
+  <compound refid="namespace_system_1_1_collections" kind="namespace"><name>System::Collections</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="namespace_system_1_1_i_o" kind="namespace"><name>System::IO</name>
+  </compound>
+  <compound refid="namespace_system_1_1_xml" kind="namespace"><name>System::Xml</name>
+  </compound>
+  <compound refid="namespace_unity_engine" kind="namespace"><name>UnityEngine</name>
+  </compound>
+  <compound refid="namespace_unity_engine_1_1_audio" kind="namespace"><name>UnityEngine::Audio</name>
+  </compound>
+  <compound refid="namespace_unity_engine_1_1_scene_management" kind="namespace"><name>UnityEngine::SceneManagement</name>
+  </compound>
+  <compound refid="namespace_unity_engine_1_1_u_i" kind="namespace"><name>UnityEngine::UI</name>
+  </compound>
+  <compound refid="_ai_character_8cs" kind="file"><name>AiCharacter.cs</name>
+  </compound>
+  <compound refid="_damage_script_8cs" kind="file"><name>DamageScript.cs</name>
+  </compound>
+  <compound refid="_event_holder_8cs" kind="file"><name>EventHolder.cs</name>
+  </compound>
+  <compound refid="_main_hero_8cs" kind="file"><name>MainHero.cs</name>
+  </compound>
+  <compound refid="_player1_set_up_8cs" kind="file"><name>Player1SetUp.cs</name>
+  </compound>
+  <compound refid="_player2_set_up_8cs" kind="file"><name>Player2SetUp.cs</name>
+  </compound>
+  <compound refid="_redirect_8cs" kind="file"><name>Redirect.cs</name>
+  </compound>
+  <compound refid="_settings_menu_8cs" kind="file"><name>SettingsMenu.cs</name>
+  </compound>
+  <compound refid="_start_play_8cs" kind="file"><name>StartPlay.cs</name>
+  </compound>
+</doxygenindex>

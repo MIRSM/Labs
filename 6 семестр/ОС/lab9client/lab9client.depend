@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1557180079 source:/home/mirsm/Рабочий стол/lab9client/main.cpp
+	<sys/types.h>
+	<sys/msg.h>
+	<sys/ipc.h>
+	<string.h>
+	<stdio.h>
+	<unistd.h>
+	<iostream>
+

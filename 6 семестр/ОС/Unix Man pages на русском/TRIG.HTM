@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>TRIG(3M) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>TRIG(3M) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+trig: sin, cos, tan, asin, acos, atan, atan2 - тригонометрические функции
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;math.h>
+	
+	double sin (x)
+	double x;
+	
+	double cos (x)
+	double x;
+	
+	double tan (x)
+	double x;
+	
+	double asin (x)
+	double x;
+	
+	double acos (x)
+	double x;
+	
+	double atan (x)
+	double x;
+	
+	double atan2 (y, x)
+	double x, y;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функции sin, cos и tan возвращают, соответственно,  синус, косинус и тангенс своего  аргумента,  заданного  в
+радианах.
+<p align=justify>Функция asin возвращает значение arcsin (x) в диапазоне
+от - П/2 до  П/2.
+<p align=justify>Функция acos возвращает значение arccos (x) в диапазоне
+от 0 до  П.
+<p align=justify>Функция atan возвращает значение arctg (x) в  диапазоне
+от - П/2 до  П/2.
+<p align=justify>Функция atan2 возвращает значение arctg (y/x) в  диапазоне от - П до  П, используя знаки обоих  аргументов  для
+определения  квадранта,  которому  должно  принадлежать
+возвращаемое значение.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MATHERR.htm>matherr(3M)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При вычислении значений функций sin, cos и tan для значений аргумента, далеких  от  нуля,  происходит  потеря
+точности. При достаточно больших  значениях  аргумента,
+когда происходит полная потеря значимости, эти  функции
+возвращают нулевое значение;  при  этом  в  стандартный
+протокол будет выдано соответствующее сообщение.  В  не
+столь крайнем случае, когда происходит  лишь  частичная
+потеря значимости, сообщение об ошибке не  выдается.  В
+обоих случаях переменной errno  присваивается  значение
+ERANGE.
+<p align=justify>Если абсолютная величина  аргумента  функций  asin  или
+acos превышает 1, либо оба аргумента функции atan2 равны нулю, то будет возвращено нулевое значение, а  переменной errno присвоено значение  EDOM.  Кроме  того,  в
+стандартный протокол будет выдано сообщение о выходе за
+границы области определения.
+<p align=justify>Изложенная процедура обработки ошибок может быть  изменена посредством функции <a href=MATHERR.htm>matherr(3M)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

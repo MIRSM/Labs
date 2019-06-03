@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>GETOPT(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETOPT(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+getopt - разбор опций команды
+<p><b>СИНТАКСИС</b>
+<pre>
+	int getopt (argc, argv, optstring)
+	int argc;
+	char **argv, *optstring;
+	
+	extern char *optarg;
+	extern int optind, opterr;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция getopt возвращает  очередной  флаг  из  массива
+argv,   соответствующий   какой-либо  букве  в  цепочке
+optstring.  Функция  getopt  поддерживает  все  правила
+стандартного  синтаксиса  команд [см. <a href=INTRO.htm>intro(1)</a>, правила
+3 10]. Чтобы новые команды следовали этим правилам, для
+разбора позиционных параметров и проверки  допустимости
+опций  следует использовать утилиту <a href=GETOPTS.htm>getopts(1)</a> или описываемую функцию getopt.
+<p align=justify>Цепочка optstring должна содержать флаги, которые будут
+распознаваться программой, использующей getopt. Если за
+флагом следует двоеточие, то предполагается, что  опция
+имеет  аргумент  или  группу  аргументов, отделенных от
+флага пробелами или табуляциями.
+<p align=justify>В  переменную optarg помещается указатель на начало аргумента распознанной опции.
+<p align=justify>После каждого вызова функция getopt помещает во внешнюю
+переменную  optind  индекс  того элемента массива argv,
+который должен обрабатываться следующим. Значение переменной optind до первого  обращения  к  функции  getopt
+равно 1.
+<p align=justify>Когда все опции обработаны (то есть  встретился  первый
+из  аргументов,  не входящих в состав опций), результат
+функции getopt равен -1. Можно использовать специальную
+опцию --, чтобы отметить конец опций. Когда она  встретится при разборе, будет возвращено значение -1, а сама
+опция -- будет пропущена.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функция getopt выдает сообщение об ошибке в стандартный
+протокол и  возвращает  вопросительный  знак  ?,  когда
+встречается  флаг, не входящий в цепочку optstring, или
+не оказывается аргумента у опции,  требующей  аргумент.
+Выдача  сообщения  об  ошибке может быть подавлено, для
+чего переменной opterr следует присвоить 0.
+<p><b>ПРИМЕР</b>
+Следующий фрагмент программы показывает, как можно  обработать аргументы команды, допускающей взаимоисключающие  опции a и b, а также опцию o, которая должна иметь
+аргумент:
+<pre>
+     main (argc, argv)
+     int argc;
+     char **argv;
+     {
+       int c;
+       extern char *optarg;
+       extern int optind;
+        ...
+       while ((c=getopt (argc,argv,"abo:")) != -1)
+         switch (c) {
+         case 'a':
+           if (bflg) 
+             errflg++;
+           else
+             aflg++;
+           break;
+         case 'b':
+           if (aflg) 
+             errflg++;
+           else
+             bproc ();
+           break;
+         case 'o':
+           ofile = optarg;
+           break;
+         case '?':
+           errflg++;
+         }
+       if (errflg) {
+         (void) fprintf (stderr, "usage: ... ");
+         exit (2);
+       }
+       for ( ; optind &lt; argc; optind++) {
+         if (access (argv [optind], 4)) {
+         ...
+     }
+</pre>
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Хотя текущая реализация функции getopt допускает  некоторые  отступления от правил, задающих синтаксис команд
+[см. <a href=INTRO.htm>intro(1)</a>], этим не следует пользоваться,  так  как
+подобные  возможности могут не поддерживаться в следующих версиях системы. Пусть, как и в ПРИМЕРЕ, a  и  b  опции  без  аргументов,  а  опции o требуется аргумент.
+Рассмотрим два типичных отступления от правил:
+<pre>
+     cmd  -aboxxx file
+</pre>
+Здесь нарушено правило 5: опция с аргументом не  должна
+быть в одной группе с остальными опциями.
+<pre>
+     cmd  -ab -oxxx file
+</pre>
+Нарушено правило 6: после опции, которой требуется  аргумент, должен быть пробел или табуляция.
+<p align=justify>Изменение значения переменной optind или вызовы функции
+getopt с различными значениями argv  могут  привести  к
+непредсказуемым результатам.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GETOPTS.htm>getopts(1)</a>, <a href=INTRO.htm>intro(1)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

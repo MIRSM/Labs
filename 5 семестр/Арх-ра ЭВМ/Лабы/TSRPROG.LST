@@ -1,0 +1,100 @@
+Turbo Assembler	 Version 2.5	    11/21/18 21:39:16	    Page 1
+TSRprog.asm
+
+
+
+      1	0000			     code_seg	     segment
+      2	0000			      TSRprog	     proc    far
+      3					     assume cs:code_seg
+      4					     org     100h
+      5	0100			     begin:
+      6	0100  B9 0048			     mov     cx,72
+      7	0103  BE 0151r			     lea     si,music
+      8	0106  51		     beg:    push    cx
+      9	0107  E4 61			     in	     al,61h
+     10	0109  24 FC			     and     al,0ffh-3
+     11	010B  E6 61			     out     61h,al
+     12	010D  B0 B6			     mov     al,10110110b
+     13	010F  E6 43			     out     43h, al
+     14	0111  83 F9 25			     cmp     cx,37
+     15	0114  73 02			     jae     M2
+     16	0116  4E			     dec     si
+     17	0117  4E			     dec     si
+     18	0118			     M2:
+     19	0118  2E: 8B 04			     mov     ax,cs:[si]
+     20	011B  83 F9 25			     cmp     cx,37
+     21	011E  72 02			     jb	     M1
+     22	0120  46			     inc     si
+     23	0121  46			     inc     si
+     24	0122			     M1:
+     25	0122  E6 42			     out     42h,al
+     26	0124  8A C4			     mov     al,ah
+     27	0126  E6 42			     out     42h,al
+     28	0128  E4 61			     in	     al,61h
+     29	012A  0C 03			     or	     al,3
+     30	012C  E6 61			     out     61h, al
+     31	012E  E4 61			     in	     al,61h
+     32	0130  B8 8600			     mov     ax,8600h
+     33	0133  8C CB			     mov     bx,cs
+     34	0135  8E C3			     mov     es,bx
+     35	0137  BB 0150r			     lea     bx,flag
+     36	013A  B9 0007			     mov     cx,7
+     37	013D  BA A120			     mov     dx,0A120h
+     38	0140  CD 15			     int     15h
+     39	0142			     bue:
+     40	0142  59			     pop     cx
+     41	0143  E2 C1			     loop    beg
+     42	0145  E4 61			     in	     al,61h
+     43	0147  24 FC			     and     al,0ffh-3
+     44	0149  E6 61			     out     61h,al
+     45	014B  B8 4C00			     mov ax,4c00h
+     46	014E  CD 21			     int  21h
+     47	0150  00		     flag    db	0
+     48	0151  239F 239F	239F 239F +  music   dw	     9119,9119,9119,9119,9119,9119,9119,9119,9119,9119,9119,9119
+     49	      239F 239F	239F 239F +
+     50	      239F 239F	239F 239F
+     51	0169  11CF 10D0	0FDE 0EFB +		     dw	     4559,4304,4062,3835,3620,3416,3224,3043,2873,2711,2559,2415
+     52	      0E24 0D58	0C98 0BE3 +
+     53	      0B39 0A97	09FF 096F
+     54	0181  239F 239F	239F 239F +		     dw	     9119,9119,9119,9119,9119,9119,9119,9119,9119,9119,9119,9119
+     55	      239F 239F	239F 239F +
+     56	      239F 239F	239F 239F
+     57	0199  00		     index   db	0
+Turbo Assembler	 Version 2.5	    11/21/18 21:39:16	    Page 2
+TSRprog.asm
+
+
+
+     58	019A			     TSRprog endp
+     59	019A			     code_seg	     ends
+     60				     end     begin
+Turbo Assembler	 Version 2.5	    11/21/18 21:39:16	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "11/21/18"
+??FILENAME			  Text	 "TSRprog "
+??TIME				  Text	 "21:39:16"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE_SEG
+@FILENAME			  Text	 TSRPROG
+@WORDSIZE			  Text	 2
+BEG				  Near	 CODE_SEG:0106
+BEGIN				  Near	 CODE_SEG:0100
+BUE				  Near	 CODE_SEG:0142
+FLAG				  Byte	 CODE_SEG:0150
+INDEX				  Byte	 CODE_SEG:0199
+M1				  Near	 CODE_SEG:0122
+M2				  Near	 CODE_SEG:0118
+MUSIC				  Word	 CODE_SEG:0151
+TSRPROG				  Far	 CODE_SEG:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE_SEG			  16  019A Para	  none
+

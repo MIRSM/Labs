@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>LEX(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LEX(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	lex - генератор программ простого лексического анализа
+<p><b>СИНТАКСИС</b>
+<pre>
+   lex  [-r] [-c] [-t] [-v] [-n] [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда lex генерирует программы, которые можно использовать для простого лексического анализа текста.
+<p align=justify>Входные файлы (по умолчанию - стандартный ввод)  содержат цепочки символов и выражения, подлежащие  распознаванию, и операторы на языке C,  которые  выполняются  в
+случае успеха распознавания.
+<p align=justify>Генерируется  программа  lex.yy.c.  Будучи  загруженной
+вместе с библиотекой, она для каждой  распознанной  цепочки выполняет соответствующие C-операторы, а  остальные фрагменты входного файла копирует в  выходной  файл
+без изменений. Распознанная цепочка помещается во внешний символьный массив yytext. Сопоставление цепочек выполняется в том порядке, в котором они указаны в файле.
+Цепочки символов могут содержать квадратные скобки, которые указывают классы символов (например, [abx-z]  означает a, b, x, y и z), и операторы *, + и ?, обозначающие повторение предыдущего символа или  класса  символов,  соответственно,  любое неотрицательное число раз,
+любое положительное число, 0 или один раз. Символ     .
+- это класс всех символов ASCII, кроме перевода строки.
+В дополнение, поддерживаются скобки (группировка символов)  и вертикальная черта (альтернация). Запись r{d,e}
+в правиле обозначает вхождения регулярного выражения  r
+между  d  и  e.  Она имеет больший приоритет, чем |, но
+меньший, чем *, ?, + и конкатенация. Символ ^ в  начале
+выражения означает, что сопоставление должно начинаться
+с  начала  строки,  символ $ в конце выражения требует,
+чтобы следующим символом в сопоставляемой  цепочке  был
+символ  перевода строки. Символ / в выражении обозначает, что только часть выражения вплоть до наклонной черты помещается в yytext, но оставшаяся часть должна  успешно  сопоставляться. Символ оператора может использоваться как обычный символ, если он взят в  кавычки  или
+если  ему  предшествует  \. Пример: выражение [a-zA-Z]+
+успешно сопоставляется с цепочкой букв.
+<p align=justify>Три  подпрограммы  определены  как  макросы:   input( )
+- прочитать символ;  unput(c)  -  заменить  прочитанный
+символ;  output(c) - поместить выходной символ. Все они
+определены в терминах стандартных потоков, но их описание можно изменить.  Генерируемая  программа-анализатор
+называется  yylex(  ),  библиотека  содержит  программу
+main( ), которая вызывает анализатор. Действие REJECT в
+правой части правила обозначает отказ от  текущего  сопоставления  и  переход к поиску следующего сопоставления; функция yymore( ) накапливает дополнительные  символы  в том же массиве yytext; функция yyless(p) выталкивает порцию сопоставленной цепочки символов,  начиная
+с  позиции  p,  которая  должна  быть  между  yytext  и
+yytext+yyleng. Макросы input и output используют  файлы
+yyin и yyout для чтения и записи (по умолчанию это файлы stdin и stdout соответственно).
+<p align=justify>Строки,  начинающиеся  с  пробела, считаются текстом на
+языке C и копируются в файл lex.yy.c;  если  они  предшествуют  строке  %%, копирование выполняется в область
+внешних определений файла lex.yy.c. Все правила, как  и
+в YACC, должны стоять после %%. Строки, стоящие до %% и
+начинающиеся не с пробела, определяют стоящую слева цепочку  символов  как остаток строки; данное определение
+затем можно использовать, указав эту цепочку в фигурных
+скобках { }. Отметим, что после подстановки скобки  исчезнут.
+<p><b>ПРИМЕР</b>
+<pre>
+     D       [0-9]
+     %%
+     if      printf("IF statement\n");
+     [a-z]+  printf("tag, value %s\n",yytext);
+     0{D}+   printf("octal number %s\n",yytext);
+     {D}+    printf("decimal number %s\n",yytext);
+     "++"    printf("unary op\n");
+     "+"     printf("binary op\n");
+     "/*"     skipcommnts();
+     %%
+      skipcommnts()
+      {
+        for(;;) {
+          while (input() != '*')
+            ;
+          if (input() != '/')
+            unput(yytext[yyleng-1]);
+          else
+            return;
+        }
+      }
+</pre>
+Внешние имена, сгенерированные программой  lex,  всегда
+начинаются с префикса yy или YY.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>-r <td>  Выполняемые действия написаны на языке ratfor [см.
+     <a href=RATFOR.htm>ratfor(1)</a>].
+<tr valign=top><th>-c  <td> Выполняемые действия написаны на языке  C  (данная
+     опция считается использованной по умолчанию).
+<tr valign=top><th>-t  <td> Поместить результат на  стандартный  вывод  вместо
+     файла lex.yy.c.
+<tr valign=top><th>-v  <td> Выдать статистическую сводку о построенном автомате.
+<tr valign=top><th>-n  <td> Отменить выдачу статистики.
+</table>
+<p align=justify>Если указано несколько файлов, они рассматриваются  как
+один общий файл. Если файлы не указаны,  обрабатывается
+стандартный ввод.
+<p align=justify>Размеры некоторых таблиц  для  генерируемого  конечного
+автомата могут быть установлены в разделе определений:
+<table>
+<tr valign=top><td> %p n <td> число позиций равно n (по умолчанию - 2500)
+<tr valign=top><td> %n n <td> число состояний (500)
+<tr valign=top><td> %e n <td> число узлов в дереве разбора (1000)
+<tr valign=top><td> %a n <td> число переходов (2000)
+<tr valign=top><td> %k n <td> число классов упакованных символов (1000)
+<tr valign=top><td> %o n <td> размер выходного массива (3000)
+</table>
+<p align=justify>Использование одного или большего числа таких определений автоматически подразумевает задание опции  -v, если
+не используется опция -n.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=YACC.htm>yacc(1)</a>.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Опция -r еще не полностью работоспособна.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

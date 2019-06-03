@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>CTIME(3C) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>CTIME(3C) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ctime,  localtime,  gmtime,  asctime, cftime, ascftime,
+tzset - преобразование даты и времени в цепочку  символов
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/types.h>
+        #include &lt;time.h>
+        
+        char *ctime (clock)
+        time_t *clock;
+        
+        struct tm *localtime (clock)
+        time_t *clock;
+        
+        struct tm *gmtime (clock)
+        time_t *clock;
+        
+        char *asctime (tm)
+        struct tm *tm;
+        
+        extern long timezone;
+        
+        extern int daylight;
+        
+        extern char *tzname[2];
+        
+        void tzset ( )
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргументом функций ctime,  localtime  и  gmtime  служит
+указатель clock на значение типа time_t, описанного  во
+включаемом файле <sys/types.h>. Это значение  интерпретируется как число секунд, отсчитываемое от 00:00:00  1
+января 1970г. всемирного времени. Функция ctime возвращает указатель на цепочку из 26 символов вида
+<pre>
+        Sun Jan 16 01:03:52 1987\n\0
+</pre>
+где все поля имеют постоянную длину.
+<p align=justify>Функции localtime  и  gmtime  возвращают  указатели  на
+"tm"-структуры, описанные ниже. Localtime  вносит  поправку на часовой пояс и,  возможно,  на  летнее  время;
+gmtime осуществляет преобразование  непосредственно  ко
+всемирному времени, используемому в системе UNIX.
+<p align=justify>Функция asctime преобразует "tm"-структуру в цепочку из
+26 символов (подобную приведенной  выше)  и  возвращает
+указатель на эту цепочку.
+<p align=justify>Об явления всех  функций,  внешних  об ектов,  а  также
+"tm"-структуры содержатся во включаемом файле <time.h>.
+Описание структуры выглядит так:
+<pre>
+        struct tm {
+          int tm_sec;   /* Секунды (0-59) */
+          int tm_min;   /* Минуты (0-59) */
+          int tm_hour;  /* Часы (0-23) */
+          int tm_mday;  /* День месяца (1-31) */
+          int tm_mon;   /* Месяц года (0-11) */
+          int tm_year;  /* Год - 1900 */
+          int tm_wday;  /* День недели (Воскресенье = 0) */
+          int tm_yday;  /* День года (0-365) */
+          int tm_isdst;
+        };
+</pre>
+<p align=justify>Отличие tm_isdst от нуля указывает на то, что используется летнее время.
+<p align=justify>Внешняя переменная timezone типа long содержит  разницу
+в секундах между всемирным временем и  местным  поясным
+временем. Скажем, для Восточного поясного  времени  EST
+(см. ПРИМЕЧАНИЯ) эта разница составляет 5*60*60.  Внешняя переменная daylight отлична от нуля тогда и  только
+тогда, когда  должно  осуществляться  преобразование  к
+летнему времени в соответствии со стандартом США. Программа  учитывает  особенности  этого  преобразования  в
+1974, 1975 годах; при необходимости перечень таких  лет
+может быть расширен.
+<p align=justify>При наличии переменной окружения с именем  TZ,  функция
+asctime использует значение этой переменной для задания
+часового пояса, отличного от подразумеваемого. Значение
+TZ представляет из себя трехбуквенное название местного
+поясного времени (см. ПРИМЕЧАНИЯ), за  которым  следует
+число, выражающее отставание поясного времени от  гринвичского в часах и далее, возможно, следует трехбуквенное название летнего времени, действующего в данном поясе. К примеру, для Нью-Джерси следует установить  значение EST5EDT. Исходя из установленного TZ можно  изменить значения внешних переменных timezone и daylight, а
+во внешнюю переменную
+<pre>
+        char *tzname[2] = {"EST", "EDT"};
+</pre>
+<p align=justify>поместить названия временных шкал. Эти  изменения  осуществляет функция tzset; обычно она вызывается функцией
+asctime, но может быть вызвана пользователем и явно.
+<p align=justify>Следует иметь в виду, что  для  большинства  реализаций
+системный  профайл  /etc/profile  содержит присваивание
+переменной TZ [см. <a href=PROFILE.htm>profile(4)</a>, timezone(4)].
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=TIME.htm>time(2)</a>,    <a href=GETENV.htm>getenv(3C)</a>,    <a href=PROFILE.htm>profile(4)</a>,     timezone(4),
+<a href=ENVIRON.htm>environ(5)</a>.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Значения, возвращаемые описанными функциями,  указывают
+на один и тот же статический массив, содержимое которого полностью изменяется после каждого вызова.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Всемирным временем называют поясное время 0-го часового
+пояса, которое представляет  из  себя  местное  среднее
+солнечное время  гринвичского  меридиана;  обозначается
+GMT (Greenwich Mean Time).
+<p align=justify>Московское время опережает всемирное на 3 часа.(Это так
+называемое декретное московское время - не путать с поясным!)
+<p align=justify>Поясное время Москвы, лежащей  во  2-м  часовом  поясе,
+опережает всемирное на 2 часа.
+<p align=justify>Московское летнее время опережает всемирное на 4 часа.
+<p align=justify>Основная территория США покрывается 4-мя часовыми  поясами,  то  есть  16-м, 17-м, 18-м, 19-м, носящими соответственно специальные названия:  Pacific  (Тихоокеанский), Mountain (Горный), Central (Центральный), Eastern
+(Восточный).  В  них  действует соответствующее поясное
+(Standard) и во всех  штатах  основной  территории,  за
+исключением  Аризоны,  летнее (Daylight [Saving]) время
+(Time). Отсюда сокращенные  названия:  PST,  MST,  CST,
+EST, а также PDT, MDT, CDT, EDT.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

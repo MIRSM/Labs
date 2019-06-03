@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>UUX(1C) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>UUX(1C) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+uux - выполнение команд на удаленных системах
+<p><b>СИНТАКСИС</b>
+<pre>
+	uux  [-] [-a имя_пользователя] [-b] [-c] [-C] [-g приоритет] [-j] [-n] [
+	     [-r] [-s файл] [-x уровень_отладки] [-z] командная_цепочка
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда uux собирает ноль или более файлов с  различных
+систем, выполняет команду на указанной системе  и затем
+направляет стандартный вывод в файл на указанной системе. Отметим, что в целях безопасности во многих версиях
+наложены ограничения на список команд, выполняемых uux.
+Многие разрешают производить посредством uux только получение почты [см. <a href=MAIL.htm>mail(1)</a>]. (Права на  выполнение  команд  на  удаленных  системах   указываются   в   файле
+/usr/lib/uucp/Permissions).
+<p align=justify>Командная_цепочка состоит из одного или более  аргументов и похожа на командную строку shell'а, но имена  команд и файлов могут иметь префикс [имя_системы]!.  Если
+имя_системы не указано, подразумевается локальная  система.
+<p align=justify>Имя файла может быть:
+<ol>
+<li> Полным маршрутным именем.
+<li> Маршрутным  именем с приставкой ~имя_пользователя,
+которая заменяется именем исходного каталога пользователя в соответствующей  системе.  Если  такого
+пользователя  нет, подставится каталог /usr/spool/
+uucppublic.
+<li> Маршрутным именем с приставкой ~/получатель, которая  заменяется  на  /usr/spool/uucppublic/получатель. Получатель трактуется как имя обычного  файла, если только не копируется несколько файлов или
+получатель ранее уже не был  создан  как  каталог.
+Если обязательно нужно выполнять копирование в каталог, после получателя следует поставить /.  Так,
+если в качестве целевого_файла указать ~/dir/, будет создан каталог /usr/spool/uucppublic/dir (если
+его еще не было), в который и скопируются исходные
+файлы.
+</ol>
+<p align=justify>Все остальное считается маршрутным именем  относительно
+текущего каталога.
+<p align=justify>Например, команда
+<pre>
+	uux  "!diff sys5!/usr/dan/f1 sys6!/dan/f2 > !~/dan/f3"
+</pre>
+<p align=justify>возьмет  файл  f1 с машины sys5, файл f2 с машины sys6,
+сравнит их посредством утилиты <a href=DIFF.htm>diff(1)</a> и  поместит  результат  в  файл  /usr/spool/uucppublic/f3 на локальной
+машине.
+<p align=justify>Любой символ, имеющий для shell'а специальное значение,
+должен быть экранирован либо путем  заключения  командной_цепочки в кавычки, как это сделано в примере,  либо
+путем экранирования каждого символа отдельно.
+<p align=justify>Команда uux пытается собрать все нужные  файлы  на  той
+машине, где будет выполняться команда.  Выходные  файлы
+следует заключать в скобки. Например, команда
+<pre>
+	uux  a!cut -c1-72 b!/usr/file \(c!/usr/file\)
+</pre>
+<p align=justify>перешлет файл /usr/file с машины b на  a,  выполнит  на
+машине a команду <a href=CUT.htm>cut(1)</a> и отправит результат на  машину
+c.
+<p align=justify>Если выполняемая команда запрещена в указанной системе,
+то uux сообщит об этом. Сообщение  придет  по  почте  с
+удаленной машины. Отменить это сообщение поможет  опция
+-n.
+<p align=justify>Команда uux интерпретирует следующие опции:
+<dl>
+<dt>-  <dd>  Сделать стандартный ввод  uux  стандартным  вводом
+для командной_цепочки.
+<p><dt>
+-a имя_пользователя <dd>
+Использовать  заданное   имя_пользователя   вместо
+идентификатора пользователя, запустившего  команду
+uux. Все сообщения будут посланы пользователю.
+<p><dt>
+-b <dd>  Вернуться, что бы  ни  поступило  со  стандартного
+ввода для uux, если код завершения ненулевой.
+<p><dt>
+-c <dd>  При пересылке локального файла на удаленную систему не копировать его в буферный каталог (режим  по
+умолчанию).
+<p><dt>
+-C  <dd> При пересылке локального файла на удаленную систему копировать его в буферный каталог.
+<p><dt>
+-g приоритет <dd>
+Приоритет - один символ  (буква  или  цифра).  Чем
+меньше ASCII-код символа, тем больший приоритет  в
+пределах сеанса  связи  будет  иметь  задание.  По
+умолчанию приоритет равен N.
+<p><dt>
+-j  <dd> Выдать идентификатор задания в виде цепочки символов на стандартный вывод. Этот идентификатор можно
+использовать совместно с командой  <a href=UUSTAT.htm>uustat(1C)</a>  для
+получения состояния или для терминации задания.
+<p><dt>
+-n  <dd> Не извещать пользователя, если команду не  удалось
+выполнить.
+<p><dt>
+-p  <dd> То же, что и -.
+<p><dt>
+-r <dd>  Поставить задание в очередь, но не  начинать  процесс выполнения.
+<p><dt>
+-s файл <dd>
+Поместить статус задания в файл. Заметим, что файл
+должен задаваться полным маршрутным именем.
+<p><dt>
+-x уровень_отладки <dd>
+Выводить на стандартный вывод отладочную  информацию. Уровень_отладки - это число от 0 до 9, причем
+большему числу соответствует более  детальная  информация.
+<p><dt>
+-z  <dd> Послать пользователю уведомление об  успешном  завершении задания.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/spool/uucp/*          Служебные каталоги.
+	/usr/lib/uucp/Permissions  Права на  выполнение  команд
+		                   на удаленных системах.
+	/usr/lib/uucp/*            Другие файлы программ и данных.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CU.htm>cu(1)</a>, <a href=MAIL.htm>mail(1)</a>, <a href=UUCP.htm>uucp(1C)</a>, <a href=UUSTAT.htm>uustat(1C)</a>.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Только первая команда  конвейера  может  иметь  префикс
+имя_системы!. Все остальные команды будут выполняться в
+этой же системе.
+<p align=justify>Использование метасимвола shell'а *  может  привести  к
+неожиданным последствиям. Символы shell'а &lt;&lt;  и  >>  не
+поддерживаются.
+<p align=justify>Выполнение команды на  удаленной  системе  производится
+только в специальном каталоге, известном uucp. Все требуемые файлы будут помещены в этот каталог, если только
+они еще не находятся на  этой  машине.  Таким  образом,
+простое имя файла (без указания маршрута поиска или машины) должно быть уникальным в рамках  данного  запроса
+uux. Следующая команда НЕ БУДЕТ РАБОТАТЬ:
+<pre>
+	uux  "a!diff b!/usr/dan/xyz c!/usr/dan/xyz > !xyz.diff"
+</pre>
+но команда
+<pre>
+	uux  "a!diff a!/usr/dan/xyz c!/usr/dan/xyz > !xyz.diff"
+</pre>
+проработает правильно (если утилита diff разрешена  для
+выполнения на удаленных системах).
+<p align=justify><b>СЮРПРИЗЫ </b><br>
+Защищенные файлы и файлы, находящиеся в защищенных  каталогах, владельцем которых  является  заказчик,  могут
+пересылаться в ходе работы команды uucp.  Однако,  если
+заказчик является суперпользователем, а каталог  недоступен для просмотра или файл недоступен для чтения прочим пользователям, то запрос не будет удовлетворен.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

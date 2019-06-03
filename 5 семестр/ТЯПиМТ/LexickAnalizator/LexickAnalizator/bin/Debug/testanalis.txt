@@ -1,0 +1,16 @@
+Akeks1;
+program main;
+me, you, we, llllllllllllllllllllllllllll : logical;
+begin
+me=00;
+you=1234;
+lolirue
+123
+we=me and you;
+while we do me;
+end;
+keks;
+mew;
+123
+me1
+

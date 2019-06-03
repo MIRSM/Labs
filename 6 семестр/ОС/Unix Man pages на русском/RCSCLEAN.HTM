@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>RCSCLEAN(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>RCSCLEAN(1) <br> КОМАНДЫ ПОЛЬЗОВАТЕЛЯ</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+rcsclean - чистка каталога  с  рабочими  файлами  в  системе
+отслеживания версий RCS
+<p><b>СИНТАКСИС</b>
+<pre>
+	rcsclean [флаги] [имя-файла ... ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда rcsclean удаляет из текущего каталога рабочие файлы,
+над которыми не ведется  работа  (которые  не  забронированы
+для внесения изменений никем). Команда rcsclean -u удаляет и
+отменяет бронирование тех файлов,  которые не были  изменены
+фактически.
+<p align=justify>Для каждого  заданного  файла,  команда  rcsclean сравнивает
+рабочий файл с забронированной версией архивного файла. Если
+они отличаются, то ничего не происходит. В противном случае,
+при наличии флага -u отменяется бронирование,  и,  если файл
+не является одновременно бронированным и открытым для записи
+(сочетание,  характерное для востребования с целью  внесения
+изменений),  он  удаляется.  О  всех своих действиях команда
+rcsclean посылает сообщения на стандартный вывод  вызываемые
+rcs -u (о снятии брони) и rm -f (об удалении).
+<p align=justify>Соответствие между именами рабочих и архивных файлов описано
+в <a href=CI.htm>ci(1)</a>. Если имена файлов не заданы, операция применяется к
+текущему каталогу.
+<p align=justify>Для флагов  -n,  -q,  -r  и -u можно указывать номер версии.
+Если с флагом  -u  номер  версии  не  задан,  но  вызывающий
+забронировал  единственную  версию,  она и имеется ввиду.  В
+остальных случаях используется последняя из версии на ветви,
+используемой по умолчанию, обычно, главной.
+<p align=justify>Команда rcsclean  удобна  для  построения с командой <a href=MAKE.htm>make(1)</a>
+таких объектов,  как  clean  (проще  говоря,  очистки  после
+окончания работы).  Альтернативой  в  этом случае могут быть
+команды <a href=RCSDIFF.htm>rcsdiff(1)</a>, определяющую изменения, и <a href=CI.htm>ci(1)</a>, которая
+вернет назад предыдущую версию, если файл не изменился.
+<p align=justify><b>ФЛАГИ</b><br>
+<table>
+<tr valign=top><th>-ksubst<td>
+     Устанавливает правила подстановки ключевых символов при
+     извлечении  для  сравнения.  Возможные  правила   subst
+     описаны   в  <a href=CO.htm>co(1)</a>.  Явное  задание  флага  -k  подавит
+     заданное по умолчанию значение.
+<tr valign=top><th>-n[rev]<td>
+     Не удалять файлы  и  не  снимать  бронь  с  версий,  но
+     сообщить о требуемых действиях.
+<tr valign=top><th>-q[rev]<td>
+     Не печатать никаких сообщений.
+<tr valign=top><th>-r[rev]<td>
+     Задает версию для сравнения с рабочим файлом.
+<tr valign=top><th>-T<td>
+     Сохраняет дату  и  время  последнего изменения рабочего
+     файла даже если в  нем  была  снята  бронь  и  изменены
+     значения   ключевых  символов.  Такое  поведение  флага
+     вводит  в  заблуждению  команду   <a href=MAKE.htm>make(1)</a>   и,   потому
+     необходима  осторожность.  Флаг  -T  позволяет избежать
+     ненужных построений (компиляций), но она может подавить
+     их и тогда,  когда изменение идентификационных маркеров
+     существено для результата построения.
+<tr valign=top><th>-u[rev]<td>
+     Снять бронирование версии,  если она не  отличается  от
+     рабочего файла.
+<tr valign=top><th>-V<td>
+     Посылает номер версии RCS на стандартный вывод.
+<tr valign=top><th>-Vn<td>
+     Имитирует поведение версии  n комплекса программ  RCS .
+     См. <a href=CO.htm>co(1)</a> .
+<tr valign=top><th>-xsuffixes<td>
+     Задает суффикс,  добавляемый к имени  архивного  файла.
+     См. <a href=CI.htm>ci(1)</a> .
+<tr valign=top><th>-zzone<td>
+     Задает формат  даты  и  часовой  пояс  при  подстановке
+     ключевых слов в маркеры. См. <a href=CO.htm>co(1)</a> .
+</table>
+<p><b>ПРИМЕРЫ</b><br>
+<pre>
+     rcsclean  *.c  *.h
+</pre>
+Удалить все рабочие файлы с расширениями  .c и .h ,  которые
+не были изменены со времени своего востребования.
+<pre>
+     rcsclean
+</pre>
+Удалить все  рабочие  файлы  в текущем каталоге,  которые не
+были изменены со времени своего востребования.
+<p><b>ФАЙЛЫ</b><br>
+     Команда rcs  работает с файлами так же,  как команда <a href=CI.htm>ci(1)</a> .
+<p align=justify><b>ПЕРЕМЕННЫЕ СРЕДЫ</b><br>
+<dl><dt> RCSINIT <dd> Список флагов  используемых  со всеми командами системы
+     отслеживания версий RCS.  Не забудьте,  что  необходимы
+     меры для  того,  чтобы  пробелы  между  флагами не были
+     обработаны  командным  интерпретатором  преждевременно,
+     защищайте их,   например,   кавычками.   См.   <a href=CI.htm>ci(1)</a>  .
+     Полезными опциями могут быть -q, -V, -x и -z .
+</dl>
+<p align=justify><b>СООБЩЕНИЯ</b><br>
+Возвращает операционной системе  0  тогда  и  только  тогда,
+когда все операции завершились успешно.  Отсутствующие файлы
+игнорируются без сообщений.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CI.htm>ci(1)</a>, <a href=CO.htm>co(1)</a>,  <a href=IDENT.htm>ident(1)</a>,  <a href=RCS.htm>rcs(1)</a>,  <a href=RCSDIFF.htm>rcsdiff(1)</a>,  <a href=RCSINTRO.htm>rcsintro(1)</a>,
+<a href=RCSMERGE.htm>rcsmerge(1)</a>, <a href=RLOG.htm>rlog(1)</a>, rcsfile(5)
+<p align=justify><i>Walter F.   Tichy,   RCS--A   System  for  Version  Control,
+Software--Practice & Experience 15, 7 (July 1985), 637-654.</i>
+<p align=justify><b>ПРОБЛЕМЫ</b><br>
+Для старых версий UNIX требуется  задание  по  крайней  мере одного файла.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

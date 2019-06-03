@@ -1,0 +1,11 @@
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\bin\Debug\PIAPSFlyweight.exe.config
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\bin\Debug\PIAPSFlyweight.exe
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\bin\Debug\PIAPSFlyweight.pdb
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\obj\Debug\PIAPSFlyweight.csprojAssemblyReference.cache
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\obj\Debug\PIAPSFlyweight.csproj.CoreCompileInputs.cache
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\obj\Debug\PIAPSFlyweight.csproj.CopyComplete
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\obj\Debug\PIAPSFlyweight.exe
+C:\Users\ugrov\source\repos\PIAPSFlyweight\PIAPSFlyweight\obj\Debug\PIAPSFlyweight.pdb

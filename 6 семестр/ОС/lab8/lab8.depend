@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1556608647 source:/home/mirsm/Рабочий стол/lab8/main.cpp
+	<iostream>
+	<fcntl.h>
+	<unistd.h>
+	<stdlib.h>
+	<string.h>
+	<sys/wait.h>
+

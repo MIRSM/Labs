@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Redirect.cs">
+    <Files>
+      <File FileName="Assets\Scripts\MainHero.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AiCharacter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DamageScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EventHolder.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player1SetUp.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player2SetUp.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SettingsMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StartPlay.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PausePlay.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Redirect.cs" Line="20" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

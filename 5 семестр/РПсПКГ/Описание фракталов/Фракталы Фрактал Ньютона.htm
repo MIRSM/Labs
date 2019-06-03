@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/frnew.html -->
+<HTML><HEAD><TITLE>Фракталы: Фрактал Ньютона</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY background="Фракталы Фрактал Ньютона.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Фрактал Ньютона.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Фрактал Ньютона</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify><PRE><B>Program</B> N3;
+<B>Uses</B> Graph, Crt;
+<B>Type</B>
+   TComplex = <B>Record</B>
+     X : Real;
+     Y : Real;
+   <B>End</B>;
+<B>Const</B>
+   iter = 50;
+   max  = 1e+6;
+   min  = 1e-6;
+<B>Var</B>
+   z, t, d : TComplex;
+   p       :  Real;
+   x, y, n : Integer;
+   Cancel  : Boolean;
+   gd, gm  : Integer;
+   mx, my  : Integer;
+<B>Begin</B>
+   Cancel := False;
+   Randomize;
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   Mx := GetMaxX <B>div</B> 2;
+   My := GetMaxY <B>div</B> 2;
+   <B>For</B> y := -my <B>to</B> my <B>do</B>
+      <B>For</B> x := -mx <B>to</B> mx <B>do</B> <B>Begin</B>
+         n := 0;
+         z.x := X * 0.005;
+         z.y := Y * 0.005;
+         d := z;
+         <B>While</B> (sqr(z.x)+sqr(z.y) &lt; max) <B>and</B> (sqr(d.x)+sqr(d.y) &gt; min)
+              <B>and</B> (n &lt; iter) <B>do</B> <B>Begin</B>
+            t := z;
+            {z^3 - 1}
+            p := sqr(sqr(t.x)+sqr(t.y));
+            z.x := 2/3*t.x + (sqr(t.x)-sqr(t.y))/(3*p);
+            z.y := 2/3*t.y*(1-t.x/p);{}
+            d.x := abs(t.x - z.x);
+            d.y := abs(t.y - z.y);
+            Inc(n);
+            <B>If</B> keypressed <B>then</B> cancel := true;
+         <B>End</B>;
+            PutPixel(mx + x,my + y,16 - (n <B>mod</B> 16));
+         <B>If</B> cancel <B>then</B> exit;
+      <B>End</B>;
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+</PRE>
+<CENTER><IMG height=400 alt="Фрактал Ньютона" 
+src="Фракталы Фрактал Ньютона.files/fr024.jpg" width=400 border=1></CENTER>
+<CENTER><IMG height=400 alt="Фрактал Ньютона" 
+src="Фракталы Фрактал Ньютона.files/fr021.jpg" width=400 border=1></CENTER>
+<CENTER><IMG height=400 alt="Фрактал Ньютона" 
+src="Фракталы Фрактал Ньютона.files/fr023.jpg" width=400 border=1></CENTER>
+<CENTER><IMG height=400 alt="Фрактал Ньютона" 
+src="Фракталы Фрактал Ньютона.files/fr022.jpg" width=400 
+border=1></CENTER></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.10.04<BR>Дата последнего обновления: 10.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Фрактал Ньютона.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>REMOTE(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>REMOTE(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+remote
+<p><b>СИНТАКСИС</b>
+<pre>
+	remote [ - ] [ -f file ] [ -m ] [-u user] machine command [ arguments ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда remote - это ограниченное  сетевое  средство,  которое
+позволяет выполнять команды XENIX в нескольких каналах. Команды в любой присоединенной системе могут выполняться из главной
+системы ,  использующей команду remote. Командная строка, состоящая из команд (аргумент command) и любых аргументов, разделенных пробелами,  выполняется  на удаленной машине (machine).
+Имя машины размещается в файле /etc/systemid. Заметим, что метасимволы не расшифровываются на удаленной машине,  поэтому их
+не следует указывать в аргументах.  Под действием необязательного ключа -m почта посылается пользователю, сообщая об успешном выполнении команды.
+<p align=justify><b>Доступны следующие опции:</b><br>
+<table>
+<tr valign=top><th>-  <td>   Знак тире означает, что в качестве стандартного ввода
+для команды command на удаленной машине (machine) используется стандартный  файл ввода.  Стандартный файл
+ввода расположен на местной главной ЭВМ, а не на удаленной машине.
+<tr valign=top><th>-ffile <td>  Использовать описанный  в аргументе file   файл в качестве стандартного файла ввода для команды  на  удаленной машине.  Файл file существует на местной главной машине, а не на удаленной машине.
+<tr valign=top><th>-m  <td>  По почте сообщается пользователю о завершении  команды. По умолчанию почта сообщает только об ошибках.
+<tr valign=top><th>-u user <td> Любая почта идет к пользователю с именем, указанным в
+аргументе user,  на  машину  machine.  По   умолчанию
+machine - это машина ,  на которой обнаружена ошибка,
+либо на  которой команда remote была завершена.  Если
+для пользователя на такой машине существует псевдоним
+в системных файлах псевдонимов,  то почта будет пересылаться в соответствующий  почтовый  ящик(ки).  Т.к.
+системные  файлы псевдонимов обычно идентичны по всей
+сети,  то любая машина, заданная в аргументе machine,
+в  большинстве случаев не принимается во внимание механизмом обработки псевдонимов. Для того, чтобы избежать  назначение  псевдонимов,  аргумент user следует
+отделить по меньшей  мере  двумя  символами  "\"  (по
+меньшей мере четырьмя,  если в качестве user задается
+команда интерпретатора shell).
+</table>
+<p align=justify>Для успешного использования команды remote прежде всего должна
+быть  установлена  сама сеть систем,  и инициализированы соответствующие процедуры "демоны" с помощью команды   <a href=NETUTIL.htm>netutil(8)</a>.
+Также, для выполнения команды command с использованием команды
+remote на каждой удаленной машине к файлам /etc/default/micnet
+необходимо добавить точки входа.
+<p><b>ПРИМЕР</b><br>
+Следующая команда выполняет команду ls в каталоге /tmp  машины
+machine1:
+<pre>
+   remote machine1 ls /tmp
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=RCP.htm>rcp(1)</a>, <a href=MAIL.htm>mail(1)</a>, <a href=NETUTIL.htm>netutil(8)</a>, micnet(3)
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Команда mail использует эквивалент команды remote для пересылки почты между машинами.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>DELTA(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DELTA(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	delta - внесение изменений (новой версии) в SCCS-файл
+<p><b>СИНТАКСИС</b>
+<pre>
+ delta  [-rс_идентификатор] [-s] [-n] [-gсписок]
+ [-m[список_номеров_запросов_на_модификацию]] [-y[комментарий]]
+ [-p] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда delta используется для внесения в SCCS-файл изменений, сделанных в извлеченном с помощью get так  называемом g-файле.
+<p align=justify>Delta вносит изменения в  каждый  указанный  SCCS-файл.
+	Если указано имя каталога, delta обрабатывает все файлы
+	в этом каталоге, начинающиеся с s.;  файлы,  к  которым
+	нет доступа на чтение, игнорируются без  дополнительных
+	сообщений. Если указано имя  -,  происходит  чтение  со
+	стандартного ввода [см. ПРЕДОСТЕРЕЖЕНИЯ], каждая строка
+	при этом трактуется как имя SCCS-файла, подлежащего обработке.
+<p align=justify>Delta может выдавать запросы на  стандартный  вывод,  в
+	зависимости от присутствующих в файле SCCS флагов  [см.
+	admin(1), а также опции -m и -y ниже].
+<p align=justify>Каждая опция независимо применяется к каждому файлу.
+<dl>
+<p><dt>-rс_идентификатор<dd> Указывает  с_идентификатор  версии,  помещаемой  в  SCCS-файл. Эту опцию необходимо использовать только  в  случае,  если одним и тем же человеком (или пользователями с одинаковым входным  именем)  было одновременно  выполнено несколько команд get с опцией -e. Заданный в опции -r с_идентификатор может быть либо тем, который указывался  в  команде  get при  извлечении  версии,  либо тем, который выдала команда get  в  качестве  нового  с_идентификатора [см.  <a href=GET.htm>get(1)</a>].  Если  с_идентификатор неоднозначно определяет версию или если он не указан, но требуется, выдается диагностика.
+<p><dt>-s <dd> Подавляет выдачу на стандартный вывод  с_идентификатора созданной версии и числа внесенных, удаленных и неизменных строк в SCCS-файле.
+<p><dt>-n <dd> После внесения изменений g-файл не удаляется  (без этой опции g-файл удаляется).
+<p><dt>-gсписок<dd> Указывает список версий [определение списка -  см. <a href=GET.htm>get(1)</a>], которые должны игнорироваться при доступе к создаваемой версии
+<p><dt>-m[список_номеров_запросов_на_модификацию] <dd> Если в  SCCS-файле  установлен  флаг  v  [см.  <a href=ADMIN.htm>admin(1)</a>], то в качестве причины создания новой версии должен быть указан номер запроса на  модификацию.
+<p align=justify>     Если опция -m не указана, а стандартный ввод  назначен на терминал, перед  чтением  списка  номеров запроса на модификацию со  стандартного  ввода  на стандартный вывод выдается запрос MRs?. Если стандартный  ввод  назначен  не на терминал, указанный запрос не выдается. Запрос MRs? всегда предшествует запросу comments? (см. опцию -y).
+<p align=justify>     Номера в списке разделяются пробелами и/или символами табуляции.  Неэкранированный  перевод  строки завершает список.
+<p align=justify>     Если флаг v наделен значением [см. <a href=ADMIN.htm>admin(1)</a>],  оно
+	     трактуется  как  имя  программы   (или   процедуры
+	     shell'а) для проверки корректности  номеров.  Если
+	     программа проверки выдает ненулевой  код  завершения, delta терминируется (считая, что номера  запросов некорректны).
+<p><dt>-y[комментарий]<dd> Дополнительный текст для описания причины внесения изменений. Допустим и пустой комментарий.
+<p align=justify>     Если опция -y не указана, а стандартный ввод  назначен  на  терминал, на стандартный вывод выдается
+	     запрос comments?. Если стандартный  ввод  назначен
+	     не  на терминал, указанный запрос не выдается. Неэкранированный перевод строки завершает  комментарий.
+<p><dt>-p <dd> Delta  выдает  на  стандартный  вывод  в   формате <a href=DIFF.htm>diff(1)</a> различия в состояниях SCCS-файла до и после внесения изменений.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+ g-файл          Существует до выполнения delta,  удаля-
+		 ется при завершении delta.
+ p-файл          Существует  до  выполнения delta, может
+     	         остаться после завершения delta.
+ q-файл          Создается при выполнении delta;  удаля-
+		 ется при завершении delta.
+ x-файл          Создается  при выполнении delta; переи-
+		 меновывается в SCCS-файл при завершении
+		 delta.
+ z-файл          Создается при выполнении delta;  удаля-
+		 ется во время выполнения delta.
+ d-файл          Создается  при выполнении delta; удаля-
+		 ется при завершении delta.
+ /usr/bin/bdiff  Программа для выявления различий  между
+		 "извлеченным"  файлом и текущим состоя-
+		 нием g-файла.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	admin(1), <a href=BDIFF.htm>bdiff(1)</a>, <a href=CDC.htm>cdc(1)</a>,  <a href=GET.htm>get(1)</a>,  <a href=HELP.htm>help(1)</a>,  <a href=PRS.htm>prs(1)</a>,
+	rmdel(1).
+	sccsfile(4) в Справочнике программиста.
+<p><b>ДИАГНОСТИКА</b>
+<br>Для раз яснений пользуйтесь командой <a href=HELP.htm>help(1)</a>.
+<p><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Строки,  начинающиеся  с ASCII-символа SOH (CTRL+A, код
+	001), могут быть помещены в SCCS-файл только в  экранированном  виде. Этот символ имеет специальный смысл для
+	SCCS [см. <a href=SCCSFILE.htm>sccsfile(4)</a>] и приводит к ошибке.
+<p align=justify>Если get генерирует данные большого об ема, следует избегать большого числа обращений к команде get для  разных SCCS-файлов, за которыми  следуют  delta  для  всех этих файлов. Вместо  этого  рекомендуется  использовать несколько последовательностей get/delta.
+<p align=justify>Если в команде delta указан стандартный ввод (-),  обязательно должны присутствовать опции -y и (если необходимо) -m. Отсутствие этих опций приводит к ошибке.
+<p align=justify>Длина текстовых комментариев ограничена 512 символами.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

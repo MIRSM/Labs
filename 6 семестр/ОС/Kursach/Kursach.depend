@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1557499118 source:/home/mirsm/Рабочий стол/Kursach/main.cpp
+	<iostream>
+	<fcntl.h>
+	<signal.h>
+	<unistd.h>
+	<sys/wait.h>
+	<sys/types.h>
+	<fstream>
+

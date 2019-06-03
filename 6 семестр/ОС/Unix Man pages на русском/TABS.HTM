@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>TABS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TABS(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+tabs - установка позиций табуляции
+<p><b>СИНТАКСИС</b>
+<pre>
+	tabs  [разметка] [-Tтип_терминала] [+mкол]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Посредством команды tabs устанавливают позиции  табуляции пользовательского терминала в соответствии с заданной разметкой. Предыдущие установки отменяются.  Терминал должен допускать переустановку позиций табуляции.
+<p align=justify>Аргументы команды tabs имеют следующий смысл:
+<dl>
+<dt>разметка <dd>
+Для аргумента разметка допустимы четыре типа  спецификаций, описанных ниже: именованная (-имя), регулярная (-n), произвольная (n1,n2,...) и файловая
+(--файл). Если разметка не задана, то по умолчанию
+применяется  значение  -8  -  "стандарт" табуляций
+системы UNIX. Номер самой левой колонки  равен  1.
+Заметим,  что  для программы tabs колонка 1 всегда
+является самой левой колонкой терминала, даже если
+у терминала они нумеруются с 0,  как  например  на
+DASI 300, DASI 300s и DASI 450.
+<p><dt>
+-имя <dd>
+Для выбора именованной разметки используйте одно из приведенных ниже имен:
+<table>
+<tr valign=top><th>-a <td>  1,10,16,36,72
+  <br>   Ассемблер, IBM S/370, первый формат.
+<tr valign=top><th>-a2 <td> 1,10,16,40,72
+  <br>   Ассемблер, IBM S/370, второй формат.
+<tr valign=top><th>-c  <td> 1,8,12,16,20,55
+  <br>   Кобол, обычный формат.
+<tr valign=top><th>-c2 <td> 1,6,10,14,49
+  <br>   Кобол, первый компактный формат.
+<tr valign=top><th>-c3 <td> 1,6,10,14,18,22,26,30,34,38,42,46,50,54,58,62,67
+  <br>   Кобол, второй компактный формат.
+<tr valign=top><th>-f  <td> 1,7,11,15,19,23
+  <br>   Фортран.
+<tr valign=top><th>-p  <td> 1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,
+     61
+  <br>   ПЛ/1.
+<tr valign=top><th>-s  <td> 1,10,55
+  <br>   Снобол.
+<tr valign=top><th>-u  <td> 1,12,20,44
+  <br>   Ассемблер, UNIVAC 1100.
+</table>
+<p><dt>
+-n <dd> При регулярной разметке позиции табуляции устанавливаются в колонках 1+n, 1+2*n и т.д. Особое
+значение имеет разметка -8:  для  системы  UNIX
+она является  стандартной.  Другим  специальным
+случаем является значение -0, что означает полное отсутствие табуляций.
+<p><dt>
+n1,n2,... <dd>
+При произвольной разметке через запятую задается возрастающая последовательность чисел не более чем из 40 элементов. Если перед любым  числом (кроме первого) стоит  знак  плюс,  то  это
+число интерпретируется как смещение, прибавляемое к предыдущей величине. Таким образом,  разметки 1,10,20,30 и 1,10,+10,+10 считаются  одинаковыми.
+<p><dt>
+--файл <dd>
+Если указан файл, то  команда  tabs  в  поисках
+спецификации формата просматривает первую строку файла [см. <a href=FSPEC.htm>fspec(4)</a>]. Если спецификация найдена, то позиции  табуляции  устанавливаются  в
+соответствии с ней, в противном случае применяется регулярная разметка -8.
+<p><dt>
+-Tтип_терминала <dd>
+Команде tabs нужно знать тип терминала  для  установки позиций табуляции и сдвиге границы. Тип_терминала - это имя из списка  <a href=TERM~1.htm>term(5)</a>.  Если  данная
+опция не употребляется, то tabs использует  значение переменной  окружения  TERM.  Если  переменная
+TERM не определена в окружении  [см.  <a href=ENVIRON.htm>environ(5)</a>],
+то применяется последовательность команд, работающая для многих терминалов.
+<p><dt>
++mкол <dd>
+Для  некоторых терминалов можно задать левую границу табуляции. При этом колонка кол+1 становится
+левой границей, а все позиции табуляции сдвигаются на кол вправо. Если +m использован без величины кол, то подразумевается значение 10.  Нормальную  (самую  левую)  границу на большинстве типов
+терминалов можно получить с помощью +m0.  Граница
+в  большинстве случаев переустанавливается только
+при явном задании опции +m.
+<p align=justify>Если опции -T и +m встречаются в командной строке  несколько раз, используется последнее вхождение.
+<p align=justify>Управляющие символы для установки позиций  табуляции  и
+сдвига границы выдаются на стандартный вывод.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=NEWFORM.htm>newform(1)</a>, <a href=TPUT.htm>tput(1)</a>.<br>
+<a href=FSPEC.htm>fspec(4)</a>, <a href=TERMINFO.htm>terminfo(4)</a> environ(4), <a href=TERM~1.htm>term(5)</a> в Справочнике
+программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+<tt>illegal tabs </tt><br>
+При произвольной разметке нарушена упорядоченность
+позиций табуляции.
+<p align=justify><tt>illegal increment </tt><br>
+При произвольной разметке задано нулевое или отрицательное смещение.
+<p align=justify><tt>unknown tab code </tt><br>
+Неизвестное имя разметки.
+<p align=justify><tt>can't open </tt><br>
+Не удается открыть файл со спецификацией формата.
+<p align=justify><tt>file indirection </tt><br>
+Спецификация формата, хранящаяся в файле, содержит
+ссылку на другой файл.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Среди различных типов  терминалов  нет  единообразия  в
+способах отмены табуляции и установки левой границы.
+<p align=justify>Команда tabs очищает не более 20 позиций табуляции  (на
+терминалах, использующих длинные последовательности команд), но может установить 64.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Используемая в команде tabs разметка отличается от спецификаций команды <a href=NEWFORM.htm>newform(1)</a>. Например, tabs  -8  устанавливает позиции табуляций через 8 колонок, тогда  как
+newform -i-8 означает, что табуляции установлены в каждую восьмую позицию.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Следует иметь в виду, что на некоторых типах терминалов
+установка позиций табуляции может  иметь  побочный  эффект, например сдвиг левой границы.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

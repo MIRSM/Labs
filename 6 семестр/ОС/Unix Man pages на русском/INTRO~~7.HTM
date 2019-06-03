@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>INTRO(3)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>INTRO(3)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+intro - введение в описание функций и библиотек
+<p align=justify><b>ОПИСАНИЕ</b><br>
+В этом разделе описываются функции,  отличные  от  тех,
+которые  непосредственно вызывали системные примитивы и
+были описаны в разделе 2 настоящего Справочника.  Функции  размещаются  в  нескольких  библиотеках.  Описание
+функций разбито на подразделы, которые идентифицируются
+буквой после номера раздела:
+<table>
+<tr valign=top><th>3C <td>  Эти функции, совместно с описанными в разделе 2  и
+подразделе 3S, об единены в стандартную библиотеку
+языка  C, libc, которая автоматически используется
+C-компилятором <a href=CC.htm>cc(1)</a>. Подразделы 3C и 3S об единены и  в  настоящем  Справочнике.  Редактор  связей
+<a href=LD.htm>ld(1)</a>  просматривает  библиотеку libc при указании
+опции -lc. Может быть  использована  "разделяемая"
+версия  стандартной  библиотеки, для чего надо задать опцию  -lc_s.  В  результате  можно  получить
+меньший  по  об ему  выполняемый  файл. В описании
+многих функций указаны включаемые файлы,  содержащие декларации, нужные для использования функций.
+<tr valign=top><th>3S <td>  Эти функции составляют стандартный пакет ввода/вывода  [см. <a href=STDIO.htm>stdio(3S)</a>]. Как уже отмечалось, они находятся в библиотеке libc, а их  декларации  -  во
+включаемом файле &lt;stdio.h>.
+<tr valign=top><th>3M <td>  Функции, описанные в данном подразделе, составляют
+математическую библиотеку, libm. Она автоматически
+подключается  компилятором  с  Фортрана <a href=F77.htm>f77(1)</a>. По
+умолчанию C-компилятор <a href=CC.htm>cc(1)</a> ее не подключает; однако редактор связей просматривает эту  библиотеку
+при  указании  опции -lm. Необходимые декларации и
+определения употребительных  математических  констант  помещены  во  включаемый  файл &lt;math.h> [см.
+<a href=MATH.htm>math(5)</a>].
+<tr valign=top><th>3X <td>  В  этом подразделе описаны некоторые специализированные библиотеки. Имена  библиотек  приведены  на
+соответствующих страницах Справочника.
+</table>
+<p align=justify><b>ОПРЕДЕЛЕНИЯ</b><br> 
+Символ - это любой набор бит, составляющих один байт.
+<p align=justify>Пустой символ есть символ со значением  0.  В  языке  C
+пустой символ записывается как '\0'.
+<p align=justify>Символьный массив есть последовательность символов.
+<p align=justify>Цепочка  символов,  или просто цепочка - это символьный
+массив, завершающийся пустым символом.
+<p align=justify>Пустая цепочка есть символьный массив, состоящий только
+из пустого символа.
+<p align=justify>Пустой указатель (NULL) есть значение, полученное  преобразованием  нуля в указатель. Язык C гарантирует, что
+это значение не будет совпадать ни с одним из  допустимых  указателей,  поэтому  многие функции, возвращающие
+указатели, выдают NULL для индикации ошибки. NULL определен как 0 в файле  &lt;stdio.h>;  если  пользователь  не
+включает  этот файл, он должен явно записать соответствующее определение.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Информацию, относящуюся к системе разделения  удаленных
+файлов (РУФ), следует принимать во внимание, только если на Вашей установке есть соответствующее аппаратное и
+программное обеспечение; в стандартную конфигурацию оно
+не  входит.  По  этой  причине в данном Справочнике отсутствует подраздел 3N, посвященный библиотеке функций,
+обслуживающих сеть.
+<p align=justify>Поскольку стандартный компилятор с Фортрана <a href=F77.htm>f77(1)</a>  содержит многочисленные ошибки, и вместо него используется  компилятор  SVS-Фортран,  в Справочнике отсутствует
+подраздел 3F с описанием Фортран-библиотеки.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	LIBDIR                  Обычно /lib.
+	LIBDIR/libc.a
+	LIBDIR/libc_s.a
+	LIBDIR/libm.a
+	/shlib/libc_s
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=AR.htm>ar(1)</a>, <a href=CC.htm>cc(1)</a>, <a href=F77.htm>f77(1)</a>, <a href=LD.htm>ld(1)</a>, <a href=LINT.htm>lint(1)</a>, <a href=NM.htm>nm(1)</a> в  Справочнике пользователя.<br>
+<a href=INTRO~1.htm>intro(2)</a>, <a href=STDIO.htm>stdio(3S)</a>, <a href=MATH.htm>math(5)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функции  из стандартной библиотеки языка C (3C) и математической библиотеки (3M) могут выдать значения,  равные  0, +HUGE или -HUGE (наибольшее по абсолютной величине число одинарной точности с плавающей точкой;  значение  HUGE описано во включаемом файле &lt;math.h>), если
+для переданных  аргументов  результат  неопределен  или
+непредставим в пределах разрядной сетки. В этих случаях
+внешней  переменной  errno [см. <a href=INTRO~1.htm>intro(2)</a>] присваивается
+значение EDOM или ERANGE.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Многие функции вызывают и/или ссылаются на другие функции и внешние переменные, описанные в этом разделе и  в
+разделе 2 (Системные вызовы). Если в программе по неосторожности описана функция или внешняя переменная с тем
+же  именем,  предполагаемая библиотечная версия функции
+или внешней переменной не может быть подключена.  Верификатор C-программ <a href=LINT.htm>lint(1)</a> проверяет их на корректность
+и  сообщает о подобных конфликтах имен как о многократных декларациях. Конфликты с определениями, относящимися к разделам 2, 3C и  3S,  проверяются  автоматически.
+Контроль  других  определений  может быть инициирован с
+помощью опции -l (например, опция -lm включает контроль
+деклараций, относящихся к разделу 3M, то есть к математической библиотеке). Следует  настоятельно  рекомендовать верификацию C-программ.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

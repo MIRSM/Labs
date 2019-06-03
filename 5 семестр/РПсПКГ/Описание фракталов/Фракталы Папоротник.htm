@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/fern2.html -->
+<HTML><HEAD><TITLE>Фракталы: Папоротник</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Папоротник.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Папоротник.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Папоротник</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=419 alt=Папоротник src="Фракталы Папоротник.files/fr065.gif" 
+wigth="355"> </CENTER><PRE><B>Program</B> Fern_Constr;
+<B>Uses</B> Graph, CRT;
+<B>Const</B>
+  min = 1;
+<B>Var</B>
+ gd, gm : Integer;
+
+<B>Procedure</B> lineto1(x, y : Integer; l, u : real);
+<B>Begin</B>
+   Line(x, y, Round(x + l * cos(u)), Round(y - l * sin(u)));
+<B>End</B>;
+
+<B>Procedure</B> Draw(x, y : Integer; l, u : real);
+<B>Begin</B>
+   <B>If</B> KeyPressed <B>then</B> exit;
+   <B>If</B> l &gt; min <B>then</B> <B>Begin</B>
+      lineto1(x, y, l, u);
+      x := Round(x + l * cos(u));
+      y := Round(y - l * sin(u));
+      Draw(x, y, l*0.4, u - 14*pi/30);
+      Draw(x, y, l*0.4, u + 14*pi/30);
+      Draw(x, y, l*0.7, u + pi/30);
+   <B>End</B>;
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd, gm, 'c:\bp\bgi');
+   Draw(320, 460, 140, pi/2);
+   ReadKey;
+   CloseGraph;
+<B>End</B>.
+
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 26.11.04<BR>Дата последнего обновления: 26.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Папоротник.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

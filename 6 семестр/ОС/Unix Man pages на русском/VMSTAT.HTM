@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>VMSTAT(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>VMSTAT(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+vmstat - выдает страницы по требованию и системную статистику.
+<p><b>СИНТАКСИС</b>
+<pre>
+	vmstat [-fs] [-n namelist] [-l lines] [interval [count]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда vmstat выдает некоторую статистику,  хранимую системой
+в процессах,  страницы по требованию и активность процессора и
+схем прерывания. Доступны три типа отчетов:
+<table>
+<tr valign=top><th>(по умолчанию)<td>
+Суммарная инфрмация о ряде процессов в  различных  состояниях,
+активность листания, системная активность, эффективность цикла
+процессора.
+<tr valign=top><th>-f<td>
+Выполняет ряд команд <a href=FORK.htm>fork(2)</a>.
+<tr valign=top><th>-s<td>
+Многословный листинг по активности листания памяти и схем прерывания.
+</table>
+<p align=justify>Если аргументы interval и count не заданы,  то выдается полный
+список статистики с момента системной загрузки.
+<p align=justify>Если аргумент interval задан,  то  показывается  ряд  событий,
+имевших место  за  последние (interval)-секунд.  Если count не
+определен, то выше описанный вывод повторяется для каждого интервала interval. Иначе, когда также определен аргумент count,
+информация высвечивается (count)-раз.
+<p align=justify>Среди других флагов, доступных для определения, имеются следующие:
+<table>
+<tr valign=top><th>-c corefile<td>
+Использовать файл c именем corefile по адресу /dev/kmem.
+<tr valign=top><th>-n namelist<td>
+Использовать файл с именем namelist как альтернативную таблицу
+символов вместо /xenix.
+<tr valign=top><th>-l lines<td>
+Для дисплея, используемого по умолчанию, вставляет в отчет заголовок через каждые (lines)-строк (по умолчанию - 20).
+</table>
+<p align=justify>В отчете, выдаваемом по умолчанию, имеются следующие поля:
+<table>
+<tr valign=top><th>procs <td> Число процессов, которые:
+<br>        r - находятся в очереди на выполнение;
+<br>        b - заблокированы в ожидании ресурсов;
+<br>        w - выключены из обмена.
+<br>Эти значения всегда отражают текущую ситуацию,  если даже высвечивается полная информация с момента загрузки.
+<tr valign=top><th>paging<td>
+Сообщает о производительности системы при выполнении замещения
+страниц по требованию. Пока не будет высвечена полная информация с момента загрузки, эта информация усредняется по производительности на интервале в (interval)-секунд.
+<tr valign=top><th>si<td>
+Число загруженных процессов.
+<tr valign=top><th>so<td>
+Число выгруженных процессов.
+<tr valign=top><th>ch<td>
+Совпадает кэш страницы.
+<tr valign=top><th>cm<td>
+Отсутствует кэш страницы.
+<tr valign=top><th>ffr<td>
+Читается страница системного файла.
+<tr valign=top><th>swr<td>
+Читается страница области подкачки.
+<tr valign=top><th>sww<td>
+Записывается страница области подкачки.
+<tr valign=top><th>rec<td>
+Число страниц, восстановленных из свободного списка.
+<tr valign=top><th>shf<td>
+Число страниц, коллективного пользования как "копия по записи"
+после команды fork.
+<tr valign=top><th>shc<td>
+Число страниц, коллективного пользования согласно факту совпадения кэш.
+<tr valign=top><th>cpy<td>
+Число скопированных страниц коллективного пользования.
+<tr valign=top><th>pf<td>
+Число страниц, на которые был выдан отказ.
+<tr valign=top><th>system<td>
+Сообщает об активности основной системы.  Пока не будет высвечена суммарная информация с момента загрузки,  эти позиции показывают средние значения за последние (interval)-секунд.
+<tr valign=top><th>in<td>
+Число прерываний устройств (несинхронных).
+<tr valign=top><th>sy<td>
+Число системных вызовов.
+<tr valign=top><th>cs<td>
+Число переключений контекста.
+<tr valign=top><th>cpu<td>
+Процент цикла процессора, затрачиваемый на различные режимы:
+<br>      us - Пользователь;
+<br>      su - Система;
+<br>      id - Ожидание.
+</table>
+<p align=justify>В некоторых системах эта информация не может быть показана.
+<p align=justify>Отчеты по опциям -f и -s представляют собой ряд строк,  каждая
+из которых представлена в форме:
+<pre>
+	number  description
+	(число  описание),
+</pre>
+<p align=justify>которая обозначает, что (number)-элементов, описанных параметром description,  имеет место (или с момента загрузки,  или за
+последние (interval)-секунд)).  Эти  отчеты  должны  быть  самодостаточными.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/xenix       Список имен по умолчанию.
+	/dev/kmem    Источник статистики, принятый по умолчанию.
+</pre>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Эта утилита используется только в машинах на  базе  процессора
+80386 и может быть не включена в вашу систему.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FORK.htm>fork(2)</a>, <a href=PS.htm>ps(1)</a>, <a href=PSTAT.htm>pstat(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

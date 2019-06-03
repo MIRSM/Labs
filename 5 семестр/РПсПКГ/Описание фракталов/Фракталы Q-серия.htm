@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/qseria.html -->
+<HTML><HEAD><TITLE>Фракталы: Q-серия</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY background="Фракталы Q-серия.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Q-серия.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Q-серия</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=339 alt=Q-серия src="Фракталы Q-серия.files/fr068.gif" 
+width=640> </CENTER><PRE><B>Program</B> Qs;
+<B>Uses</B> Graph, Crt;
+<B>Var</B>
+   n      : Integer;
+   gd, gm : Integer;
+   q      : Array [1..640] <B>of</B> Integer;
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd, gm, 'c:\bp\bgi');
+   q[1]:=1;
+   q[2]:=1;
+   <B>For</B> n:=3 <B>to</B> 640 <B>do</B> <B>Begin</B>
+     q[n]:=q[n - q[n - 1]] + q[n - q[n - 2]];
+     Line(n, 480 - q[n], n - 1, 480 - q[n - 1]);
+   <B>End</B>;
+   ReadKey;
+   CloseGraph;
+<B>end</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 26.11.04<BR>Дата последнего обновления: 26.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Q-серия.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

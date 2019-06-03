@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIASBuilder", "PIASBuilder\PIASBuilder.csproj", "{BEA8FC8D-EC9F-4865-BCE9-A5B229C4955D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEA8FC8D-EC9F-4865-BCE9-A5B229C4955D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA8FC8D-EC9F-4865-BCE9-A5B229C4955D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA8FC8D-EC9F-4865-BCE9-A5B229C4955D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA8FC8D-EC9F-4865-BCE9-A5B229C4955D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7FFFC8A-FC7A-4754-812C-F7E2CC1AF716}
+	EndGlobalSection
+EndGlobal

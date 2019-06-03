@@ -1,0 +1,35 @@
+#combinatory
+(* UPDOWN: Up/Down counter with programmable steps			*)
+(* Parameters:								*)
+(*	value:		current value of the counter			*)
+(*	upcontrol:	true if counter must be increased (dominant)	*)
+(*	downcontrol:	true if counter must be decreased		*)
+(*	upstep:		up counting step				*)
+(*	downstep:	down counting step				*)
+(*	updown:		output: new value of the counter		*)
+(* Prototype:								*)
+(*	value := UPDOWN (value, upcmd, downcmd, upstep, downstep)	*)
+(* Notes:								*)
+(*	minimum value = 0						*)
+(*	maximum value = 100						*)
+(*	upstep and downstep are both positive values			*)
+
+if (upcontrol) then
+   newvalue := value + upstep;
+else
+   if (downcontrol) then
+      newvalue := value - downstep;
+   else
+      newvalue := value;
+   end_if;
+end_if;
+
+if (newvalue > MAX_COUNTER) then
+   newvalue := MAX_COUNTER;
+end_if;
+if (newvalue < MIN_COUNTER) then
+   newvalue := MIN_COUNTER;
+end_if;
+
+updown := newvalue;
+

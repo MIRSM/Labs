@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>FREC(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FREC(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        frec - извлечение файлов, сохраненных на ленте
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/frec  [-p маршрут] [-f файл_запросов] магнитофон
+            номер_описателя:имя ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Утилита frec извлекает файлы, сохраненные на  магнитной
+        ленте (магнитофон задается как бесструктурное устройство, обычно /dev/mt). Предполагается, что сохранение выполнялось    посредством   программ   <a href=VOLCOPY.htm>volcopy(1M)</a>   или <a href=FINC.htm>finc(1M)</a>. Задаются номера_описателей  файлов  и  имена, которые файлы получают после восстановления.
+<p align=justify>        Опциям команды frec приписан следующий смысл:
+<dl>
+<p><dt> -p маршрут 
+<dd> Указанный маршрут (а не текущий каталог)  добавляется  в  качестве  префикса к новым именам файлов, если только имя не начинается с символа / или комбинации ./. Если какие-либо каталоги из маршрутного префикса новых имен не  существуют,  они  будут  автоматически созданы.
+<p><dt> -f файл_запросов 
+<dd> Указание файла, который содержит запросы на извлечение файлов. Формат строк этого файла следующий:
+<pre>
+  номер_описателя:имя
+</pre>
+</dl>
+<p><b>ПРИМЕРЫ</b><br>
+<ol>
+<li>  Извлечь  файл  с номером описателя 1216 и поместить
+        его содержимое в файл f1 рабочего каталога:
+<pre>
+  /etc/frec  /dev/mt 1216:f1
+</pre>
+<li> Извлечь файлы с описателями 14156, 1232, 3141 и  по-
+        местить  их  содержимое  в  файлы  /usr/guest/a,  /usr/
+        guest/b и /usr/tmp/a.c соответственно:
+<pre>
+  /etc/frec  -p /usr/guest /dev/mt 014156:a 1232:b \
+             3141:/usr/tmp/a.c
+</pre>
+</ol>
+<p><b>СМ. ТАКЖЕ</b><br>
+        <a href=FF.htm>ff(1M)</a>, <a href=FINC.htm>finc(1M)</a>, <a href=VOLCOPY.htm>volcopy(1M)</a>.<br>
+        <a href=CPIO.htm>cpio(1)</a> в Справочнике пользователя.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+        При прокладывании маршрута (то есть при создании промежуточных каталогов, указанных в маршрутном имени)  frec  может восстановить номера описателей только тех каталогов,  которые  содержатся  на ленте и запрашиваются для извлечения.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

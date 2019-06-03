@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>ACCTOM(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCTOM(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acctom - Ищет и печатает файлы учета процессов.
+<p><b>СИНТАКСИС</b>
+<pre>
+ acctom [[options][file]...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+aactom читает file, стандартное устройство ввода или /usr/adm/pacct
+в виде, задаваемом <a href=ACCT~1~3.htm>acct(3)</a> и выдает выбранные записи на стандартное
+устройство  вывода.   Каждая  запись   представляет  информацию   о
+выполнении одного  процесса. На  выход идут  значения COMMAND NAME,
+USER,  TTYNAME,  END  TIME,  REAL(SEC),  CPU(SEC),MEAN  SIZE(K)   и
+необязательно  -   F  (флаг   разветвления/выполнения:  1   -   для
+разветвления без выполнения) и STAT (системный код завершения).
+<p align=justify>
+Имя команды предваряется  знаком #, как  если бы она  выполнялась в
+ресурсе привилегированного пользователя.  Если процесс не  связан с
+известным терминалом, в поле TTYNAME помещается знак ?.
+<p align=justify>
+Если  не  задается  никаких   файлов  file,  то  стандартный   ввод
+связывается с терминалом или /dev/null (как в случае  использования
+& в  оболочке), читается  файл /usr/adm/pacct,  в противном  случае
+читается стандартное устройство ввода.
+Если заданы аргументы file, то они читаются в последовательном
+порядке. Все файлы обычно читаются вперед, то есть в
+хронологическом порядке по отношению ко времени завершения
+процесса. Текущим исследуемым файлом обычно является файл
+/usr/adm/paact; загруженная система может нуждаться в нескольких
+таких файлах, в этом случае все файлы, кроме текущего, будут
+находиться в /usr/adm/pacct?. Опции таковы:
+<table>
+<tr valign=top><td><b>-b</b><td>Чтение назад с выводом в первую очередь последних команд.</tr>
+<tr valign=top><td><b>-f</b><td>Печать   колонок   флага   разветвления/выполнения   и кода завершения.</tr>
+<tr valign=top><td><b>-h</b><td>Вместо того,  чтобы показать  средний размер  памяти, выдается часть  общего  доступного  времени  центрального   процессора, потребленного процессом во  время его выполнения.  Этот фактор
+потребления ("hog factor") вычисляется так:
+<pre>
+     (общее время работы центрального процессора/истекшее время)
+</pre></tr>
+<tr valign=top><td><b>-j</b><td>Печать колонок, содержащих подсчет операций ввода/вывода.</tr>
+<tr valign=top><td><b>-k</b><td>Вместо размера памяти выводится общее количество kcore-минут.</tr>
+<tr valign=top><td><b>-m </b><td>Показывает средний размер ядра (по умолчанию).</tr>
+<tr valign=top><td><b>-r</b><td>Выводит фактор центрального процессора (пользовательское время/(системное время + пользовательское время)).</tr>
+<tr valign=top><td><b>-t</b><td>Выводит отдельно системное время и пользовательское время на центральном процессоре.</tr>
+<tr valign=top><td><b>-v</b><td>Исключает заголовки колонок из выходной информации.</tr>
+<tr valign=top><td><b>-l line</b><td>Выводит информацию только о процессах, принадлежащих терминалу /dev/line.</tr>
+<tr valign=top><td><b>-u user</b><td>Выводит   информацию  только о  процессах  принадлежащих пользователю  user,  который  может   быть   представлен
+пользовательским    идентификатором,     регистрационным
+именем, которое тогда преобразуется к  пользовательскому
+идентификатору,   знаком   #,   обозначающим   процессы,
+выполняемые  привилегированным   пользователем  или   ?,
+указывающим на  процессы с  неизвестным пользовательским
+идентификатором.</tr>
+<tr valign=top><td><b>-g group</b><td>Выводит  информацию  только  о  процессах, принадлежащих группе   group,   которая   может   быть   задана   либо
+идентификатором группы, либо групповым именем.</tr>
+<tr valign=top><td><b>-d mm/dd</b><td>Любые аргументы времени суток, следующие за этим флагом, предполагаются относящимися к данному месяцу или дню, а не к  последним 24  часам. Это  требуется для  выявления старых файлов.</tr>
+<tr valign=top><td><b>-s time</b><td>Выводит  информацию  только  о  тех  процессах,  которые существовали в момент или после времени time,  заданного
+в виде час:мин:сек. Части  :сек или :мин:сек могут  быть
+опущены.</tr>
+<tr valign=top><td><b>-e time</b><td>Выводит  информацию  только  о  тех  процессах,  которые существовали   на   момент   или   до   времени time. Использование одного значения time как для -s, так и для  -e  выводит  информацию  о  процессах, существовавших на момент time.</tr>
+<tr valign=top><td><b>-n pattern</b><td>Выводит  информацию  только  о командах, соответствующих образцу   pattern,   который   может   быть   регулярным выражением,  как  в  <a href=ED.htm>ed(1)</a>,  за  исключением того, что + означает одно или несколько совпадений.</tr>
+<tr valign=top><td><b>-H factor</b><td>Выводит информацию только  о процессах, которые  выходят за предел фактора потребления factor, описанного в опции
+-h.</tr>
+<tr valign=top><td><b>-I number</b><td>Выводит  информацию  о  процессах-драйверах,  передающих больше символов, чем задано пределом number.</tr>
+<tr valign=top><td><b>-O time</b><td>Выводит  информацию  только  о   процессах  со  временем работы центрального процессора, превышающим время time.</tr>
+<tr valign=top><td><b>-C time</b><td>Выводит информацию только  о процессах с  общим временем работы центрального процессора, превышающим время time.</tr>
+</table>
+Задание нескольких опций имеет эффект логического "И".
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/passwd
+ /usr/adm/pacct
+ /etc/group
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCTON.htm>accton(8)</a>, <a href=PS.htm>ps(1)</a>, <a href=SU.htm>su(1)</a>, acct(S), <a href=ACCT~1~3.htm>acct(3)</a>, utmp(3)
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+acctcom выдает информацию  только по завершившимся  процессам; для
+активных процессов используйте <a href=PS.htm>ps(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>MOUNT(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MOUNT(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mount - монтирование файловой конструкции
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/mount [special-device directory [-r]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+mount  сообщает  системе,   что  переносимая  файловая   конструкция
+присутствует на устройстве special-device. Эта файловая  конструкция
+монтируется на  основе каталога  directory. Этот  каталог должен уже
+присутствовать, имя directory становится корневым именем монтируемой
+файловой конструкции. Каталог directory  должен быть пустым. Если  в
+нем имеются  файлы, то  они будут  как бы  удалены при  монтировании
+этого каталога и появятся снова, когда он будет демонтирован.
+<p align=justify>
+Команды  mount   и  unmount   поддерживают  таблицу   смонтированных
+устройств.  Если  какое-либо  специальное  устройство вызывается без
+всяких аргументов, то mount  высвечивает имя этого устройства,   имя
+каталога  смонтированной  файловой  конструкции  и информацию о том,
+предназначена ли  данная файловая  конструкция только  для чтения, а
+также дату монтировки.
+<p align=justify>
+Последний  необязательный  аргумент  указывает   на  то,  будет   ли
+монтируемый  файл  предназначенным  только  для  чтения.   Физически
+защищенные  от  записи  файловые  конструкции  должны  монтироваться
+только этим  способом, иначе  при модификации  времени доступа будут
+возникать  ошибки  независимо  от  того,  имеются  ли попытки явного
+чтения или нет.
+<p align=justify>
+unmount удаляет переносимые файловые конструкции, смонтированные  на
+устройстве special-device.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/mntab           Таблица смонтированных устройств.
+ /etc/default/filesys Данные файловой системы.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+unmount(8), <a href=MNT.htm>mnt(1)</a>, <a href=MOUNT~1.htm>mount(2)</a>, mnttab(3), default(3)
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+mount  выдает  предупреждение,  если  подлежащая монтировке файловая
+конструкция в текущий момент смонтирована под другим именем.
+<p align=justify>
+Занятые файловые конструкции не могут быть демонтированы с  помощью
+unmount.  Файловая  конструкция  считается  занятой,  если  в   ней
+содержится   открытый   файл   или   рабочий   каталог  какого-либо
+пользователя.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Только  привилегированный  пользователь  может использовать команду
+mount.
+<p align=justify>
+Файловые конструкции тестируются  в некоторой степени,  и в   общем
+случае - неразумно монтировать испорченные файловые конструкции.
+<p align=justify>
+Насторожитесь, если  при нахождении  в однопользовательском  режиме
+команды,  которые  ищут  в  /etc/mnttab  аргументы, используемые по
+умолчанию  (например,  df,  ncheck,  qout,  mount  и  unmount) дают
+неправильные  результаты   (вследствие  порчи   /etc/mnttab   из-за
+остановки  системы  без  команды  shutdown)  или  вообще  не   дают
+результатов (из-за пустого /etc/mnttab после выполнения shutdown).
+<p align=justify>
+В многопользовательском режиме это не составляет проблемы;  /etc/rc
+инициализирует /etc/mnttab так, что тот содержит только  /dev/root,
+и последующие монтировки модифицируют его соответствующим образом.
+<p align=justify>
+Команды  <a href=MOUNT~~2.htm>mount(8)</a>  и  unmount(8)  используют  файл  блокировки  для
+обеспечения исключительного доступа к /etc/mnttab. Команды, которые
+просто читают его (они упомянуты  выше) не делают этого, и  поэтому
+может случиться, что они  попадают в испорченное окно.  На практике
+это не  составляет проблемы,  так как  операции mount  и unmount не
+слишком часто используются.
+<p align=justify>
+При  монтировании  файловой  системы  на  гибком диске вам не нужно
+использовать каждый раз  один и тот  же каталог directory.  Однако,
+если вы поступаете  именно так, полные  имена файлов согласуются  в
+каждом случае.
+<p align=justify>
+Дискеты не должны быть защищенными от записи с помощью наклейки при
+выполнении  монтирования  на  них  файловых  систем. Перед тем, как
+вынуть дискету  из дисковода,  всегда демонтируйте  на ней файловую
+систему  с  помощью  unmount.  В  противном  случае при последующем
+монтировании на этом диске понадобится запуск команды fsck.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

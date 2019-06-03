@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>UUCP(1C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>UUCP(1C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+uucp - копирование файлов из одной UNIX-системы в  другую
+<p><b>СИНТАКСИС</b>
+<pre>
+	uucp  [-c] [-C] [-d] [-f] [-g приоритет] [-j] [-m] [-n имя_пользователя]
+	      [-r] [-s файл] [-x уровень_отладки] файл1 [файл2 ...] целевой_файл
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда uucp копирует указанные исходные файлы в  целевой_файл. Имя файла может быть либо  маршрутным  именем
+на локальной машине, либо иметь вид:
+<pre>
+	[имя_системы]!маршрутное_имя
+</pre>
+<p align=justify>где имя_системы выбирается из списка имен  систем,  известных uucp [см.  <a href=UUNAME.htm>uuname(1C)</a>].  Если  имя_системы  отсутствует, подразумевается локальная машина. Имя_системы может также быть списком имен:
+<pre>
+	имя_системы!имя_системы!...!имя_системы!маршрутное_имя
+</pre>
+<p align=justify>В этом случае производится попытка послать  файл  через
+перечисленные системы. Необходимо позаботиться  о  том,
+чтобы все промежуточные системы свободно передавали информацию. См. также ограничения в разделах  ПРЕДОСТЕРЕЖЕНИЯ и СЮРПРИЗЫ.
+<p align=justify>Символы ?, * и [ ], входящие  в  маршрутное_имя,  будут
+проинтерпретированы в соответствующей системе.
+<p align=justify>Маршрутное_имя может быть:
+<ol>
+<li> Полным маршрутным именем.
+<li> Маршрутным именем с приставкой  ~входное_имя_пользователя, которая заменяется именем исходного  каталога пользователя в соответствующей системе. Если такого пользователя  нет,  подставится  каталог
+/usr/spool/uucppublic.
+<li> Маршрутным именем с приставкой ~/получатель, которая  заменяется  на  /usr/spool/uucppublic/получатель. Получатель трактуется как имя обычного  файла, если только не копируется несколько файлов или
+получатель ранее уже не был  создан  как  каталог.
+Если обязательно нужно выполнять копирование в каталог, после получателя следует поставить /.  Так,
+если в качестве целевого_файла указать ~/dir/, будет создан каталог /usr/spool/uucppublic/dir (если
+его еще не было), в который и скопируются исходные
+файлы.
+</ol>
+<p align=justify>Все остальное считается маршрутным именем  относительно
+текущего каталога.
+<p align=justify>Если маршрутное_имя для удаленной системы окажется  некорректным, копирование выполняться не будет. Если  целевой_файл является каталогом, в нем будут созданы файлы с простыми именами, унаследованными от исходных файлов.
+<p align=justify>Uucp сохраняет при пересылке права на выполнение  файла
+и устанавливает права 0666  на  чтение  и  запись  [см.
+<a href=CHMOD~1.htm>chmod(2)</a>].
+<p align=justify>Команда uucp обрабатывает следующие опции:
+<dl>
+<dt>-c <dd>  При пересылке локального файла на удаленную систему не копировать его в буферный каталог (режим  по
+умолчанию).
+<p><dt>
+-C <dd>  При пересылке локального файла на удаленную систему копировать его в буферный каталог.
+<p><dt>
+-d  <dd> Создавать все необходимые для копирования каталоги
+(режим по умолчанию).
+<p><dt>
+-f  <dd> Не создавать промежуточные каталоги.
+<p><dt>
+-g приоритет <dd>
+Приоритет - один символ  (буква  или  цифра).  Чем
+меньше ASCII-код символа, тем больший приоритет  в
+пределах сеанса связи будет иметь копирование.  По
+умолчанию приоритет равен N.
+<p><dt>
+-j  <dd> Выдать идентификатор задания в виде цепочки символов на стандартный вывод. Этот идентификатор можно
+использовать совместно с командой  <a href=UUSTAT.htm>uustat(1C)</a>  для
+получения состояния или для терминации задания.
+<p><dt>
+-m  <dd> По окончании копирования послать заказчику  почтовое уведомление.
+<p><dt>
+-n имя_пользователя <dd>
+Сообщить пользователю на  удаленной  системе,  что
+файл был послан.
+<p><dt>
+-r <dd>  Поставить задание в очередь, но не  начинать  процесс пересылки.  По  умолчанию  процесс  пересылки
+файлов начинается при каждом запуске uucp.
+<p><dt>
+-s файл <dd>
+Поместить статус задания в файл. Заметим, что файл
+должен задаваться полным маршрутным именем.
+<p><dt>
+-x уровень_отладки <dd>
+Выводить на стандартный вывод отладочную  информацию. Уровень_отладки - это число от 0 до 9, причем
+большему числу соответствует более  детальная  информация.
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/spool/uucp/*       Служебные каталоги.
+	/usr/spool/uucppublic   Общедоступный каталог для пере- 
+		                сылки файлов.
+	/usr/lib/uucp/*         Файлы программ и данных.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MAIL.htm>mail(1)</a>, <a href=UULOG.htm>uulog(1C)</a>, <a href=UUNAME.htm>uuname(1C)</a>, <a href=UUSTAT.htm>uustat(1C)</a>, <a href=UUX.htm>uux(1C)</a>.<br>
+<a href=CHMOD~1.htm>chmod(2)</a> в Справочнике программиста.<br>
+<a href=UUCLEANU.htm>uucleanup(1M)</a> в Справочнике администратора.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ </b><br>
+Набор каталогов, файлы из которых доступны для  удаленного доступа, может быть (и  обычно  делается  в  целях
+обеспечения безопасности) ограниченным. Программа  uucp
+имеет право s, то есть при выполнении происходит  переустановка действующего идентификатора пользователя:  он
+становится равным uucp. Все файлы, полученные с помощью
+uucp, имеют своим владельцем uucp. Поэтому скорее всего
+Вы не сможете запросить файлы с удаленной системы по их
+маршрутному имени; попросите  администратора  удаленной
+системы послать их Вам. По тем же причинам Вы,  вероятно, не сможете послать файлы в произвольный каталог. По
+договоренности считается, что файлы являются доступными
+с удаленной системы, если их полное  имя  начинается  с
+префикса /usr/spool/uucppublic (или, что то же самое, с
+~/).
+<p align=justify>Опция -m действует только для пересылки файлов или  получения одного файла. При получении группы файлов,  заданных с помощью символов *, ? и [ ], опция -m не отрабатывается.
+<p align=justify>Чтобы переслать файлы, имя которых начинается  с  точки
+(например  .profile),  ее  надо указать явно. Например,
+.prof*  и  .profil?  -  верное  задание   имени   файла
+.profile, а *prof* и ?profile - неверное.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Защищенные файлы и файлы, находящиеся в защищенных  каталогах, владельцем которых  является  заказчик,  могут
+быть пересланы с помощью uucp.  Однако,  если  заказчик
+является суперпользователем, а каталог  недоступен  для
+просмотра или файл недоступен для чтения прочим пользователям, то запрос на пересылку не будет удовлетворен.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

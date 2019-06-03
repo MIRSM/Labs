@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>MALLOC(3X) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>MALLOC(3X) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+malloc, free,  realloc,   calloc,    mallopt,  mallinfo
+- быстрое выделение оперативной памяти
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;malloc.h>
+	
+	char *malloc (size)
+	unsigned size;
+	
+	void free (ptr)
+	char *ptr;
+	
+	char *realloc (ptr, size)
+	char *ptr;
+	unsigned size;
+	
+	char *calloc (nelem, elsize)
+	unsigned nelem, elsize;
+	
+	int mallopt (cmd, value)
+	int cmd, value;
+	
+	struct mallinfo mallinfo ( )
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функции malloc и free предоставляют простой универсальный  механизм выделения и освобождения памяти, работающий значительно быстрее пакета <a href=MALLOC.htm>malloc(3C)</a>.  Описываемые
+функции  находятся  в  библиотеке malloc и подключаются
+при использовании опции -lmalloc команд <a href=CC.htm>cc(1)</a> и <a href=LD.htm>ld(1)</a>.
+<p align=justify>Функция malloc возвращает указатель на блок размером не
+менее size байт, который можно  использовать  в  произвольных целях.
+<p align=justify>Аргументом функции free  является  указатель  на  блок,
+предварительно  выделенный  с помощью malloc; после выполнения free блок может быть выделен вновь, а хранящаяся в нем  информация  теряется  (см.  однако  описание
+функции mallopt, команда M_KEEP).
+<p align=justify>В случае выхода за границы блока, выделенного  функцией
+malloc,  а  также при вызове функции free с аргументом,
+не являвшимся результатом malloc, эффект будет  непредсказуем.
+<p align=justify>Функция realloc изменяет размер блока, на который  указывает  ptr,  до размера size и возвращает указатель на
+возможно смещенный блок. Часть содержимого блока до наименьшего из нового и старого размеров не изменяется.
+<p align=justify>Функция calloc выделяет пространство для массива из nelem элементов, каждый размером elsize байт, и заполняет
+массив нулями.
+<p align=justify>С  помощью функции mallopt  можно управлять алгоритмами
+выделения и освобождения памяти. Допускаются  следующие
+значения аргумента cmd:
+<table>
+<tr valign=top><th>M_MXFAST <td>
+Установить величину maxfast равной  аргументу  value.  Алгоритм  отводит  место  сразу  для большой
+группы блоков, размер которых не превосходит  maxfast,  а затем по запросам очень быстро выдает их.
+Подразумеваемое значение maxfast равно 24.
+<tr valign=top><th>M_NLBLKS <td>
+Установить величину numblks равной  аргументу  value.  Каждая из вышеупомянутых "больших групп" содержит numblks блоков. Число  блоков  должно  быть
+больше  0;  подразумеваемое значение numblks равно
+100.
+<tr valign=top><th>M_GRAIN <td>
+Установить  величину grain равной аргументу value.
+Размеры всех блоков, не превосходящие maxfast, округляются вверх до ближайшего кратного grain. Значение grain должно быть больше 0;  подразумеваемое
+значение  таково,  чтобы обеспечить правильное выравнивание по границе данных любого типа. При  изменении  grain аргумент value округляется вверх до
+ближайшего кратного значения по умолчанию.
+<tr valign=top><th>M_KEEP <td>
+Сохранить данные в освобождаемом блоке до  следующих  вызовов  функций  malloc, realloc или calloc.
+Эта  опция  предоставлена только для совместимости
+со старой версией malloc; пользоваться ей не рекомендуется.
+</table>
+<p align=justify>Возможные значения аргумента cmd определены во включаемом файле &lt;malloc.h>.
+<p align=justify>Функцию mallopt можно вызывать несколько раз, но только
+до выделения первого маленького блока.
+<p align=justify>Функция mallinfo выдает информацию об использовании памяти. Она возвращает структуру:
+<p align=justify>	struct mallinfo {
+	  int arena;    /* Общий размер выделенного пр-ва */
+	  int ordblks;  /* Число обычных блоков */
+	  int smblks;   /* Число маленьких блоков */
+	  int hblks;    /* Число захваченных блоков */
+	  int hblkhd;   /* Пр-во в заголовках захвач. блоков */
+	  int usmblks;  /* Пр-во в исп-мых маленьких блоках */
+	  int fsmblks;  /* Пр-во в своб. маленьких блоках */
+	  int uordblks; /* Пр-во в исп-мых обычных блоках */
+	  int fordblks; /* Пр-во в своб. обычных блоках */
+	  int keepcost; /* Плата за исп-ие опции сохранения */
+	}
+<p align=justify>Структура определена во включаемом файле &lt;malloc.h>.
+<p align=justify>Каждая из функций выделения возвращает указатель на область памяти, подходящую (после возможного преобразования типа указателя) для хранения произвольных данных.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/lib/libmalloc.a
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BRK.htm>brk(2)</a>, <a href=MALLOC.htm>malloc(3C)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функции  malloc,  realloc  и  calloc  возвращают пустой
+указатель NULL, если нет достаточного количества  памяти.  Когда  realloc возвращает указатель NULL, то блок,
+на который указывает  ptr,  остается  неизменным.  Если
+функция  mallopt  вызывается после выделения памяти или
+ее аргументы cmd или value имеют недопустимые значения,
+то возвращается не ноль. В противном  случае  результат
+равен нулю.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+По  сравнению  с  пакетом  <a href=MALLOC.htm>malloc(3C)</a> описанные функции
+расходуют память менее экономно.
+<p align=justify>Размер программы также оказывается больше, чем при  использовании  <a href=MALLOC.htm>malloc(3C)</a>.
+<p align=justify>В отличие от <a href=MALLOC.htm>malloc(3C)</a> описанные функции не  обеспечивают сохранение информации в освобожденных блоках (если
+только не использовалась опция M_KEEP функции mallopt).
+<p align=justify>Недокументированные особенности <a href=MALLOC.htm>malloc(3C)</a> не поддерживаются.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

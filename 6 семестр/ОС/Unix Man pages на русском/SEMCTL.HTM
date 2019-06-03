@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>SEMCTL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SEMCTL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+semctl - операции управления семафорами
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/types.h&gt;
+        #include &lt;sys/ipc.h&gt;
+        #include &lt;sys/sem.h&gt;
+        
+        int semctl (semid, semnum, cmd, arg)
+        int semid, cmd;
+        int semnum;
+        union semun {
+          int val;
+          struct semid_ds *buf;
+          ushort *array;
+        } arg;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов semctl позволяет выполнять операции управления  семафорами.  Семафоры  задаются   аргументами
+semid и semnum. Операция определяется  значением  аргумента cmd, которое должно быть одним из следующих:
+<dl>
+<dt>GETVAL 
+<dd>Получить значение семафора semval [см.  <a href=INTRO~1.htm>intro(2)</a>].
+{Требуется право на чтение.}
+<dt>SETVAL 
+<dd>Установить   значение   семафора   semval   равным
+arg.val. {Требуется право на изменение.} После успешного выполнения этой команды  значение  semadj,
+соответствующее заданному семафору во всех процессах, устанавливается равным 0.
+<dt>GETPID 
+<dd>Получить значение sempid. {Требуется право на чтение.}
+<dt>GETNCNT 
+<dd>Получить значение  semncnt.  {Требуется  право  на
+чтение.}
+<dt>GETZCNT 
+<dd>Получить значение  semzcnt.  {Требуется  право  на
+чтение.}
+</dl><p align=justify>
+Следующие команды cmd читают и  устанавливают  значение
+каждого семафора в множестве семафоров:
+<dl>
+<dt>GETALL 
+<dd>Прочитать значения семафоров в массив, на  который
+указывает arg.array. {Требуется право на чтение.}
+<dt>SETALL 
+<dd>Установить значения  семафоров  равными  значениям
+элементов массива, на который указывает arg.array.
+{Требуется право на  изменение.}  После  успешного
+выполнения этой  команды  значения  semadj,  соответствующие заданным семафорам во всех  процессах,
+устанавливаются равными 0.
+</dl><p>
+Предоставляются также следующие команды:
+<dl>
+<dt>IPC_STAT 
+<dd>Поместить текущее значение каждого поля  структуры
+данных, ассоциированной с идентификатором semid, в
+структуру, на которую указывает arg.buf.  Содержимое этой структуры определяется в <a href=INTRO~1.htm>intro(2)</a>.  {Требуется право на чтение.}
+<dt>IPC_SET 
+<dd>Присвоить следующим полям структуры данных,  ассоциированной с идентификатором semid, соответствующие значения, находящиеся в структуре, на  которую
+указывает arg.buf:
+<pre>
+   sem_perm.uid
+   sem_perm.gid
+   sem_perm.mode  /* Только младшие 9 бит */
+</pre>
+Эта команда может  выполняться  только  процессом,
+который имеет действующий идентификатор  пользователя, равный либо идентификатору  суперпользователя,   либо   значению   поля   sem_perm.cuid   или
+sem_perm.uid в структуре данных, ассоциированной с
+идентификатором semid.
+<dt>IPC_RMID 
+<dd>Удалить из системы идентификатор семафора, определяемый значением  semid,  ликвидировать  множество
+семафоров и ассоциированную с ним  структуру  данных. Эта команда может выполняться только  процессом, который имеет действующий идентификатор пользователя, равный либо идентификатору  суперпользователя,  либо  значению  поля  sem_perm.cuid   или
+sem_perm.uid в структуре данных, ассоциированной с
+идентификатором semid.
+</dl>
+<p align=justify>Системный вызов semctl завершается неудачей,  если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EINVAL]
+<dd>Значение аргумента semid не  является  корректным идентификатором  множества  семафоров.
+<dt>[EINVAL]
+<dd>Номер семафора semnum меньше 0 или превышает значение sem_nsems.
+<dt>[EINVAL]
+<dd>Некорректное значение аргумента cmd,  определяющее команду.
+<dt>[EACCES]
+<dd>Нет прав на выполнение операции у  вызывающего процесса.
+<dt>[ERANGE]
+<dd>Значение аргумента  cmd  равно  SETVAL  или
+SETALL и  значение,  которое  присваивается
+семафору, больше максимально допустимого  в
+системе.
+<dt>[EPERM]
+<dd>Значение аргумента cmd равно  IPC_RMID  или
+IPC_SET и действующий идентификатор пользователя вызывающего  процесса  не  равен  ни
+идентификатору суперпользователя, ни значению поля sem_perm.cuid или  sem_perm.uid  в
+структуре данных, ассоциированной с идентификатором semid.
+<dt>[EFAULT]
+<dd>Значение arg.buf указывает за пределы отведенного процессу адресного пространства.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~1.htm>intro(2)</a>, <a href=SEMGET.htm>semget(2)</a>, <a href=SEMOP.htm>semop(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении системного вызова  возвращаются
+следующие значения, в зависимости от команды cmd:
+<table>
+<tr><td>GETVAL<td>Значение семафора semval.</tr>
+<tr><td>GETPID<td>Идентификатор процесса sempid.</tr>
+<tr><td>GETNCNT<td>Значение semncnt.</tr>
+<tr><td>GETZCNT<td>Значение semzcnt.</tr>
+</table>
+<p>Результат успешного выполнения остальных операций равен 0.
+<p>В случае ошибки возвращается  -1,  а  переменной  errno
+присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

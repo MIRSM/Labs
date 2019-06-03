@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>FTW(3C) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FTW(3C) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ftw - обход дерева файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;ftw.h>
+	
+	int ftw (path, fn, depth)
+	char *path;
+	int (*fn) ( );
+	int depth;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция ftw рекурсивно обходит иерархию каталогов, имеющую своим корнем каталог с маршрутным именем, на которое указывает аргумент path. Для каждого объекта иерархии ftw вызывает функцию fn, передавая ей три  аргумента: указатель на цепочку символов, ограниченную нулевым
+байтом и содержащую имя объекта; указатель на структуру
+stat [см. <a href=STAT.htm>stat(2)</a>], содержащую информацию  об  объекте;
+тип объекта (целое число). Возможны следующие  значения
+типа объекта, описанные во включаемом файле <ftw.h>:
+<table>
+<tr valign=top><th>FTW_F  <td>  Обычный файл.
+<tr valign=top><th>FTW_D  <td>  Каталог.
+<tr valign=top><th>FTW_DNR <td> Каталог, недоступный на чтение.
+<tr valign=top><th>FTW_NS <td>  объект, для которого stat не может выполниться успешно.
+</table>
+<p align=justify>Если тип объекта есть FTW_DNR, подкаталоги этого  каталога не  просматриваются.  Если  тип  есть  FTW_NS,  то
+структура stat будет содержать мусор. Примером объекта,
+который вызовет передачу fn типа FTW_NS, является  файл
+в каталоге, доступном на чтение, но недоступном для поиска.
+<p align=justify>Функция ftw обрабатывает каталог перед  обработкой  его
+элементов.
+<p align=justify>Обход завершится тогда, когда или  будет  обойдено  все
+дерево, или функция fn  возвратит  ненулевое  значение,
+или возникнет ошибка при работе самой функции ftw (например, ошибка ввода/вывода). Если дерево обойдено  полностью, ftw возвращает 0. Если fn  возвратит  ненулевое
+значение, то ftw прекратит обход и выдаст это значение.
+Если будет обнаружена ошибка при работе  самой  функции
+ftw, то она возвратит -1 и соответствующим образом  установит значение переменной errno.
+<p align=justify>Функция ftw использует по одному дескриптору  файла  на
+каждый уровень дерева. Аргумент depth ограничивает  количество используемых таким образом дескрипторов.  Если
+он не больше нуля,  то  используется  один  дескриптор.
+Значение аргумента depth не должно быть больше, чем количество  доступных  для  использования   дескрипторов.
+Функция ftw будет работать быстрее, если значение depth
+не меньше глубины дерева.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=STAT.htm>stat(2)</a>, <a href=MALLOC.htm>malloc(3C)</a>.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Так как функция ftw рекурсивна, возможно аварийное  завершение работы из-за выхода за границы памяти при  обходе слишком глубокой файловой структуры.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Функция ftw использует для динамического выделения  памяти <a href=MALLOC.htm>malloc(3C)</a>. Если ftw завершена насильственно, например, при выполнении из fn вызова longjmp или по  прерыванию, то она не имеет возможности освободить память,
+так что выделенная память останется занятой. Безопасный
+способ обработки прерываний заключается  в  том,  чтобы
+зафиксировать факт получения прерывания и при ближайшем
+вызове fn заставить ее вернуть ненулевое значение.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

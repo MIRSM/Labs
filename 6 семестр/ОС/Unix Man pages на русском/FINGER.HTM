@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>FINGER(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FINGER(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+   finger - Осуществляет поиск информации  о пользователях.
+<p><b>СИНТАКСИС</b>
+<pre>
+ finger [-bfilpqsw] [login1 [login2 ...]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   По умолчанию команда finger выводит в список для каждого пользователя системы UNIX на данный момент имя регистрации в систему,  полное имя, имя терминала и статус записи (при отсутствии
+   разрешения  на  запись  перед  терминальным именем указывается
+   символ "*"),  время простоя, время регистрации, нахождение  места  работы  и  телефонный номер (если они известны).
+   (Время простоя отображается в минутах, если оно выведено одним
+   целым числом,  в часах и минутах,  если в его отображении присутствует двоеточие (:),  или в днях и часах,  если  в  выводе
+   присутствует символ "d".)
+<p align=justify>   Кроме того,  существует  более  длинный формат вывода и он используется командой finger в том  случае,  если  задан  список
+   имен пользователей.  (Допускаются наряду с первым и  последним
+   именами пользователей также и учетные имена.) Этот формат состоит из нескольких строк;  он включает всю информацию, описанную выше, и, дополнительно, пользовательские входной каталог и
+   интерпретатор shell регистрации,  любой план,  который
+   пользователь разместил в файле .plan в своем входном каталоге,
+   и проект, в соответствии с которым заданные пользователи работают в данный момент,  взятый из файла .project, который также
+   находится во входном каталоге. Если в домашней директории указанного пользователя находится файл .nofinger, то по команде
+   finger информация об этом пользователе не возвращается.
+<p><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th> -b <td>  Сокращенный длинный формат вывода пользователей.
+<tr valign=top><th> -f <td>  Подавляет печать заголовка строки (короткий формат).
+<tr valign=top><th> -i <td>  Быстрый список пользователей с указанием времени простоев.
+<tr valign=top><th> -l  <td>  Вызывает вывод в длинном формате.
+<tr valign=top><th> -p  <td>  Подавляет печать файлов .plan.
+<tr valign=top><th> -q  <td>  Быстрый  список  пользователей.
+<tr valign=top><th> -s  <td>  Вызывает вывод в коротком формате.
+<tr valign=top><th> -w  <td>  Вызывает узкий форматный список указанных пользователей.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+    /etc/utmp       Файл пользователей, работающих в данный момент
+                   в системе.
+<p align=justify>   /etc/passwd     Имена пользователей,  места их работы, телефо-
+                   ны, входные каталоги и  имена  интерпретаторов
+                   shell.
+<p align=justify>   $HOME/.plan     Планы.
+<p align=justify>   $HOME/.project  Проекты.
+<p align=justify>   $HOME/.nofinger Отказ.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+   <a href=WHO.htm>who(1)</a>.
+<p align=justify><p align=justify><b>РАЗРЕШЕНИЕ</b><br>
+   Эта утилита  была  разработана  в Калифорнийском Университете,
+   г.Беркли, и разрешена к использованию.
+<p align=justify><p align=justify><b>ЗАМЕЧАНИЕ</b><br>
+   Из файла .project выводится только первая строка.
+<p align=justify>   Записи в файле /etc/passwd имеют следующий формат:
+<pre>
+    имя регистрации:пользовательский пароль(закоди-
+    рованный):идентификатор пользователя ID:групповой  иден-
+    тификатор ID:комментарии:  входной каталог:имя интерпре-
+    татора shell регистрации
+</pre>
+<p align=justify>   Поле комментариев в выводе команды  finger  подразделяется  на
+   отдельные поля.  Например,  в приведенной ниже записи из файла
+   /etc/passwd:
+<pre>
+     blt:Tg6bLFzOwgfbA:47:5:Brian Foster,Mission,x70,767-1234
+     :/u/blt:/bin/shV
+</pre>
+   поле комментария  "Brian  Foster,Mission,x70,767-1234" состоит
+   из данных,  соответствующих значениям полей  "Имя  в  реальной
+   жизни", "Место  работы"  и  "Домашний телефон" в списке вывода
+   команды finger.
+<p align=justify>   Время простоя вычисляется как время,  прошедшее с момента  выполнения каких-либо действий на данном терминале. Оно включает
+   предыдущие вызовы команды finger, которая, возможно, модифицировала файл  устройства  /dev/tty??,  соответствующий  данному терминалу.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

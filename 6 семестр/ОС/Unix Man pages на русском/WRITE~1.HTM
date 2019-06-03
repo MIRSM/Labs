@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>WRITE(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>WRITE(1) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+write - передача сообщений другому пользователю
+<p><b>СИНТАКСИС</b>
+<pre>
+	write  пользователь [линия]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда write копирует строки  с  Вашего  терминала  на
+терминал другого пользователя. Команда прежде всего посылает адресату сообщение:
+<pre>
+     Message from Ваше_имя (tty??) [дата]...
+</pre>
+<p align=justify>Как только связь будет успешно установлена, два  звонка
+известят Вас о том, что вводимая Вами информация  будет
+пересылаться.
+<p align=justify>В этот момент адресату следует послать Вам ответное сообщение. Сеанс связи будет продолжаться до тех пор, пока с Вашего терминала не будет считан символ конца файла, не будет послано прерывание или адресат не выполнит
+команду  mesg -n, после чего команда write передаст сообщение EOT (конец передачи) на другой терминал  и  завершит свое выполнение.
+<p align=justify>Если Вы хотите передавать сообщения пользователю, который вошел в систему более одного раза,  то  указать,  с
+какой именно линией или терминалом  следует  установить
+связь, можно  посредством  аргумента  линия  (например,
+tty10); иначе адрес будет определен по первому упоминанию о пользователе в файле /etc/utmp, а Вам будет выдано сообщение:
+<pre>
+     пользователь is logged on more than one place.
+     You are connected to терминал
+     Other locations are:
+     терминал
+</pre>
+<p align=justify>Пользователь может разрешить или запретить передачу сообщений  на  свой  терминал, используя команду <a href=MESG.htm>mesg(1)</a>.
+Передача сообщений в режиме по умолчанию разрешена. Некоторые команды, в частности <a href=PR.htm>pr(1)</a>, блокируют прием сообщений с тем, чтобы воспрепятствовать смешиванию сообщений с выводимой ими информацией; однако, если пользователь обладает правами суперпользователя, то он  может
+осуществлять  передачу принудительно, несмотря на установленный адресатом запрет приема сообщений  на  терминал.
+<p align=justify>Если строка начинается с символа !,  то  команда  write
+вызывает shell для исполнения  остальной  части  строки
+как команды.
+<p align=justify>При использовании команды write рекомендуется придерживаться следующего протокола: если Вы только что  выдали
+команду write, то дождитесь ответа адресата, прежде чем
+что-либо ему передавать. Каждый должен заканчивать  сообщение каким-нибудь четко различимым  признаком  конца
+[например, (o) вместо "over" - конец сообщения],  чтобы
+партнер знал, когда отвечать. В качестве  признака  завершения сеанса  связи  рекомендуется  передавать  (oo)
+(вместо "over and out" - конец сообщения и сеанса).
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/utmp       Для идентификации пользователя.
+	/bin/sh         для отработки "!".
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MAIL.htm>mail(1)</a>, <a href=MESG.htm>mesg(1)</a>, <a href=PR.htm>pr(1)</a>, <a href=SH.htm>sh(1)</a>, <a href=WHO.htm>who(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+<tt>Пользователь not logged in </tt><br>
+     Пользователь, которому Вы пытаетесь передать сооб     щение, не работает в системе.
+<p align=justify><tt>Permission denied </tt><br>
+     Пользователь, которому Вы пытаетесь передать сооб     щение, не дает на это разрешения.
+<p align=justify><tt>Warning: cannot respond, set mesg -y </tt><br>
+     Ваш  терминал находится в режиме mesg -n и адресат
+     не может вам ответить.
+<p align=justify><tt>Can no longer write to user </tt><br>
+     Адресат отменил разрешение (посредством  mesg  -n)
+     после того, как Вы начали передачу сообщения.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

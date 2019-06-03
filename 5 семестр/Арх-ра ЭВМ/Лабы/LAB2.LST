@@ -1,0 +1,60 @@
+Turbo Assembler	 Version 2.5	    09/26/18 20:41:50	    Page 1
+lab2.asm
+
+
+
+      1	0000			     stseg   segment para    stack
+      2	0000  10*(????)			     dw	     16	     dup(?)
+      3	0020			     stseg   ends
+      4	0000			     dseg    segment para
+      5	0000  000A		     a	     dw	     10
+      6	0002  FFFA		     b	     dw	     -6
+      7	0004  0011		     c	     dw	     17
+      8	0006  ????		     y	     dw	     ?
+      9	0008			     dseg    ends
+     10	0000			     cseg    segment para
+     11	0000			     lab2    proc    far
+     12					     assume  cs:cseg,ds:dseg,ss:stseg
+     13	0000  1E			     push    ds
+     14	0001  B8 0000			     mov     ax,0
+     15	0004  50			     push    ax
+     16	0005  B8 0000s			     mov     ax,dseg
+     17	0008  8E D8			     mov     ds,ax
+     18	000A  A1 0000r			     mov     ax,[b-2]
+     19	000D  2B 06 0002r		     sub     ax,[b+0]
+     20	0011  8B 1E 0004r		     mov     bx,[b+2]
+     21	0015  03 C3			     add     ax,bx
+     22	0017  2D 002D			     sub     ax,45
+     23	001A  89 1E 0006r		     mov     y,bx
+     24	001E  CB			     ret
+     25	001F			     lab2    endp
+     26	001F			     cseg    ends
+     27					     end     lab2
+Turbo Assembler	 Version 2.5	    09/26/18 20:41:50	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "09/26/18"
+??FILENAME			  Text	 "lab2	  "
+??TIME				  Text	 "20:41:50"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 LAB2
+@WORDSIZE			  Text	 2
+A				  Word	 DSEG:0000
+B				  Word	 DSEG:0002
+C				  Word	 DSEG:0004
+LAB2				  Far	 CSEG:0000
+Y				  Word	 DSEG:0006
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  001F Para	  none
+DSEG				  16  0008 Para	  none
+STSEG				  16  0020 Para	  Stack
+

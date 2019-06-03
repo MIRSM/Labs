@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>DOWNLOAD(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DOWNLOAD(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        download - загрузка об ектного файла обычного формата в
+        указанный файл
+<p><b>СИНТАКСИС</b>
+<pre>
+ download  [-t смещение] [-d смещение] [-b смещение]
+           [-s адрес_таблицы_имен] выполняемый_файл целевой_файл
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Утилита download анализирует выполняемый_файл и помешает  его  секции в целевой_файл. Целевой_файл может быть как обычным, так и специальным файлом (например,  /dev/kmem).
+<p align=justify>        Секции, которые имеют флаг незагружаемости, пропускаются.  Секции неинициализированных данных заполняются нулями. Все остальные секции помещаются в целевой_файл.
+<p align=justify>        Можно указывать следующие опции:
+<dl>
+<dt> -t смещение <dd> Ко всем адресам, определенным в секции команд, добавляется указанное смещение.
+<dt> -d смещение <dd> Ко всем адресам, определенным в секции инициализированных данных, добавляется указанное смещение.
+<dt> -b смещение <dd> Ко всем адресам, определенным в секции неинициализированных данных, добавляется указанное смещение.
+<dt> -s адрес_таблицы_имен <dd> Эта  опция указывает, что по данному адресу расположена таблица имен. Описания имен из  выполняемого_файла вставляются в указанную таблицу имен. Опция  имеет  смысл,  только если предполагается использовать отладчик на уровне исходного языка. Если по адресу_таблицы_имен нет  нужной  информации, этот адрес рассматривается как косвенный.
+</dl>
+<p><b>ПРИМЕР</b><br>
+Команда
+<pre>
+  download  выполняемый_файл  файл_с_образом_памяти
+</pre>
+        создаст  файл_с_образом_памяти  выполняемого_файла  без
+        заголовка файла и заголовков секций. Все  секции  будут
+        размещены естественным образом.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+        Диагностические сообщения утилиты download не нуждаются
+        в пояснениях.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

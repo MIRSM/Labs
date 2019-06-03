@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>MKUTS(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MKUTS(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mkuts - создание нового ядра ОС UNIX
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Почти все файлы, необходимые для генерации нового  ядра
+ОС UNIX, находятся в каталоге /usr/src/uts.
+<dl>
+<dt>Makefile 
+<dd>Используйте этот make-файл для всех реконфигураций.
+Новое ядро создается командой make unix.
+<dt>dfile, master 
+<dd>Эти файлы  используются  утилитой  <a href=CONFIG.htm>config(1M)</a>  для
+создания  программ conf.c и low.s. В файлах содержится описание драйверов устройств и основных системных параметров.
+<dt>name.c 
+<dd>Небольшой исходный файл, в котором инициализируется системная структура utsname.
+<dt>ram.c 
+<dd>В этом файле находятся некоторые основные функции,
+подобные raminit, которые можно  изменить,  исходя
+из нужд конкретной конфигурации.
+<dt>unildinstr 
+<dd>Инструкции для <a href=LD.htm>ld(1)</a> - как собрать ядро.
+<dt>lib*
+<dd>Библиотеки об ектных файлов UNIX-ядра.
+<dt>libio
+<dd>Библиотека, содержащая драйверы устройств.
+<dt>io/
+<dd>Этот каталог содержит  исходные  тексты  драйверов
+устройств  и  make-файл  для пересборки библиотеки
+драйверов.
+</dl>
+<p align=justify>
+Включаемый  файл  &lt;sys/io.h&gt;,  который  используется  в
+программе conf.c,  содержит  параметры  устройств.  При
+подключении нового устройства этот файл также нуждается
+в изменении.
+<p align=justify>
+После того, как новое UNIX-ядро создано, в целях тестирования его можно загрузить, указав в программе начальной  загрузки  полное маршрутное имя /usr/src/uts/unix.
+Но в конце концов ядро нужно переместить в корневой каталог, так как некоторые программы, такие как  /bin/ps,
+используют файл /unix.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CONFIG.htm>config(1M)</a>.<br>
+<a href=DFILE.htm>dfile(4)</a>, <a href=IO.htm>io(4)</a>, <a href=MASTER.htm>master(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

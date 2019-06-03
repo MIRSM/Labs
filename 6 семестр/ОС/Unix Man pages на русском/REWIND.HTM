@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>FSEEK(3S) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>FSEEK(3S) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+fseek, rewind, ftell - установка текущей позиции потока
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	
+	int fseek (stream, offset, ptrname)
+	FILE *stream;
+	long offset;
+	int ptrname;
+	
+	void rewind (stream)
+	FILE *stream;
+	
+	long ftell (stream)
+	FILE *stream;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция fseek устанавливает позицию следующей  операции
+ввода/вывода для потока stream. Новая позиция находится
+на расстоянии offset байт от начала, от текущей позиции
+или от байта, содержащего признак конца файла в зависимости  от  значения аргумента ptrname (0, 1 или 2 соответственно). Если значение offset отрицательно, то  новая позиция будет расположена левее точки отсчета.
+<p align=justify>Действие  функции rewind (stream) совпадает с действием
+функции fseek (stream, 0L, 0). Отличие  только  в  том,
+что функция rewind не возвращает никакого значения.
+<p align=justify>Функции  fseek  и  rewind  аннулируют  действие функции
+<a href=UNGETC.htm>ungetc(3S)</a>.
+<p align=justify>В файле, открытом для чтения  и  записи,  после  вызова
+функций  fseek  и rewind допустимы как операции чтения,
+так и записи.
+<p align=justify>Функция ftell возвращает смещение текущей позиции относительно начала файла, ассоциированного с указанным потоком stream.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LSEEK.htm>lseek(2)</a>, <a href=FOPEN.htm>fopen(3S)</a>, <a href=POPEN.htm>popen(3S)</a>, <a href=STDIO.htm>stdio(3S)</a>, <a href=UNGETC.htm>ungetc(3S)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При неудачном завершении функция fseek возвращает ненулевое  значение,  в противном случае результат равен 0.
+Неудача может об ясняться тем, что файл не  был  открыт
+посредством  функции  fopen; в частности, функцию fseek
+нельзя использовать для потоков, ассоциированных с терминалом,  а  также  для   файлов,   открытых   функцией
+<a href=POPEN.htm>popen(3S)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

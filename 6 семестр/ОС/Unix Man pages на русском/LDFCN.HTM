@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>LDFCN(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LDFCN(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+ldfcn  -  программы доступа к об ектным файлам обычного
+формата
+<p><b>СИНТАКСИС</b>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;filehdr.h&gt;
+#include &lt;ldfcn.h&gt;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Программы доступа к об ектным файлам обычного формата  
+это совокупность функций, обеспечивающих чтение об ектных файлов и архивов, содержащих объектные файлы.  Хотя
+вызывающая программа должна  "знать"  детали  структуры
+обрабатываемых ею частей об ектного файла,  использование программ  доступа  исключает  необходимость  знания
+структуры файла в целом.
+<p align=justify>
+Интерфейс между  вызывающей  программой  и  программами
+доступа  основан на определяемом типе LDFILE. Тип определен  во  включаемом  файле  &lt;ldfcn.h&gt;  как  структура
+struct  ldfile.  Основное  назначение  этой   структуры
+- обеспечить  унифицированный  доступ  как  к отдельным
+об ектным файлам, так и к архивам объектных файлов.
+<p align=justify>
+Функция <a href=LDOPEN.htm>ldopen(3X)</a> размещает и инициализирует структуру
+LDFILE, возвращая в вызывающую программу  указатель  на
+структуру. Доступ к полям структуры LDFILE  обеспечивается макросами, определенными в &lt;ldfcn.h&gt;:
+<dl>
+<dt>LDFILE *ldptr;
+<dt>TYPE (ldptr)
+<dd>Магическое число, служащее для  различения элементов архива и отдельных объектных файлов.
+<dt>IOPTR (ldptr)
+<dd>Указатель на файл, возвращаемый функцией
+fopen, и используемый стандартными функциями ввода/вывода.
+<dt>OFFSET (ldptr)
+<dd>Файловый адрес начала объектного  файла;
+не 0, если файл является элементом архива.
+<dt>HEADER (ldptr)
+<dd>Структура заголовка объектного файла.
+</dl>
+<p>Функции доступа подразделяются на 4 группы:
+<ol>
+<li>Открытие и закрытие объектного файла:
+<dl>
+<dt>ldopen(3X) и ldaopen [см. <a href=LDOPEN.htm>ldopen(3X)</a>]
+<dd>(открытие объектного файла);
+<dt>ldclose(3X) и ldaclose [см. <a href=LDCLOSE.htm>ldclose(3X)</a>]
+<dd>(закрытие объектного файла).
+</dl>
+<li>Чтение заголовков, данных из таблицы имен и информации о номерах строк:
+<dl>
+<dt>ldahread(3X)
+<dd>(чтение архивного заголовка элемента  архивного файла);
+<dt>ldfhread(3X)
+<dd>(чтение заголовка объектного файла);
+<dt>ldshread(3X) и ldnshread [см. <a href=LDSHREAD.htm>ldshread(3X)</a>]
+<dd>(чтение заголовка секции объектного файла);
+<dt>ldtbread(3X)
+<dd>(чтение  элемента  таблицы  имен  объктного файла);
+<dt>ldgetname(3X)
+<dd>(получение символического имени из  элемента
+таблицы имен или из таблицы цепочек);
+<dt>ldlread(3X), ldlinit, ldlitem [см. <a href=LDLREAD.htm>ldlread(3X)</a>]
+<dd>(работа с таблицей номеров строк).
+</dl>
+<li>Поиск начала секции, информации о настройке ссылок
+или таблицы номеров строк, относящихся  к  определенной секции:
+<dl>
+<dt>ldohseek(3X)
+<dd>(поиск необязательного заголовка  объектного
+файла);
+<dt>ldsseek(3X) и ldnsseek [см. <a href=LDSSEEK.htm>ldsseek(3X)</a>]
+<dd>(поиск секции объектного файла);
+<dt>ldrseek(3X) и ldnrseek [см. <a href=LDRSEEK.htm>ldrseek(3X)</a>]
+<dd>(поиск информации о настройке ссылок);
+<dt>ldlseek(3X) и ldnlseek [см. <a href=LDLSEEK.htm>ldlseek(3X)</a>]
+<dd>(поиск таблицы номеров строк);
+<dt>ldtbseek(3X)
+<dd>(поиск таблицы имен объектного файла).
+</dl>
+<li>Получение индекса элемента таблицы имен об ектного
+файла:
+<dl>
+<dt>ldtbindex(3X)
+</dl>
+</ol>
+<p align=justify>
+Эти функции детально описаны в соответствующих разделах
+Справочника.
+<p align=justify>
+После успешного поиска (функциями третьей группы) текущая позиция в файле устанавливается на начало найденной
+информации.
+<p align=justify>
+Все  функции,   кроме   <a href=LDOPEN.htm>ldopen(3X)</a>,   <a href=LDGETNAM.htm>ldgetname(3X)</a>   и
+<a href=LDTBINDE.htm>ldtbindex(3X)</a>, возвращают значения SUCCESS или  FAILURE
+(эти   константы   определены   во   включаемом   файле
+&lt;ldfcn.h&gt;). Ldopen(3Х) и ldaopen [см. <a href=LDOPEN.htm>ldopen(3Х)</a>] возвращают указатель на структуру LDFILE.
+<p align=justify>
+Дополнительные  средства  доступа  к  объектному  файлу
+обеспечиваются набором макросов, определенных  в  файле
+&lt;ldfcn.h&gt;. Эти макросы являются прямыми аналогами стандартных функций ввода/вывода, осуществляющим  чтение  и
+обработку файлов. Макросы используют  поле  дескриптора
+файла из структуры LDFILE.
+<p>
+Предоставляются следующие макросы:
+<pre>
+     GETC (ldptr)
+     FGETC (ldptr)
+     GETW (ldptr)
+     UNGETC (c, ldptr)
+     FGETS (ldptr)
+     FREAD ((char *) ptr, sizeof (*ptr), nitems, ldptr)
+     FSEEK (ldptr, offset, ptrname)
+     FTELL (ldptr)
+     REWIND (ldptr)
+     FEOF (ldptr)
+     FERROR (ldptr)
+     FILENO (ldptr)
+     SETBUF (ldptr, buf)
+     STROFFSET (ldptr)
+</pre><p align=justify>
+Макрос STROFFSET вычисляет адрес таблицы цепочек. Относительно других макросов следует обратиться к описаниям
+соответствующих стандартных функций ввода/вывода.
+<p align=justify>
+При редактировании связей вызывающей программы  следует
+подключить библиотеку программ доступа к объектным файлам libld.a.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FSEEK.htm>fseek(3S)</a>,  <a href=LDAHREAD.htm>ldahread(3X)</a>,  <a href=LDCLOSE.htm>ldclose(3X)</a>,  <a href=LDGETNAM.htm>ldgetname(3X)</a>,
+<a href=LDFHREAD.htm>ldfhread(3X)</a>, <a href=LDLREAD.htm>ldlread(3X)</a>,  <a href=LDLSEEK.htm>ldlseek(3X)</a>,  <a href=LDOHSEEK.htm>ldohseek(3X)</a>,
+<a href=LDOPEN.htm>ldopen(3X)</a>,  <a href=LDRSEEK.htm>ldrseek(3X)</a>,  <a href=LDSSEEK.htm>ldsseek(3X)</a>,   <a href=LDSHREAD.htm>ldshread(3X)</a>,
+<a href=LDTBINDE.htm>ldtbindex(3X)</a>, <a href=LDTBREAD.htm>ldtbread(3X)</a>,  <a href=LDTBSEEK.htm>ldtbseek(3X)</a>,  <a href=STDIO.htm>stdio(3S)</a>,
+<a href=INTRO~~3.htm>intro(5)</a>.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Макрос FSEEK, определенный в файле &lt;ldfcn.h&gt;, обращается к стандартной функции ввода/вывода <a href=FSEEK.htm>fseek(3S)</a>. Нельзя
+использовать  FSEEK  для  позиционирования относительно
+конца архивного файла, поскольку конец архивного  файла
+не обязательно совпадает с концом одного из содержащихся в архиве объектных файлов.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

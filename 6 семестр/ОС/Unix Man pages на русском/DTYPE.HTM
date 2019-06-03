@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>DTYPE(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DTYPE(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+   dtype - Определяет тип диска.
+<p><b>СИНТАКСИС</b>
+<pre>
+ dtype [-s] device ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   Команда dtype  определяет тип диска,  печатает соответствующую
+   информацию на устройство стандартного вывода,  если не  задана
+   опция, отменяющая выдачу сообщений (-s), и завершается с соответствующим кодом (см.  ниже). Если задан более чем один аргумент device,  то код завершения соответствует последнему аргументу.
+<table border=1>
+<tr valign=top><th> Тип диска <th> Код выхода <th> Сообщение (необязательное)
+<tr valign=top><td rowspan=2>  Смешан. <td> 60 <td>   ошибка (указана)
+<tr valign=top><td> 61  <td> пустые или нераспознанные данные
+<tr valign=top><td rowspan=3> Память <td>  70 <td>  формат дампа, том n
+<tr valign=top><td> 71  <td>  формат tar[, протяжение e из n]
+<tr valign=top><td> 72  <td>  формат cpio
+<tr valign=top><td rowspan=9> MS-DOS <td>  73  <td>  символьный(-с) формат cpio
+<tr valign=top><td> 80 <td>   DOS 1.x, 8сект./дорож., односторонний
+<tr valign=top><td> 81 <td>   DOS 1.x, 8сект./дорож., двухсторонний
+<tr valign=top><td> 90 <td>   DOS 2.x, 8сект./дорож., односторонний
+<tr valign=top><td> 91 <td>   DOS 2.x, 8сект./дорож., двухсторонний
+<tr valign=top><td> 92 <td>   DOS 2.x, 9сект./дорож., односторонний
+<tr valign=top><td> 93 <td>   DOS 2.x, 9сект./дорож., двухсторонний
+<tr valign=top><td> 94 <td>   DOS 2.x, жесткий диск 
+<tr valign=top><td> 110 <td>  DOS 3.x, 9сект./дорож., двухсторонний   
+<tr valign=top><td rowspan=2>  XENIX <td>  120 <td>  файловая система XENIX 2.x [нужна чистка]
+<tr valign=top><td> 130 <td>  файловая система XENIX 3.x и более поздние версии [нужна чистка]
+</table>
+<p align=justify><b>ЗАМЕЧАНИЕ</b><br>
+   Перестановка слов  (word-swapped)  отсылает к порядку байтов в
+   длинных словах по отношению к главенствующей системе.
+<p align=justify>   Файловые системы XENIX,  а также форматы дампа и двоичные форматы cpio  могут  быть не распознаны,  если они были созданы в
+   другой системе. Это происходит из-за таких системным различий,
+   как порядок следования байтов и слов и выравнивание записей.
+<p align=justify>   Эта утилита работает надежно только для гибких дискет.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

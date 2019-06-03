@@ -1,0 +1,7 @@
+C:\Users\ugrov\source\repos\Tinder\Tinder\bin\Debug\Tinder.exe.config
+C:\Users\ugrov\source\repos\Tinder\Tinder\bin\Debug\Tinder.exe
+C:\Users\ugrov\source\repos\Tinder\Tinder\bin\Debug\Tinder.pdb
+C:\Users\ugrov\source\repos\Tinder\Tinder\obj\Debug\Tinder.csprojAssemblyReference.cache
+C:\Users\ugrov\source\repos\Tinder\Tinder\obj\Debug\Tinder.csproj.CoreCompileInputs.cache
+C:\Users\ugrov\source\repos\Tinder\Tinder\obj\Debug\Tinder.exe
+C:\Users\ugrov\source\repos\Tinder\Tinder\obj\Debug\Tinder.pdb

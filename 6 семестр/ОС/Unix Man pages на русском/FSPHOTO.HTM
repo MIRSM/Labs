@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>FSPHOTO(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FSPHOTO(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+psphoto - выполняет периодическое полуавтоматическое резервное
+копирование.
+<p><b>СИНТАКСИС</b>
+<pre>
+ psphoto [-i] schedule [drive]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+psphoto  совместно  с  <a href=FSAVE.htm>fsave(8)</a>   обеспечивает   полуавтоматический
+интерфейс к  <a href=BACKUP.htm>backup(1)</a> для  резервного копирования  файловых систем
+UNIX.  Человеческое вмешательство требуется для установки и  снятия
+лент или  дискет в  нужное время,  поэтому некоторое взаимодействие
+необходимо, но для  уменьшения потенциально возможных  человеческих
+ошибок сведено к минимуму.
+<p align=justify>
+Выбор и установка времени резервного копирования для всех  файловых
+систем  управляется  базой   данных   <a href=SCHEDULE.htm>schedule(8)</a>.    Администратор
+системы  должен  сформировать  этот  файл  и  подготовить к запуску
+psphoto по четкому  графику (обычно раз  в неделю). psphoto   может
+легко   вызываться  из  меню  <a href=SYSADMIN.htm>sysadmin(8)</a>.   psphoto   обрабатывает
+schedule  и  для  каждой  файловой  системы, подлежащей в этот день
+резервному  копированию,  запускает   fsave  во  взаимодействии   с
+оператором и выполняет безошибочное резервное копирование  заданной
+файловой системы.
+<p align=justify>
+Необязательный аргумент  drive определяет  устройство, используемое
+для резервного копирования  (стример или дисковод);  это устройство
+задается по умолчанию в файле schedule.
+<p align=justify>
+Резервное  копирование  может  быть   отложено  (чрез  fsave)   или
+прервано.  Полученные  "неполные"  копии  автоматически дополняются
+при  очередном  запуске  fsphoto.  Пропущенные  файловые системы не
+копируются, как  если бы  плановое  резервное   копирование не было
+отложено.  При задании аргумента -i отложенные   неполные     копии
+игнорируются.
+<p align=justify>
+Если  имеются   отложенные  неполные   копии,  то   запланированное
+резервное  копирование  не  производится.  Это  означает, что  если
+частичные  копии  будут  дополняться,  то  для выполнения планового
+резервного копирования нужно запустить fsphoto дважды.
+<p align=justify>
+Для  того,  чтобы  использовать   эту  программу  вы  должны   быть
+привилегированным пользователем.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/usr/lib/sysadmin/schedule
+   База  данных,  описывающая   какие  файловые  системы   подлежат
+   резервному копированию, когда и на каком уровне.
+/dev/tty
+   Источник интерактивного ввода.
+/usr/lib/sysadmin/past
+    Записи  регистрации  файловых  систем,  успешно скопированных в
+    отложенные неполные резервные копии.
+/tmp/backup$$
+    Временный файл для  регистрации успешно скопированных  файловых
+    систем.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FSAVE.htm>fsave(8)</a>, schedule(8ADM), <a href=BACKUP.htm>backup(1)</a>, <a href=BASENAME.htm>basename(1)</a>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+fsphoto   выдает   сообщения   при   наличии   в   файле   schedule
+синтаксических ошибок и выходит с кодом завершения 1.
+<p align=justify>
+fsphoto  выдает  сообщения  о  некорректных  аргументах и выходит с
+кодом завершения 1.
+<p>
+Прерывание программы устанавливает код выхода 2.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Если  явно  задается  аргумент   drive,  то  следует   использовать
+"первичный" тип устройства (/dev/r*).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/serp4.html -->
+<HTML><HEAD><TITLE>Фракталы: Ковер Серпинского</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Ковер Серпинского.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Ковер Серпинского.files/lab24.gif" width=150 
+border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Ковер Серпинского</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=390 alt="Ковер Серпинского" 
+src="Фракталы Ковер Серпинского.files/fr052.gif" width=389 border=0> </CENTER><PRE><B>Program</B> Sierp4;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+   gd, gm: Integer;
+   x1, y1, x2, y2, x3, y3: real;
+
+<B>procedure</B> serp(x1, y1, x2, y2: real; n: integer);
+<B>var</B>
+  x1n, y1n, x2n, y2n: real;
+<B>begin</B>
+  <B>if</B>  n &gt; 0  <B>then</B> <B>begin</B>
+    x1n:= 2*x1/3+x2 / 3;
+    x2n:= x1/3+2*x2 / 3;
+    y1n:= 2*y1/3+y2 / 3;
+    y2n:= y1/3+2*y2 / 3;
+    rectangle(round(x1n),round(y1n),round(x2n),round(y2n));
+    serp(x1, y1, x1n, y1n, n-1);
+    serp(x1n, y1, x2n, y1n, n-1);
+    serp(x2n, y1, x2, y1n, n-1);
+    serp(x1, y1n, x1n, y2n, n-1);
+    serp(x2n, y1n, x2, y2n, n-1);
+    serp(x1, y2n, x1n, y2, n-1);
+    serp(x1n, y2n, x2n, y2, n-1);
+    serp(x2n, y2n, x2, y2, n-1);
+  <B>end</B>;
+<B>end</B>;
+
+<B>Begin</B>
+  gd:=detect;
+  InitGraph(gd, gm, 'c:\bp\bgi');
+  rectangle(20, 20, 460, 460);
+  Serp(20, 20, 460, 460, 4);
+  ReadLn;
+  CloseGraph;
+<B>End</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.11.04<BR>Дата последнего обновления: 10.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Ковер Серпинского.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>TRANSLATE(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TRANSLATE(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+translate - преобразовывает файлы из одного формата в другой.
+<p><b>СИНТАКСИС</b>
+<pre>
+	translate option [infile][outfile]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда translate преобразовывает файлы согласно  определенным
+опциям. Преобразование выполняется согласно опциям,  описанным
+ниже.
+<p align=justify>Под параметром format понимается файл,  размещенный в каталоге
+/usr/lib/mapchan/translate, если не задано полное имя пути.
+<p align=justify>Команда translate  использует  стандартный  ввод и стандартный
+вывод до тех пор,  пока не будут определены другой источник  и
+получатель через необязательные аргументы имени файла.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>-ea   <td>  из формата EBCDIC в формат ASCII.
+<tr valign=top><th>-ae  <td>     из формата ASCII в формат EBCDIC.
+<tr valign=top><th>-fe<td> format из формата,  определенного пользователем,  в формат
+           EBCDIC.
+<tr valign=top><th>-fa <td>format из формата,  определенного пользователем,  в формат
+           ASCII.
+<tr valign=top><th>-ef <td>format из формата EBCDIC в формат,  определенный пользовалем.
+<tr valign=top><th>-af <td>format из формата ASCII в формат, определенный пользователем.
+<tr valign=top><th>-bm    <td>    из двоичного/объектного  кода в доступный для передачи формат ASCII uuencode.
+<tr valign=top><th>-mb   <td>    из формата ASCII uuencode в первоначальный двоичный
+    формат.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/lib/map/translate/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=UUENCODE.htm>uuencode(1)</a>, <a href=DD.htm>dd(1)</a>, <a href=MAPCHAN.htm>mapchan(5)</a>, <a href=SYSADMSH.htm>sysadmsh(8)</a>.
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Опции -bm и -mb,  например,  используются  для  преобразования
+объектного выполняемого  кода  в  код ASCII для передачи через
+сети связи.
+<p align=justify>Синтаксис для файла, имеющего формат, определенный пользователем, совпадает с синтаксисом для отображения файлов, применяемого командами mapchar(5) и trchan.
+<p align=justify>Используйте опцию 'dd' для преобразования  форматов  файлов  и
+символов (особенно для ленты) в указанный формат. Пример:
+<pre>
+	dd if=/dev/rmt0 of=outfile ibs=800 cbs=80 conv=ascii, lcase.
+</pre>
+<p align=justify>Эта команда  читает ленту в формате EBCDIC,  содержащую десять
+80-байтовых карточных образов в коде EBCDIC на одну запись,  и
+переписывает ее в файл outfile в формате ASCII.  Для более детального описания  опций  преобразования  посмотрите   команду
+<a href=DD.htm>dd(1)</a> в Руководстве по системе XENIX (XENIX Reference).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+(defun spisok(n k)
+	(cond ((= n k) (podspisok ) )
+		 (t (append (podspisok k k) (list (spisok n (+ k 1))))))
+	)
+)
+
+(defun podspisok(n m)
+	(cond ((= m 0) nil)
+		 (t (cons n (podspisok n (- m 1))))
+		)
+)
+
+(defun prog(n)
+	(spisok n 0)
+)

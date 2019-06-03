@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>IMPRINT(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IMPRINT(1) </h3>
+<p align=justify><b>ИМЯ</b><br>
+imprint - Печатает текстовые файлы  на  печатающем  устройстве
+  IMAGEN.
+<p><b>СИНТАКСИС</b>
+<pre>
+imprint[options][file...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда iprint  создает очереди из указанных файлов для печати
+на печатающем устройстве IMAGEN, используя одну из двух команд
+<a href=PR.htm>pr(1)</a> или <a href=CAT.htm>cat(1)</a>,  и передает корректные опции команде <a href=IPR.htm>ipr(1)</a>.
+Если файлы не заданы,  то производится считывание стандартного
+ввода.
+<p align=justify><b>ОПЦИИ</b><br>
+<dl>
+<dt>   -Iflag  <dd>   Передает признак flag команде ipr.
+<p><dt>   -pflag <dd>    Передает признак flag одной из команд pr или cat.
+<p><dt>   -Pprinter <dd> Печатает выводимую  информацию на устройсве печати,
+   заданном аргументом printer.  По умолчанию аргумент
+   printer  определяется  переменной  PRINTER  в файле
+   /etc/default/imagen,  который считывается  командой
+   ipr.
+<p><dt>   -cn    <dd>    Печатает n копий.  При этом включается постраничное
+   упорядочивание.
+<p><dt>   -hbannar <dd>  Строка, указанная  аргументом  banner,   передается
+   обеим командам pr(-h) и ipr(-f) в качестве заголовка для этого задания.
+<p><dt>   -ln    <dd>    Устанавливает длину страницы в n  строк.  Таким  же
+   образом  можно  установить  межстроковые промежутки
+   устройства печати, которое выполняет интервалы между строками.
+<p><dt> -n     <dd>    Для печати  файла использует команду cat вместо команды pr.
+<p><dt>   -wn  <dd>      Устанавливает ширину  строки в n символов.   Ширина
+   строки  более 80 символов печатается в горизонтальной ориентации (132 колонки).
+<p><dt>   -2    <dd>     Печатает две  логические  страницы  на   физической
+   странице ("2-up").
+<p><dt>   -C   <dd>   Подавляет постраничное  упорядочение (смотрите выше
+   -c).
+<p><dt>   -F  <dd>   Подавляет возврат страниц  (который  установлен  по
+   умолчанию).
+<p><dt>   -J   <dd>   Подавляет формирование страницы заголовка задания.
+<p><dt>   -L   <dd>   Печатает в горизонтальном режиме, по ширине 132 колонки.
+<p><dt>   -O  <dd>   Печатает рамки страниц.
+<p><dt>   -R   <dd>   Печатает линейки страниц (раз в каждые две строки).
+<p><dt>   -d   <dd>   Печатает некоторую информацию в целях отладки.
+<p><dt>   -on  <dd> Вывод информации производится со смещением в n  позиций символов относительно левого края.
+<p><dt>   -Tn   <dd>    Вывод информации  начинается  с  n 1/48-ых дюйма от
+   верхнего края каждой страницы.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CAT.htm>cat(1)</a>, <a href=IPR.htm>ipr(1)</a>, <a href=PR.htm>pr(1)</a>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Некоторые параметры  могут  быть заменены при помощи языка управления документацией в самом файле. А также признак -с после признака -С, тем не менее, включает упорядочивание страниц.
+<p align=justify>Если задание содержит ошибки, обнаруженные устройством печати,
+то всегда формируется страница заголовка задания.
+<p align=justify>Опция -T имеет смысл только в том случае, если языком печатающего устройства IMAGEN является "daisy".  Это может быть установлено с помощью -I-Ldaisy. Если именно daisy является языком
+печатающего устройства,  то опция  -o  использует  элементы  в
+1/120 дюйма вместо ширины символа.
+<p align=justify>Старые версии команды imprint пересылают неопознанные аргументы в одну из команд pr или cat.  Это в последующих версиях  не
+поддерживается и в одной из команд pr или cat, должны быть использованы для передачи неподошедшего аргумента  option,  либо
+опция -p либо разделитель -- "end of options" ("конец перечисления опций").
+<p align=justify><b>АВТОР</b><br>
+Корпорация IMAGEN.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

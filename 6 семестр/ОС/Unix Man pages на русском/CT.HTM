@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>CT(1C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CT(1C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ct - запуск процесса getty на удаленном терминале
+<p><b>СИНТАКСИС</b>
+<pre>
+  ct  [-wчисло_минут] [-xуровень_отладки] [-h] [-v]
+  [-sскорость_обмена] номер_телефона ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда ct вызывает по номеру_телефона модем, к которому подключен удаленный терминал, и  запускает  на  этом
+терминале процесс getty. В номер_телефона могут входить
+знаки равенства в тех местах, где нужно  дождаться  ответного сигнала, и минусы в местах,  где  надо  сделать
+задержку. (Допустимые символы номера_телефона  -  цифры
+от 0 до 9, знаки =, -, * и #. Максимальная длина  -  31
+символ.) Если указано несколько номеров, то ct пытается
+соединиться с каждым из них, пока какой-либо  не  ответит; это полезно для указания запасных  способов  установления связи.
+<p align=justify>
+Команда    ct    проверяет    каждую    строку    файла
+/usr/lib/uucp/Devices, пока не найдет доступную линию с
+соответствующими атрибутами или не будет достигнут  конец файла. Если нет свободных линий, то ct запрашивает,
+ждать ли освобождения линии и если  ждать,  то  сколько
+минут. Команда ct продолжает попытки связаться с интервалом в одну минуту  до  исчерпания  указанного  лимита
+времени.
+<p>
+Опциям команды ct приписан следующий смысл:
+<dl>
+<dt>-wчисло_минут
+<dd>Сколько времени ждать установления связи.
+<dt>-xуровень_отладки
+<dd>В стандартный протокол выводится подробная  информация о выполнении программы. Уровень_отладки  задается цифрой; чаще всего испольуется опция -x9.
+<dt>-h
+<dd>Обычно ct, дозвонившись,  освобождает  линию,  так
+что телефон может принять другие вызовы. Опция  -h
+препятствует освобождению. Кроме того,  управление
+будет возвращено пользовательскому терминалу только после завершения  процесса,  специфицированного
+ct.
+<dt>-v
+<dd>Сведения о работе команды ct выводятся в стандартный протокол.
+<dt>-sскорость_обмена
+<dd>Устанавливается  заданная  скорость_обмена  (в бодах). По умолчанию скорость равна 1200 бод.
+</dl><p align=justify>
+После того, как  пользователь  на  удаленном  терминале
+выйдет из системы, в зависимости от типа процесса getty
+(getty или uugetty) могут иметь место два  варианта.  В
+первом ct выводит запрос:
+<pre>
+   Reconnect?
+</pre><p align=justify>
+Если ответ начинается с буквы n, то связь разрывается и
+линия  освобождается; в противном случае вновь запускается процесс getty и выдается приглашение:
+<pre>
+   login:
+</pre><p align=justify>
+Во втором варианте процесс uugetty для данной линии уже
+запущен, поэтому сразу выдается приглашение:
+<pre>
+   login:
+</pre><p align=justify>
+Чтобы должным образом выйти  из  системы,  пользователь
+должен ввести символ CTRL+D.
+<p align=justify>
+Конечно, удаленный терминал должен быть подключен к модему, который может отвечать по телефону.
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+/usr/lib/uucp/Devices
+/usr/adm/ctlog
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=CU.htm>cu(1C)</a>, <a href=LOGIN.htm>login(1)</a>, <a href=UUCP.htm>uucp(1C)</a>.<br>
+<a href=GETTY.htm>getty(1M)</a>, <a href=UUGETTY.htm>uugetty(1M)</a> в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Для разделяемого порта, то  есть  порта,  используемого
+одновременно  как входной и выходной, программа uugetty
+должна быть запущена с опцией -r [см. <a href=UUGETTY.htm>uugetty(1M)</a>].
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

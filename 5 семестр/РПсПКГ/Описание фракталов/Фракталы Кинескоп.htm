@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.ilab24.narod.ru/fract/kineskop.html -->
+<HTML><HEAD><TITLE>Фракталы: Кинескоп</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Кинескоп.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Кинескоп.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Кинескоп</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<P>Это не совсем фрактал, но этот объект, во-первых, обладает свойством 
+самоподобности, а, во-вторых, это просто красиво.</P>
+<CENTER><IMG height=429 alt=Кинескоп src="Фракталы Кинескоп.files/fr067.gif" 
+width=429></CENTER><PRE><B>Program</B> Kineskop;
+<B>Uses</B> Graph, Crt;
+<B>Const</B>
+   min = 1;
+   l0  = 300;
+   da  = pi/20;
+   x0  = 320;
+   y0  = 240;
+<B>Var</B>
+   gd, gm: Integer;
+   x, y  : Integer;
+   l     : Real;
+   a     : Real;
+<B>Procedure</B> Rectangle_(d, u: Real);
+<B>Var</B>
+  x1, y1: Integer;
+  x2, y2: Integer;
+  x3, y3: Integer;
+  x4, y4: Integer;
+<B>Begin</B>
+  x1:=Round(x0 + d * cos(u +   pi/4));
+  y1:=Round(y0 + d * sin(u +   pi/4));
+  x2:=Round(x0 + d * cos(u + 3*pi/4));
+  y2:=Round(y0 + d * sin(u + 3*pi/4));
+  x3:=Round(x0 + d * cos(u + 5*pi/4));
+  y3:=Round(y0 + d * sin(u + 5*pi/4));
+  x4:=Round(x0 + d * cos(u + 7*pi/4));
+  y4:=Round(y0 + d * sin(u + 7*pi/4));
+  Line(x1, y1, x2, y2);
+  Line(x2, y2, x3, y3);
+  Line(x3, y3, x4, y4);
+  Line(x4, y4, x1, y1);
+<B>End</B>;
+
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd, gm, 'c:\bp\bgi');
+   SetColor(14);
+   l:=l0;
+   a:=0;
+   <B>Repeat</B>
+     Rectangle_(l, a);
+     a:=a + da;
+     l:=l * sin(pi/4) / sin(3*pi/4 - da);
+   <B>Until</B> (l &lt;= min) <B>or</B> (KeyPressed);
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 26.11.04<BR>Дата последнего обновления: 26.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Кинескоп.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

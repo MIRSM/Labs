@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>JOIN(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>JOIN(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+join - оператор реляционной базы данных
+<p><b>СИНТАКСИС</b>
+<pre>
+   join  [-aномер_файла] [-eцепочка_символов] [-j[номер_файла] номер_поля]
+    [-o список] [-tсимвол] файл1 файл2
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда join выдает на стандартный вывод результат соединения двух отношений, задаваемых  строками  файла1  и
+файла2. Если вместо файла1  стоит  -,  то  используется
+стандартный ввод.
+<p align=justify>Отношения файл1 и файл2  должны  быть  отсортированы  в
+возрастающем лексикографическом порядке [см.  <a href=SORT.htm>sort(1)</a>],
+согласно кодировке ASCII, по полям  соединения  (обычно
+по первому полю в каждой строке).
+<p align=justify>Результат операции составляют строки, по одной для каждой пары строк из отношений файл1 и файл2, которые имеют одинаковые поля соединения. Обычно строка результата
+состоит из общего поля, затем остатка строки  отношения
+файл1, затем остатка строки отношения файл2.
+<p align=justify>Как правило, поля разделяются символами пробела,  табуляции или перевода строки. В этом случае несколько последовательных разделителей интерпретируются как один  и
+начальные  разделители  отбрасываются.  Подразумеваемым
+разделителем при выводе информации является пробел.
+<p align=justify>Допустимы следующие опции:
+<dl>
+<dt>-aномер_файла <dd> В дополнение к обычному выводу выдать  строку  для
+     каждой  непарной строки из файла с указанным номером (1 или 2).
+<dt>-eцепочка_символов <dd>  Заменить пустые поля вывода заданной цепочкой_символов.
+<dt>-j[номер_файла] номер_поля <dd> Произвести соединение по указанному полю для файла
+     с заданным номером. Если номер_файла  опущен,  использовать указанное поле в обоих файлах.
+<dt>-o список <dd> Каждую строку вывода обрамлять полями,  определенными в списке. Каждый  элемент  списка  имеет  вид номер_файла.номер_поля.
+<dt>-tсимвол <dd>  Использовать символ в качестве разделителя. Каждое
+     вхождение символа в строку значимо. Указанный символ используется как разделитель и  при  вводе,  и  при выводе.
+</dl>
+<p><b>ПРИМЕР</b><br>
+Следующая командная строка выполняет  соединение  файла
+паролей и файла групп, сравнивая числовой идентификатор
+группы, и выдает входное имя, имя группы и основной каталог. Предполагается, что оба  файла  отсортированы  в
+порядке возрастания идентификаторов групп.
+<pre>
+     join  -j1 4 -j2 3 -o 1.1 2.1 1.6 -t: /etc/passwd \ /etc/group
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=AWK.htm>awk(1)</a>, <a href=COMM.htm>comm(1)</a>, <a href=SORT.htm>sort(1)</a>, <a href=UNIQ.htm>uniq(1)</a>.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+В  случае стандартных разделителей полей последовательность упорядочения такая же, как в команде sort -b,  то
+есть  начальные пробелы игнорируются. Если задана опция
+-t, все символы являются значимыми.
+<p align=justify>Соглашения команд join,  <a href=SORT.htm>sort(1)</a>,  <a href=COMM.htm>comm(1)</a>,  <a href=UNIQ.htm>uniq(1)</a>  и
+<a href=AWK.htm>awk(1)</a> совершенно различны.
+<p align=justify>Если имя файла состоит из цифр, оно может провзаимодействовать с опцией -o, стоящей непосредственно перед аргументами-файлами
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

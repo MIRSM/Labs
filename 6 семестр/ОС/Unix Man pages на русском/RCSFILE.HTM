@@ -1,0 +1,230 @@
+<html>
+<head>
+<title>RCSFILE(5) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>RCSFILE(5) <br> ФОРМАТ ФАЙЛОВ</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+rcsfile - формат  архивного  файла  в  Системе  Отслеживания
+Версий RCS .
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Текст, помещенный  в архив может иметь свободный формат,  но
+сам  архивный  файл  обязан  заканчиваться  символом   новой
+строки.  Разделители -- символы пробела,  забоя,  табуляции,
+новой строки,  вертикальной  табуляции,  смены  страницы,  и
+возврата   каретки   --   имеют  особое  значение  только  в
+специальных строках и не могут появляться  внутри  следующих
+элементов: id, num и sym.
+<p align=justify>Специальные строки  ограничены  с  обеих сторон символами @.
+Если архивируемая или специальная строка сама содержит @, то
+этот символ удваивается.  Специальная строка может содержать
+любые символы.
+<p align=justify>Мета-синтаксис формул,  использованный ниже,  придерживается
+следующих соглашений:  Символ `|' разделяет два элемента, из
+которых нужно выбрать один.  Символы `{' и `}'  ограничивают
+необязательный  элемент.  Символы  `{'  и  `}*' ограничивают
+элемент,  который может быть повторен ноль  или  более  раз.
+Символ  `{'  and  '}+' ограничивают элемент,  который должен
+быть повторен один или более раз.
+<pre>
+	rcstext   ::=  admin {delta}* desc {deltatext}*
+	
+	admin     ::=  head       {num};
+	               { branch   {num}; }
+	               access     {id}*;
+	               symbols    {sym : num}*;
+	               locks      {id : num}*;  {strict  ;}
+	               { comment  {string}; }
+	               { expand   {string}; }
+	               { newphrase }*
+	
+	delta     ::=  num
+	               date       num;
+	               author     id;
+	               state      {id};
+	               branches   {num}*;
+	               next       {num};
+	               { newphrase }*
+	
+	desc      ::=  desc       string
+	
+	deltatext ::=  num
+	               log        string
+	               { newphrase }*
+	               text       string
+	
+	num       ::=  {digit | .}+
+	
+	digit     ::=  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+	
+	id        ::=  {num} idchar {idchar | num}*
+	
+	sym       ::=  {digit}* idchar {idchar | digit}*
+	
+	idchar    ::=  любой печатаемый символ, кроме special
+	
+	special   ::=  $ | , | . | : | ; | @
+	
+	string    ::=  @{любой символ, но @ удваиваются}*@
+	
+	newphrase ::=  id word* ;
+	
+	word      ::=  id | num | string | :
+</pre>
+Для идентификаторов  имеет  значение,  прописная  буква  или
+строчная.  Все  ключевые  слова  набраны  в нижнем регистре.
+Множества   идентификаторов   и    ключевых    слов    могут
+пересекаться.  Для  большинства  операционных  систем  в RCS
+используется стандарт ISO 8859/1 , где печатаемыми символами
+считаются  коды  041-176 и 240-377 в восьмеричной записи,  а
+пробелами -- 010-015  и  040  (что  согласуется  с  КОИ-8  и
+кодировками IBM  для  OS2  и  MS-Windows  [code page 2041] и
+Mackintosh  для  славянских   языков,   но   стандартная   и
+альтернативная [code page 866] кодировки для MS-DOS приводят
+к двоичным файлам).
+<p align=justify>Даты после ключевого слова date имеют вид  Y.mm.dd.hh.mm.ss,
+где Y -- год, mm -- месяц (01-12), dd день -- (01-31), hh --
+час (00-23), mm -- минута (00-59), и ss секунда (00-60). Для
+обозначения  дат  с  1900  по  1999 Y представляет собой две
+последние цифры  года;  следующие  года  будут  обозначаться
+четырьмя цифрами.  Во  внутреннем формате файла используются
+Григорианский Календарь и Всемирное Время.
+<p align=justify>Конструкция newphrase   зарезервирована   для    дальнейшего
+расширения формата системы RCS. Гарантируется, что newphrase
+не  будет  начинаться  с  используемых  в  настоящее   время
+ключевых слов.
+<p align=justify>Вершины, соответствующие  delta  образуют дерево.  Вершины с
+номерами из двух  чисел  (напр.,  2.3,  2.1,  1.3,  и  т.п.)
+образуют  главную  ветвь,  и  заданы  обратными приращениями
+текста в  убывающем  порядке  версий,  начиная  с  последней
+версии главной ветви,  записанной в архив целиком. Поле head
+в блоке admin указывает на вершину  этой  цепочки,  т.е.  на
+последнюю в лексикографическом смысле пару. Поле branch в
+блоке admin указывает на ветвь (или версию) используемую  по
+умолчанию. Если  это  поле пусто,  то используется последняя
+версия на  главной  ветви  (старшая  ветвь,   выходящая   из
+последней версии).
+<p align=justify>Вершины delta,  чьи  номера заданы 2n числами (n>=2) (напр.,
+3.1.1.1, 2.1.2.2, и т.п.) связаны следующим образом. Вершины
+с   одинаковыми   2n-1   первыми  номерами,  упорядочены  по
+последнему полю в  возрастающем  порядке  и  заданы  прямыми
+приращениями,  начиная  с  основания побочной ветви -- точке
+ветвления, заданной 2n-2 числами, общими для побочной ветви.
+Вершина    соответствующая    точке    ветвления    содержит
+упорядоченный по возрастанию список  начальных  вершин  всех
+побочных ветвей, выходящих из нее.
+<p align=justify>Следующая диаграмма  демонстрирует  организацию информации в
+архиве.
+<pre>
+	                           Head
+	                             |
+	                             |
+	                             v                        / \
+	                         ---------                   /   \
+	   / \          / \      |       |      / \         /     \
+	  /   \        /   \     |  2.1  |     /   \       /       \
+	 /     \      /     \    |       |    /     \     /         \
+	/1.2.1.3\    /1.3.1.1\   |       |   /1.2.2.2\   /1.2.2.1.1.1\
+	---------    ---------   ---------   ---------   -------------
+	    ^            ^           |           ^             ^
+	    |            |           |           |             |
+	    |            |           v           |             |
+	   / \           |       ---------      / \            |
+	  /   \          |       \  1.3  /     /   \           |
+	 /     \         ---------\     /     /     \-----------
+	/1.2.1.1\                  \   /     /1.2.2.1\
+	---------                   \ /      ---------
+	    ^                        |           ^
+	    |                        |           |
+	    |                        v           |
+	    |                    ---------       |
+	    |                    \  1.2  /       |
+	    ----------------------\     /---------
+	                           \   /
+	                            \ /
+	                             |
+        	                     |
+	                             v
+	                         ---------
+	                         \  1.1  /
+	                          \     /
+	                           \   /
+	                            \ /
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=RCSINTRO.htm>rcsintro(1)</a>, <a href=CI.htm>ci(1)</a>, <a href=CO.htm>co(1)</a>,  <a href=IDENT.htm>ident(1)</a>,  <a href=RCS.htm>rcs(1)</a>,  <a href=RCSCLEAN.htm>rcsclean(1)</a>,  <a href=RCSDIFF.htm>rcsdiff(1)</a>, <a href=RCSMERGE.htm>rcsmerge(1)</a>, <a href=RLOG.htm>rlog(1)</a>
+<p align=justify><i>Walter  F.  Tichy,  RCS--A  System  for   Version   Control,
+Software--Practice & Experience 15, 7 (July 1985), 637-654.</i>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

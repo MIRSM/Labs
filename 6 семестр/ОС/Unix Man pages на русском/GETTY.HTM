@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>GETTY(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETTY(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        getty  -  установка типа терминала, его характеристик и
+        режима работы с линией
+<p><b>СИНТАКСИС</b>
+<pre>
+    /etc/getty  [-h] [-t время_ожидания] линия
+         [скорость [тип_терминала [режим_работы_с_линией]]]
+    /etc/getty  -c файл
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Программа getty запускается процессом <a href=INIT.htm>init(1M)</a> и обслуживает  вторую  стадию  процедуры  входа пользователя в
+        систему (init - getty - login - shell). Программа getty
+        может быть выполнена только суперпользователем, то есть
+        процессом, имеющим в качестве идентификатора  пользователя  root. Сначала getty выводит на экран поле приглашения из используемой строки файла /etc/gettydefs,  затем  читает  входное имя пользователя и запускает программу <a href=LOGIN.htm>login(1)</a>, передавая ей это имя в  качестве  аргумента.  Во  время чтения имени getty пытается приспособиться к типу и скорости терминала, используя аргументы командной строки.
+<p align=justify>        Аргументам программы getty приписан следующий смысл:
+<dl>
+<p><dt>   линия <dd> Имя терминальной линии, к которой программа  getty
+             должна  подключиться; используется как имя файла в
+             каталоге /dev. Этот файл открывается на  чтение  и
+             запись.
+<p><dt>   -h  <dd> Если  опция  -h не указана, то getty принудительно
+             освободит линию, установив скорость передачи  равной нулю, и только затем установит подразумеваемую  или заданную скорость.
+<p><dt>   -t время_ожидания <dd>  Программа  getty завершится, если файл, соответствующий линии, будет успешно открыт, но  в  течение указанного времени_ожидания (в секундах)  в  линию не поступит ни одного символа.
+<p><dt>  скорость <dd>  Необязательный  аргумент - метка описания скорости
+             и характеристик терминала в файле  /etc/gettydefs.
+             Это  описание  дает  getty  информацию о начальной
+             скорости, о виде приглашения при входе в  систему,
+             о  начальных  характеристиках терминала, а также о
+             том, какую скорость попробовать,  если  данная  не
+             удовлетворила  пользователя (о чем он сообщил, нажав клавишу прерывания). Подразумеваемая  скорость - 300 бод.
+<p><dt>   тип_терминала <dd> Необязательный аргумент - цепочка символов, задающая  тип терминала, подсоединенного к линии. Программа getty распознает только один тип - none (который является и  подразумеваемым),  что  означает
+             любой  терминал,  неизвестный системе. Чтобы тип_терминала играл какую-либо роль, в систему  должны быть  включены подпрограммы обслуживания виртуальных терминалов. Они доступны, но  по  умолчанию  в  систему не включаются.
+<p><dt>   режим_работы_с_линией <dd>  Необязательный аргумент - цепочка символов, задающая режим работы с линией. Теоретически режимы могут  быть  разными,  но в настоящее время доступен  только один, подразумеваемый режим LDISC0.
+<p><dt>   -c файл <dd> Опция проверки корректности. Указанный файл  просматривается,  как если бы это был файл /etc/gettydefs, и результаты просмотра  поступают  на  стандартный вывод. Если при этом обнаруживаются какие 
+             либо  ошибки,  то выдаются соответствующие сообщения. Если строки  файла  корректны,  то  выводятся
+             значения  флагов [см. <a href=IOCTL.htm>ioctl(2)</a> по поводу их интерпретации]. Заметим, что некоторые значения добавляются к флагам автоматически.
+</dl>
+<p align=justify>        Если  не  указан  ни один из необязательных аргументов,
+        программа  getty  устанавливает  скорость  в  300  бод,
+        бесструктурный  режим  (реакция  на каждый символ), без
+        отображения вводимых символов, без  контроля  четности,
+        символы перевода строки будут заменяться последовательностью (возврат каретки, переход к новой строке) и символы табуляции будут заменяться пробелами при выдаче их
+        на  стандартный вывод. Затем getty выдает приглашение и
+        приступает к посимвольному вводу входного имени пользователя. Если будет получен символ с нулевым кодом  (или  произойдет  нарушение  протокола),  делается вывод, что
+        пользователь нажал  клавишу  прерывания.  В  результате
+        getty  произведет попытку использовать следующее значение скорости из серии доступных значений,  определенных в файле /etc/gettydefs.
+<p align=justify>        Ввод входного имени пользователя должен завершаться нажатием клавиши перевода строки или возврата каретки.  В последнем случае устанавливается соотвестствующая трактовка системой символа возврата каретки [см. <a href=IOCTL.htm>ioctl(2)</a>].
+<p align=justify>        Имя  пользователя  просматривается на предмет наличия в
+        нем малых букв; если таковых нет и имя не пусто, система в дальнейшем будет преобразовывать все большие буквы в малые.
+<p align=justify>        Наконец,  программа  getty  выполняет  системный  вызов
+        <a href=EXEC.htm>exec(2)</a>  и заменяется программой login с входным именем
+        пользователя в качестве аргумента. После имени  пользователя могут быть введены дополнительные аргументы, которые  будут переданы программе login, и та поместит их
+        в окружение [см. <a href=LOGIN.htm>login(1)</a>].
+<p><b>ФАЙЛЫ</b>
+<pre>
+         /etc/gettydefs  Файл с данными о скорости обмена и  ха-
+                        рактеристиками терминалов.
+        /etc/issue      Файл,  содержимое которого выдается пе-
+                        ред приглашением к входу в систему.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+        <a href=INIT.htm>init(1M)</a>, <a href=TTY~1.htm>tty(7)</a>.<br>
+        <a href=CT.htm>ct(1C)</a>, <a href=LOGIN.htm>login(1)</a> в Справочнике пользователя.<br>
+        <a href=IOCTL.htm>ioctl(2)</a>, <a href=GETTYDEF.htm>gettydefs(4)</a>, <a href=INITTAB.htm>inittab(4)</a> в Справочнике  программиста.
+<p align=justify><p align=justify><b>СЮРПРИЗЫ</b><br>
+        Хотя  getty в принципе поддерживает соглашение об экранировании одиночных символов, на некоторые  управляющие
+        символы  соглашение не распространяется. Так, при входе
+        в систему символы #, @, /, !, _, забой, CTRL+U,  CTRL+D
+        и  &  нельзя  употреблять во входном имени или дополнительных аргументах. Программа getty использует эти символы для определения конца строки, принятого  протокола
+        и  вида  символа забоя; они всегда интерпретируются как
+        имеющие специальное значение.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

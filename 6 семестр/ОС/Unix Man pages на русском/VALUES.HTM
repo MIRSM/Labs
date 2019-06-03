@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>VALUES(5)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>VALUES(5)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+values - машинно-зависимые величины
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;values.h&gt;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Данный файл содержит описания  символических  констант,
+значения  которых  определяются  с  учетом  архитектуры
+конкретного процессора.
+<p align=justify>
+Предполагаемое представление целых чисел  со  знаком   
+двоичный  обратный  или  двоичный дополнительный код со
+старшим знаковым битом.
+<dl>
+<dt>BITS (тип) 
+<dd>Количество  бит,  отводимых  под данные указанного
+типа (например, int).
+<dt>HIBITS 
+<dd>Целое типа short int, в старшем бите которого  установлено значение 1, в остальных - 0  (для  большинства реализаций это 0x8000).
+<dt>HIBITL 
+<dd>Целое типа long int, в старшем бите которого установлено значение 1, в остальных  -  0  (для  большинства реализаций это 0x80000000).
+<dt>MAXSHORT 
+<dd>Максимальное  значение  типа  short int (для большинства реализаций это 0x7FFF=32767).
+<dt>MAXLONG 
+<dd>Максимальное значение типа  long  int  (для  большинства реализаций это 0x7FFFFFFF=2147483647).
+<dt>MAXINT 
+<dd>Максимальное  целое  число естественной для данной
+машины разрядности (для данной системы совпадает с
+MAXLONG).
+<dt>MAXFLOAT, LN_MAXFLOAT 
+<dd>Максимальное вещественное число одинарной точности
+и его натуральный логарифм.
+<dt>MAXDOUBLE, LN_MAXDOUBLE 
+<dd>Максимальное вещественное число двойной точности и
+его натуральный логарифм.
+<dt>MINFLOAT, LN_MINFLOAT 
+<dd>Минимальное положительное вещественное число  одинарной точности и его натуральный логарифм.
+<dt>MINDOUBLE, LN_MINDOUBLE 
+<dd>Минимальное положительное вещественное число двойной точности и его натуральный логарифм.
+<dt>FSIGNIF 
+<dd>Количество  значащих  бит  мантиссы  вещественного
+числа одинарной точности.
+<dt>DSIGNIF 
+<dd>Количество  значащих  бит  мантиссы  вещественного
+числа двойной точности.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~~7.htm>intro(3)</a>, <a href=MATH.htm>math(5)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

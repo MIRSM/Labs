@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>SEMOP(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SEMOP(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+semop - операции над множеством семафоров
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/types.h&gt;
+        #include &lt;sys/ipc.h&gt;
+        #include &lt;sys/sem.h&gt;
+        
+        int semop (semid, sops, nsops);
+        int semid;
+        struct sembuf **sops;
+        unsigned nsops;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов semop используется для выполнения набора операций над множеством семафоров, ассоциированным с
+идентификатором semid. Значение аргумента sops является
+указателем  на  массив  структур,  описывающих операции
+(см. СЮРПРИЗЫ). Значение аргумента  nsops  равно  количеству  структур в массиве. Каждая структура, описывающая операцию, содержит следующие поля:
+<pre>
+             short sem_num; /* Номер семафора */
+             short sem_op;  /* Операция над семафором */
+             short sem_flg; /* Флаги операции */
+</pre><p align=justify>
+Каждая операция,  специфицированная  значением  sem_op,
+выполняется  над  соответствующим  семафором,  заданным
+значениями semid и sem_num.
+<p align=justify>
+Значение поля sem_op специфицирует одну из трех  операций:
+<ol>
+<li>Если значение sem_op отрицательно, то  выполняется
+одно из следующих действий {Требуется право на изменение.}:
+<ul>
+<li>Если значение семафора semval [см.  <a href=INTRO~1.htm>intro(2)</a>]
+больше или равно абсолютной величине  sem_op,
+то абсолютная величина sem_op  вычитается  из
+значения semval. Аналогично,  если  выражение
+(sem_flg & SEM_UNDO) истинно,  то  абсолютная
+величина sem_op добавляется к значению  переменной semadj вызывающего процесса для заданного семафора [см. <a href=EXIT.htm>exit(2)</a>].
+<li>Если значение семафора semval меньше абсолютной величины sem_op и  выражение  (sem_flg  &
+IPC_NOWAIT) истинно, то сразу же возвращается
+управление вызывающему процессу.
+<li>Если значение семафора semval меньше абсолютной величины sem_op и  выражение  (sem_flg  &
+IPC_NOWAIT) ложно, то увеличивается  значение
+semncnt соответствующего семафора и  приостанавливается выполнение  вызывающего  процесса
+до появления одного из следующих событий:
+<p>
+Значение  semval  становится  большим  или
+равным абсолютной величине  sem_op.  Когда
+это происходит, то соответствующее  заданному семафору значение semncnt уменьшается
+на 1, абсолютная величина sem_op вычитается из значения semval  и,  если  выражение
+(sem_flg & IPC_UNDO)  истинно,  абсолютная
+величина  sem_op  добавляется  к  значению
+semadj вызывающего процесса для  заданного
+семафора.
+<p>
+Идентификатор множества семафоров, над которым вызывающий процесс выполняет  операцию, удаляется из системы [см. <a href=SEMCTL.htm>semctl(2)</a>].
+Когда  это  происходит,  переменной  errno
+присваивается значение EIDRM и вызывающему
+процессу возвращается -1.
+<p>
+Вызывающий процесс получает сигнал,  который должен быть обработан. Когда это  происходит, значение semncnt, соответствующее
+заданному семафору, уменьшается на 1 и вызывающий процесс  возобновляет  выполнение
+так, как описано в <a href=SIGNAL.htm>signal(2)</a>.
+</ul>
+<li>Если значение sem_op положительно, то оно добавляется к значению semval и, если выражение  (sem_flg
+& SEM_UNDO) истинно, значение sem_op вычитается из
+значения semadj вызывающего процесса для заданного
+семафора. {Требуется право на изменение.}
+<li>Если значение sem_op равно нулю, выполняется  одно
+из следующих действий {Требуется право на чтение}:
+<ul>
+<li>Если значение семафора semval равно нулю,  то
+управление сразу же возвращается  вызывающему
+процессу.
+<li>Если значение семафора не равно нулю и  выражение (sem_flg & IPC_NOWAIT) истинно,  управление сразу же возвращается вызывающему  процессу.
+<li>Если значение семафора не равно нулю и  выражение (sem_flg & IPC_NOWAIT) ложно, то значение  semzcnt  для  соответствующего  семафора
+увеличивается на 1 и  выполнение  вызывающего
+процесса приостанавливается до появления  одного из следующих событий:
+<p>
+Значение semval  становится  равным  нулю.
+Когда это происходит,  то  соответствующее
+заданному семафору значение semzcnt уменьшается на 1.
+<p>
+Идентификатор множества семафоров, над которым вызывающий процесс выполняет  операцию, удаляется из системы. Когда это  происходит,  переменной  errno  присваивается
+значение  EIDRM  и  вызывающему   процессу
+возвращается -1.
+<p>
+Вызывающий процесс получает сигнал,  который должен быть обработан. Когда это  происходит, значение semzcnt, соответствующее
+заданному семафору, уменьшается на 1 и вызывающий процесс  возобновляет  выполнение
+так, как описано в <a href=SIGNAL.htm>signal(2)</a>.
+</ul></ol><p align=justify>
+Системный вызов semop  завершается  неудачей,  если  по
+крайней мере для одной операции из набора выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EINVAL]
+<dd>Значение аргумента semid не  является  корректным идентификатором  множества  семафоров.
+<dt>[EFBIG]
+<dd>Номер  семафора  sem_num  меньше  нуля  или
+больше или  равен  количеству  семафоров  в
+множестве,   определяемом   идентификатором
+semid.
+<dt>[E2BIG]
+<dd>Количество заданных операций  nsops  больше
+максимально допустимого в системе.
+<dt>[EACCES]
+<dd>У вызывающего процесса нет прав на выполнение операции [см. <a href=INTRO~1.htm>intro(2)</a>].
+<dt>[EAGAIN]
+<dd>Выполнение  операции  привело бы к приостановке  вызывающего  процесса,  а  выражение
+(semflg & IPC_NOWAIT) истинно.
+<dt>[ENOSPC]
+<dd>Превышается  максимально  допустимое  количество  процессов,   устанавливающих   флаг
+SEM_UNDO.
+<dt>[EINVAL]
+<dd>Превышается  максимально  допустимое  количество семафоров,  для  которых  вызывающий
+процесс устанавливает флаг SEM_UNDO.
+<dt>[ERANGE]
+<dd>Значение семафора semval  превышает  максимально допустимое системой.
+<dt>[ERANGE]
+<dd>Значение semadj превышает  максимально  допустимое системой.
+<dt>[EFAULT]
+<dd>Аргумент sops указывает за пределы отведенного процессу адресного пространства.
+</dl><p align=justify>
+При  успешном  выполнении  системного  вызова  значение
+sempid для каждого семафора, заданного массивом  структур, на который указывает sops, устанавливается  равным
+идентификатору (номеру) вызывающего процесса.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=EXEC.htm>exec(2)</a>,   <a href=EXIT.htm>exit(2)</a>,   <a href=FORK.htm>fork(2)</a>,   <a href=INTRO~1.htm>intro(2)</a>,   <a href=SEMCTL.htm>semctl(2)</a>,
+<a href=SEMGET.htm>semget(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Если системный вызов semop завершается  неудачей  из-за
+получения сигнала, то вызывающему процессу возвращается
+-1, а переменной errno  присваивается  значение  EINTR.
+Если системный вызов semop завершается  неудачей  из-за
+удаления из системы идентификатора множества  семафоров
+semid , то возвращается -1 и errno присваивается значение EIDRM.
+<p align=justify>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+В данной реализации аргумент sops должен быть  массивом
+структур, а не указателем на массив.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

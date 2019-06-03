@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>uu-daily(8)<br>ОС ДЕМОС. Сопровождение системы.</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>uu-daily(8)<br>ОС ДЕМОС. Сопровождение системы.</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+uu.daily,uuclean - программа ежедневной чистки справочников UUCP
+<p><b>СИНТАКСИС</b>
+<pre>
+/usr/lib/uucp/uu.daily
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Ежедневно, с помошью cron, должна запускаться программа
+чистки   рабочих   стпавочников   и   статистики   UUCP
+/usr/lib/uucp/uu.daily.  Эта программа написана на 'sh'
+и делает следующее:
+<ol>
+<li>Чистит очереди заданий и  рабочие  каталоги  на
+/usr/spool/uucp  от  слишком старых файлов. Как
+правило, вычищаются рабочие  файлы,  оставшиеся
+после  сбоев, и задания, которые исчерпали срок
+хранения на  спуле.   Для  чистки  используется
+программа 'uuclean' (см. ниже).  Затем uu.daily
+переходит к обработке статистики в  справочнике
+/usr/spool/uucp/.Admin/ (/usr/spool/uucp в версии BSD).
+<li>Если существует справочник
+'/usr/spool/uucp/.Old'  (/usr/spool/uucp/OLD  в
+BSD варианте), то  uu.daily  переписывает  туда
+статистику по передаче файлов (SYSLOG) и протокол работы системы (LOGFILE), накапливая их в в
+месячных файлах.  В этом случае справочник .Old
+(OLD) имеет тенденцию со временем переполняться
+и требует регулярного присмотра.
+<li>Если вам не нужно постоянно накапливать  протокол  работы и статистику UUCP, сотрите справочник /usr/spool/uucp/.Old (OLD в версии BSD).  В
+этом  случае  статистика  не  накапливается,  а
+переименовывается таким образом,  что  хранится
+статистика  за 7 последних дней в 7-ми файлах SYSLOG.1 - SYSLOG.7 и LOGFILE.1 - LOGFILE.7 .
+</ol><p align=justify><b>ПРОГРАММА ЧИСТКИ СПРАВОЧНИКОВ - uuclean</b><br>
+Непосредственно стирание устаревших  файлов  производит
+служебная   программа   /usr/lib/uucp/uuclean,  которая
+вызывается следующим образом:
+<pre>
+ /usr/lib/uucp/uuclean -dСправочник [-pПрефикс] [-nTime] [-m] [-x]
+</pre><p align=justify>
+Время задается в часах.  Программа стирает  из  указанного  справочника все файлы с указанным префиксом (либо
+просто все файлы), которые не изменялись более  указанного  числа  часов.  Если  указан  ключ  -m,  программа
+посылает результат работы по почте хозяину стертых файлов. Ключ -x включает отладочную печать.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /usr/spool/uucp/.Admin/LOGFILE - текущий протокол работы UUCP
+ /usr/spool/uucp/LOGFILE - то же в BSD варианте
+ /usr/spool/uucp/.Admin/SYSLOG - текущая статистика UUCP
+ /usr/spool/uucp/SYSLOG - то же в BSD варианте
+ /usr/spool/uucp/.Old/ - справочник накопления статистики и протоколов
+ /usr/spool/uucp/OLD/ - справочник  накопления статистики в BSD варианте.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=UUXQT.htm>uuxqt(8)</a>, <a href=UUCP-FIL.htm>uucp-files(5)</a>, uurate(8), <a href=UU-DAILY.htm>uu-daily(8)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

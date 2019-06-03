@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>UNISTD(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>UNISTD(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+unistd - набор символических констант
+<p><b>СИНТАКСИС</b>
+<pre>
+#include &lt;unistd.h&gt;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Включаемый файл &lt;unistd.h&gt; содержит символические константы и структуры, которые еще не были  описаны  в  каких-либо других включаемых файлах.
+<p><i>Символические константы для доступа к файлам:</i>
+<pre>
+#define R_OK    4 /* Маска доступности для чтения */
+#define W_OK    2 /* Маска доступности для записи */
+#define X_OK    1 /* Маска доступности для выполнения */
+#define F_OK    0 /* Маска проверки существования файла */
+#define F_ULOCK 0 /* Разблокировать прежде заблокированную
+                     область */
+#define F_LOCK  1 /* Заблокировать область для монопольного
+                     использования */
+#define F_TLOCK 2 /* Проверить и заблокировать область для
+                     монопольного использования */
+#define F_TEST  3 /* Проверить, заблокирована ли область
+                     другими процессами */
+</pre>
+<p><i>Символические константы для позиционирования в файле:</i>
+<pre>
+#define SEEK_SET 0 /* Установить указатель файла равным
+                      смещению */
+#define SEEK_CUR 1 /* Установить указатель файла равным
+                      текущему значению плюс смещение */
+#define SEEK_END 2 /* Установить указатель файла равным
+                      EOF плюс смещение */
+</pre>
+<p><i>Маршрутные имена:</i>
+<pre>
+#define GF_PATH "/etc/group"  /* Маршрутное имя файла
+                                 групп */
+#define PF_PATH "/etc/passwd" /* Маршрутное имя файла
+                                 паролей */
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

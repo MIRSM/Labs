@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>CHMOD(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CHMOD(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+chmod - изменение режима доступа к файлам
+<p><b>СИНТАКСИС</b>
+<pre>
+  chmod  режим файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Права  доступа  к указанным файлам (среди которых могут
+быть каталоги) изменяются в  соответствии  с  указанным
+режимом.  Режим  может быть задан в абсолютном или символьном виде.
+<p align=justify>
+Абсолютный  вид - восьмеричное число, являющееся поразрядным ИЛИ следующих режимов:
+<dl>
+<dt>04000
+<dd>При выполнении переустановить действующий идентификатор пользователя.
+<dt>020#0
+<dd>При выполнении переустановить действующий идентификатор группы, если # есть 7, 5,  3  или  1;
+учитывать блокировку доступа, если # есть 6, 4,
+2 или 0.
+<dt>01000
+<dd>Бит навязчивости [см. <a href=CHMOD~1.htm>chmod(2)</a>].
+<dt>00400
+<dd>Доступен для чтения владельцем.
+<dt>00200
+<dd>Доступен для записи владельцем.
+<dt>00100
+<dd>Доступен  для  выполнения  (в случае   каталога - для просмотра) владельцем.
+<dt>00040
+<dd>Доступен для чтения членами группы.
+<dt>00020
+<dd>Доступен для записи членами группы.
+<dt>00010
+<dd>Доступен  для  выполнения  (просмотра)  членами
+группы.
+<dt>00004
+<dd>Доступен для чтения прочими пользователями.
+<dt>00002
+<dd>Доступен для записи прочими пользователями.
+<dt>00001
+<dd>Доступен  для  выполнения  (просмотра)  прочими
+пользователями.
+</dl><p align=justify>
+Использование символьного вида основано на  однобуквенных обозначениях, которые определяют  класс  доступа  и
+права доступа для членов данного класса. Права  доступа
+к файлу зависят от идентификатора пользователя и  идентификатора группы, в которую он входит. Режим  в  целом
+описывается в терминах трех последовательностей, по три
+буквы в каждой:
+<pre>
+   Владелец  Группа  Прочие
+     (u)       (g)     (o)
+     rwx       rwx     rwx
+</pre><p align=justify>
+Здесь владелец, члены группы и все прочие  пользователи
+обладают правами чтения файла, записи в него и его  выполнения. В примере показаны обозначения как для класса
+доступа, так и для прав доступа внутри класса.
+<p align=justify>
+Для  задания режима доступа в символьном виде используется следующий синтаксис:
+<pre>
+   [кому]  операция  права
+</pre><p align=justify>
+Часть кому есть комбинация букв u,  g  и  o  (владелец,
+члены группы и прочие пользователи соответственно). Если часть кому опущена или указано a, то это эквивалентно ugo.
+<p align=justify>
+Операция может быть: + (добавить право), - (лишить права), = (в пределах данного класса присвоить права абсолютно, то есть добавить указанные права и отнять неуказанные).
+<p>
+Права - любая осмысленная комбинация следующих букв:
+<table>
+<tr valign=top><td>r<td>Право на чтение.</tr>
+<tr valign=top><td>w<td>Право на запись.</tr>
+<tr valign=top><td>x<td>Право на выполнение (поиск в каталоге).</tr>
+<tr valign=top><td>s<td>При выполнении переустанавливать действующий идентификатор пользователя или группы.</tr>
+<tr valign=top><td>t<td>После выполнения программы сохранять  сегмент  команд (бит навязчивости).</tr>
+<tr valign=top><td>l<td>Учет блокировки доступа.</tr>
+</table><p align=justify>
+Опустить часть права можно только если операция есть  =
+(для лишения всех прав).
+<p align=justify>
+Если надо сделать более одного  указания  об  изменении
+прав, то при использовании символьного вида в правах не
+должно быть пробелов, а указания должны разделяться запятыми. Например, команда
+<pre>
+   chmod u+w,go+x f1
+</pre><p align=justify>
+добавит для владельца право писать в  файл  f1,  а  для
+членов  группы и прочих пользователей - право выполнять
+файл. Права устанавливаются в указанном порядке.  Право
+s  можно  добавлять  только  для пользователя и группы,
+право t - только для пользователя.
+<p align=justify>
+Учет блокировки доступа (l) к файлу и его частям  означает  возможность  монопольного захвата сегментов файла
+на время их обработки. Нельзя, однако, разрешить выполнение файла для членов группы и одновременно  учитывать
+блокировку файла. Нельзя также разрешить переустановить
+при  выполнении действующий идентификатор группы и учитывать блокировку файла. Таким образом,  следующие  команды являются некорректными:
+<pre>
+   chmod g+x,+l f2
+   chmod g+s,+l f3
+</pre>
+Попытка их выполнения вызовет соответствующую  диагностику.
+<p align=justify>
+Изменить режим доступа к файлу может только его  владелец или суперпользователь. Бит навязчивости может установить только суперпользователь. Чтобы  добавить  право
+переустановки идентификатора группы, надо  быть  членом
+этой группы; кроме того, для членов группы должно  быть
+установлено право выполнения.
+<p align=justify>
+Для просмотра прав доступа и контроля при их  изменении
+используется команда <a href=LS.htm>ls(1)</a> с флагом -l. Права переустановки идентификаторов пользователя и группы  отмечаются
+буквой s на месте соответствующей буквы x: малой s, если соответствующая категория пользователей имеет  право
+x, и большой S - если не имеет; право t  отмечается  на
+месте последней буквы x: малой t, если прочие пользователи имеют право выполнять файл, и большой T - если  не
+имеют. Право l отмечается на месте права x  для  членов
+группы.
+<p align=justify><b>ПРИМЕРЫ</b><ol>
+<li>Чтобы установить права, позволяющие владельцу читать
+и писать в файл, а членам группы и прочим пользователям
+только  читать,  надо  сложить 0400, 0200, 0040 и 0004.
+Таким образом, команду можно записать двумя способами:
+<pre>
+   chmod 644 f1
+   chmod u=rw,go=r f1
+</pre>
+<li>Позволить всем выполнять файл f2:
+<pre>
+   chmod +x f2
+</pre>
+<li>Учитывать блокировку доступа к файлу f3:
+<pre>
+   chmod +l f3
+</pre>
+<li>Дать всем права на чтение  запись  и  выполнение,  а
+также на переустановку идентификатора группы при выполнении файла f4:
+<pre>
+   chmod =rwx,g+s f4
+   chmod 2777 f4
+</pre></ol>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=LS.htm>ls(1)</a>.<br>
+<a href=CHMOD~1.htm>chmod(2)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

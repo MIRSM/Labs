@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>CAPTOINFO(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CAPTOINFO(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+captoinfo - преобразование описаний терминалов из  формата termcap в формат terminfo
+<p><b>СИНТАКСИС</b>
+<pre>
+   captoinfo  [-v ...] [-V] [-1] [-w длина] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+ Утилита captoinfo ищет в  файле  описания характеристик
+терминалов  в  формате  termcap. Для каждого найденного
+описания на стандартный  вывод  выдается  эквивалентное
+описание  в  формате  <a href=TERMINFO.htm>terminfo(4)</a>.  Все комментарии при
+этом сохраняются. Описание, в котором встретилась ссылка на другое описание (спецификатор tc=),  будет  перед
+выводом об единено с указанным описанием.
+<p align=justify>
+Если  файл не задан, то для определения имени файла или
+имени терминала используются переменные окружения TERMCAP и TERM. Если TERMCAP имеет значение  полного  маршрутного  имени существующего файла, из него извлекается
+описание терминала, заданного в переменной  TERM.  Если
+переменная  TERMCAP не установлена, извлечение происходит из стандартного файла /etc/termcap.
+<p>
+Опции утилиты captoinfo имеют следующий смысл:
+<table>
+<tr valign=top><td>-v<td>Выдавать в стандартный протокол трассировочную информацию о выполнении утилиты. При задании  дополнительных  опций -v будет выдаваться более детальная информация.</tr>
+<tr valign=top><td>-V<td>Выдать  в стандартный протокол версию утилиты captoinfo и завершиться.</tr>
+<tr valign=top><td>-1<td>Выдавать каждое поле на отдельной строке. По умолчанию в строке располагается несколько полей, причем  каждая  строка имеет длину не более 60 символов.</tr>
+<tr valign=top><td>-w длина<td>
+Установить новое значение длины  выводимой  строки
+(в символах).</tr>
+</table>
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+/usr/lib/terminfo/?/* Скомпилированная база данных опи- 
+                                   саний терминалов.
+</pre>
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+При преобразовании форматов предполагается, что  выполняются некоторые соглашения, принятые для termcap. Например,  символ звонка (bel в формате termcap) предполагается равным CTRL+G. Характеристика "переход  к  новой
+строке"  (nl в формате termcap) предполагается одинаковой для операций "курсор вниз" и "роллирование  вперед"
+(cud1 и ind в формате termcap). Заполнитель всегда присоединяется к концу цепочки символов.
+<p align=justify>
+Алгоритм,  используемый для преобразования параметризованной информации из полей termcap  (например,  позиция
+курсора в операциях cm и cup), для формата terminfo может сгенерировать правильную, но не оптимальную цепочку
+символов. Например, редко используемая в termcap операция  %n отображается в очень длинную цепочку. По поводу
+большинства вхождений  подобных  неоптимальных  цепочек
+будут  выданы  предупреждающие  сообщения,  эти цепочки
+можно затем поправить вручную.
+<p align=justify>
+Короткие  двухсимвольные  имена из начала списка имен в
+termcap, рудимент ранних  версий  операционной  системы
+UNIX, при преобразовании форматов удаляются.
+<p align=justify><b>ДИАГНОСТИКА</b>
+<dl>
+<dt>tgetent failed with return code n (reason)
+<dd>Описание терминала в termcap  некорректно.  Обычно
+это ошибочный спецификатор tc=.
+<dt>unknown type given for the termcap code cc
+<dd>В описании терминала есть спецификатор cc, тип которого не является булевым, числовым или  символьным.
+<dt>wrong  type given for boolean (numeric, string) termcap code cc
+<dd>В описании терминала есть спецификатор cc, для которого  тип  указанного  значения не соответствует
+типу спецификатора.
+<dt>the boolean (numeric, string) termcap code cc is not a valid name
+<dd>Указан неизвестный спецификатор cc.
+<dt>tgetent failed on TERM=term
+<dd>Описание указанного терминала не найдено  в  файле
+termcap.
+<dt>TERM=term: cap cc (info ii) is NULL: REMOVED
+<dd>Спецификатор имеет значение, равное пустой  цепочке.  Пустая цепочка в качестве значения спецификатора может отрицательно сказаться  на  программном
+обеспечении,  использующем  termcap  или terminfo.
+Для отмены значения спецификатора нужно  использовать символ @, например :bs@:.
+<dt>a function key for cc was specified, but it already has the value vv
+<dd>В  спецификаторе  ko указано, что клавиша cc имеет
+то же значение, что и спецификатор cc, но  клавише
+cc ранее уже было присвоено значение vv.
+<dt>the unknown termcap name cc was  specified  in  the ko termcap capability
+<dd>В  спецификаторе ko задано некорректное имя клавиши.
+<dt>the vi  character  v (info ii) has the value xx, but ma gives n
+<dd>Одной и той же функциональной клавише <a href=VI.htm>vi(1)</a> в разных спецификаторах присвоены различные значения.
+<dt>the unknown vi character v (info ii) was  specified  in ma termcap capability
+<dd>В спецификаторе ma  задана  неизвестная  captoinfo
+функциональная клавиша <a href=VI.htm>vi(1)</a>.
+<dt>Warning:  termcap  sg(nn)  and   termcap   ug(nn)   had
+different values
+<dd>Предполагается,  что спецификаторы termcap sg и ug
+(в terminfo им  соответствует  xmc)  должны  иметь
+одинаковые значения.
+<dt>Warning: the string produced for ii may be inefficient
+<dd>Рекомендуется цепочку, сгенерированную  для  параметризованной информации, поправить вручную.
+<dt>Null termname is given
+<dd>Это  сообщение выдается, если переменная окружения
+TERM не установлена или имеет пустое значение.
+<dt>Cannot open file for reading
+<dd>Указанный файл не удалось открыть.
+</dl>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=INFOCMP.htm>infocmp(1M)</a>, <a href=TIC.htm>tic(1M)</a>.<br>
+<a href=CURSES.htm>curses(3X)</a>, <a href=TERMINFO.htm>terminfo(4)</a> в Справочнике программиста.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Утилиту captoinfo следует обязательно использовать  для
+преобразования описаний терминалов из формата termcap в
+формат terminfo, так как база данных termcap, использовавшаяся  в ранних версиях операционной системы UNIX, в
+последующих версиях может не поставляться.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

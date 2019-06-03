@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>SCSI(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SCSI(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+scsi: hd*, fd*, mt - диск, дискета, магнитная лента
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Описывается  совокупность драйверов контроллера, обслуживающего  устройства  с  интеллектуальным  интерфейсом
+SCSI  (накопители  на магнитных дисках, ленте), а также
+до четырех приводов дискет, присоединенных  непосредственно  к  контроллеру.  Драйвер дисков дает возможность
+использовать до семи томов и до восьми логических  дисков на каждом из томов.
+<p align=justify>
+Обработка  ошибок, их коррекция и повторный запуск неудавшихся операций осуществляются контроллером.  Сообщения  об ошибках выдаются на системную консоль и передаются демону регистрации ошибок.
+<p align=justify>
+Параметры устройств  описываются  во  включаемом  файле
+&lt;sys/io.h&gt;.  В поле тип диска находится основная конфигурационная информация. Каждый полубайт (4 бита)  имеет
+специальное значение:
+<ol>
+<li>Подустройство SCSI-устройства.
+<li>Номер первого сектора на диске (0 или 1).
+<li>SCSI-идентификатор устройства (7 для приводов дискет).
+<li>Собственно тип диска, означающий:
+<table>
+<tr><td>0<td>для диска</tr>
+<tr><td>1<td>для магнитной ленты</tr>
+<tr><td>2<td>для дискет 256 байт/сектор</tr>
+<tr><td>3<td>для дискет 512 байт/сектор</tr>
+<tr><td>4<td>для дискет 1024 байт/сектор</tr>
+<tr><td>5<td>для дискет 512 байт/сектор в формате MS DOS.</tr>
+</table>
+</ol><p align=justify>
+Заметим, что эти данные о томе носят только  информационный  характер и почти не имеют значения для драйвера.
+Если информация о разбиении на логические диски [строка
+HDLDEV в файле <a href=DFILE.htm>dfile(4)</a>] содержит  l_AUTO,  драйвер  во
+время  генерации системы выполнит автоконфигурацию, получив из файла &lt;sys/io.h&gt;  размер  носителя  информации
+[см. <a href=IO.htm>io(4)</a>].
+<p><b>ФАЙЛЫ</b>
+<pre>
+/dev/dsk/hd*            Диски как блочные устройства.
+/dev/rdsk/hd*           Диски  как  бесструктурные устройства.
+/dev/dsk/fd*            Дискеты как блочные устройства.
+/dev/rdsk/fd*           Дискеты как бесструктурные устройства.
+/dev/mt                 Магнитная лента.
+/usr/include/sys/disk.h Информация о дисках.
+/usr/include/sys/io.h   Конфигурационная информация.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FORMAT.htm>format(1M)</a>.<br>
+<a href=IO.htm>io(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

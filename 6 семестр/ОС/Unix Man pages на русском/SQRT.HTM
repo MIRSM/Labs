@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>EXP(3M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>EXP(3M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+exp,  log, log10, pow, sqrt - показательная, логарифмическая, степенная функции и функция извлечения квадратного корня
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;math.h>
+	
+	double exp (x)
+	double x;
+	
+	double log (x)
+	double x;
+	
+	double log10 (x)
+	double x;
+	
+	double pow (x, y)
+	double x, y;
+	
+	double sqrt (x)
+	double x;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция exp возвращает e^x.
+<p align=justify>Функция log возвращает натуральный  логарифм  аргумента
+x. Значение x должно быть положительным.
+<p align=justify>Функция log10 возвращает логарифм по основанию 10 аргумента x. Значение x должно быть положительным.
+<p align=justify>Функция pow возвращает x^y. Если значение x равно 0, то
+значение y должно быть положительным. Если  значение  x
+отрицательно, то значение y должно быть целым.
+<p align=justify>Функция sqrt возвращает неотрицательное значение  квадратного корня из x. Значение x не  может  быть  отрицательным.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=HYPOT.htm>hypot(3M)</a>, <a href=MATHERR.htm>matherr(3M)</a>, <a href=SINH.htm>sinh(3M)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функция exp возвращает значение  HUGE  [см.  <a href=INTRO~~7.htm>intro(3)</a>],
+если представление результирующего значения приводит  к
+переполнению, и 0 - если к исчезновению порядка. В обоих  случаях  переменной  errno  присваивается  значение
+ERANGE.
+<p align=justify>При неположительных  аргументах  функции  log  и  log10
+возвращают значение -HUGE и переменной errno присваивается значение EDOM. Кроме того, в стандартный  протокол
+выдается сообщение о выходе за границы области  определения или, при x=0, о попадании в точку сингулярности.
+<p align=justify>Функция pow возвращает нулевое значение,  а  переменной
+errno присваивается значение EDOM в случаях:
+<ol>
+<li> Если x=0 и значение y неположительно.
+<li> Если  значение  x отрицательно и y не является целым.
+</ol>
+<p align=justify>В обоих случаях в стандартный протокол будет выдано сообщение о выходе за границы области  определения.  Если
+представление результирующего значения функции pow приводит к переполнению или к исчезновению порядка, то pow
+возвращает соответственно +HUGE, -HUGE или 0.  Переменной errno присваивается значение ERANGE.
+<p align=justify>Функция sqrt возвращает нулевое значение, а  переменной
+errno присваивается значение EDOM в случае, если x  отрицательно. В стандартный протокол будет выдано сообщение о выходе за границы области определения.
+<p align=justify>Изложенная процедура обработки ошибок может быть  изменена посредством функции <a href=MATHERR.htm>matherr(3M)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

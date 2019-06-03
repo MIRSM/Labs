@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>ECVT(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ECVT(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ecvt, fcvt, gcvt - преобразование вещественного числа в
+цепочку символов
+<p><b>СИНТАКСИС</b>
+<pre>
+	char *ecvt (value, ndigit, decpt, sign)
+	double value;
+	int ndigit, *decpt, *sign;
+	
+	char *fcvt (value, ndigit, decpt, sign)
+	double value;
+	int ndigit, *decpt, *sign;
+	
+	char *gcvt (value, ndigit, buf)
+	double value;
+	int ndigit;
+	char *buf;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция ecvt преобразует значение value  в  цепочку  из
+ndigit  символов, завершающуюся нулевым байтом, и возвращает указатель на нее. Старшая цифра результата равна
+0 только для нулевого значения value. Младшая цифра округляется. Смещение десятичной точки относительно начала цепочки символов запоминается по адресу decpt.  Если
+смещение отрицательно, это означает, что точка располагается слева от возвращенных цифр. Десятичная точка  не
+включается в возвращаемую цепочку  символов.  Если  результат отрицателен, то  слово,  адресуемое  указателем
+sign, отлично от нуля, иначе - равно нулю.
+<p align=justify>Функция  fcvt  аналогична  функции ecvt. Отличие в том,
+что результат округляется для вывода в  формате  %f  (в
+Фортране это формат F). Количество выводимых цифр определяется аргументом ndigit.
+<p align=justify>Функция gcvt преобразует значение value в цепочку  символов,  завершающуюся нулевым байтом, адрес которой задан аргументом buf, и выдает buf в качестве результата.
+Если возможно,  функция  помещает  в  цепочку  символов
+ndigit  значащих цифр в F-формате Фортрана, в противном
+случае используется E-формат. В любом случае  результат
+готов  для  печати. Знак минус, если он есть, или десятичная точка включаются прямо  в  возвращаемую  цепочку
+символов. Завершающие нули подавляются.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PRINTF.htm>printf(3S)</a>.
+<p align=justify><b>СЮРПРИЗЫ </b><br>
+Значения, возвращаемые функциями ecvt и fcvt, указывают
+на один и тот же статический массив, содержимое которого полностью изменяется после каждого вызова.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

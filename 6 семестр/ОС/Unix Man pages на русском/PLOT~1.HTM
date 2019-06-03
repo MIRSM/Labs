@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>PLOT(3X)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>PLOT(3X)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+plot - графический интерфейс
+<p><b>СИНТАКСИС</b>
+<pre>
+	openpl ( )
+	
+	erase ( )
+	
+	label (s)
+	char *s;
+	
+	line (x1, y1, x2, y2)
+	int x1, y1, x2, y2;
+	
+	circle (x, y, r)
+	int x, y, r;
+	
+	arc (x, y, x0, y0, x1, y1)
+	int x, y, x0, y0, x1, y1;
+	
+	move (x, y)
+	int x, y;
+	
+	cont (x, y)
+	int x, y;
+	
+	point (x, y)
+	int x, y;
+	
+	linemod (s)
+	char *s;
+	
+	space (x0, y0, x1, y1)
+	int x0, y0, x1, y1;
+	
+	closepl ( )
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Описываемые функции генерируют графический вывод в  относительно  независимой  от  устройства форме. В первую
+очередь, с помощью функции space, нужно  задать область
+рисования  [см. <a href=PLOT.htm>plot(4)</a>]. Затем следует вызвать функцию
+openpl, чтобы открыть  устройство  на  запись.  Функция
+closepl выталкивает буфера и закрывает устройство.
+<p align=justify>Функция  circle рисует окружность радиуса r с центром в
+точке (x, y).
+<p align=justify>Функция arc рисует дугу окружности с  центром  в  точке
+(x, y), проходящую от точки (x0, y0) до (x1, y1).
+<p align=justify>Цепочки символов - аргументы функций label и linemod  должны  ограничиваться нулевыми байтами и не должны содержать переводов строк.
+<p align=justify>Описание других функций см. в <a href=PLOT.htm>plot(4)</a>.
+<p align=justify>Перечисленные  ниже  библиотечные  файлы  предоставляют
+несколько разновидностей рисующих функций.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	LIBDIR/libplot.a  Вывод для фильтров группы <a href=TPLOT.htm>tplot(1G)</a>.
+	LIBDIR/lib300.pa  Вывод для DASI 300.
+	LIBDIR/lib300.a   Вывод для DASI 300s.
+	LIBDIR/lib450.a   Вывод для DASI 450.
+	LIBDIR/lib4014.a  Вывод для Tektronix 4014.
+</pre>
+Обычно каталог LIBDIR - это /usr/lib.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PLOT.htm>plot(4)</a>.
+<a href=GRAPH.htm>graph(1G)</a>, <a href=STAT~1~2.htm>stat(1G)</a>, <a href=TPLOT.htm>tplot(1G)</a> в Справочнике  пользователя.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Описанные функции находятся в библиотеке plot и подключаются при использовании опции -lplot  команд  <a href=CC.htm>cc(1)</a>  и
+<a href=LD.htm>ld(1)</a>.
+<p align=justify>Для  выполнения рисующей программы необходимо использовать конструкцию вида
+<pre>
+	a.out | tplot
+</pre>
+<p align=justify>Описанные  функции  используют стандартный пакет ввода/
+вывода, что приводит к неожиданному увеличению  размера
+программ, не использующих стандартный ввод/вывод.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

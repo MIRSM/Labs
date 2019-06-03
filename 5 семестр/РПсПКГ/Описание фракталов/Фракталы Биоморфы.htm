@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/frbio.html -->
+<HTML><HEAD><TITLE>Фракталы: Биоморфы</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Биоморфы.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Биоморфы.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Биоморфы</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=370 alt=Биоморф src="Фракталы Биоморфы.files/fr047.jpg" 
+width=370 border=1></CENTER><PRE><B>program</B> Bio;
+<B>uses</B> graph, crt;
+<B>type</B>
+   complex = <B>record</B> X:real;Y:real; <B>end</B>;
+<B>const</B>
+   iter=50;
+   max=70;
+<B>var</B>
+   z,z1,c:complex;
+   x,y,n:integer;
+   cancel:boolean;
+   gd,gm : Integer;
+<B>begin</B>
+   cancel:=false;
+   Randomize;
+   GD:= Detect;
+   InitGraph(GD,GM,'c:\bp\bgi');
+   <B>for</B> y:=-getmaxy <B>div</B> 2 <B>to</B> getmaxy <B>div</B> 2 <B>do</B>
+      <B>for</B> x:=-getmaxx <B>div</B> 2 to getmaxx <B>div</B> 2 <B>do</B> <B>begin</B>
+         n:=0;
+         z.X:=X*0.01;
+         z.Y:=Y*0.01;
+         c.X:=1.00003;
+         c.Y:=1.01828;
+         <B>while</B> ((sqr(z.x) &lt; max) <B>and</B> (sqr(z.y) &lt; max)) <B>and</B> (n &lt; iter) <B>do</B> <B>begin</B>
+            z1:=z;
+            Z.X:=Z1.X*Z1.X*Z1.X*Z1.X + Z1.Y*Z1.Y*Z1.Y*Z1.Y - 6*Z1.X*Z1.X*Z1.Y*Z1.Y;
+            Z.Y:=4*Z1.X*Z1.X*Z1.X*Z1.Y - 4*Z1.X*Z1.Y*Z1.Y*Z1.Y;
+            Z1.X:=Z.X+C.X;
+            Z1.Y:=Z.Y+C.Y;
+            z:=z1;
+            inc(n);
+            <B>if</B> keypressed <B>then</B> cancel:=true;
+         <B>end</B>;
+         <B>if</B> (abs(z.x) &gt; 10) <B>or</B> (<B>abs</B>(z.y) &gt; 1000) <B>then</B> 
+            putpixel(getmaxx div 2+x,getmaxy div 2+y,n mod 16);
+         <B>if</B> cancel <B>then</B> exit;
+      <B>end</B>;
+   readkey;
+   closegraph;
+<B>end</B>.
+</PRE><B>Другие формулы</B> Можно использовать следующие формулы:<BR><I>
+<LI>z'=z<SUP>4</SUP>+c (приведена в программе)<BR>
+<DD>Re: x<SUP>4</SUP> + y<SUP>4</SUP> - 6x<SUP>2</SUP>y<SUP>2</SUP> + a<BR>
+<DD>Im: 4x<SUP>3</SUP>y - 4xy<SUP>3</SUP> + b,<BR>
+<DD>где z=x + yi, c=a + bi.<BR>
+<DD><IMG height=260 alt=Биоморф src="Фракталы Биоморфы.files/fr038.jpg" 
+width=350 border=1><BR></DD>
+<LI>z'=sin(z) + e<SUP>z</SUP> + c<BR>
+<LI>z'=z<SUP>3</SUP> + c<BR>
+<DD>Re: x<SUP>3</SUP> - 3y<SUP>2</SUP>x + a<BR>
+<DD>Im: 3x<SUP>2</SUP>y - y<SUP>3</SUP> + b<BR>
+<DD><IMG height=260 alt=Биоморф src="Фракталы Биоморфы.files/fr048.jpg" 
+width=350 border=1><BR></DD>
+<LI>z'=z<SUP>5</SUP>+ c<BR>
+<LI>z'=sin(z) + z<SUP>2</SUP> + c<BR>
+<DD>Re: sin(x)cosh(y) + x<SUP>2</SUP> - y<SUP>2</SUP> + a<BR>
+<DD>Im: cos(x)sinh(y) + 2xy + b,<BR>
+<DD>где sinh(x)=(e<SUP>x</SUP> - e<SUP>-x</SUP>)/2, cosh(x)=(e<SUP>x</SUP> + 
+e<SUP>-x</SUP>)/2<BR>
+<DD><IMG height=260 alt=Биоморф src="Фракталы Биоморфы.files/fr046.jpg" 
+width=350 border=1><BR></DD>
+<LI>z'=z<SUP>z</SUP> + z<SUP>5</SUP> + c<BR>
+<LI>z'=z<SUP>z</SUP> + z<SUP>6</SUP> + c<BR></I></LI></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 13.10.04<BR>Дата последнего обновления: 28.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Биоморфы.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

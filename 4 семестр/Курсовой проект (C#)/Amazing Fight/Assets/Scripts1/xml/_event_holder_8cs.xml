@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_event_holder_8cs" kind="file" language="C#">
+    <compoundname>EventHolder.cs</compoundname>
+    <innerclass refid="class_event_holder" prot="public">EventHolder</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="EventHolder.cs"/>
+  </compounddef>
+</doxygen>

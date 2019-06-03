@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>IPR(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IPR(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+ipr, oldipr - Помещает файлы в очередь печатывающего  устройства IMAGEN.
+<p><b>СИНТАКСИС</b>
+<pre>
+	ipr[options][file...]
+	oldipr[options][file...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда ipr вызывает постановку в очередь на устройство печати
+IMAGEN поименованных файлов, используя команду <a href=LP.htm>lp(1)</a>, с подготовленными строками,  написанными на языке управления документацией.  Некоторая  информация  в заголовке документа содержит
+число копий, имена печатаемых файлов и используемый язык печатающего устройства IMAGEN.  Если нет поименованных файлов,  то
+считывается стандартный ввод.
+<p align=justify>Команда oldipr аналогична команде ipr,  но содержит в себе опцию -о и используется с imPRESS файлами старой версии.
+<p align=justify><b>Опциями являются:</b><br>
+<dl>
+<dt> -L language<dd>
+Вызывает объявления  языка,  указанного  параметром
+language,  для включения в строку языка  управления
+документацией  для файлов,  стоящих в очередях файлов. Он должен соответствовать языку, в котором был
+приготовлен документ.
+<p><dt> -D string <dd> Приводит к вкючению параметра string в язык  управления документацией для файлов,  стоящих в очереди.
+<p><dt> -P printer<dd>
+Этот файл  должен быть напечатан на печатающем устройстве, указанном параметром printer. По умолчанию
+значение  параметра  printer определяется как переменная PRINTER в файле /ets/default/imagen.
+<p><dt> -f name <dd>   Вставляет идентификатор  name  в  качестве значения
+переменной files в язык  управления  документацией.
+Если идентификатор не указан, то используются имена
+входных файлов. Это печатается на странице заголовка.
+<p><dt> -m  <dd>  Вызывает команду <a href=MAIL.htm>mail(1)</a> для оповещения,  когда заканчивается задание.
+<p><dt> -r  <dd>   Уничтожаются связи в файлах после постановки  их  в
+очередь для печати.
+<p><dt> -cn  <dd>   Печатает n копий.
+<p><dt> -d  <dd>   Дополнительная информация печатается в целях отладки.
+<p><dt> -o   <dd>   Определяет какой файл,  стоящий в очереди, является
+файлом  формата  языка  inPRESS в старой версии (до
+версии 1).
+</dl>
+<p align=justify>Команда ipr читает файл  /etc/default/imagen,  чтобы  получить
+различные установки  по умалчиванию.  Полученными значениями и
+значениями по умалчиванию являются:
+<dl>
+<dt> PRINTER=imagen<dd>
+Имя печатывающего устройства IMAGEN.  Оно может заменяться с помощью опции -P.
+<p><dt> JAMPROOF=no<dd>
+Указывает должны ли быть использованы меры противодействия заминанию бумаги. Если такие шаги предпринять, то печать обычно замедляется.
+</dl>
+<p align=justify>Значения для установок по умалчиванию могут быть  изменены для
+отражения локальный    системной   конфигурации.   Если   файл
+/etc/default/imagen не существцет или не может  быть прочитан,
+то используются значения по умалчиванию, описанные выше.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/bin/lp
+	 Система буферизации  печатывающего устройства XENIX.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+imagen(5), <a href=IMPRINT.htm>imprint(1)</a>, <a href=IPS.htm>ips(8)</a>, itroff(1), <a href=LP.htm>lp(1)</a>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Число печатаемых копий,а также другие  параметры  могут  заменяться  информацией  управления  документацией, содержащейся в
+самой документации.
+<p align=justify><b>АВТОР</b><br>
+Корпорация IMAGEN.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

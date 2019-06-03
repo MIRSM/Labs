@@ -1,0 +1,10 @@
+#B[1]%+X0000%wash%%%"wash" status output
+#B[1]%+X0000%rince%%%"rince" status output
+#B[1]%+X0000%spin%%%main 'flip flop' spin
+#B[1]%+X0000%emptysoap%%%empty soap
+#B[1]%+X0000%fillsoap%%%USER COMMAND: fill soap
+#B[1]%+X0000%emptywater%%%empty water
+#B[1]%+X0000%fillwater%%%fill water
+#B[1]%+X0000%run%%%USER COMMAND: start cycle
+#B[1]%+X0000%hot%%%increase temperature
+#B[1]%+X0000%soapalarm%%%alarm: no soap

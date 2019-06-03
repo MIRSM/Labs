@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>IO(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IO(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+io - спецификация дисковых устройств
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Файл /usr/include/sys/io.h содержит основные  параметры
+для различных типов дисковых устройств:
+<ol>
+<li>Диски с SMD интерфейсом.
+<li>Диски с SCSI интерфейсом.
+<li>Дискеты.
+</ol>
+для различных технологий изготовления:
+<ol>
+<li>Несъемные диски типа "Винчестер".
+<li>Пакеты магнитных дисков.
+<li>Несъемные/с емные диски.
+</ol><p align=justify>
+и для различных скоростей вращения и емкости.  Эти  основные  параметры описывают дисковые устройства для соответствующих драйверов ввода/вывода.
+<p align=justify>
+Для каждого дискового устройства в файле io должна быть
+строка вида
+<pre>
+     #define v_xxx параметры
+</pre>
+Параметры  соответствуют  элементам  (начиная  со 2-го)
+структуры dkvol, описанной во  включаемом  файле  &lt;sys/
+disk.h&gt;. Следовательно, строка
+<pre>
+     #define v_xxx 0, 9, 0, 2, 850, 0, 0, 3, 3
+</pre><p align=justify>
+описывает диск с 850 цилиндрами, так как это пятый  параметр, а в структуре dkvol поле с числом цилиндров является шестым.
+<p align=justify>
+Связь  между  описанием диска и элементом таблицы томов
+драйвера дисков устанавливается во время конфигурирования системы. Описание диска помещается в <a href=DFILE.htm>dfile(4)</a> и ассоциируется с драйвером. Позиция в таблице томов  определяет младший номер устройства.
+<p>
+Параметры и их значение:
+<dl>
+<dt><i>тип_диска</i> 
+<dd>Параметр, зависящий от драйвера дисков.
+<dt><i>секторов_на_дорожке</i> 
+<dd>Количество  килобайтных секторов, размещающихся на
+дорожке.
+<dt><i>смещение_в_номерах_головок</i> 
+<dd>Добавляется к номеру головки перед установкой  головок;  обычно  0.  На  некоторых устройствах тома
+различаются по битам в номере головки.
+<dt><i>число_головок</i> 
+<dd>Количество головок чтения/записи на устройстве.
+<dt><i>число_цилиндров</i> 
+<dd>Количество цилиндров на устройстве.
+<dt><i>скорость_вращения</i> 
+<dd>Параметр, зависящий от драйвера дисков.
+</dl>
+<p align=justify>
+Следующая информация  используется  при  форматировании
+для оптимизации доступа к диску.
+<dl>
+<dt><i>чередование_секторов</i>
+<dd>Параметр,  зависящий  от  аппаратуры, определяющий
+расположение секторов на дорожке. Числа 0 и 1  означают,  что сектора будут располагаться без чередования. Число 3 означает, что после чтения одного
+сектора контроллеру  требуется  время  чтения  еще
+двух секторов для передачи данных в память.
+<dt><i>смена_головки</i>
+<dd>Время  (единицей служит время чтения сектора), которое требуется контроллеру, дисководу и  драйверу
+ввода/вывода для подвода к тому же цилиндру следующей головки.
+<dt><i>смена_цилиндра</i>
+<dd>Время  (в секторах) которое требуется контроллеру,
+дисководу и драйверу ввода/вывода для  перехода  к
+следующему цилиндру.
+</dl>
+<p align=justify>
+Два последних параметра, если только они не равны нулю,
+позволяют  так  отформатировать диск, чтобы время смены
+головок и поиска по дорожке  при  получении  доступа  к
+следующему сектору не требовало полного оборота диска.
+<p><b>ФАЙЛЫ</b><br>
+<pre>
+/usr/include/sys/io.h
+/usr/include/sys/disk.h
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~~4.htm>intro(7)</a>, <a href=SCSI.htm>scsi(7)</a> в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>    MNT, UMNT</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>    MNT, UMNT</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+mnt, umnt -  монтирование файловой системы
+<p><b>СИНТАКСИС</b>
+<pre>
+	/usr/bin/mnt [-urant] [каталог]
+	/usr/bin/umnt каталог
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда mnt  открывает всем пользователям,  не являющимся суперпользователем, доступ к  функциональным  возможностям  команды
+<a href=MOUNT~~2.htm>mount(8)</a> по монтированию выбранных  файловых систем.   Суперпользователь может описывать порядок  монтирования  в  записях  файла
+/etc/default/filesys.
+Требования к файловой системе - те же, что и для команды <a href=MOUNT~~2.htm>mount(8)</a>.
+Команда umnt демонтирует файловую систему, смонтированную ранее в указанном каталоге.
+Mnt запускается из /etc/rc с флагами -r, -n и -a для монтирования файловых  систем  при  входе в многопользовательский режим.
+Флаг -a используется при автозагрузке системы.  В обычной командной строке ни один из этих флагов не нужен.
+Флаг -n означает монтирование всех файловых систем, которым в
+файле /etc/default/filesys       соответствуют    fstyp="NFS"   и
+rcmount="yes". Для файловых систем этого типа  bdev  определяется
+как:
+<pre>
+	bdev=hostname:/pathname
+</pre>
+В то же время rcfsck должно быть = "no",  а cdev может вообще
+отсутствовать.
+Флаг -t отображает содержимое /etc/default/filesys.
+С флагом -u команда mnt действует подобно umnt.
+<p align=justify><b>ОПЦИИ</b><br>
+Запись, описывающая  файловую систему в /etc/default/filesys,
+может содержать следующие опции:
+<table border=1>
+<tr valign=top><th align=left>bdev=/dev/устройство  <td>    Имя блочного устройства, ассоциированного с файловой системой.
+<tr valign=top><th align=left>cdev=/dev/устройство   <td>   Имя устройства посимвольного вводавывода, ассоциированного с файловой
+системой.
+<tr valign=top><th align=left>mountdir=/каталог   <td>      Каталог, в котором монтируется файловая система.
+<tr valign=top><th align=left>desc=имя           <td>       Строка, описывающая файловую систему.
+<tr valign=top><th align=left>passwd=строка       <td>      Необязательный пароль,  запрашиваемый в момент ввода команды монтирования. Не может быть простой  строкой; должен       иметь      формат /etc/passwd. (См. Замечания.)
+<tr valign=top><th align=left>fsck=yes,no,dirty,prompt <td> "Yes/no" означает явное указание того, запускать ли или  не  запускать
+fsck. Если  указано  "dirty",  fsck
+запускается только  в  том  случае,
+когда файловая    система   требует
+очистки. Если указано "prompt", выбор делает пользователь. По умолчанию принимается "dirty".
+<tr valign=top><th align=left>fsckflags=флаги     <td>      Флаги, передаваемые fsck.
+<tr valign=top><th align=left>rcfsck=yes,no,dirty,prompt<td>
+Походит на  fsck,   но используется
+только с флагом -r.
+<tr valign=top><th align=left>maxcleans=n    <td>           Число циклов повторной очистки файловой системы. По умолчанию - 4.
+<tr valign=top><th align=left>mount=yes,no,prompt    <td>   "Yes/no" означает разрешение/неразрешение монтирования файловой  системы. Если указано "prompt",  решение остается за пользователем.
+<tr valign=top><th align=left>rcmount=yes,no,prompt  <td>   Если "yes",  то при входе в  многопользовательский режим     файловая
+система монтируется под управлением
+/etc/rc2. Если "no",  файловая система никогда не будет монтироваться
+под управлением /etc/rc2. Если указано "prompt",   при загрузке будет
+выдано приглашение     смонтировать
+файловую систему.
+<tr valign=top><th align=left>mountflags=флаги      <td>    Флаги, передаваемые команде mount.
+<tr valign=top><th align=left>prep=yes,no,prompt    <td>    Prepcmd исполнять,  соответственно,
+всегда, никогда  или   по   запросу
+пользователя.
+<tr valign=top><th align=left>prepcmd=команда     <td>      Произвольная команда shell'а, запускаемая сразу после проверки пароля
+и перед fsck.
+<tr valign=top><th align=left>init=yes,no,prompt    <td>    Initcmd исполнять,  соответственно,
+всегда, никогда  или   по   запросу
+пользователя.
+<tr valign=top><th align=left>initcmd=команда      <td>     Необязательная, произвольная команда shell,   запускаемая сразу после
+успешного монтирования.
+<tr valign=top><th align=left>fstyp=тип           <td>      Тип  файловой  системы.   Возможные
+значения - NFS, S51K, XENIX и DOS.
+<tr valign=top><th align=left>nfsopts=опции       <td>      Опции для файловых систем типа NFS.
+Возможные опции описаны  в  разделе
+mount(NADM).
+</table>
+<p align=justify>Все значения,  содержащие в себе пробелы, знаки табуляции или
+символы перехода  на  новую строку,  должны заключаться в двойные
+кавычки (").
+Единственными обязательными      значениями      в      файле
+/etc/default/filesys являются bdev и mountdir.  Опции  prepcmd  и
+initcmd могут  использоваться для выполнения той или иной команды
+до и после монтирования файловой системы.  Так,  например,  опция
+initcmd может  использоваться для посылки почты в корневую файловую систему, невзирая на время монтирования данной системы.
+Команда mnt без аргументов пытается смонтировать все файловые
+системы с параметрами mount=yes или mount=prompt.
+<p align=justify><b>ПРИМЕРЫ</b><br>
+Рассмотрим пример содержимого файла /etc/default/filesys:
+<pre>
+	bdev=/dev/root  cdev=/dev/rroot  mountdir=\  /
+	desc="The Root Filesystem"  rcmount=no  mount=no
+	bdev=/dev/u  cdev=/dev/ru  mountdir=/u  rcmount=yes  \
+	fsckflags=-y  desc="The User Filesystem"
+	bdev=/dev/x  cdev=/dev/rx  mountdir=/u  rcmount=no  \
+	mount=yes  fsckflags=-y  desc="The Extra Filesystem"
+</pre>
+Из всех вышеописанных систем только система /x может монтироваться пользователем.
+<p align=justify><b>ФАЙЛЫ</b><br>
+<pre>
+	/etc/default/filesys     Информация о файловых системах
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MOUNT~~2.htm>mount(8)</a>, <a href=DEFAULT.htm>default(5)</a>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Команда mnt не срабатывает, если файловая система, подлежащая
+монтированию, уже смонтирована под другим именем.
+Активные файловые  системы не могут быть демонтированы командой umnt.  Файловая система является активной,  если она содержит
+открытый файл  или  рабочий каталог хотя бы одного из пользователей.
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+В файловой системе  реализуется  некоторый  уровень  проверки
+данных, однако  явно  запорченные системы монтировать все-таки не
+следует.
+Для того,  чтобы присвоить файловой системе пароль, администратор системы должен воспользоваться командой <a href=PASSWD~2.htm>passwd(1)</a>  с опцией
+-f.
+<p align=justify><b>ДОПОЛНИТЕЛЬНЫЕ СВЕДЕНИЯ</b><br>
+Mnt является расширением AT&T System V,  распространением которой занимается Santa Cruz Operation.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

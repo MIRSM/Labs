@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>nmountall, numountall</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>nmountall, numountall</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+nmountall, numountall - массовое монтирование и демонтирование файловых систем
+<p><b>СИНТАКСИС</b>
+<pre>
+ /etc/nmountall
+ /etc/numountall
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда nmountall  предназначена  для  монтирования  файловых
+систем NFS на основании  информации  файла  /etc/default/filesys.
+Настоятельно рекомендуем   использовать опцию bg для тех файловых
+систем, которые монтируются автоматически в момент начальной загрузки ОС.   Эта мера поможет избежать зависания процесса загрузки
+при попытке монтирования файловой системы на очень медленно работающем или остановленном сервере.
+<p align=justify>
+Команда numountall вызывает демонтирование всех  смонтированных в сети файловых систем.  Процессы, работавшие в этих системах
+(имеющие там открытые файлы или рабочие каталоги), удаляются посредством посылки серии сигналов. Первым посылается сигнал SIGHUP.
+Секундой позже посылается сигнал SIGTERM.  Наконец,  еще одну секунду спустя посылается сигнал SIGKILL.
+<p align=justify>
+Обе эти команды могут выполняться только под управлением  суперпользователя.
+<p align=justify><b>ФАЙЛЫ</b><br>
+Рассмотрим формат таблицы файловых систем.  Строки, открывающиеся символом "#",  содержат комментарии;  поля,   как  правило,
+разделяются пробелами.  Обратите внимание на то,  что запись,  не
+умещающаяся в одной строке, в местах разбиения на несколько строк
+содержит символы "обратная наклонная черта". Пример:
+<pre>
+ bdev=nfs2:/\
+ # Первое поле содержит имя удаленного каталога (системы, под-
+ # лежащей монтированию).
+ #
+       mountdir=/nfs/nfs2\
+ # Второе поле содержит имя каталога - точки монтирования (уже
+ # существующего).
+ #
+       mount=prompt mountflags=\
+ # Содержимое этих полей говорит о том, что перед монтировани-
+ # ем NFS должна выдать подсказку, а также о том, что при мон-
+ # тировании файловой системы командами mnt(NADM) и umnt(NADM)
+ # флаги не используются.
+ #
+       fsck=no fsckflags=rcfsck=no\
+ # Содержимое  этих  полей служит указанием NFS не производить
+ # очистки и проверки удаленной файловой системы.
+ #
+       desc="The Root Filesystem of machine NFS2"\
+ # Вышеуказанное поле содержит краткое описание смонтированной
+ # файловой системы.
+ #
+       rcmount=yes fstyp=NFS\
+ # Вышеуказанные  поля содержат указание смонтировать файловую
+ # систему во время инициализации NFS,  а также  тип  файловой
+ # системы.
+ #
+       nfsopts="soft,wsize=1024,rsize=1024,nosuid"
+ # Специальные опции NFS,
+ # подробнее о них см. в <a href=MOUNT~~2.htm>mount(8)</a>.
+</pre><p align=justify>
+Обратите внимание   на   то,    что  пустые  строки  в  файле
+/etc/default/filesys игнорируются.<br>
+На практике  наша запись таблицы файловых систем может выглядеть следующим образом:
+<pre>
+ bdev=nfs2:/  mountdir=/nfs/nfs2 \  mount=prompt
+   mountflags= \  fsck=no fsckflags= rcfsck=no \
+   desc="The Root Filesystem of machine NFS2"  \
+   rcmount=yes  fstyp=NFS                      \
+   nfsorts="bg,soft,wsize=1024,rsize=1024,nosuid"
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MOUNT~~2.htm>mount(8)</a>, <a href=UMOUNT~1.htm>umount(8)</a>, fuser(8) и <a href=SIGNAL.htm>signal(2)</a>, filesys(2).
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Процесс nmountall, прежде чем выполнить команды монтирования,
+выводит их на экран.
+<p align=justify>
+Процесс numountall выводит список идентификаторов тех процессов, которым он посылает сигналы.  Приводится также перечень  демонтируемых файловых систем.
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Информация в третьем столбце появляется только в том  случае,
+если файловая  система  была смонтирована как "read-only" (только
+для чтения).
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>PASSWD(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PASSWD(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+passwd - файл паролей
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Файл /etc/passwd содержит следующие сведения  о  каждом
+из пользователей:
+<ol>
+<li>Входное имя.
+<li>Зашифрованный пароль.
+<li>Числовой идентификатор пользователя.
+<li>Числовой идентификатор группы.
+<li>Номер задания GCOS, номер почтового ящика,  дополнительный идентификатор пользователя GCOS.
+<li>Входной рабочий каталог.
+<li>Используемый командный интерпретатор.
+</ol><p align=justify>
+Файл /etc/passwd - чисто текстовый. Поля данных  разделяются двоеточием. Поле GCOS  используется  только  для
+телекоммуникаций  и  при  отсутствии  в  системе  таких
+средств может содержать произвольную  информацию.  Данные, относящиеся к  разным  пользователям,  разделяются
+символом перевода строки. Если поле пароля  пусто,  пароль при входе не запрашивается. Если  поле  командного
+интерпретатора пусто, используется стандартный shell.
+<p align=justify>
+Файл находится в каталоге /etc. Поскольку пароли зашифрованы, файл может и должен иметь общий доступ на  чтение. Его можно использовать, например, для установления
+имен пользователей по числовым идентификаторам.
+<p align=justify>
+Зашифрованный  пароль состоит из 13 символов, выбранных
+из 64-символьного набора (., /, 0-9, A-Z, a-z), или является пустым, если исходный пароль был пуст. Можно установить время жизни пароля, отделив его от зашифрованного пароля запятой (устанавливается суперпользователем
+при регистрации).
+<p align=justify>
+Первый символ времени жизни (далее М) обозначает  число
+недель,  в  течение  которых  пароль действителен. Если
+пользователь попытается войти в систему с истекшим  паролем, он будет вынужден задать новый пароль. Следующий
+символ (далее m) обозначает число недель, в течение которых  пароль  не может быть изменен. Остальные символы
+определяют неделю (отсчитываемую от начала 1970  года),
+когда  пароль был изменен последний раз (пустая цепочка
+соответствует 0). М и m имеют числовые значения  в  интервале  0-63,  соответствующие  64-символьному набору,
+описанному выше (то есть / - это 1-я неделя, а z -  63 
+я). Если M = m = 0 (то есть строка имеет вид . или ..),
+пользователь будет вынужден заменить пароль при следующем входе в систему (и установленное время жизни исчезнет  из  файла).  Если m &gt; M, пароль может быть изменен
+только суперпользователем.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=A64L.htm>a64l(3C)</a>, <a href=GETPWENT.htm>getpwent(3C)</a>, <a href=GROUP.htm>group(4)</a>.<br>
+<a href=LOGIN.htm>login(1)</a>, <a href=PASSWD~2.htm>passwd(1)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

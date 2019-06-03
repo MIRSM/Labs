@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>UUTO(1C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>UUTO(1C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+uuto  -  пересылка   файлов    пользователю   удаленной
+UNIX-системы
+<p><b>СИНТАКСИС</b>
+<pre>
+	uuto  [-p] [-m] файл1 [файл2 ...] адресат
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда uuto пересылает адресату исходные файлы,  пользуясь утилитой <a href=UUCP.htm>uucp(1C)</a>. Исходные файлы задаются  маршрутными именами на локальной машине, а адресат - конструкцией
+<pre>
+	[имя_системы]!имя_пользователя
+</pre>
+<p align=justify>где имя_системы выбирается из списка имен  систем,  известных uucp [см.  <a href=UUNAME.htm>uuname(1C)</a>].  Если  имя_системы  отсутствует, подразумевается локальная машина.  Имя_пользователя относится к указанной системе.
+<p align=justify>Командой uuto обрабатываются две опции:
+<table>
+<tr valign=top><th>-p <td>  Перед пересылкой копировать исходные файлы  в  буферный каталог.
+<tr valign=top><th>-m <td>  Послать отправителю почтовое уведомление об  окончании пересылки файлов.
+</table>
+<p align=justify>Исходные файлы (или каталоги) пересылаются  под  своими
+именами в каталог удаленной системы
+<pre>
+	/usr/spool/uucppublic/receive/имя_пользователя/имя_исходной_системы
+</pre>
+<p align=justify>По окончании переброски файлов пользователь-адресат получает почтовое уведомление.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/spool/uucp/*
+	/usr/spool/uucppublic/receive   Служебные каталоги.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MAIL.htm>mail(1)</a>, <a href=UUCP.htm>uucp(1C)</a>, <a href=UUSTAT.htm>uustat(1C)</a>, <a href=UUX.htm>uux(1C)</a>, <a href=UUPICK.htm>uupick(1C)</a>.<br>
+<a href=UUCLEANU.htm>uucleanup(1M)</a> в Справочнике администратора.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Чтобы  переслать  файлы, имя которых начинается с точки
+(например .profile), ее надо  указать  явно.  Например,
+.prof*   и   .profil?  -  верное  задание  имени  файла
+.profile, а *prof* и ?profile - неверное.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

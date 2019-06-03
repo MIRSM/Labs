@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>STRACE(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>STRACE(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+strace - трассировка сообщений псевдоустройств
+<p><b>СИНТАКСИС</b>
+<pre>
+	strace  [ид_модуля ид_устройства уровень] ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита  strace, будучи вызванной без аргументов, записывает на стандартный вывод все трассировочные  сообщения  псевдоустройств  от  всех драйверов и модулей. Эти
+сообщения поставляются драйвером регистрации  ошибок  и
+трассировки  событий псевдоустройств [см. <a href=LOG.htm>log(7)</a>]. Если
+указаны аргументы,  то  они  должны  составлять  тройки
+(ид_модуля  ид_устройства  уровень),  где  ид_модуля   
+идентификатор модуля псевдоустройства, ид_устройства   
+идентификатор  устройства, уровень - уровень приоритета
+трассировки. Каждая тройка указывает, что  трассировочные  сообщения поступают от указанного модуля/драйвера,
+устройства (обычно в качестве идентификатора устройства
+задается его младший номер)  и  с  уровнем  приоритета,
+меньшим или равным указанному. Задание слова all на любом  из  трех мест означает отсутствие соответствующего
+ограничения.
+<p align=justify>Трассировочные сообщения имеют следующий формат:
+<pre>
+	номер время время_от_загрузки уровень флаги ид_модуля ид_устр-ва текст
+</pre>
+где
+<table border=0>
+<tr valign=top><td>номер   <td>  порядковый номер
+<tr valign=top><td>время   <td>     время  выдачи  сообщения  в   формате чч:мм:сс
+<tr valign=top><td>время_от_загрузки <td> время выдачи сообщения в тактах часов
+                  от последней загрузки системы
+<tr valign=top><td>уровень  <td>    уровень приоритета
+<tr valign=top><td>флаги    <td>     E:  сообщение  зарегистрировано,  как ошибка
+                  <br>F:  фатальная ошибка
+                  <br>N:  послано  письмо  системному администратору
+<tr valign=top><td>ид_модуля  <td>     идентификатор модуля источника
+<tr valign=top><td>ид_устр-ва  <td>    идентификатор устройства источника
+<tr valign=top><td>текст    <td>  текст сообщения
+</table>
+<p align=justify>Будучи  запущенной, программа strace выполняется до тех
+пор, пока ее не терминирует пользователь.
+<p><b>ПРИМЕРЫ</b>
+<ol>
+<li> Выводить все трассировочные сообщения от драйвера  с
+идентификатором 41:
+<pre>
+	strace  41 all all
+</pre>
+<li> Выводить  трассировочные  сообщения  от  драйвера с
+идентификатором 41, устройств 0, 1 и 2:
+<pre>
+	strace  41 0 1 41 1 1 41 2 0
+</pre>
+Сообщения от устройств 0 и 1 должны иметь уровень трассировки, меньший или равный 1. Сообщения от  устройства
+0 и 1 должны иметь уровень трассировки, равный 0.
+</ol>
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Только  один  процесс  strace может открыть драйвер регистрации ошибок и трассировки событий псевдоустройств.
+Указанный драйвер хранит список троек, указанных в  команде, и  каждое  сообщение  сравнивает с этим списком,
+определяя,  не нужно ли его отформатировать и  передать
+strace.  Таким  образом, длинный список троек может замедлить  операции  над  псевдоустройствами.  Наибольшее
+влияние  strace  оказывает на время выполнения операций
+над теми псевдоустройствами, которые трассируются. Если
+трассировочные сообщения генерируются с большей  частотой, чем может обработать strace, часть сообщений будет
+потеряна.  Потерю сообщений можно определить по пропускам в порядковых номерах выдаваемых сообщений.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LOG.htm>log(7)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

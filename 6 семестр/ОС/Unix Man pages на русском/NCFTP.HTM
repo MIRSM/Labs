@@ -1,0 +1,328 @@
+<html>
+<head>
+<title> ncftp</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center> ncftp</h3>
+<p align=justify>     Программа ftp является наиболее полезной  функцией  Internet
+является получения файлов с анонимных серверов ftp.  К сожалению,
+программа ftp не особенно дружелюбна.  Ее пользовательский интерфейс может понравиться разве что любителям Unix.  Программа ncftp
+была разработана для упрощения передачи файлов с помощью ftp.
+<p align=justify>     ncftp имеет пользовательский интерфейс,  аналогичный ftp, но
+дает вам значительно больше информации,  лучше понимает,  что  вы
+хотите, и предоставляет вам больше возможностей. Если вы уже знаете, как использовать ftp, то сможете работать с ncftp без изучения новых команд: ncftp понимает все команды ftp. Кроме того, она
+значительно расширяет продвинутые средства ftp.
+<p align=justify>     Программа ncftp имеет множество удобных команд:
+<ul>
+<li>При открытии системы она предполагает,  что вы хотите  использовать имя anonymous и пароль,  соответствующий вашему
+ почтовому адресу. Это позволяет вам не набирать эту информацию при открытии связи с хост-системой (и исключает возможность ошибок). Это можно легко переопределить.
+<li>Если вы поместите имена часто используемых  узлов  в  файл
+ параметров,  то не нужно будет набирать полное имя. Например, rtfm.mit.edu вы можете сократить просто до mit.
+<li>Программа ncftp запоминает имя того каталога, в котором вы
+ находились  в  последний раз при регистрации на конкретном
+ узле. При открытии данного узла вы будете сразу попадать в
+ этот  каталог.  *  В ncftp можно задать попытки повторного
+ доступа к занятому узлу.
+<li>В командной строке вы можете задать маршрут и  имя  файла,
+ автоматически загружаемого по линии связи.  Таким образом,
+ процесс загрузки файлов становится полностью  автоматическим.
+<li>В  файле  параметров  вы можете задать такие параметры как
+ имя программы Unix,  которую вы  хотите  использовать  для
+ страничного  вывода и др.  Эти параметры можно изменить во
+ время работы программы.
+<li>Приглашение ncftp можно изменить таким образом,  чтобы она
+ давала вам больше информации. Вместо вывода ncftp> в приглашении можно выводить имя каталога, в котором вы выполняете поиск.
+<li>Вместо  просмотра файла целиком или его загрузки и локального вывода вы можете  просмотреть  содержимое  текстового
+ файла на удаленной машине с помощью программы постраничного вывода, такой как more. С помощью такой программы можно
+ также просматривать листинг каталога.
+<li>В команде get можно использовать трафаретные символы.
+<li>С  помощью  очень  удобного средства можно преобразовывать
+ доменные имена в IP-адреса.
+<li>В ncftp вы можете сохранить протокол своей работы.
+</ul>
+<p align=justify>     Даже с учетом  всех  перечисленных  изменений  использование
+ncftp весьма напоминает работу с ftp. Об остальных средствах данной программы  вы  можете прочитать в разделе "Использование ftp"
+(здесь перечислены лишь различия).
+<p align=justify>     При открытии  хост-системы программа ncftp автоматически регистрирует вас как anonymous и задает в качестве пароля ваш  почтовый адрес. Это позволяет не набирать каждый раз данную информацию  и  ускоряет  процесс  регистрации.   Указав   перед   именем
+хост-компьютера параметр -u, вы можете переопределить такое поведение:
+<pre>
+     % ncftp -u chem.small.edu
+     Login Name (chrisr):
+     Password:
+     User chrisr logged in.
+</pre>
+<p align=justify>     В данном случае пользователь нажимает в ответ на приглашение
+Login Prompt клавишу Enter. При этом он регистрируется не анонимно, а под своим именем.
+<p align=justify>     Как и  при  работе с обычной программой ftp вы можете задать
+файл с именем .netrc, содержащий список всех узлов, где вы обычно
+регистрируетесь.  Этот  файл может также содержать другие команды
+ncftp (как вы увидите далее).  При наличии файла  .netrc  вам  не
+нужно будет набирать полное имя хост-компьютера.  Программа ncftp
+сможет распознать его всего по нескольким символам.
+<p align=justify>     Предположим, что ваш файл .netrc выглядит следующим образом:
+<pre>
+     machine rtfm.mit.edu
+     machine mac.archive.umich.edu
+     machine wuarchive.wustl.edu
+     machine ftp.apple.com
+     machine sumex-aim.stanford.edu
+</pre>
+<p align=justify>     Узел sumex-aim.stanford.edu можно открыть с помощью одной из
+следующих команд:
+<pre>
+     % ncftp sum</pre>
+или
+<pre>
+     % ncftp aim</pre>
+<p align=justify>(поскольку sum и aim в перечисленных в данном файле именах других
+машин не встречаются).  Аналогично,  вы можете существенно сократить набор при открытии узла wuarchive.wustl.edu:
+<pre>
+     % ncftp wu
+</pre>
+<p align=justify>     Программа ncftp упрощает открытие тех узлов,  где вы уже регистрировались.  Если вы дадите команду open без  указания  имени
+хост-компьютера, то получите в ответ 20 последних открытых узлов,
+а также тех узлов,  которые перечислены в файле .netrc.  Затем вы
+можете выбрать нужный узел, просто набрав его имя.
+<p align=justify>     Предположим, например, что вы хотите открыть какой-то из тех
+узлов, которые вы недавно открывали, но помните только то, что он
+имеет имя bio:
+<pre>
+     ncftp> open
+     Recently called sites:
+	1. BLOOM-PICAYNE.MIT.EDU
+	2. bloom-picayune.mit.edu
+	3. ftp.halcyon.com
+	4. enh.nist.gov
+	5. zaphod.ncsa.uiuc.edu
+	6. cica.cica.indiana.edu
+	7. biochemistry.bioc.cwru.edu
+	8. caisr2.caisr.cwru.edu
+	...
+     (site to open) #7
+</pre>
+<p align=justify>     Некоторые узлы,  особенно те, где имеется свободно распространяемой и условно бесплатное  программное  обеспечение  для  ПК,
+настолько  загружены,  что  отвергают  попытки регистрации на них
+пользователей. Часто при этом выводится следующее сообщение: "Too
+busy,  try later".  Если вы пытаетесь зарегистрироваться на одном
+из  таких  узлов,  попробуйте использовать параметр -r.  При этом
+ncftp будет продолжать попытки регистрации, пока они не увенчаются успехом:
+<pre>
+     ncftp> open -r sum
+     Too many users connected currently. Please try again later.
+     Login failed.
+     Retry Number: 2
+     Too many users connected currently. Please try again later.
+     Login failed.
+     Retry Number: 3
+     Guest connection accepted. Restrictions apply.
+     Logged into sumex-aim.stanford.edu.
+</pre>
+<p align=justify>     Вы можете также указать параметр -r перед именем узла в  командной строке.
+<p align=justify>     Часто ncftp  используют для получения одного файла с заранее
+известным именем,  например,  одного из файлов,  перечисленных  в
+данной книге. В командной строке Unix это можно сделать с помощью
+одной команды.  Введите после имени хост-компьютера  двоеточие  и
+маршрут файла. Программа ncftp воспринимает это как запрос на регистрацию,  смену каталога,  получение файла и выход из  системы.
+Например,  чтобы  получить  файл  /pub/listing  с хост-компьютера
+ftp.small.edu, можете ввести команду:
+<pre>
+     % ncftp ftp.small.edu:/pub/listing
+     %
+</pre>
+<p align=justify>     Этим методом  вы  можете воспользоваться и во время работы с
+ncftp:
+<pre>
+     ncftp> open ftp.small.edu:/pub/listing
+     ncftp>
+</pre>
+<p align=justify>     При таком методе вам не обязательно задавать имя файла. Если
+вы  укажете  не  файл,  а  каталог,  то  ncftp  просто  открывает
+хост-систему и перемещает вас в данный каталог.
+<p align=justify>     Параметр ncftp  вы  можете установить с помощью команды set.
+Наиболее часто используемые параметры перечислены в  таблице. Для
+вывода текущих параметров используйте команду show.
+<p align=justify>     Параметры команды указывают в командной строке:
+<pre>
+     ncftp> set progress-reports 4
+</pre>
+<p align=justify>     Команды можно  также  поместить в файл .netrc,  указав перед
+ними # (чтобы ftp считала их комментариями). Например, начало вашего файла .netrc может выглядеть следующим образом:
+<pre>
+     #set progress-reports 4
+     #set verbose 2
+     #set prompt "@C> "
+</pre>
+<p align=justify><b>Параметры ncftp</b><br>
+<table border=1>
+<tr valign=top><th> Параметр <th>   Описание
+<tr valign=top><td>    anon-open   <td>       Сообщает,  нужно ли автоматически использовать при регистрации имя anonymous.
+<tr valign=top><td>    anon-password  <td>    Пароль, используемый при анонимной регистрации.
+<tr valign=top><td>    local-dir    <td>      Каталог,  в  котором   будут  сохраняться
+файлы.
+<tr valign=top><td>    logfile      <td>      Имя  файла  для регистрации ваших сеансов
+ncftp. Чтобы  предотвратить  регистрацию,
+оставьте это поле пустым.
+<tr valign=top><td>    logsize     <td>       Определяет, сколько строк будет включаться в файл регистрации.
+<tr valign=top><td>    mprompt      <td>      Сообщает,  нужно  ли выводить приглашение
+для каждого файла при  использовании  команды mget.
+<tr valign=top><td>    netrc        <td>      Имя файла запуска.
+<tr valign=top><td>    prompt        <td>     Выводимая на экран строка приглашения.
+<tr valign=top><td>    progress-reports <td>  Вид отчета  о  ходе  выполнения,  который
+вы хотите видеть при  передаче  файла.  0
+запрещает вывод такого отчета,  1 показывает процент переданных данных, 2 выводит
+графический индикатор, 3 показывает число
+переданных килобайт,  а 4  выводит  точку
+при передаче 10% данных.
+<tr valign=top><td>    resent-list    <td>    Определяет, нужно или нет запоминать последние открытые вами узлы.
+<tr valign=top><td>    tips         <td>      Задает  вывод рекомендаций по регистрации
+на узлах и использованию ncftp.
+<tr valign=top><td>    type         <td>      Тип  передаваемых   данных    (ascii  или
+binary).
+</table>
+<p align=justify>     Последняя строка  показывает,  как  можно  ввести в ответ на
+приглашение специальную комбинацию символов, позволяющих получить
+о вашем сеансе полезную информацию. Это следующие комбинации:
+<table border=1>
+<tr valign=top><th> Строка   <th>    Смысл
+<tr valign=top><th>   @D   <td>    Полное имя маршрута удаленного компьютера.
+<tr valign=top><th>   @J   <td>    Текущее имя каталога на удаленном компьютере.
+<tr valign=top><th> @H    <td>   Имя удаленного хост-компьютера.
+<tr valign=top><th>  @C   <td>    Имя  удаленного хост-компьютера и полное
+имя маршрута, которые разделяются точкой
+с запятой.
+<tr valign=top><th>  @c   <td>    Эквивалентно   @C,  но  далее  выводится
+символ новой строки.
+<tr valign=top><th>  @E   <td>    Показывает число введенных вами команд.
+<tr valign=top><th>   @M    <td>   Если во время работы с ncftp вы получаете электронную почту, выводит (Mail).
+<tr valign=top><th>   @B   <td>    Выводит следующий текст жирным шрифтом.
+<tr valign=top><th> @I   <td>    Выводит следующий текст курсивом.
+<tr valign=top><th>   @U   <td>    Выводит  следующий текст с подчеркиванием.
+<tr valign=top><th>   @R   <td>    Выводит следующий текст в обратном видеорежиме.
+<tr valign=top><th>  @P    <td>   Следующий текст  выводится  как  простой
+текст.
+<tr valign=top><th> @N     <td>  Символ новой строки.
+</table>
+<p align=justify>     Чтобы видеть каталог и хост-компьютер, где вы находитесь, вы
+можете задать следующее:
+<pre>
+     set prompt "@C> "
+</pre>
+     После этого подсказка может,  например,  выглядеть следующим
+образом:
+<pre>
+     ftp.cso.uiuc.edu:/doc/pcnet>
+</pre>
+<p align=justify>     При работе с ncftp вы можете легко прочитать файлы  на  удаленных системах.  Команда page позволяет вам просматривать содержимое файлов постранично.  (Она выполняет в  ncftp  команду  more
+операционной системы Unix.) Такой возможностью полезно воспользоваться,  если у вас есть индекс каталога,  и вы хотите перед загрузкой  просмотреть  содержимое файлов.  Например,  чтобы увидеть
+файл с именем index, вы можете дать следующую команду:
+<pre>
+     ncftp> page index
+</pre>
+<p align=justify>     Для постраничного вывода длинного листинга каталога  используйте команды pls и pdir. Эти команды соответствуют командам ls и
+dir, но информация выводится поэкранно.
+<p align=justify>     С помощью ncftp вы можете легко получить файлы.  Чтобы получить файл,  вам не нужно набирать его полное имя.  Если с помощью
+трафаретных символов вы выбрали только один файл,  то команда get
+будет считывать его.  Это особенно удобно при длинных или сложных
+именах файлов (аналогичных тем, которые применяются в FAQ).
+<p align=justify>     Обратите внимание,  что имя FAQ в следующем  примере  трудно
+набрать, но легко задать в качестве имени файла:
+<pre>
+     ncftp>ls
+     S_U_S_F_(R_d_t_p_p)
+     Southern_US_Skiing_FAQ
+     ncftp>get *p)
+     Receiving file: S_U_S_F_(R_d_t_p_p)
+     S_U_S_F_(R_d_t_p_p): ...........
+     S_U_S_F_(R_d_t_p_p): 20405 bytes received in 0.71 seconds, 28.02 K/s.
+</pre>
+     Аналогичным образом можно уникально задать файл как S_*.
+<p align=justify>     Команда lookup позволяет вам преобразовывать доменные  имена
+в IP-адреса и наоборот:
+<pre>
+     ncftp>lookup 204.1.123
+     ivideo.com
+	204.1.1.23
+     ncftp>lookup ivideo.com
+     ivideo.com
+	204.1.1.23
+</pre>
+<p align=justify>     При работе с ncftp вы можете вести протокол команд, документируя таким образом свой поиск. Для этого используйте команду set
+и имя файла журнала,  а затем укажите число строк, которые вы хотите записывать в журнал:
+<pre>
+     ncftp>logfile "ncftp.log"
+     ncftp>logsize 5000
+</pre>
+     Эти команды можно также поместить в файл .netrc.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

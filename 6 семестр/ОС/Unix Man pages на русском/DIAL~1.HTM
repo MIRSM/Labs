@@ -1,0 +1,186 @@
+<html>
+<head>
+<title>DIAL(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DIAL(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+dial - установление связи через терминальную линию
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;dial.h>
+
+	int dial (call)
+	CALL *call;
+	
+	void undial (fd)
+	int fd;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция dial возвращает дескриптор файла для терминальной линии, открытой на ввод/вывод.  Аргументом  функции
+dial является указатель на структуру типа CALL (тип определен во включаемом файле <dial.h>).
+<p align=justify>После  завершения работы с линией программа должна вызвать функцию undial, чтобы  освободить  семафор,  установленный в момент захвата терминального устройства.
+<p align=justify>Тип структуры CALL  определяется  во  включаемом  файле
+<dial.h> следующим образом:
+<pre>
+	typedef struct {
+	  struct termio *attr; /* Указатель  на структуру атри-
+	                          бутов termio */
+	  int baud;            /* Скорость передачи */
+	  int speed;           /* Модем 212A: 300 или 1200 */
+	  char *line;          /* Имя устройства для терминаль-
+	                          ной линии */
+	  char *telno;         /* Указатель на цепочку -  номер
+	                          телефона */
+	  int modem;           /* Управление модемом для прямо-
+	                          го соединения */
+	  int *device;         /* Сюда  будет записано имя уст-
+	                          ройства, через которое  уста-
+	                          новлено соединение */
+	  int dev_len;         /* Длина имени устройства */
+	} CALL;
+</pre>
+<p align=justify>Элемент speed предназначен только для использования при
+установлении соединения по  телефонной  линии;  в  этом
+случае  его  значение должно равняться 300 или 1200 для
+модемов 113A или 212A. Отметим, что модем 113A, а также
+модем 212A, установленный в низкоскоростной режим,  могут  передавать на любой скорости от 0 до 300 бит в секунду. Однако модем 212A,  установленный  в  высокоскоростной  режим  может  передавать и принимать только на
+скорости 1200 бит в секунду.
+<p align=justify>Элемент  baud задает желаемую скорость передачи. Например, можно установить baud равным 110, а  speed  равным
+300. Однако если компонент speed равен 1200, baud также
+должен равняться 1200.
+<p align=justify>Если нужная терминальная линия является прямым соединением,  то указатель на имя устройства должен быть помещен в элемент line. Допустимые значения для таких  терминальных  устройств  содержатся  в  файле L-devices. В
+этом случае не требуется заполнять  элемент  baud,  его
+значение определяется из файла L-devices.
+<p align=justify>Элемент telno является указателем на цепочку  символов,
+представляющих  телефонный  номер,  по  которому должно
+произойти соединение.  Терминирующий  символ  не  нужно
+включать  в цепочку, передаваемую dial, поскольку функция добавит его сама.
+<p align=justify>Элемент modem специфицирует управление модемом в случае
+прямого соединения. Если требуется управление  модемом,
+этот элемент должен быть ненулевым.
+<p align=justify>Элемент  attr  является  указателем  на  структуру типа
+termio, описанную во включаемом файле <termio.h>.  Элемент attr может быть равен NULL, но если это не так, то
+все  атрибуты,  заданные компонентами структуры termio,
+будут установлены для терминальной линии перед попыткой
+выполнить соединение, что существенно для таких атрибутов, как четность и скорость передачи.
+<p align=justify>Элемент device используется для хранения имени  устройства, через которое было установлено соединение.
+<p align=justify>Элемент  devlen  содержит длину имени устройства, записанного в массив device.
+<p align=justify><b>ФАЙЛЫ </b><br>
+<pre>
+	/usr/lib/uucp/L-devices
+	/usr/spool/uucp/LCK..устройство
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=UUCP.htm>uucp(1C)</a> в Справочнике пользователя.<br>
+<a href=ALARM.htm>alarm(2)</a>, <a href=READ.htm>read(2)</a>, <a href=WRITE.htm>write(2)</a>.<br>
+<a href=TERMIO.htm>termio(7)</a> в Справочнике администратора.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+В случае неудачного завершения возвращается отрицательное значение, об ясняющее  причину  неудачи.  Мнемоники
+для  этих  отрицательных кодов завершения определены во
+включаемом файле &lt;dial.h>:
+<pre>
+	INTRPT (-1)   /* Случилось прерывание */
+	D_HUNG (-2)   /*  Повешена  трубка  (чтобы прервать запись) */
+	NO_ANS (-3)   /* В течение 10 секунд нет ответа */
+	ILL_BD (-4)   /* Некорректная скорость обмена */
+	A_PROB (-5)   /* Ошибка при наборе номера */
+	L_PROB (-6)   /* Ошибка в линии связи */
+	NO_Ldv (-7)   /* Не открывается файл L-devices */
+	DV_NT_A (-8)  /* Требуемое устройство недоступно */
+	DV_NT_K (-9)  /* Требуемое устройство неизвестно */
+	NO_BD_A (-10) /* Нет доступных устройств для работы  на
+        		 указанной скорости обмена */
+	NO_BD_K (-11) /*  Нет известных устройств для работы на
+        		  указанной скорости обмена */
+</pre>
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Функция <a href=DIAL~1.htm>dial(3C)</a> несовместима со стандартными  сетевыми
+средствами (см. подраздел 1C) версии 5 ОС UNIX.
+<p align=justify>Включение файла &lt;dial.h> автоматически приводит к включению файла &lt;termio.h>.
+<p align=justify>Поскольку  функция dial включает файл &lt;stdio.h>, размер
+программ, не использующих стандартный ввод/вывод помимо
+dial, может оказаться больше ожидаемого.
+<p align=justify><b>СЮРПРИЗЫ </b><br>
+Функция dial выдает системный вызов  <a href=ALARM.htm>alarm(2)</a>  на  3600
+секунд и затем перехватывает сигнал SIGALRM, "массируя"
+файл-семафор  LCK..устройство  и  поддерживая тем самым
+занятость линии. Без подобной меры <a href=UUCP.htm>uucp(1C)</a> может  удалить  файл LCK..устройство во время своих сеансов чистки, повторяющихся каждые 90 минут. Если сигнал  SIGALRM
+придет  во время выполнения пользователем системных вызовов <a href=READ.htm>read(2)</a> или <a href=WRITE.htm>write(2)</a>,  они  закончатся  неудачей.
+Если  программа  пользователя  должна выполняться более
+часа, в случае неудачи системных вызовов  read  следует
+проверять  значение  переменной  errno  (errno==EINTR),
+после чего read должен быть выдан повторно.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

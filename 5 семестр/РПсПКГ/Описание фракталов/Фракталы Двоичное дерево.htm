@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.ilab24.narod.ru/fract/frdd.html -->
+<HTML><HEAD><TITLE>Фракталы: Двоичное дерево</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Двоичное дерево.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Двоичное дерево.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Двоичное дерево</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>Это программа строит двоичное дерево рекурсивным методом. <PRE><B>Program</B> DD;
+<B>Uses </B>Graph, CRT;
+<B>Const</B>
+  min = 1;
+<B>Var</B>
+ gd, gm : Integer;
+
+<B>Procedure</B> Draw(x, y, l : Integer);
+<B>Begin</B>
+   <B>If</B> KeyPressed <B>then</B> exit;
+   <B>If</B> l &gt; min <B>then Begin</B>
+      l := l <B>div</B> 2;
+      line(x, y, x, y - l);
+      line(x, y - l, x - l, y - l);
+      line(x, y - l, x + l, y - l);
+      Draw(x - l, y - l, l);
+      Draw(x + l, y - l, l);
+<B>   End;
+End;
+</B>
+<B>Begin</B>
+   gd := Detect;
+   InitGraph(gd, gm, '');
+   Draw(320, 460, 300);
+   ReadKey;
+   CloseGraph;
+<B>End.</B>
+</PRE>
+<P><IMG height=30 src="Фракталы Двоичное дерево.files/warning.gif" width=30 
+border=0> Не забудте в процедуре инициализации графического режима указать путь 
+к графическому драйверу!</P>
+<CENTER><IMG height=286 alt="Двоичное дерево" 
+src="Фракталы Двоичное дерево.files/fr007.gif" width=598 
+border=0></CENTER></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 01.08.04<BR>Дата последнего обновления: 01.08.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Двоичное дерево.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

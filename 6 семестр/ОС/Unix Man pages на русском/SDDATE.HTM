@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>SDDATE(1)  </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SDDATE(1)  </h3>
+<p align=justify><b>ИМЯ</b><br>
+  sddate - Печатает и назначает даты резервирования.
+<p><b>СИНТАКСИС</b>
+<pre>
+	sddate[ name lev date ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Если параметр  отсутствует,  печатается  содержимое файла даты
+резервирования /etc/ddate. Файл даты резервирования обслуживается командой <a href=BACKUP.htm>backup(1)</a> и содержит самую последнюю дату резервирования каждого уровня резервирования  для  каждой  файловой
+системы.
+<p align=justify>Если аргументы заданы, вход замещается или формируется в файле
+/etc/ddate. Аргумент name(имя) - это последняя компонента имени пути к устройству, аргумент lev - это номер уровня резервирования (от 0 до 9) и аргумент date - это время в форме,  соответствующей команде <a href=DATE.htm>date(1)</a>:
+<pre>
+	mmddhhmm[yy],
+</pre>
+<p align=justify>где первые две буквы mm - это две цифры номера месяца в диапазоне от 01-12, две буквы dd - это две цифры порядкового номера
+дня  в  месяце,  две буквы hh соответствуют двум цифрам часа в
+военном формате от 00 - 23 и последние две буквы mm  соответствуют двум цифрам минут в диапазоне от 00 - 59. Две цифры года
+yy необязательны,  предполагается что это смещение от 1900 года, т.е. 19yy.
+<p align=justify>Иногда возникает  желание  зарезервировать  файловые системы с
+помощью дословного их копирования в среду резервирования.  Команда  sddate  может  быть использована для формирования входа
+"уровня 0" в /etc/ddate,  который затем позволит дополнительно
+расширить возможности резервирования. Например команда:
+<pre>
+	sddate rhd0 5 10081520
+</pre>
+формирует вход  /etc/ddate, показывая  резервирования уровня 5
+/dev/rhd0 8 октября в 15часов 20 минут.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/ddate
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BACKUP.htm>backup(1)</a>, <a href=DUMP.htm>dump(1)</a>, <a href=DATE.htm>date(1)</a>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+bad conversion  -  Если  дата установлена синтаксически некорректно.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>FGREP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FGREP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	fgrep - поиск цепочки символов
+<p><b>СИНТАКСИС</b>
+<pre>
+ fgrep  [-b] [-c] [-i] [-l] [-n] [-v] [-e специальная_цепочка] [-f файл]
+        цепочка_символов [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда fgrep  просматривает  входные  файлы  в  поиске
+	строк, содержащих заданную цепочку_символов. Если файлы
+	не указаны, используется стандартный ввод. Обычно  каждая успешно сопоставленная строка копируется  на  стандартный вывод; если исходных  файлов  несколько,  перед
+	найденной строкой выдается имя файла.  Отличие  команды
+	fgrep от <a href=EGREP.htm>egrep(1)</a> и <a href=GREP.htm>grep(1)</a> в том,  что  она  выполняет
+	сопоставление с цепочкой символов, а не с шаблоном, заданным регулярным выражением; fgrep быстр и компактен.
+<p align=justify>	Команда  fgrep трактует символы $, *, [ ], ^, |, ( ), и
+	\ буквально, а не как элементы полных регулярных  выражений. Для экранирования этих символов от интерпретации
+	shell'ом  проще всего заключать цепочку_символов в одинарные кавычки.
+<p align=justify>	В командной строке могут задаваться следующие опции:
+<dl>
+<p><dt> -b <dd>  Перед каждой строкой ставить номер блока, в  котором она находится. Используется для  поиска  блока по контексту (блоки нумеруются с нуля).
+<p><dt> -c <dd>  Выдавать только количество успешно  сопоставленных
+	     строк.
+<p><dt> -i <dd>  При сопоставлении не  различать  большие  и  малые
+	     буквы.
+<p><dt> -l  <dd> Выдавать только имена файлов, в которых  есть  успешно сопоставленные строки, разделяя имена  переводами строк.
+<p><dt> -n  <dd> Перед каждой строкой  ставить  ее  номер  в  файле
+	     (строки нумеруются с 1).
+<p><dt> -v  <dd> Выдавать только строки, не содержащие цепочку_символов.
+<p><dt> -e специальная_цепочка <dd> Искать специальную_цепочку (цепочку,  начинающуюся со знака -).
+<p><dt>-f файл <dd> Цепочки_символов читаются из файла.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+	ed(1), <a href=EGREP.htm>egrep(1)</a>, <a href=GREP.htm>grep(1)</a>, <a href=SED.htm>sed(1)</a>, <a href=SH.htm>sh(1)</a>.
+<p><b>КОДЫ ЗАВЕРШЕНИЯ</b>
+<pre>
+  0    Были успешные сопоставления.
+  1    Успешных сопоставлений не было.
+  2    Есть синтаксические ошибки или  недоступные  файлы
+       (даже если были успешные сопоставления).
+</pre>
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+	В идеале должна быть одна утилита для поиска по  шаблону, однако трудно придумать  алгоритм,  достигающий  во
+	всех случаях  приемлемого  компромисса  между  расходом
+	времени и памяти.
+<p align=justify>	Длина строки ограничена BUFSIZ символами; более длинные
+	строки  обрезаются.  Значение  BUFSIZ  определяется  во
+	включаемом файле <stdio.h>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

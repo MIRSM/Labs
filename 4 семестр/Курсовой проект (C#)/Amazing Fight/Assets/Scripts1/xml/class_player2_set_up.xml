@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_player2_set_up" kind="class" language="C#" prot="public">
+    <compoundname>Player2SetUp</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_player2_set_up_1a79cfe06cca4f13ae8c57aaa8c0abc143" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Player2SetUp.PlayVs</definition>
+        <argsstring>(int dropDownIndex)</argsstring>
+        <name>PlayVs</name>
+        <param>
+          <type>int</type>
+          <declname>dropDownIndex</declname>
+        </param>
+        <briefdescription>
+<para>Устанавливает тип управления персонажем 2 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dropDownIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&gt;Индекс из выпадающего списка</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Player2SetUp.cs" line="11" column="1" bodyfile="Player2SetUp.cs" bodystart="11" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="20">
+        <label>Player2SetUp</label>
+        <link refid="class_player2_set_up"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="22">
+        <label>Player2SetUp</label>
+        <link refid="class_player2_set_up"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="Player2SetUp.cs" line="5" column="1" bodyfile="Player2SetUp.cs" bodystart="5" bodyend="27"/>
+    <listofallmembers>
+      <member refid="class_player2_set_up_1a79cfe06cca4f13ae8c57aaa8c0abc143" prot="public" virt="non-virtual"><scope>Player2SetUp</scope><name>PlayVs</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

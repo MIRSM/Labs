@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>INTRO(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>INTRO(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+intro  -  введение в описание команд и прикладных программ для обслуживания системы
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+В этом разделе описаны в  алфавитном  порядке  команды,
+которые используются в основном для обслуживания системы и в администраторских целях. Команды из этого раздела  должны использоваться вместе со средствами, описанными в Справочниках пользователя и программиста. Ссылки
+с номерами разделов 1M, 7 и 8 указывают  на  статьи  из
+настоящего  Справочника.  Раздел  1 входит в Справочник
+пользователя, а разделы 2, 3, 4, 5 - в Справочник программиста.
+<p align=justify><b>СИНТАКСИС</b>
+   Если не оговорено противное, описываемые в этом разделе
+команды ожидают опции и другие  аргументы  в  следующем
+формате:
+<pre>
+     имя  [-опция ...] [аргумент_команды ...]
+</pre>
+<dl>
+<dt>[ ]  <dd>Окружают опцию или аргумент, который является необязательным.
+<p><dt>...  Означает, что предыдущая опция или аргумент  могут
+     быть повторены несколько раз.
+<p><dt>имя  Имя выполняемого файла.
+<p><dt>опция <dd>(Перед ней всегда стоит знак -) 
+<pre>
+     флаг...  или
+     флаг  аргумент_опции[,...]
+</pre>
+<p><dt>флаг <dd>Одна  буква,  представляющая  опцию без аргумента.
+     Заметим, что несколько флагов могут быть  сгруппированы после одного знака - [см. <a href=INTRO.htm>intro(1)</a>, правило
+     5].
+<p><dt>аргумент_опции <dd>
+     Аргумент  (цепочка символов), согласованный с указанным перед ним флагом. Заметим, что следующие за
+     флагом группы аргументов_опции  должны  отделяться
+     друг  от друга либо запятыми, либо пробелами, но в
+     этом случае они должны также быть заключены в  кавычки [см. <a href=INTRO.htm>intro(1)</a>, правило 8].
+<p><dt>аргумент_команды <dd>
+     Маршрутное имя (или другой аргумент  команды),  не
+     начинающийся со знака -, или знак -  как  таковой,
+     обозначающий стандартный ввод.
+</dl>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Информацию, относящуюся к системе разделения  удаленных
+файлов (РУФ), следует принимать во внимание, только если на Вашей установке есть соответствующее аппаратное и
+программное обеспечение; в стандартную конфигурацию оно
+не  входит.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO.htm>intro(1)</a>, <a href=GETOPTS.htm>getopts(1)</a> в Справочнике пользователя.<br>
+<a href=GETOPT~1.htm>getopt(3C)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При  завершении каждая команда возвращает код, занимающий два байта: первый байт содержит системный  код  завершения,  а  второй  (в случае нормального завершения)
+содержит пользовательский код, возвращаемый  программой
+[см. <a href=WAIT.htm>wait(2)</a> и <a href=EXIT.htm>exit(2)</a>]. Первый байт при нормальном завершении  равен 0. Второй байт принято возвращать нулевым при успешном завершении  и  ненулевым  при  наличии
+ошибок  (неверные  параметры,  неверные или недоступные
+данные и т.д.) не позволяющих достичь  цели.  Пользовательский код завершения может называться также статусом
+завершения  или кодом возврата и описывается только при
+наличии специальных соглашений.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Увы, многие команды не придерживаются  описанного  выше
+синтаксиса.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

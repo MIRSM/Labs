@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>FPGETROUND(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FPGETROUND(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+fpgetround, fpsetround, fpgetmask,  fpsetmask,  fpgetsticky, fpsetsticky - управление  окружением  выполнения
+операций с плавающей точкой (стандарт IEEE)
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;ieeefp.h>
+	
+	typedef enum fp_rnd {
+	   FP_RN = 0,           /* округление до ближайшего */
+	   FP_RP = 1,           /* округление до большего   */
+	   FP_RM = 2,           /* округление до меньшего   */
+	   FP_RZ = 3            /* округление до целого     */
+	   } fp_rnd;
+	
+	   fp_rnd fpsetround ( );
+	
+	   fp_rnd fpsetround (rnd_dir)
+	   fp_rnd rnd_dir;
+	
+	   #define fp_exept   int
+	   #define FP_X_INV   0x10  /* некорректная операция */
+	   #define FP_X_OFL   0x08  /* переполнение          */
+	   #define FP_X_UFL   0x04  /* потеря значимости     */
+	   #define FP_X_DZ    0x02  /* деление на нуль       */
+	   #define FP_X_IMP   0x01  /* потеря точности       */
+	
+	   fp_exept fpgetmask ( );
+	
+	   fp_exept fpsetmask (mask);
+	   fp_exept mask;
+	
+	   fp_exept fpgetsticky ( );
+	
+	   fp_exept fpsetsticky (sticky);
+	   fp_exept sticky;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Существуют пять  исключительных  ситуаций,  возникающих
+при выполнении операций с плавающей точкой: деление  на
+нуль, переполнение, потеря значимости, потеря  точности
+и некорректная операция. Когда встречается одна из  перечисленных исключительных  ситуаций,  взводится  соответствующий бит навязчивости,  и,  если  взведен  соответствующий бит в маске, происходит прерывание.  Описываемые функции позволяют изменять реакцию  на  исключительные ситуации, а также изменять режим округления при
+выполнении операций с плавающей точкой.
+<p align=justify>Функция fpgetround( ) возвращает текущий режим округления.
+<p align=justify>Функция  fpsetround( ) устанавливает новый режим округления и возвращает предыдущий режим.
+<p align=justify>Функция fpgetmask( ) возвращает текущую маску для обработки исключительных ситуаций.
+<p align=justify>Функция fpsetmask( ) устанавливает новую маску и  возвращает предыдущее значение маски.
+<p align=justify>Функция  fpgetsticky( ) возвращает текущие значения бит
+навязчивости.
+<p align=justify>Функция fpsetsticky( ) устанавливает  (или  сбрасывает)
+биты навязчивости и возвращает предыдущие значения.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ISNAN.htm>isnan(3C)</a>.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Функции fpsetsticky( ) и fpsetmask( ) изменяют все биты
+навязчивости или все биты маски соответственно.
+<p align=justify>Для преобразования числа с плавающей точкой в  целое  в
+таких языках программирования как C и Фортран-77  необходимо установить режим округления до целого.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Чтобы продолжить выполнение после прерывания, необходимо сбросить взведенный бит навязчивости. Если  не  сделать этого до следующего прерывания,  то  будет  неправильно определен его тип.
+<p align=justify>Аналогично, перед вызовом fpsetmask( ) необходимо сбросить взведенные биты маски.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

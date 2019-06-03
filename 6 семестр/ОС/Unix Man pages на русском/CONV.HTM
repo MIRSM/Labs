@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>CONV(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CONV(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+conv - преобразование об ектного файла
+<p><b>СИНТАКСИС</b>
+<pre>
+  conv  [-] [-a] [-o] [-p] [-s] -t целевая_машина файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда conv преобразует об ектные  файлы  из  текущего
+формата в формат целевой_машины.  Преобразованный  файл
+записывается под именем файл.v.
+<p>
+Команда имеет следующие опции:
+<table>
+<tr valign=top><td>-<td>Чтение файлов со стандартного  ввода.</tr>
+<tr valign=top><td>-a<td>Если входной файл - архивный,  создавать  выходной
+файл  в  мобильном  архивном  формате  версии 5 ОС
+UNIX.</tr>
+<tr valign=top><td>-o<td>Если входной файл - архивный,  создавать  выходной
+файл в старом архивном формате.</tr>
+<tr valign=top><td>-p<td>Если  входной  файл - архивный, создавать выходной
+файл в архивном формате со случайным доступом.</tr>
+<tr valign=top><td>-s<td>Выполняет "опережающую перестановку" всех символов
+об'ектного файла,  что  целесообразно  только  для
+об'ектных  файлов 3B20, которые должны быть "сброшены с перестановкой" с машины DEC на 3B20.</tr>
+<tr valign=top><td>-t целевая_машина<td>
+Преобразование об'ектного файла в формат для целевой_машины с подходящим упорядочением байт. Допустимые значения целевой_машины: pdp, vax, ibm, i80,
+x86, b16, n3b, m32, mc68.</tr>
+</table><p align=justify>
+Команда conv может использоваться для  приведения  всех
+об ектных файлов к общему формату. Ее  можно  выполнять
+либо на исходной ("передающей") машине, либо на целевой
+("принимающей").
+<p align=justify>
+Команда conv задумана как средство облегчения  проблем,
+возникающих в условиях  кросскомпиляции  с  несколькими
+ведущими машинами. Ее лучше всего использовать в процедурах переноса об'ектных файлов с одной машины на  другую.
+<p align=justify>
+Команда conv распознает и создает архивные файлы в трех
+форматах: старом, со случайным доступом и мобильном. По
+умолчанию выходной архивный файл  создается  в  том  же
+формате,  что  и  входной.  Чтобы создать файл в другом
+формате, предусмотрены опции -a, -o, -p.  Если  форматы
+входного  и выходного архивных файлов совпадают, то архивная таблица имен преобразуется, в  противном  случае
+она удаляется из архива. Для ее восстановления на целевой машине следует применить команду <a href=AR.htm>ar(1)</a> с опциями -t
+и -s.
+<p align=justify><b>ПРИМЕР</b><br>
+Для переноса об ектных файлов с компьютера VAX  на  3B2
+нужно выполнить следующие команды:
+<pre>
+   conv  -t m32  *.out
+   uucp  *.out.v  my3b2!~/rje/
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=AR.htm>ar(1)</a>.<br>
+a.out(4), <a href=AR~1.htm>ar(4)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Смысл всех диагностических сообщений команды conv самоочевиден. Фатальные ошибки в командной строке  вызывают
+завершение. Фатальные ошибки во входном файле  вызывают
+переход к обработке следующего файла.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Команда  conv не преобразует архивы из одного формата в
+другой, если нумерация байт на исходной и целевой машинах одинакова.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

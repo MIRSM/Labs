@@ -1,0 +1,998 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_main_hero" kind="class" language="C#" prot="public">
+    <compoundname>MainHero</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_main_hero_1a47c80b0f5d32a77fdacdea62076845c4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MainHero.PlayerNumber</definition>
+        <argsstring></argsstring>
+        <name>PlayerNumber</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Индекс персонажа </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="16" column="1" bodyfile="MainHero.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a30ba91a2a6e7be6f4dacbbc8e73a9b59" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.AiCharacter</definition>
+        <argsstring></argsstring>
+        <name>AiCharacter</name>
+        <briefdescription>
+<para>Управляется ли персонаж с помощью АИ </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="21" column="1" bodyfile="MainHero.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1ad247170f696108dd3bf9e929cd1876e1" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform MainHero.enemy</definition>
+        <argsstring></argsstring>
+        <name>enemy</name>
+        <briefdescription>
+<para>Противник </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="26" column="1" bodyfile="MainHero.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a8fc688d97bfbe1fc1d8e459057a0cb48" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.horizontal</definition>
+        <argsstring></argsstring>
+        <name>horizontal</name>
+        <briefdescription>
+<para>Перемещение по оси Х </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="41" column="1" bodyfile="MainHero.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a9a11f2f3536455ae8019bf744da5e3d2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.vertical</definition>
+        <argsstring></argsstring>
+        <name>vertical</name>
+        <briefdescription>
+<para>Перемещение по оси Y </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="46" column="1" bodyfile="MainHero.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a395b9931293e395b27fc804ce4272a43" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.maxSpeed</definition>
+        <argsstring></argsstring>
+        <name>maxSpeed</name>
+        <initializer>= 25f</initializer>
+        <briefdescription>
+<para>Максимальная скорость передвежения персонажа </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="51" column="1" bodyfile="MainHero.cs" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a5e52c322f3cce8300ad60740fbbb2f3e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.JumpForce</definition>
+        <argsstring></argsstring>
+        <name>JumpForce</name>
+        <initializer>= 20</initializer>
+        <briefdescription>
+<para>Сила прыжка (устанавливается из дебаг окна) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="66" column="1" bodyfile="MainHero.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1acd428461dbe00a90d6dad2128f012e06" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.JumpDuration</definition>
+        <argsstring></argsstring>
+        <name>JumpDuration</name>
+        <initializer>= 0.1f</initializer>
+        <briefdescription>
+<para>Максимальная продолжительность прыжка </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="76" column="1" bodyfile="MainHero.cs" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a245b3b695b71d7298af91adeab630415" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.jumpKey</definition>
+        <argsstring></argsstring>
+        <name>jumpKey</name>
+        <briefdescription>
+<para>Прыгает ли </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="86" column="1" bodyfile="MainHero.cs" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a6ff3ed3e889eb7c46aabf37983735d48" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.attackRate</definition>
+        <argsstring></argsstring>
+        <name>attackRate</name>
+        <initializer>= 0.3f</initializer>
+        <briefdescription>
+<para>Скорость атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="101" column="1" bodyfile="MainHero.cs" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a005360ba8f19552eaa2f73a86594f234" prot="public" static="no" mutable="no">
+        <type>bool []</type>
+        <definition>bool [] MainHero.attack</definition>
+        <argsstring></argsstring>
+        <name>attack</name>
+        <initializer>= new bool[2]</initializer>
+        <briefdescription>
+<para>Массив с вариантами атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="106" column="1" bodyfile="MainHero.cs" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a3ef0dcd75e28d0663b016cb256002fe3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.damage</definition>
+        <argsstring></argsstring>
+        <name>damage</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Нанесен ли урон </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="121" column="1" bodyfile="MainHero.cs" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a98b2abb15c653eb4249dd72cdeb99ea1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.noDamage</definition>
+        <argsstring></argsstring>
+        <name>noDamage</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Максимальная продолжительность неуязвимости после получения урона </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="126" column="1" bodyfile="MainHero.cs" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1ac6f0080f1c2cbf89acaadd91b7b7fcef" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.blocking</definition>
+        <argsstring></argsstring>
+        <name>blocking</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Сработал ли блок </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="136" column="1" bodyfile="MainHero.cs" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1ada5d79cca7de2fcad882109617dae859" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.blockingRate</definition>
+        <argsstring></argsstring>
+        <name>blockingRate</name>
+        <initializer>= 1.5f</initializer>
+        <briefdescription>
+<para>Максимальная продолжительность блока </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="141" column="1" bodyfile="MainHero.cs" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a41a9f62b04b30cca902162a380c71ce2" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.specialAttack</definition>
+        <argsstring></argsstring>
+        <name>specialAttack</name>
+        <briefdescription>
+<para>Нажата ли клавиша специальной атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="151" column="1" bodyfile="MainHero.cs" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a79571ab18a21ba0dab6eee4bc9b4c703" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject MainHero.projectile</definition>
+        <argsstring></argsstring>
+        <name>projectile</name>
+        <briefdescription>
+<para>Прожектайл </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="171" column="1" bodyfile="MainHero.cs" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a7e7eeaead779109700e1ccf43f67b60a" prot="public" static="no" mutable="no">
+        <type>AudioMixer</type>
+        <definition>AudioMixer MainHero.am</definition>
+        <argsstring></argsstring>
+        <name>am</name>
+        <briefdescription>
+<para>Аудиомикшер </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="176" column="1" bodyfile="MainHero.cs" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a5db70a2ac699ac7a9b1942d0af58ef93" prot="public" static="no" mutable="no">
+        <type>AudioSource</type>
+        <definition>AudioSource MainHero.Au</definition>
+        <argsstring></argsstring>
+        <name>Au</name>
+        <briefdescription>
+<para>Источник звука удара </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="181" column="1" bodyfile="MainHero.cs" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1abd66bd306992caa999b7d93fffd0206d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.die</definition>
+        <argsstring></argsstring>
+        <name>die</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Упало ли здоровье ниже 0 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="186" column="1" bodyfile="MainHero.cs" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a9182063d4ea93cf31eb122fba30bd8a7" prot="public" static="no" mutable="no">
+        <type>Slider</type>
+        <definition>Slider MainHero.healthBar</definition>
+        <argsstring></argsstring>
+        <name>healthBar</name>
+        <briefdescription>
+<para>Слайдер со здоровьем персонажа </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="201" column="1" bodyfile="MainHero.cs" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1aab76d5b7811c2d4e585dd3287b61855d" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject MainHero.ContinueText</definition>
+        <argsstring></argsstring>
+        <name>ContinueText</name>
+        <briefdescription>
+<para>Текст &quot;Continue&quot; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="216" column="1" bodyfile="MainHero.cs" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a809808699db116feac7e834ab0d1cca1" prot="public" static="no" mutable="no">
+        <type>Text</type>
+        <definition>Text MainHero.WinText</definition>
+        <argsstring></argsstring>
+        <name>WinText</name>
+        <briefdescription>
+<para>Текст &quot;...WIN&quot; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="221" column="1" bodyfile="MainHero.cs" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a14dfba97685e97d31594c71eb0874ae3" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject MainHero.plH</definition>
+        <argsstring></argsstring>
+        <name>plH</name>
+        <briefdescription>
+<para>Объект со слайдером здоровья (для паузы) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="226" column="1" bodyfile="MainHero.cs" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a1476dfc2449bcdb3594c56965905daea" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.paused</definition>
+        <argsstring></argsstring>
+        <name>paused</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Нажата ли пауза </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="231" column="1" bodyfile="MainHero.cs" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a829b7fe572aff712cd2bd19388bb102a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.volume</definition>
+        <argsstring></argsstring>
+        <name>volume</name>
+        <briefdescription>
+<para>Уровень громкости </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="236" column="1" bodyfile="MainHero.cs" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1af9393539691edc358ffbe388cef3b47d" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject MainHero.pauseMenu</definition>
+        <argsstring></argsstring>
+        <name>pauseMenu</name>
+        <briefdescription>
+<para>Объект меню паузы </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="241" column="1" bodyfile="MainHero.cs" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_main_hero_1a398bc1a49cf1bda351377e21f8db57a2" prot="private" static="no" mutable="no">
+        <type>Rigidbody2D</type>
+        <definition>Rigidbody2D MainHero.rb</definition>
+        <argsstring></argsstring>
+        <name>rb</name>
+        <briefdescription>
+<para>Ригидбоди объекта </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="31" column="1" bodyfile="MainHero.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1ae8e54335c1a1f16e6b6f6e26becf37b1" prot="private" static="no" mutable="no">
+        <type>Animator</type>
+        <definition>Animator MainHero.anim</definition>
+        <argsstring></argsstring>
+        <name>anim</name>
+        <briefdescription>
+<para>Аниматор объекта </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="36" column="1" bodyfile="MainHero.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a1dae22837ace84fc6fc659718aa6014a" prot="private" static="no" mutable="no">
+        <type>Vector3</type>
+        <definition>Vector3 MainHero.movement</definition>
+        <argsstring></argsstring>
+        <name>movement</name>
+        <briefdescription>
+<para>Вектор передвежения </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="56" column="1" bodyfile="MainHero.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1afae4fb42d5ade6a4ebf48ecb8fb54ee6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.crouch</definition>
+        <argsstring></argsstring>
+        <name>crouch</name>
+        <briefdescription>
+<para>Сидит ли персонаж </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="61" column="1" bodyfile="MainHero.cs" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a7bf7029314e4a7b18aab291fee314ce9" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.jmpForce</definition>
+        <argsstring></argsstring>
+        <name>jmpForce</name>
+        <briefdescription>
+<para>Сила прыжка </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="71" column="1" bodyfile="MainHero.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a78a26df4394899de5ac2ec8b2c9c642e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.jmpDuration</definition>
+        <argsstring></argsstring>
+        <name>jmpDuration</name>
+        <briefdescription>
+<para>Продолжительность прыжка </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="81" column="1" bodyfile="MainHero.cs" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1aeba0bd4babf12c7b9f5c8e5ac3319131" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.falling</definition>
+        <argsstring></argsstring>
+        <name>falling</name>
+        <briefdescription>
+<para>Падает ли </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="91" column="1" bodyfile="MainHero.cs" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1aa62a69998e041190cafdea609860d257" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.onGround</definition>
+        <argsstring></argsstring>
+        <name>onGround</name>
+        <briefdescription>
+<para>Стоит ли на земле </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="96" column="1" bodyfile="MainHero.cs" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a31fa7830fae0bc2318619d4731661577" prot="private" static="no" mutable="no">
+        <type>float []</type>
+        <definition>float [] MainHero.attacktimer</definition>
+        <argsstring></argsstring>
+        <name>attacktimer</name>
+        <initializer>= new float[2]</initializer>
+        <briefdescription>
+<para>Продолжительность нажатий клавиш атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="111" column="1" bodyfile="MainHero.cs" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1aca3a0447648b7ed329b769c3bf91ffe3" prot="private" static="no" mutable="no">
+        <type>int []</type>
+        <definition>int [] MainHero.timesPressed</definition>
+        <argsstring></argsstring>
+        <name>timesPressed</name>
+        <initializer>= new int[2]</initializer>
+        <briefdescription>
+<para>Количество нажатий клавиш атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="116" column="1" bodyfile="MainHero.cs" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1aa0b6f17e9c402270ce31d45281443152" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.noDamageTimer</definition>
+        <argsstring></argsstring>
+        <name>noDamageTimer</name>
+        <briefdescription>
+<para>Продолжительность неуязвимости после получения урона </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="131" column="1" bodyfile="MainHero.cs" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1ab94056603eb289082b8d0de3f8c2ddb0" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.blTimer</definition>
+        <argsstring></argsstring>
+        <name>blTimer</name>
+        <briefdescription>
+<para>Продолжительность блока </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="146" column="1" bodyfile="MainHero.cs" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1aea136ff26c619aa1ef78e559870009f5" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.prLifeTime</definition>
+        <argsstring></argsstring>
+        <name>prLifeTime</name>
+        <initializer>= 0.3f</initializer>
+        <briefdescription>
+<para>Время жизни прожектайла специальной атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="156" column="1" bodyfile="MainHero.cs" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1ab8e47199280a374f4018e2cc895e52b5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MainHero.gotRandom</definition>
+        <argsstring></argsstring>
+        <name>gotRandom</name>
+        <briefdescription>
+<para>Получено ли случайное число </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="161" column="1" bodyfile="MainHero.cs" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a0f2b45bfe74f948453d35edf1a4bb727" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.storeRandom</definition>
+        <argsstring></argsstring>
+        <name>storeRandom</name>
+        <briefdescription>
+<para>Случайное число </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="166" column="1" bodyfile="MainHero.cs" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a1fe3fa79ba69ead59634f83146bfed9e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.deathAnimLife</definition>
+        <argsstring></argsstring>
+        <name>deathAnimLife</name>
+        <initializer>= 0.2f</initializer>
+        <briefdescription>
+<para>Максимальное время работы игры после смерти персонажа </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="191" column="1" bodyfile="MainHero.cs" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_main_hero_1a5893efee1b923f8dfce478270ec0e434" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float MainHero.deathAnimTimer</definition>
+        <argsstring></argsstring>
+        <name>deathAnimTimer</name>
+        <briefdescription>
+<para>Время работы игры после смерти персонажа </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="196" column="1" bodyfile="MainHero.cs" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_main_hero_1a5bd669e8c8781e60f238d55f6e23484f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float MainHero.CurrentHealth</definition>
+        <argsstring></argsstring>
+        <name>CurrentHealth</name>
+        <briefdescription>
+<para>Текущее здоровье </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="206" column="1" bodyfile="MainHero.cs" bodystart="206" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="property" id="class_main_hero_1a4f1c88d396447fb5e8a783fa0c18c344" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float MainHero.MaxHealth</definition>
+        <argsstring></argsstring>
+        <name>MaxHealth</name>
+        <briefdescription>
+<para>Максимальное здоровье </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="211" column="1" bodyfile="MainHero.cs" bodystart="211" bodyend="211"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_main_hero_1a5c279f00e37eac576d05d2fe2a468669" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="245" column="1" bodyfile="MainHero.cs" bodystart="245" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a9f21ef3e52061b94d7763cc971686f24" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="284" column="1" bodyfile="MainHero.cs" bodystart="284" bodyend="295"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a255c657574c8e62f04e361bcc8530db4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.FixedUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>FixedUpdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="297" column="1" bodyfile="MainHero.cs" bodystart="297" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1ad4fc632b007098a349699b7a9d1cd06d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.OnGroundCheck</definition>
+        <argsstring>()</argsstring>
+        <name>OnGroundCheck</name>
+        <briefdescription>
+<para>Изменение гравитации в зависимости от положения </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="379" column="1" bodyfile="MainHero.cs" bodystart="379" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a75e405ed78015b03bfdf7e804d23cce6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.AttackInput</definition>
+        <argsstring>()</argsstring>
+        <name>AttackInput</name>
+        <briefdescription>
+<para>Нажатие клавиш атаки </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="394" column="1" bodyfile="MainHero.cs" bodystart="394" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1ac1507b9df304fa8fc7c2c05fc0a83e4a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.Damage</definition>
+        <argsstring>()</argsstring>
+        <name>Damage</name>
+        <briefdescription>
+<para>Получение урона </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="444" column="1" bodyfile="MainHero.cs" bodystart="444" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a9176c11a6d2e6e46eba6841dc17b6870" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.SpecialAttack</definition>
+        <argsstring>()</argsstring>
+        <name>SpecialAttack</name>
+        <briefdescription>
+<para>Специальная атака </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="466" column="1" bodyfile="MainHero.cs" bodystart="466" bodyend="480"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a5463437c4b593b05697569f67bd96f85" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.UpdateAnimator</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateAnimator</name>
+        <briefdescription>
+<para>Обновление анимации </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="485" column="1" bodyfile="MainHero.cs" bodystart="485" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1abd2a3437b34c664713c74116852c903c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.OnCollisionEnter2D</definition>
+        <argsstring>(Collision2D col)</argsstring>
+        <name>OnCollisionEnter2D</name>
+        <param>
+          <type>Collision2D</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+<para>Проверка на соприкосновение с полом </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Коллайдер, с которым соприкасается персонаж</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="502" column="1" bodyfile="MainHero.cs" bodystart="502" bodyend="514"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a7253c6b7ab7687ad7da27d4810b3a963" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.OnCollisionExit2D</definition>
+        <argsstring>(Collision2D col)</argsstring>
+        <name>OnCollisionExit2D</name>
+        <param>
+          <type>Collision2D</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+<para>Проверка на отталкивание от пола </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Коллайдер, от которого отталкивается персонаж</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="520" column="1" bodyfile="MainHero.cs" bodystart="520" bodyend="527"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a6ecf0df3b4886d935ac5a73cae262b98" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.ScaleCheck</definition>
+        <argsstring>()</argsstring>
+        <name>ScaleCheck</name>
+        <briefdescription>
+<para>Разворот в сторону противника </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="532" column="1" bodyfile="MainHero.cs" bodystart="532" bodyend="538"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1ad0634aac3defa9c2912b88d0973c601e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.GameOver</definition>
+        <argsstring>()</argsstring>
+        <name>GameOver</name>
+        <briefdescription>
+<para>Окончание игры </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="543" column="1" bodyfile="MainHero.cs" bodystart="543" bodyend="558"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a42a4d6b72a9f987a8360968a2d4b65bd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float MainHero.CalculateHealth</definition>
+        <argsstring>()</argsstring>
+        <name>CalculateHealth</name>
+        <briefdescription>
+<para>Возвращает текущее здоровье </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Текущее здоровье</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="564" column="1" bodyfile="MainHero.cs" bodystart="564" bodyend="567"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a794da6f7c5196a9686b49d99ad017607" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.Blocking</definition>
+        <argsstring>()</argsstring>
+        <name>Blocking</name>
+        <briefdescription>
+<para>Блокирование </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="572" column="1" bodyfile="MainHero.cs" bodystart="572" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1af49ad3b57e50b29ef470d39b72466c93" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float MainHero.ReturnRandom</definition>
+        <argsstring>()</argsstring>
+        <name>ReturnRandom</name>
+        <briefdescription>
+<para>Возвращает случайное число </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Случайное число</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="606" column="1" bodyfile="MainHero.cs" bodystart="606" bodyend="610"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1ae68619678819e53647d7f4c109e73786" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.PauseApp</definition>
+        <argsstring>()</argsstring>
+        <name>PauseApp</name>
+        <briefdescription>
+<para>Ставит игру на паузу </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="615" column="1" bodyfile="MainHero.cs" bodystart="615" bodyend="631"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_main_hero_1a5d46fe9152a712bc54f3ce4e2f6d1640" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.ContinueBut</definition>
+        <argsstring>()</argsstring>
+        <name>ContinueBut</name>
+        <briefdescription>
+<para>Продолжает игру (Кнопка &quot;Continue&quot;) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="636" column="1" bodyfile="MainHero.cs" bodystart="636" bodyend="644"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1aa4a0e7705e219e50099bc27ce794f846" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.MenuBut</definition>
+        <argsstring>()</argsstring>
+        <name>MenuBut</name>
+        <briefdescription>
+<para>Переход на сцену с главным меню (Кнопка &quot;Main menu&quot;) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="649" column="1" bodyfile="MainHero.cs" bodystart="649" bodyend="655"/>
+      </memberdef>
+      <memberdef kind="function" id="class_main_hero_1a761eb5bd14b9e8a87868ad668193e21c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MainHero.QuitBut</definition>
+        <argsstring>()</argsstring>
+        <name>QuitBut</name>
+        <briefdescription>
+<para>Выход из игры (Кнопка &quot;Quit&quot;) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MainHero.cs" line="660" column="1" bodyfile="MainHero.cs" bodystart="660" bodyend="663"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="13">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="12">
+        <label>MainHero</label>
+        <link refid="class_main_hero"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="14">
+        <label>MainHero</label>
+        <link refid="class_main_hero"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="MainHero.cs" line="10" column="1" bodyfile="MainHero.cs" bodystart="9" bodyend="665"/>
+    <listofallmembers>
+      <member refid="class_main_hero_1a30ba91a2a6e7be6f4dacbbc8e73a9b59" prot="public" virt="non-virtual"><scope>MainHero</scope><name>AiCharacter</name></member>
+      <member refid="class_main_hero_1a7e7eeaead779109700e1ccf43f67b60a" prot="public" virt="non-virtual"><scope>MainHero</scope><name>am</name></member>
+      <member refid="class_main_hero_1ae8e54335c1a1f16e6b6f6e26becf37b1" prot="private" virt="non-virtual"><scope>MainHero</scope><name>anim</name></member>
+      <member refid="class_main_hero_1a005360ba8f19552eaa2f73a86594f234" prot="public" virt="non-virtual"><scope>MainHero</scope><name>attack</name></member>
+      <member refid="class_main_hero_1a75e405ed78015b03bfdf7e804d23cce6" prot="private" virt="non-virtual"><scope>MainHero</scope><name>AttackInput</name></member>
+      <member refid="class_main_hero_1a6ff3ed3e889eb7c46aabf37983735d48" prot="public" virt="non-virtual"><scope>MainHero</scope><name>attackRate</name></member>
+      <member refid="class_main_hero_1a31fa7830fae0bc2318619d4731661577" prot="private" virt="non-virtual"><scope>MainHero</scope><name>attacktimer</name></member>
+      <member refid="class_main_hero_1a5db70a2ac699ac7a9b1942d0af58ef93" prot="public" virt="non-virtual"><scope>MainHero</scope><name>Au</name></member>
+      <member refid="class_main_hero_1ac6f0080f1c2cbf89acaadd91b7b7fcef" prot="public" virt="non-virtual"><scope>MainHero</scope><name>blocking</name></member>
+      <member refid="class_main_hero_1a794da6f7c5196a9686b49d99ad017607" prot="private" virt="non-virtual"><scope>MainHero</scope><name>Blocking</name></member>
+      <member refid="class_main_hero_1ada5d79cca7de2fcad882109617dae859" prot="public" virt="non-virtual"><scope>MainHero</scope><name>blockingRate</name></member>
+      <member refid="class_main_hero_1ab94056603eb289082b8d0de3f8c2ddb0" prot="private" virt="non-virtual"><scope>MainHero</scope><name>blTimer</name></member>
+      <member refid="class_main_hero_1a42a4d6b72a9f987a8360968a2d4b65bd" prot="private" virt="non-virtual"><scope>MainHero</scope><name>CalculateHealth</name></member>
+      <member refid="class_main_hero_1a5d46fe9152a712bc54f3ce4e2f6d1640" prot="public" virt="non-virtual"><scope>MainHero</scope><name>ContinueBut</name></member>
+      <member refid="class_main_hero_1aab76d5b7811c2d4e585dd3287b61855d" prot="public" virt="non-virtual"><scope>MainHero</scope><name>ContinueText</name></member>
+      <member refid="class_main_hero_1afae4fb42d5ade6a4ebf48ecb8fb54ee6" prot="private" virt="non-virtual"><scope>MainHero</scope><name>crouch</name></member>
+      <member refid="class_main_hero_1a5bd669e8c8781e60f238d55f6e23484f" prot="public" virt="non-virtual"><scope>MainHero</scope><name>CurrentHealth</name></member>
+      <member refid="class_main_hero_1a3ef0dcd75e28d0663b016cb256002fe3" prot="public" virt="non-virtual"><scope>MainHero</scope><name>damage</name></member>
+      <member refid="class_main_hero_1ac1507b9df304fa8fc7c2c05fc0a83e4a" prot="private" virt="non-virtual"><scope>MainHero</scope><name>Damage</name></member>
+      <member refid="class_main_hero_1a1fe3fa79ba69ead59634f83146bfed9e" prot="private" virt="non-virtual"><scope>MainHero</scope><name>deathAnimLife</name></member>
+      <member refid="class_main_hero_1a5893efee1b923f8dfce478270ec0e434" prot="private" virt="non-virtual"><scope>MainHero</scope><name>deathAnimTimer</name></member>
+      <member refid="class_main_hero_1abd66bd306992caa999b7d93fffd0206d" prot="public" virt="non-virtual"><scope>MainHero</scope><name>die</name></member>
+      <member refid="class_main_hero_1ad247170f696108dd3bf9e929cd1876e1" prot="public" virt="non-virtual"><scope>MainHero</scope><name>enemy</name></member>
+      <member refid="class_main_hero_1aeba0bd4babf12c7b9f5c8e5ac3319131" prot="private" virt="non-virtual"><scope>MainHero</scope><name>falling</name></member>
+      <member refid="class_main_hero_1a255c657574c8e62f04e361bcc8530db4" prot="private" virt="non-virtual"><scope>MainHero</scope><name>FixedUpdate</name></member>
+      <member refid="class_main_hero_1ad0634aac3defa9c2912b88d0973c601e" prot="private" virt="non-virtual"><scope>MainHero</scope><name>GameOver</name></member>
+      <member refid="class_main_hero_1ab8e47199280a374f4018e2cc895e52b5" prot="private" virt="non-virtual"><scope>MainHero</scope><name>gotRandom</name></member>
+      <member refid="class_main_hero_1a9182063d4ea93cf31eb122fba30bd8a7" prot="public" virt="non-virtual"><scope>MainHero</scope><name>healthBar</name></member>
+      <member refid="class_main_hero_1a8fc688d97bfbe1fc1d8e459057a0cb48" prot="public" virt="non-virtual"><scope>MainHero</scope><name>horizontal</name></member>
+      <member refid="class_main_hero_1a78a26df4394899de5ac2ec8b2c9c642e" prot="private" virt="non-virtual"><scope>MainHero</scope><name>jmpDuration</name></member>
+      <member refid="class_main_hero_1a7bf7029314e4a7b18aab291fee314ce9" prot="private" virt="non-virtual"><scope>MainHero</scope><name>jmpForce</name></member>
+      <member refid="class_main_hero_1acd428461dbe00a90d6dad2128f012e06" prot="public" virt="non-virtual"><scope>MainHero</scope><name>JumpDuration</name></member>
+      <member refid="class_main_hero_1a5e52c322f3cce8300ad60740fbbb2f3e" prot="public" virt="non-virtual"><scope>MainHero</scope><name>JumpForce</name></member>
+      <member refid="class_main_hero_1a245b3b695b71d7298af91adeab630415" prot="public" virt="non-virtual"><scope>MainHero</scope><name>jumpKey</name></member>
+      <member refid="class_main_hero_1a4f1c88d396447fb5e8a783fa0c18c344" prot="public" virt="non-virtual"><scope>MainHero</scope><name>MaxHealth</name></member>
+      <member refid="class_main_hero_1a395b9931293e395b27fc804ce4272a43" prot="public" virt="non-virtual"><scope>MainHero</scope><name>maxSpeed</name></member>
+      <member refid="class_main_hero_1aa4a0e7705e219e50099bc27ce794f846" prot="public" virt="non-virtual"><scope>MainHero</scope><name>MenuBut</name></member>
+      <member refid="class_main_hero_1a1dae22837ace84fc6fc659718aa6014a" prot="private" virt="non-virtual"><scope>MainHero</scope><name>movement</name></member>
+      <member refid="class_main_hero_1a98b2abb15c653eb4249dd72cdeb99ea1" prot="public" virt="non-virtual"><scope>MainHero</scope><name>noDamage</name></member>
+      <member refid="class_main_hero_1aa0b6f17e9c402270ce31d45281443152" prot="private" virt="non-virtual"><scope>MainHero</scope><name>noDamageTimer</name></member>
+      <member refid="class_main_hero_1abd2a3437b34c664713c74116852c903c" prot="private" virt="non-virtual"><scope>MainHero</scope><name>OnCollisionEnter2D</name></member>
+      <member refid="class_main_hero_1a7253c6b7ab7687ad7da27d4810b3a963" prot="private" virt="non-virtual"><scope>MainHero</scope><name>OnCollisionExit2D</name></member>
+      <member refid="class_main_hero_1aa62a69998e041190cafdea609860d257" prot="private" virt="non-virtual"><scope>MainHero</scope><name>onGround</name></member>
+      <member refid="class_main_hero_1ad4fc632b007098a349699b7a9d1cd06d" prot="private" virt="non-virtual"><scope>MainHero</scope><name>OnGroundCheck</name></member>
+      <member refid="class_main_hero_1ae68619678819e53647d7f4c109e73786" prot="private" virt="non-virtual"><scope>MainHero</scope><name>PauseApp</name></member>
+      <member refid="class_main_hero_1a1476dfc2449bcdb3594c56965905daea" prot="public" virt="non-virtual"><scope>MainHero</scope><name>paused</name></member>
+      <member refid="class_main_hero_1af9393539691edc358ffbe388cef3b47d" prot="public" virt="non-virtual"><scope>MainHero</scope><name>pauseMenu</name></member>
+      <member refid="class_main_hero_1a47c80b0f5d32a77fdacdea62076845c4" prot="public" virt="non-virtual"><scope>MainHero</scope><name>PlayerNumber</name></member>
+      <member refid="class_main_hero_1a14dfba97685e97d31594c71eb0874ae3" prot="public" virt="non-virtual"><scope>MainHero</scope><name>plH</name></member>
+      <member refid="class_main_hero_1aea136ff26c619aa1ef78e559870009f5" prot="private" virt="non-virtual"><scope>MainHero</scope><name>prLifeTime</name></member>
+      <member refid="class_main_hero_1a79571ab18a21ba0dab6eee4bc9b4c703" prot="public" virt="non-virtual"><scope>MainHero</scope><name>projectile</name></member>
+      <member refid="class_main_hero_1a761eb5bd14b9e8a87868ad668193e21c" prot="public" virt="non-virtual"><scope>MainHero</scope><name>QuitBut</name></member>
+      <member refid="class_main_hero_1a398bc1a49cf1bda351377e21f8db57a2" prot="private" virt="non-virtual"><scope>MainHero</scope><name>rb</name></member>
+      <member refid="class_main_hero_1af49ad3b57e50b29ef470d39b72466c93" prot="private" virt="non-virtual"><scope>MainHero</scope><name>ReturnRandom</name></member>
+      <member refid="class_main_hero_1a6ecf0df3b4886d935ac5a73cae262b98" prot="private" virt="non-virtual"><scope>MainHero</scope><name>ScaleCheck</name></member>
+      <member refid="class_main_hero_1a9176c11a6d2e6e46eba6841dc17b6870" prot="private" virt="non-virtual"><scope>MainHero</scope><name>SpecialAttack</name></member>
+      <member refid="class_main_hero_1a41a9f62b04b30cca902162a380c71ce2" prot="public" virt="non-virtual"><scope>MainHero</scope><name>specialAttack</name></member>
+      <member refid="class_main_hero_1a5c279f00e37eac576d05d2fe2a468669" prot="private" virt="non-virtual"><scope>MainHero</scope><name>Start</name></member>
+      <member refid="class_main_hero_1a0f2b45bfe74f948453d35edf1a4bb727" prot="private" virt="non-virtual"><scope>MainHero</scope><name>storeRandom</name></member>
+      <member refid="class_main_hero_1aca3a0447648b7ed329b769c3bf91ffe3" prot="private" virt="non-virtual"><scope>MainHero</scope><name>timesPressed</name></member>
+      <member refid="class_main_hero_1a9f21ef3e52061b94d7763cc971686f24" prot="private" virt="non-virtual"><scope>MainHero</scope><name>Update</name></member>
+      <member refid="class_main_hero_1a5463437c4b593b05697569f67bd96f85" prot="private" virt="non-virtual"><scope>MainHero</scope><name>UpdateAnimator</name></member>
+      <member refid="class_main_hero_1a9a11f2f3536455ae8019bf744da5e3d2" prot="public" virt="non-virtual"><scope>MainHero</scope><name>vertical</name></member>
+      <member refid="class_main_hero_1a829b7fe572aff712cd2bd19388bb102a" prot="public" virt="non-virtual"><scope>MainHero</scope><name>volume</name></member>
+      <member refid="class_main_hero_1a809808699db116feac7e834ab0d1cca1" prot="public" virt="non-virtual"><scope>MainHero</scope><name>WinText</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

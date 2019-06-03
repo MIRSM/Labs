@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>SHMOP(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SHMOP(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+shmop - операции над разделяемыми сегментами памяти
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/types.h&gt;
+        #include &lt;sys/ipc.h&gt;
+        #include &lt;sys/shm.h&gt;
+        
+        char *shmat (shmid, shmaddr, shmflg)
+        int shmid;
+        char *shmaddr;
+        int shmflg;
+        
+        int shmdt (shmaddr)
+        char *shmaddr;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+<i>Присоединение сегмента</i><br>
+Системный  вызов shmat (см. СЮРПРИЗЫ) присоединяет разделяемый сегмент памяти, ассоциированный с  идентификатором  shmid,  к  сегменту данных вызывающего процесса.
+Сегмент присоединяется по адресу,  заданному  одним  из
+следующих способов:
+<ol>
+<li>Если значение аргумента  shmaddr  равно  нулю,  то
+сегмент присоединяется по адресу, выбранному  системой.
+<li>Если значение аргумента shmaddr не  равно  нулю  и
+выражение (shmflg & SHM_RND) истинно,  то  сегмент
+просоединяется по адресу, вычисляемому по  формуле
+(shmaddr - (shmaddr mod SHMLBA)) [см. <a href=INTRO~1.htm>intro(2)</a>].
+<li>Если значение аргумента shmaddr не  равно  нулю  и
+выражение (shmflg &  SHM_RND)  ложно,  то  сегмент
+присоединяется по адресу,  задаваемому  аргументом
+shmaddr.
+</ol>
+<p align=justify><i>Отсоединение сегмента</i><br>
+Системный вызов shmdt отсоединяет  разделяемый  сегмент
+памяти, расположенный по адресу  shmaddr,  от  сегмента
+данных вызывающего процесса.
+<p align=justify>
+Если выражение (shmflg & SHM_RDONLY) истинно,  то  сегмент присоединяется для чтения {требуется право на чтение}, в противном  случае  сегмент  присоединяется  для
+чтения и записи {требуется право на чтение и запись}.
+<p align=justify>
+Системный вызов shmat завершается неудачей и  разделяемый сегмент не присоединяется, если выполнено  хотя  бы
+одно из следующих условий:
+<dl>
+<dt>[EINVAL]
+<dd>Значение аргумента shmid не  является  корректным идентификатором  разделяемого  сегмента.
+<dt>[EACCES]
+<dd>У вызывающего процесса нет прав на выполнение операции [см. <a href=INTRO~1.htm>intro(2)</a>].
+<dt>[ENOMEM]
+<dd>В сегменте данных нет места для присоединения разделяемого сегмента.
+<dt>[EINVAL]
+<dd>Значение аргумента shmaddr не равно нулю  и
+значение  выражения  (shmaddr-(shmaddr  mod
+SHMLBA)) не является корректным адресом.
+<dt>[EINVAL]
+<dd>Значение аргумента shmaddr не  равно  нулю,
+выражение (shmflg & SHM_RND) ложно и значение аргумента shmaddr не является  корректным адресом.
+<dt>[EMFILE]
+<dd>Количество разделяемых сегментов, присоединенных к  вызывающему  процессу,  превышает
+максимально допустимую величину.
+</dl>
+<p>Системный вызов shmdt завершается неудачей и  разделяемый сегмент не отсоединяется, если:
+<dl>
+<dt>[EINVAL]
+<dd>Значение аргумента shmaddr не является  начальным адресом разделяемого сегмента.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=EXEC.htm>exec(2)</a>,   <a href=EXIT.htm>exit(2)</a>,   <a href=FORK.htm>fork(2)</a>,   <a href=INTRO~1.htm>intro(2)</a>,   <a href=SHMCTL.htm>shmctl(2)</a>,
+<a href=SHMGET.htm>shmget(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении системного вызова shmat возвращается начальный адрес присоединенного сегмента.
+<p>
+При успешном завершении системного вызова shmdt результат равен 0.
+<p>
+В случае ошибки возвращается  -1,  а  переменной  errno
+присваивается код ошибки.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Необходимо явно удалять разделяемый сегмент памяти после того, как удаляется последняя ссылка на него.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+В  данной  реализации результат системного вызова shmat
+имеет тип int, а не char *.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

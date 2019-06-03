@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>ASSIGN(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ASSIGN(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+   assign, deassign - Назначает и отменяет устройства.
+<p><b>СИНТАКСИС</b>
+<pre>
+ assign [ -u ][ -v ][ -d ][ device ]...
+ deassign [ -u ][ -v ][ device ]...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   Команда assign пытается назначить устройство текущему  пользователю. Аргумент device должен быть  назначаемым   устройством
+   которое не назначено в текущий момент.Команда assign без аргумента  печатает  список  назначаемых устройств вместе с именем
+   пользователя, которому они назначаются.
+<p align=justify>Команда deassign используется для "отмены" устройств.  Команда deassign без аргументов отменит  все  устройства,  назначенные
+   пользователю.  Если заданы аргументы то делается попытка отменить каждое устройство device, заданное как аргумент.
+<p align=justify>С этими командами вы можете единолично использовать   устройство такое, как запоминающее устройство на магнитной ленте  или
+   накопитель на гибком магнитном диске.  Это удерживает   других
+   пользователей от использования устройства. Команды дают  такой
+   же эффект, что и команды <a href=CHOWN.htm>chown(1)</a> и <a href=CHMOD.htm>chmod(1)</a>, хотя они  действуют только на устройства в /dev.  Другие аспекты  обсуждаются
+   в дальнейшем.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th> -d <td>  Выполняет действие отмены deassign.  Опция  -d  может быть встроена в имена устройств device для того, чтобы назначать одни устройства и отменять другие.
+<tr valign=top><th> -v <td> Дает многословный вывод.
+<tr valign=top><th>  -u <td>  Подавляет назначение или отмену, но производит  контроль ошибок.
+</table>
+<p align=justify>Команда assign  не назначит какое-то одно из назначаемых  устройств, если она не может назначить все  устройства.   Команда
+   deassign не выдает диагностику, если устройство device  не может быть отменено.  Устройства могут быть автоматически  отменены при выходе пользователя, но это не  гарантируется.  Имена
+   устройств device могут являться началом запрашиваемого устройства. Например,команда
+<pre>
+  assign fd
+</pre>
+<p align=justify> должна быть использована для  назначения  всех  устройств   на гибких магнитных дисках.  Исходные версии  устройства   device
+   будут также назначаться,  например,  исходные  устройства   на
+   гибких магнитных дисках /dev/rfd? были бы присвоены в примере,
+   приведенном выше.
+<p align=justify>Заметьте, что  во  многих установках назначаемые   устройства, такие,  как  гибкие  магнитные диски,  имеют обычный доступ  к
+   чтению и записи, так что команда assign может быть ненужной.
+   Это частично верно для однопользовательских систем.   Устройствами, которые предполагается назначать этой командой,  должен
+   владеть пользователь asg. Каталог /dev должен , быть  подчинен
+   каталогу bin и имееть режим 755. Команда  assign  (после  проверки на использование кем-то еще) сделает владельцем устройства  любого,  кто вызовет команду,  без проверки разрешений  к доступу. Это позволяет системному администратору устанавливать
+   индивидуальные устройства , которые свободно доступны,назначаются (ими владеет пользователь asg) или не назначаются и защищены  (ими не владеет пользователь  asg  и они имеют некоторые ограниченные режимы).
+<p align=justify>Заметьте, что когда команда assign вызывается в  первый   раз, она строит таблицу назначаемых устройств /etc/atab.  Эта  таблица используется при последующих  вызовах  для  того,   чтобы
+   сохранить повторяющиеся переборы каталога  /dev. Если одно  из
+   устройств в каталоге /dev меняется для назначения (т.е.   чтобы им  владел пользователь asg),  тогда /etc/atab должна  быть
+   удалена (суперпользователем), чтобы в момент следующего вызова
+   команды был построен правильный список.
+<p align=justify><b>BOЗВPAЩAEМOE ЗНAЧEНИE</b><br>
+   Код выхода 0 возвращается в случае успешного завершения,   1 -
+   если есть проблемы,  2 -  если устройство device не может быть
+   назначено.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

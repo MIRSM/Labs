@@ -1,0 +1,221 @@
+<html>
+<head>
+<title>DOS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DOS(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+   dos, doscat, doscp, dosdir, dosformat, dosmkdir, dosls, dosrm,
+   dosrmdir - Обеспечивают доступ и манипулирование файлами DOS.
+<p><b>СИНТАКСИС</b>
+<pre>
+   doscat [-r|-m] file ...
+   doscp [-r|-m] file1 file2
+   doscp [-r|-m] file ... directory
+   dosdir directory ...
+   dosformat [-fqv] drive
+   dosls directory ...
+   dosmkdir directory ...
+   dosrm file ...
+   dosrmdir directory ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   Команды dos обеспечивают доступ к файлам и каталогам на дисках
+   MS-DOS и в раздел (partition) DOS жесткого диска. Отметим, что
+   для того, чтобы использовать эти команды в разделе DOS жесткого диска, этот раздел должен быть загрузочным, хотя может быть и не активным.
+<p align=justify>   Команды dos выполняют следующие действия:
+<dl>
+<p><dt><tt> doscat  </tt><dd>   Копирует один или более файлов  DOS  на  устройство стандартного вывода.  Если  задана опция -r,  файлы
+              копируются без выполнения  преобразований  признака
+              новой строки. Если задана опция -m, файлы копируются с преобразованиями признака  новой  строки  (см.
+              ниже раздел "Преобразования").
+<p><dt><tt> doscp  </tt><dd>    Копирует файлы с диска DOS в файловую систему XENIX и обратно.  Если заданы аргументы file1 и file2, то
+              file1  копируется  в  file2.  Если  задан  аргумент
+              directory, то в этот каталог  копируются  один  или
+              более файлов, заданных аргументами file. Если задана опция -r,  файлы копируются  без  преобразований
+              признака новой строки.  Если задана опция -m, файлы
+              копируются с преобразованиями признака новой строки
+              (см. ниже раздел "Преобразования").
+<p><dt><tt> dosdir  </tt><dd>   Выводит список файлов DOS в стандартном формате каталогов DOS.
+<p><dt><tt> dosformat </tt><dd> Форматирует дискеты под версию 2.0 DOS.  Накопитель может быть указан либо в соглашении  о  накопителях
+              DOS,      используя      по      умолчанию     файл
+              /etc/default/msdos, либо используя имя специального
+              файла  XENIX.  Команда  dosformat не может быть использована для форматирования жесткого диска. Опция
+              -f подавляет интерактивный режим.  Опция -q (выход)
+              используется для подавления информации,  обычно выводимой во время выполнения команды dosformat.  Опция -q не подавляет интерактивный режим.  Опция  -v выводит  пользователю  приглашение  для ввода метки
+              тома после того, как дискета будет отформатирована.
+              Максимальный размер метки тома составляет 11 символов.
+<p><dt><tt> dosls  </tt><dd>    Выводит список  каталогов  и  файлов  DOS в формате XENIX (см. описание <a href=LS.htm>ls(1)</a>).
+<p><dt><tt> dosrm   </tt><dd>   Удаляет файлы с диска DOS.
+<p><dt><tt> dosmkdir  </tt><dd> Создает каталог на диске DOS.
+<p><dt><tt> dosrmdir  </tt><dd> Удаляет каталоги с диска DOS.
+</dl>
+<p align=justify>   Аргументы file  и  directory  для файлов и каталогов DOS имеют вид:
+<pre>
+  device:name
+</pre>
+   где device  (устройство)  является обозначением пути XENIX для
+   специального файла устройства,  содержащего диск DOS,  а  name
+   (имя) является обозначением пути к файлу или каталогу на диске
+   DOS.  Эти две составляющие разделяются двоеточием (:).  Например, аргумент:
+<pre>
+  /dev/fd0:/src/file.asm
+</pre>
+   указывает на  файл  DOS  -  file.asm в каталоге /src на диске,
+   который описан в файле устройства /dev/fd0. Отметим, что имена
+   файлов  для  обозначений  путей DOS разделяются косыми чертами
+   (но не обратными косыми чертами). Предполагается, что аргументы, заданные без обозначения device:, являются файлами XENIX.
+<p align=justify>   Для удобства,  файлом задаваемой по умолчанию возможной конфигурации для пользователя является файл  /etc/default/msdos,  и
+   он может  определять  названия  накопителей DOS,  используемые
+   вместо обозначений путей к специальным  файлам  устройств.  Он
+   может содержать следующие строки:
+<pre>
+  A=/dev/fd0
+  C=/dev/hd0d
+  D=/dev/hd1d
+</pre>
+<p align=justify>   При обращении к файлам DOS может быть использована буква накопителя "А" вместо обозначения пути специального файла устройства /dev/fd0 (см. ниже раздел "Примеры"). Буква накопителя "С" или "D" отсылает к разделу DOS на первом или,  соответственно, на втором жестком диске.
+<p align=justify>   Эти команды действуют на следующих разновидностях дисков:
+<ul>
+<li>   разделы DOS на жестком диске
+<li>   5 1/4 дюймовые гибкие диски в формате DOS
+<li>   3 1/2 дюймовые гибкие диски в формате DOS
+<li>   диски с 8,9,15 или 18 секторами на одной дорожке
+<li>   диски с 40 дорожками на одной стороне
+<li>   одно- или двухсторонние диски
+<li>   диски в формате DOS версий 1.0, 2.0 или 3.0
+</ul>
+<p align=justify><b>Преобразования</b><br>
+   В случае команды doscp при копировании файла XENIX выполняются
+   определенные преобразования. Имена файлов, имеющие длину базового имени больше восьми символов,  укорачиваются.  Расширения
+   имен файлов (часть имени, следующая за разделительной точкой),
+   имеющие длину большую трех символов,  укорачиваются. Например,
+   файл с  именем 123456789.12345 становится 12345678.123.  Соответствующее сообщение информирует  пользователя  об  изменении
+   имени, и высвечивается альтернативное имя.  Имена файлов,  содержащие недопустимые символы DOS,  очищаются от этих символов
+   при записи в формате MS-DOS.  Соответствующее сообщение информирует пользователя о том,  что такие символы были удалены,  и
+   высвечивает на экран имя в том, виде, как оно записано.
+<p align=justify>   Все текстовые файлы DOS используют комбинацию символов возврата каретки и перевода строки CR-LF для указания признака новой
+   строки. XENIX использует только символ новой строки LF.  Когда
+   команды doscat и doscp передают текстовые файлы DOS  в  XENIX,
+   они автоматически убирают символ CR.  Когда текстовые файл передаются в DOS,  эти команды вставляют символ CR перед  каждым
+   символом LF.
+<p align=justify>   При некоторых  обстоятельствах  автоматическое  преобразование признака новой строки не производится. Опция -m может быть использована для обеспечения этого преобразования.  Опция -r может быть использована для отмены автоматического  преобразования, и  для выполнения командой копирования байтов в том виде, как они есть, независимо от типа файла.
+<p><b>ПРИМЕРЫ</b>
+<pre>
+  doscat /dev/fd0:/docs/memo.txt
+  doscat /tpm/f1 /tmp/f2 /dev/fd0:/src/file.asm
+<p align=justify>  dosdir /dev/fd0:/src
+  dosdir A:/src A:/dev
+<p align=justify>  doscp /tmp/myfile.txt /dev/fd0:/docs/memo.txt
+  doscp /tmp/f1 /tmp/f2 /dev/fd0:/mydir
+<p align=justify>  dosformat A:
+  dosformat /dev/fd0
+<p align=justify>  dosls /dev/fd0:/src
+  dosls B:
+<p align=justify>  dosmkdir /dev/fd0:/usr/docs
+<p align=justify>  dosrm /dev/fd0:/docs/memo.txt
+  dosrm A:/docs/memo1.txt
+<p align=justify>  dosrmdir /dev/fd0:/usr/docs
+</pre>
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/default/msdos   Информация по умолчанию
+ /dev/fd*             Устройства гибких дисков
+ /dev/hd*             Устройства жестких дисков
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+   <a href=ASSIGN.htm>assign(1)</a>, <a href=DTYPE.htm>dtype(1)</a>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+   Нельзя обращаться к каталогам DOS при помощи  указания  шаблонов.  Программы, упоминаемые выше, взаимодействуют друг с другом таким образом,  что никакие две программы не  будут  иметь
+   доступ  к  одному и тому же диску DOS в одно и то же время.  К
+   данному диску DOS в данный  момент  времени  будет  обращаться
+   только один процесс,  в то время как другие процессы будут находиться в состоянии ожидания.  Если состояние ожидания  какого-либо  процесса слишком затянулось,  то этот процесс выводит сообщение об ошибке "can't seize a device" ("не могу захватить устройство") и завершается с кодом возврата равным 1.
+<p align=justify>   Ниже приведены устройства жестких дисков:
+<pre>
+  /dev/hd0d
+  /dev/rhd0d
+  /dev/hd1d
+  /dev/rhd1d
+</pre>
+   аналогичные устройству /dev/hd0a,  в котором дисковый  драйвер
+   определяет,  какой раздел является разделом DOS,  и использует
+   его в качестве hd?d.  Это означает, что программному обеспечению, использующему  раздел DOS,  не нужно знать,  какой именно
+   раздел является разделом DOS (это  определяет  дисковый  драйвер).
+<p align=justify>   Система Разработки XENIX поддерживает создание выполняемых под управлением DOS файлов, используя команду сс(1).  Обратитесь к Руководству пользователю  по  языку  С  системы XENIX (XENIX C
+   User's Guide) и Руководству по библиотеке языка С  (C  Library
+   Guide), чтобы  получить более полную информацию об использовании системы XENIX для создания программ,  соответствующих системам DOS.
+<p align=justify>   Все утилиты DOS оставляют временные файлы в каталоге /tmp. Эти  файлы автоматически удаляются при перезагрузке системы.  Кроме
+   того, они могут быть удалены вручную.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

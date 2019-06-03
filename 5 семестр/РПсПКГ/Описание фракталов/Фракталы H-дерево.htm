@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/hfract.html -->
+<HTML><HEAD><TITLE>Фракталы: H-дерево</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы H-дерево.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы H-дерево.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: H-дерево</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=375 alt=H-дерево src="Фракталы H-дерево.files/fr025.gif" 
+width=570 border=0></CENTER><PRE><B>program</B> Hfract;
+<B>uses</B> graph,crt;
+<B>procedure</B> fractal(x,y,l:integer);
+<B>begin</B>
+   <B>if</B> keypressed <B>then</B> exit;
+   <B>if</B> l&gt;4 <B>then</B> <B>begin</B>
+      l:=l <B>div</B> 2;
+      line(x, y, x+l, y);
+      line(x, y, x-l, y);
+      line(x + l, y, x + l, y - l div 2);
+      line(x + l, y, x + l, y + l div 2);
+      line(x - l, y, x - l, y - l div 2);
+      line(x - l, y, x - l, y + l div 2);
+      fractal(x + l, y - l div 2, l);
+      fractal(x + l, y + l div 2, l);
+      fractal(x - l, y - l div 2, l);
+      fractal(x - l, y + l div 2, l);
+   <B>end</B>;
+<B>end</B>;
+<B>Var</B>
+  gd, gm: Integer;
+<B>begin</B>
+   gd:=detect;
+   InitGraph(gd, gm, 'c:\bp\bgi');
+   setcolor(15);
+   fractal(320,240,256);
+   readkey;
+   closegraph;
+<B>end</B>.
+</PRE>
+<P><IMG height=30 src="Фракталы H-дерево.files/warning.gif" width=30 border=0> 
+Не забудте в процедуре инициализации графического режима указать путь к 
+графическому драйверу!</P></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.10.04<BR>Дата последнего обновления: 10.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы H-дерево.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

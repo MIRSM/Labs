@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>SSIGNAL(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SSIGNAL(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ssignal, gsignal - программный вариант механизма сигналов
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;signal.h>
+	
+	int (*ssignal (sig, action)) ( )
+	int sig, (*action) ( );
+	
+	int gsignal (sig)
+	int sig;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функции ssignal и gsignal представляют собой  программную реализацию механизма передачи сигналов, похожего на
+тот, что обеспечивается  системным  вызовом  <a href=SIGNAL.htm>signal(2)</a>.
+Эти функции используются стандартной библиотекой  языка
+C, чтобы предоставить пользователю возможность  нестандартной обработки ошибочных ситуаций. Функции ssignal и
+gsignal можно использовать и в иных целях.
+<p align=justify>Программные сигналы, доступные пользователю,  обозначаются целыми числами от 1 до 16 включительно. Выполнение
+функции ssignal ассоциирует действие, action,  с  программным сигналом sig; возбуждение сигнала sig осуществляется функцией gsignal. Возбуждение сигнала приводит к выполнению ассоциированного с ним действия.
+<p align=justify>В качестве первого аргумента функции ssignal передается
+число, идентифицирующее сигнал, для которого  требуется
+установить действие.  Второй  аргумент  определяет  это
+действие; оно может быть задано как именем функции (определенной пользователем),  так  и  одной  из  констант
+SIG_DFL (стандартное действие) или SIG_IGN (игнорирование). Функция ssignal возвращает указатель на  функцию,
+определяющую  предыдущее  действие,  установленное  для
+этого сигнала; если нет ранее  установленного  действия
+или номер сигнала некорректен, то возвращается константа SIG_DFL.
+<p align=justify>Функция gsignal возбуждает сигнал, заданный  аргументом
+sig, при этом:
+<ol>
+<li> Если для обработки сигнала sig   была  установлена
+пользовательская  функция, то сначала восстанавливается стандартная реакция на возбужденный сигнал,
+а затем вызывается пользовательская функция с  аргументом sig. Функция gsignal возвращает значение,
+переданное  ей пользовательской функцией обработки
+сигнала.
+<li>  Если действием для сигнала sig  является  SIG_IGN,
+(сигнал игнорируется), то функция gsignal  возвращает 1 и не предпринимает каких-либо других действий.
+<li>  Если действием для сигнала  sig  является  SIG_DFL
+(стандартная  реакция), то функция gsignal возвращает 0 и не предпринимает каких-либо других действий.
+<li> Если номер сигнала sig не является корректным  или
+для сигнала sig не  специфицировано  действие,  то
+функция gsignal возвращает  значение 0 и не  предпринимает каких-либо других действий.
+</ol>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=SIGNAL.htm>signal(2)</a>, <a href=SIGSET.htm>sigset(2)</a>.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Есть несколько дополнительных сигналов с номерами,  выходящими за пределы интервала от 1 до 16. Они используются функциями из стандартной библиотеки  языка  C  для
+указания ошибочных ситуаций. В результате некоторые номера сигналов за пределами интервала от 1 до 16 являются допустимыми, хотя их использование может  конфликтовать с функциями из стандартной библиотеки языка C.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+C:\Users\ugrov\source\repos\HMI\HMI\bin\Debug\HMI.exe.config
+C:\Users\ugrov\source\repos\HMI\HMI\bin\Debug\HMI.exe
+C:\Users\ugrov\source\repos\HMI\HMI\bin\Debug\HMI.pdb
+C:\Users\ugrov\source\repos\HMI\HMI\obj\Debug\HMI.csprojAssemblyReference.cache
+C:\Users\ugrov\source\repos\HMI\HMI\obj\Debug\HMI.csproj.CoreCompileInputs.cache
+C:\Users\ugrov\source\repos\HMI\HMI\obj\Debug\HMI.exe
+C:\Users\ugrov\source\repos\HMI\HMI\obj\Debug\HMI.pdb

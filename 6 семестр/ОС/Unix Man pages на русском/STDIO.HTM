@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>STDIO(3S)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>STDIO(3S)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+stdio - стандартный пакет буферизованного ввода/вывода
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	
+	FILE *stdin, *stdout, *stderr;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Макросы и функции, относящиеся к разделу 3S этого Справочника, предоставляют пользователю эффективные средства буферизованного  ввода/вывода.  Макросы  <a href=GETC.htm>getc(3S)</a>  и
+<a href=PUTC.htm>putc(3S)</a> служат  для  быстрого  ввода/вывода  символов.
+Макросы getchar и  putchar  и  функции  более  высокого
+уровня fgetc,  fgets,  fprintf,  fputc,  fputs,  fread,
+fscanf, fwrite, gets, getw, printf, puts, putw и  scanf
+ведут себя так, как если бы  они  использовали  getc  и
+putc. Обращения к макросам и функциям из данного пакета
+можно чередовать произвольным образом.
+<p align=justify>Файл и ассоциированный с ним механизм буферизации называются  потоком. Поток описывается как указатель на переменную типа FILE. Функция <a href=FOPEN.htm>fopen(3S)</a> создает описатель
+потока и возвращает указатель на него.  Этот  указатель
+идентифицирует  поток  во  всех  последующих операциях.
+Обычно имеются три открытых потока с постоянными указателями, они описаны во  включаемом  файле  &lt;stdio.h>  и
+связаны со стандартными открытыми файлами:
+<pre>
+	stdin   стандартный ввод
+	stdout  стандартный вывод
+	stderr  стандартный протокол
+</pre>
+Константа NULL (0) обозначает пустой указатель.
+<p align=justify>Целая константа EOF  (-1)  возвращается  по  достижении
+конца файла или в случае ошибки большинством  из  целочисленных функций, работающих с потоками (для получения
+детальной информации см. описания отдельных функций).
+<p align=justify>Целая  константа  BUFSIZ  специфицирует размер буферов,
+используемых в конкретной реализации.
+<p align=justify>Любая программа, использующая данный пакет  ввода/вывода, должна включать файл соответствующих макроопределений следующим образом:
+<pre>
+	#include &lt;stdio.h>
+</pre>
+<p align=justify>Функции и константы, упоминаемые в разделе 3S этого руководства, описаны в файле &lt;stdio.h> и не требуют дальнейшего описания. Константы и следующие "функции"  реализованы как макросы (переопределение этих  имен  опасно):  getc,  getchar,  putc,  putchar,  ferror,   feof,
+clearerr и fileno.
+<p align=justify>Потоки вывода, за  исключением  стандартного  протокола
+stderr, по умолчанию буферизуются, если вывод  производится в файл, и буферизуется построчно, если вывод производится на терминал. Стандартный протокол  stderr  по
+умолчанию не  буферизуется,  но  использование  функции
+freopen [см. <a href=FOPEN.htm>fopen(3S)</a>] приводит к тому, что  стандартный протокол становится буферизованным или буферизованным построчно. Когда поток вывода не буферизован,  данные выводятся в нужный файл или  на  терминал  по  мере
+поступления запросов на запись; когда поток вывода  буферизован, байты накапливаются и  записываются  блоком.
+Когда поток вывода буферизован построчно, каждая  выводимая строка выводится  на  терминал  после  заполнения
+строки (то есть как только  выводится  символ  перевода
+строки или поступает запрос на ввод с терминала). Функции setbuf или setvbuf [см. <a href=SETBUF.htm>setbuf(3S)</a>] могут использоваться для изменения стратегии буферизации потоков.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=OPEN.htm>open(2)</a>,   <a href=CLOSE.htm>close(2)</a>,   <a href=LSEEK.htm>lseek(2)</a>,   <a href=PIPE.htm>pipe(2)</a>,    <a href=READ.htm>read(2)</a>,
+<a href=WRITE.htm>write(2)</a>,   <a href=CTERMID.htm>ctermid(3S)</a>,    <a href=CUSERID.htm>cuserid(3S)</a>,    <a href=FCLOSE.htm>fclose(3S)</a>,
+<a href=FERROR.htm>ferror(3S)</a>, <a href=FOPEN.htm>fopen(3S)</a>, <a href=FREAD.htm>fread(3S)</a>, <a href=FSEEK.htm>fseek(3S)</a>,  <a href=GETC.htm>getc(3S)</a>,
+<a href=GETS~1.htm>gets(3S)</a>, <a href=POPEN.htm>popen(3S)</a>,  <a href=PRINTF.htm>printf(3S)</a>,  <a href=PUTC.htm>putc(3S)</a>,  <a href=PUTS.htm>puts(3S)</a>,
+<a href=SCANF.htm>scanf(3S)</a>,   <a href=SETBUF.htm>setbuf(3S)</a>,    <a href=SYSTEM.htm>system(3S)</a>,    <a href=TMPFILE.htm>tmpfile(3S)</a>,
+<a href=TMPNAM.htm>tmpnam(3S)</a>, <a href=UNGETC.htm>ungetc(3S)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Некорректный указатель на поток обычно приводит к тяжелым последствиям, возможно, к терминированию программы.
+Описания конкретных функций включают  раз яснения  возможных ошибочных ситуаций.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

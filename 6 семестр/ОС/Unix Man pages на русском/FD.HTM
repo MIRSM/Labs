@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>FD(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FD(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+fd - устройства флоппи-дисков
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Устройства  fd  обеспечивают  интерфейс  системы  UNIX к дисководам
+гибких дисков. Обычно  для чтения гибких  дисков или записи  на них
+используются команды tar(1), cpio(1) или dd(1). Например:
+<pre>
+   tar tvf /dev/fd0
+</pre>
+табулирует содержимое гибкого диска на дисководе 0.
+<p align=justify>
+Специальные блочные  устройства fd  буферизуются поблочно.  Драйвер
+дисковода гибких дисков  может читать и  записывать по 1K   за раз,
+используя ввод/вывод без обработки. Заметьте, что блочные пересылки
+всегда кратны размеру блоков на диске в 1K.
+<p align=justify>
+Устройства  флоппи-дисков  носят  имена  /dev/fd0  и  /dev/fd1 (см.
+"Описание"  для  получения  дополнительной  информации  о процедуре
+присвоения имен устройствам.)
+<p align=justify>
+Соответствующие символьные  специальные устройства  (без обработки)
+/dev/rfd0 и /dev/rfd1 обеспечивают прямую небуферизованную передачу
+между  дискетой   и  адресом   передачи  данных    пользовательской
+программы.
+<p>
+В отношении форматирования смотрите format(1).
+<p align=justify>
+Малое  (меньшее)  число   устройства  определяет  тип   физического
+устройства, связанного с файлом этого устройства (см. Описание).
+<p><b>ФАЙЛЫ</b>
+<pre>
+/dev/fd0   /dev/rfd048ds8  /dev/rfd096ds15  /dev/rfd0135ds9
+/dev/fd1   /dev/rfd148ds8  /dev/rfd196ds15  /dev/rfd1135ds9
+/dev/fd0   /dev/rfd048ds9  /dev/rfd096ds9  /dev/rfd0135ds18
+/dev/fd1   /dev/rfd148ds9  /dev/rfd196ds9  /dev/rfd1135ds18
+                           /dev/rfd048ss8
+                           /dev/rfd148ss8
+</pre>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+При  осуществлении  доступа  к  специальным  символьным устройствам
+флоппи-дисков пользовательский буфер  должен начинаться на  границе
+слова. Количество  count при  вызове read(2),  write(2) и  lseek(2)
+подобного устройства должно быть кратным 1K байтов.
+<p align=justify>
+Имена  устройств  определяют  конфигурацию  конкретного дисковода и
+носителя.  Имена  устройств  имеют  вид:  fd048ds9, где fd0 - номер
+дисковода (0, 1, 2,  3), 48 - количество  дорожек на дюйм на  диске
+(48 или 96), ds - односторонний или двусторонний тип диска (ss  или
+ds), 9 - количество секторов на дорожке  диска (8 или 9).
+<p align=justify>
+Например,  /dev/fd048ss9  указываает  на  устройство  гибкого диска
+дисковода  0    формата   48  дорожек   на  дюйм,   одностороннего,
+9-секторного.
+<p align=justify>
+Малые  числа   устройств  дисководов   гибких  дисков   зависят  от
+конфигурации  дисковода   и  дискет.   Наиболее   распространенными
+являются следующие:
+<center>
+<table border=1>
+<tr><td>&nbsp;<th colspan=4>48 дор/дюйм<th colspan=2>96 дор/дюйм<th colspan=2>135 дор/дюйм</tr>
+<tr><td>&nbsp;<th>ds/8<th>ds/9<th>ss/8<th>ss/9<th>ds/15<th>ds/8<th>ds/9<th>ds/18</tr>
+<tr><td>Дисковод<td colspan=8 align=center>Малое число устройства</tr>
+<tr><td>0<td align=center>12<td align=center>4<td align=center>8<td align=center>0<td align=center>52<td align=center>44<td align=center>36<td align=center>60</tr>
+<tr><td>1<td align=center>13<td align=center>5<td align=center>9<td align=center>1<td align=center>53<td align=center>45<td align=center>37<td align=center>61</tr>
+<tr><td>2<td align=center>14<td align=center>6<td align=center>10<td align=center>2<td align=center>54<td align=center>46<td align=center>38<td align=center>62</tr>
+<tr><td>3 *<td align=center colspan=8>&nbsp;</tr>
+</table></center>
+<i>*  Зарезервировано для специальных устройств не-дискетного типа,
+подключенных к контроллеру дисковода гибких дисков.</i>
+<p align=justify>
+Схема образования  малых чисел  устройств такова.  В двоичном  виде
+каждый бит  малого числа  устройства представляет  некоторый аспект
+конфигурации дисковода и носителя.
+<p align=justify>
+Например, малое число устройства /dev/fd048ss8 равно 8. В двоичном
+виде это - 00001000.
+<p>
+Каждый бит или двоичный разряд интерпретируется так:
+<center><table border=1>
+<tr><th>48 дор/дюйм - 0<th rowspan=3 colspan=2>Секторов на дорожке<th>ss - 0<th rowspan=3 colspan=2>Дисковод</tr>
+<tr><th>96 дор/дюйм - 1<th>ds - 1</tr>
+<tr><th>135 дор/дюйм - 1<th>&nbsp;</tr>
+<tr><td align=center>32<td align=center>16<td align=center>8<td align=center>4<td align=center>2<td align=center>1</tr>  
+<tr><td align=center>0<td align=center>0<td align=center>1<td align=center>0<td align=center>0<td align=center>0</tr>  
+</table></center>
+<p align=justify>
+При  идентификации  малого  числа  устройства  используются  только
+последние шесть битов этого  числа. Первым значащим битом  является
+третий слева. Например,  если третий бит  слева - 0,  то устройство
+имеет формат 48 дор/дюйм. Следующие два бита интерпретируются так:
+<center><table border=1>
+<tr><th colspan=2>Биты<th rowspan=2>Секторов на дорожке</tr>
+<tr><td align=center>16<td align=center>8</tr>
+<tr><td align=center>0<td align=center>0<td align=center>9</tr>
+<tr><td align=center>0<td align=center>1<td align=center>8</tr>
+<tr><td align=center>1<td align=center>0<td align=center>15</tr>
+<tr><td align=center>1<td align=center>1<td align=center>18</tr>
+</table></center>
+<p align=justify>
+Четвертый бит сообщает, является ли дискета односторонней (ss -  0)
+или  двусторонней  (ds  -  1).  Последние  два бита указывают номер
+дисковода:
+<center><table border=1>
+<tr><th colspan=2>Биты<th rowspan=2>Номер дисковода</tr>
+<tr><td align=center>2<td align=center>1</tr>
+<tr><td align=center>0<td align=center>0<td align=center>0</tr>
+<tr><td align=center>0<td align=center>1<td align=center>1</tr>
+<tr><td align=center>1<td align=center>0<td align=center>2</tr>
+<tr><td align=center>1<td align=center>1<td align=center>3 *</tr>
+</table></center>
+<i>*  Зарезервировано для специальных устройств не-дискетного типа,
+подключенных к контроллеру дисковода гибких дисков.</i>
+<p align=justify>
+Используя эту информацию вы можете сконструировать любые нужные вам
+малые числа устройств.
+<p align=justify>
+Не  рекомендуется  форматировать   дискеты  низкой  плотности   (48
+дор/дюйм)  на  дисководах  высокой  плотности  (96 дор/дюйм или 135
+дор/дюйм).  Записи  на  дискетах  низкой  плотности,  сделанные  на
+дисководах  высокой  плотности,  следует  считывать  на  дисководах
+высокой плотности. На  дисководах низкой плотности  они могут и  не
+считаться.
+<p align=justify>
+Для получения наилучших результатов при чтении и записи используйте
+дискеты, свободные от дефектов.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

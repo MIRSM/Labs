@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>TMPNAM(3S)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>TMPNAM(3S)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+tmpnam, tempnam - создание имен временных файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	
+	char *tmpnam (s)
+	char *s;
+	
+	char *tempnam (dir, pfx)
+	char *dir, *pfx;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+С помощью этих функций создаются имена,  которые  можно
+без опасений использовать для именования временных файлов.
+<p align=justify>Функция tmpnam всегда  образует  имя  файла,  используя
+маршрутный префикс, определяемый константой P_tmpdir во
+включаемом  файле  &lt;stdio.h>.  Если  указатель s пустой
+(равен NULL), то функция помещает результат во внутреннюю статическую область и возвращает адрес этой  области.  При следующем вызове tmpnam содержимое статической
+области изменится. Если s не равно NULL, то его  значение  рассматривается  как  адрес массива длины не менее
+L_tmpnam байт, где L_tmpnam - константа, определенная в
+&lt;stdio.h>; функция помещает результат в этот  массив  и
+возвращает s.
+<p align=justify>Функция tempnam дает пользователю возможность  выбирать
+каталог. Аргумент dir указывает на имя каталога, в  котором нужно создать файл. Если dir равен NULL или  ссылается на цепочку символов, не являющуюся именем подходящего каталога, то имя строится с использованием константы P_tmpdir. Если и этот каталог недоступен,  в  качестве последнего шанса будет использован /tmp. Указанная последовательность действий игнорируется, если  определена переменная окружения TMPDIR; именно ее  значение задает имя каталога временных файлов.
+<p align=justify>Во многих случаях предпочтительны имена файлов, начинающиеся определенной последовательностью  символов.  Для
+создания таких имен предусмотрен аргумент pfx. Этот аргумент может иметь значение NULL или  быть  ссылкой  на
+цепочку длиной до 5 символов, которая должна  использоваться в качестве первых символов имени временного файла.
+<p align=justify>Функция tempnam вызывает функцию <a href=MALLOC.htm>malloc(3C)</a> для получения области памяти под конструируемое имя, и возвращает
+ссылку на эту область. Таким образом, значение указателя, возвращаемого функцией tempnam, может служить аргументом функции free [см. <a href=MALLOC.htm>malloc(3C)</a>]. Если  tempnam  по
+каким-либо причинам не может возвратить  ожидаемый  результат (например, неудачно завершилась функция  malloc
+или не удалось найти подходящий каталог), то  возвращается пустой указатель.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+При каждом обращении эти функции создают новое имя.
+<p align=justify>Файлы,  созданные с помощью описанных функций и функций
+<a href=FOPEN.htm>fopen(3S)</a> или <a href=CREAT.htm>creat(2)</a>, являются  временными  только  в
+том  смысле, что они хранятся в каталоге, предназначенном для временного использования, и их имена уникальны.
+Для удаления этих файлов, когда в них отпала  необходимость,  пользователь  должен  применить системный вызов
+<a href=UNLINK.htm>unlink(2)</a>.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CREAT.htm>creat(2)</a>, <a href=UNLINK.htm>unlink(2)</a>, <a href=FOPEN.htm>fopen(3S)</a>, <a href=MALLOC.htm>malloc(3C)</a>, <a href=MKTEMP.htm>mktemp(3C)</a>,
+<a href=TMPFILE.htm>tmpfile(3S)</a>.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+При вызове более 17576 раз в одном процессе эти функции
+начнут циклически выдавать уже созданные ранее имена.
+<p align=justify>В  промежутке между образованием имени файла и его открытием другой процесс может создать файл с тем же  именем.  Этого  никогда не случится, если упомянутый "другой" процесс создает файл с помощью описываемых функций
+или функции mktemp, а имена файлов выбираются так, чтобы дублирование по другим причинам было маловероятным.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

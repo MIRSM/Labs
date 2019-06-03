@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_damage_script" kind="class" language="C#" prot="public">
+    <compoundname>DamageScript</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_damage_script_1a137dcae01bf44cac6b2397e4e3d41588" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float DamageScript.damage</definition>
+        <argsstring></argsstring>
+        <name>damage</name>
+        <initializer>= 10f</initializer>
+        <briefdescription>
+<para>Наносимый урон </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DamageScript.cs" line="12" column="1" bodyfile="DamageScript.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_damage_script_1a2eabd0b9e164ffcb5c7c6099c0439243" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DamageScript.OnTriggerEnter2D</definition>
+        <argsstring>(Collider2D other)</argsstring>
+        <name>OnTriggerEnter2D</name>
+        <param>
+          <type>Collider2D</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Соприкосновение коллайдера кулака с объектами </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Коллайдер, с которым соприкасается кулак</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DamageScript.cs" line="18" column="1" bodyfile="DamageScript.cs" bodystart="18" bodyend="49"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>DamageScript</label>
+        <link refid="class_damage_script"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>DamageScript</label>
+        <link refid="class_damage_script"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="DamageScript.cs" line="8" column="1" bodyfile="DamageScript.cs" bodystart="7" bodyend="50"/>
+    <listofallmembers>
+      <member refid="class_damage_script_1a137dcae01bf44cac6b2397e4e3d41588" prot="public" virt="non-virtual"><scope>DamageScript</scope><name>damage</name></member>
+      <member refid="class_damage_script_1a2eabd0b9e164ffcb5c7c6099c0439243" prot="private" virt="non-virtual"><scope>DamageScript</scope><name>OnTriggerEnter2D</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

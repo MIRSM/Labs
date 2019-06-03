@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>HELPADM(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>HELPADM(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+helpadm - внесение изменений в базу  данных  справочной
+службы
+<p><b>СИНТАКСИС</b>
+<pre>
+   /etc/helpadm
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда управления справочной службой helpadm позволяет
+администраторам и разработчикам команд системы UNIX определить содержимое базы данных справочной  службы  для
+отдельных команд и управлять учетом использования справочной службы. Команду helpadm могут  выполнять  только
+пользователи root, bin, и члены группы bin.
+<p align=justify>Команда helpadm выводит меню для 3 типов  данных  справочной службы, которые можно модифицировать, а также  2
+выбора для контроля использования справочной службы:
+<ol>
+<li> Модифицировать  информацию  для  начинающих   [см.
+     <a href=STARTER.htm>starter(1)</a>].
+<li> Добавить, изменить или  удалить  словарный  термин
+     [см. <a href=GLOSSARY.htm>glossary(1)</a>].
+<li> Добавить, изменить или удалить сведения о  команде
+     [описание, опции, примеры и  ключевые  слова,  см.
+     <a href=LOCATE.htm>locate(1)</a> и <a href=USAGE.htm>usage(1)</a>].
+<li> Прекратить  учет  использования  справочной службы
+     (это могут  сделать  только  пользователи  root  и
+     bin).
+<li> Возобновить  учет  использования справочной службы
+     (это могут  сделать  только  пользователи  root  и
+     bin).
+</ol>
+<p align=justify>Пользователь может выбрать  любой  из  этих  вариантов,
+введя соответствующую букву (приведенную  в  меню)  или
+вернуться в систему, введя q (quit - выйти).
+<p align=justify>Если выбран один из первых трех вариантов, пользователя
+приглашают ввести дополнительную информацию; а  именно,
+какую порцию информации для начинающих, определение какого термина или описание какой команды нужно изменить.
+Пользователя  могут  также  спросить,  что за изменения
+последуют в базе данных - добавление,  модификация  или
+удаление. Если модифицируют существующие данные или добавляют  новые,  будет  приглашение для соответствующих
+изменений/добавлений. Если удаляется термин из  словаря
+или  команда  из базы данных, пользователь должен ответить утвердительно на запрос подтверждения; только после этого будет произведено удаление. Во  всех  случаях,
+перед завершением внесения изменений пользователи должны  отвечать  утвердительно  на вопрос, уверены ли они, что хотят, чтобы заказанные изменения базы данных  были
+сделаны.
+<p align=justify>По умолчанию helpadm, для внесения добавлений/модификаций в базу данных, отправит пользователя в <a href=ED.htm>ed(1)</a> . Если
+нужен другой редактор, следует установить в  переменную
+окружения EDITOR соответствующее значение и затем  экспортировать ее.
+<p align=justify>Если  пользователь  выберет   прекращение/возобновление
+учета использования  справочной  службы,  то  выбранное
+действие выполняется без дальнейших запросов.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ED.htm>ed(1)</a>,  <a href=GLOSSARY.htm>glossary(1)</a>,  <a href=HELP.htm>help(1)</a>,  <a href=LOCATE.htm>locate(1)</a>,  <a href=STARTER.htm>starter(1)</a>,
+<a href=USAGE.htm>usage(1)</a> в Справочнике пользователя.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Из стандартного варианта файла /etc/profile экспортируется переменная окружения LOGNAME. Если после изменений
+эта переменная перестает экспортироваться, то  средства
+учета использования справочной  службы  могут  работать
+неправильно.
+<p><b>ФАЙЛЫ</b>
+<pre>
+   /usr/lib/help/HELPLOG   Информация   об   использовании
+                   справочной службы.
+<p align=justify>   /usr/lib/help/helpclean Программа сброса информации  об
+                   использовании справочной службы.
+</pre>
+<h3 align=center>HEX(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+hex  -  преобразование  выполняемого  файла  к  формату
+мс_записей
+<p><b>СИНТАКСИС</b>
+<pre>
+   hex  [-t значение] [-d значение] [-b значение] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда hex служит для того, чтобы преобразовать выполняемые  файлы [см. a.out(4)] (удалив информацию о настройке ссылок) к формату мс_записей (MOTOROLA-S-RECORDS) и поместить их на стандартный вывод. 
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>-d значение <td>     Добавить шестнадцатеричное значение ко всем  адресам секции данных (.data).
+<tr valign=top><th>-t значение <td>     Добавить шестнадцатеричное значение ко всем  адресам секции команд (.text).
+<tr valign=top><th>-b значение <td>     Добавить шестнадцатеричное значение ко всем  адресам секции неинициализированных данных (.bss).
+</table>
+Шестнадцатеричные  значения  указываются  без  префикса
+0x. Файлы должны иметь тип a.out.
+<p align=justify>Используются следующие типы мс_записей:
+<pre>
+     0  заголовок
+     2  данные
+     5  счетчик записей (пока не реализован)
+     8  конец записи
+     A  имя (только опция -s)
+</pre>
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Опция -s не описана.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

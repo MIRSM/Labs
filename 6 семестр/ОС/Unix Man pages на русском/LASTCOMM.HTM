@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>LASTCOMM(1)<br>FreeBSD Reference Manual</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LASTCOMM(1)<br>FreeBSD Reference Manual</h3>
+<p align=justify><b>ИМЯ</b><br>
+lastcomm - показывает последние выполненные команды в обратном порядке
+<p><b>СИНТАКСИС</b>
+<pre>
+   lastcomm [-f file] [command ...] [user ...] [terminal ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Lastcomm выдает информацию о предыдущих выполненных командах.
+Без аргументов команда выдает на экран информацию о выполненных
+командах в текущее время записанную в файле /var/account/acct.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>-f file <td> Читать информацию из файла file. По умолчанию /var/account/acct
+</table>
+<p> К примеру команда
+<pre>
+   lastcomm a.out root ttyd0
+</pre>
+выдаст информацию о всех командах a.out выполненных пользователем 
+root на терминале ttyd0.
+<p align=justify>Информация для каждой команды содержит:
+<pre?
+   +o   Имя пользователя, запустившего процесс.
+   +o   Флаги.
+   +o   Имя команды, вызвавшей процесс.
+   +o   Время, использованное процессором (в секундах).
+   +o   Время завершения процесса.
+</pre>
+
+Флаги означают:
+<br>``S'' - команда выполнена суперпользователем.
+<br>``F'' - команда запущена после разветвления, но без последующего    выполнения.
+<br>``C'' - команда выполнена в PDP-11 совместимом режиме.
+<br>``D'' - команда прервана с генерацией .core - файла.
+<br>with the generation of a core file, and 
+<br>``X'' - команда прервана с сигналом.
+<p><b>ФАЙЛЫ</b>
+<pre>
+     /var/account/acct	файл подсчетов по умолчанию.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LAST.htm>last(1)</a>,  sigvec(2),  acct(5),  core(5)
+<p align=justify><b>ИСТОРИЯ</b><br>
+Команда lastcomm появилась в 3.0BSD.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

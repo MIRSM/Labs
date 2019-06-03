@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://www.ilab24.narod.ru/fract/dynamic.html -->
+<HTML><HEAD><TITLE>Фракталы: Dynamic</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY background="Фракталы Dynamic.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Dynamic.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Dynamic</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify><PRE><B>Program</B> Dynamic;
+<B>Uses</B> CRT, Graph;
+<B>Const</B>
+  a = 1;
+  b = 3;
+  dt= 0.1;
+<B>Var</B>
+  gd, gm:  Integer;
+  i, j, k: Integer;
+  x, y, t: Real;
+<B>Begin</B>
+  gd:=Detect;
+  InitGraph(gd,gm,'c:\bp\bgi');
+  <B>For</B> i:=0 <B>To</B> 65 <B>Do</B> <B>For</B> j:=0 <B>To</B> 50 <B>Do</B> <B>Begin</B>
+    x:=i;
+    y:=j;
+    <B>For</B> k:=1 <B>To</B> 100 <B>Do</B> <B>Begin</B>
+      t:=x;
+      y:=y + sin(x+a*sin(b*x))*dt;   {trig}
+      x:=t - sin(y+a*sin(b*y))*dt;   {trig}
+      PutPixel(Round(x*10), Round(y*10), (i+j) <B>mod</B> 16);
+    <B>End</B>;
+  <B>End</B>;
+  ReadKey;
+  CloseGraph;
+<B>End</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 02.12.04<BR>Дата последнего обновления: 02.12.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Dynamic.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

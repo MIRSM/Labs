@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>UNITS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>UNITS(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+units - преобразование единиц измерения
+<p><b>СИНТАКСИС</b>
+<pre>
+units
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Программа units позволяет осуществлять перевод  различных величин  (математических,  физических,  денежных  и
+др.) из одних единиц измерения в другие.  Это  производится в диалоге:
+<pre>
+	You have: inch      Величина в исходных единицах
+	You want: cm        Желаемые единицы
+	   * 2.540000е+00
+	   / 3.937008е-01
+</pre>
+<p align=justify>Величина задается в форме мультипликативной  комбинации
+единиц измерения, которой, возможно, предшествует  числовой множитель. Показатели степени указываются как положительные целые числа, присоединенные справа к  имени
+единицы измерения, деление обозначается как обычно:
+<pre>
+	You have: 15 lbs force / in2
+	You want: atm
+	   * 1.020689е+00
+	   / 9.797299е-01
+</pre>
+<p align=justify>Программой units выполняются  только  мультипликативные
+преобразования, так что шкалу Кельвина можно преобразовать к шкале Рэнкайна, а шкалу Цельсия к  шкале  Фаренгейта - нельзя. Наряду с широко распространенными  единицами воспринимается и множество  экзотических;  кроме
+того, допустимо  употребление  ряда  мировых  констант,
+включая:
+<table>
+<tr valign=top><th>pi  <td>    Отношение длины окружности к диаметру.
+<tr valign=top><th>c   <td>    Скорость света.
+<tr valign=top><th>e   <td>    Заряд электрона.
+<tr valign=top><th>g   <td>    Ускорение земного притяжения.
+<tr valign=top><th>force  <td> То же, что и g.
+<tr valign=top><th>mole  <td>  Число Авогадро.
+<tr valign=top><th>water <td>  Давление  водяного  столба,  отнесенное  к единице высоты.
+<tr valign=top><th>au   <td>   Астрономическая единица.
+</table>
+<p align=justify>Единица массы фунт воспринимается в обозначении lb,  но
+не в обозначении pound. Составные  имена  должны  задаваться слитно (например,  lightyear  -  световой  год).
+Английские единицы измерения, отличные  от  одноименных
+американских, должны снабжаться префиксом br (например,
+brgallon - английский галлон).  Для  получения  полного
+списка воспринимаемых программой единиц измерения  следует выдать команду:
+<pre>
+	cat  /usr/lib/unittab
+</pre>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/lib/unittab
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>DISKCP(1)</h3></title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DISKCP(1)</h3></h3>
+<p align=justify><b>ИМЯ</b><br>
+   diskcp, diskcmp - Копирует, сравнивает гибкие диски.
+<p><b>СИНТАКСИС</b>
+<pre>
+ diskcp [-f][-d][-s][-48ds9][-96ds9][-96ds15][-135ds9]
+ [-135ds18]
+ diskcmp [-d][-s][-48ds9][-96ds9][-96ds15][-135ds9][-135ds18]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   Команда diskcp используется для  формирования  образа  (точной
+   копии)  одного  гибкого  диска (источника) на другом (целевом)
+   гибком диске.  На машинах с одним накопителем для гибких  маг-
+   нитных  дисков  команда diskcp переносит образ на жесткий диск
+   на то время, пока не будет вставлен в накопитель пустой "целе-
+   вой" гибкий  диск.  На машинах с двумя накопителями для гибких
+   магнитных дисков команда diskcp сразу же помещает образ гибко-
+   го диска - источника непосредственно на целевой гибкий диск.
+<p align=justify><b>Опциями являются:</b><br>
+<table>
+<tr valign=top><th> -f <td> Перед тем,  как копировать образ, выполняется форматирование   целевого   гибкого  диска  (только  для  команды diskcp).
+<tr valign=top><th> -d <td>  Компьютер оснащен двумя накопителями для гибких  магнитных дисков. Команда diskcp копирует образ непосредственно на целевой гибкий диск.
+<tr valign=top><th> -s <td> Использует команду <a href=SUM.htm>sum(1)</a>, чтобы сравнить содержимое исходного  и целевого гибких дисков;  выводит сообщение об ошибке, если они не соответствуют друг другу.
+<tr valign=top><th> -48ds9<td> Эта установка  предназначена  для гибких дисков с низкой плотностью и 48 дорожками на дюйм. Она является установкой, используемой по умолчанию.
+<tr valign=top><th> -96ds9<td> Эта установка предназначена для гибких дисков с  высокой плотностью и 96 дорожками на дюйм.
+<tr valign=top><th> -96ds15<td> Эта установка предназначена для гибких дисков с  учетверенной плотностью и 96 дорожками на дюйм.
+<tr valign=top><th> -135ds9<td> Эта установка  предназначена для гибких дисков диаметром 3.5 дюйма с высокой плотностью и 135 дорожками  на дюйм.
+<tr valign=top><th> -135ds18<td> Эта установка  предназначена для гибких дисков диаметром 3.5 дюйма с учетверенной плотностью и 135  дорожками  на дюйм.
+</table>
+<p align=justify>При использовании  опций -96ds9 и -96ds15 для команды diskcp в
+   случае, если первый целевой диск не  отформатирован, программа
+   отметит это,  произведет форматирование этого диска и выполнит
+   копирование. Если требуется еще одна копия и вставлен еще один
+   неотформатированный целевой диск, то команда diskcp завершится
+   с сообщением "System Error" (Системная ошибка). Для того, что бы сделать другую копию, надо выйти из программы, отформатировать гибкий диск и повторно вызвать команду diskcp.
+<p align=justify>Команда diskcmp функционирует аналогично команде diskcp.  Она,
+   с использованием  утилиты  cmp,  сравнивает содержимое первого
+   гибкого диска с содержимым второго гибкого диска.
+<p align=justify><b>ПРИМЕРЫ</b><br>
+   Чтобы сделать  копию гибкого диска,  поместите исходный гибкий
+   диск в накопитель и введите команду:
+<pre>
+ diskcp
+</pre>
+   Когда команда diskcp закончит копирование на жесткий диск, она
+   выведет приглашение  для того,  чтобы Вы вставили в накопитель
+   целевой гибкий диск. Если при вызове команды diskcp Вы указали
+   флаг -f, то программа выполнит форматирование целевого гибкого
+   диска. По завершению копирования команда diskcp выведет  приглашение с вопросом, желаете ли Вы сделать еще одну копию с того же самого исходного диска.  Если Вы введете 'n'  (нет),  то
+   она выведет приглашение с вопросом, желаете ли Вы также произвести копирование другого исходного диска.
+<p align=justify>Если Вы имеете два накопителя для гибких дисков, укажите в командной строке флаг -d:
+<pre>
+ diskcp -d
+</pre>
+<p align=justify><b>ЗAМEЧAНИЯ</b><br>
+Если при копировании образа источника на целевой диск  команда
+diskcp обнаруживает ошибку по записи, она выполняет форматирование этого диска и повторяет попытку записи образа  источника еще раз.  Такое случается довольно часто в тех случаях,  когда используется неотформатированный гибкий диск и при этом не установлен флаг -f.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /usr/bin/diskcp
+ /usr/bin/diskcmp
+ /tmp/disk$$
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+   <a href=CMP.htm>cmp(1)</a>, <a href=DD.htm>dd(1)</a>, <a href=SUM.htm>sum(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

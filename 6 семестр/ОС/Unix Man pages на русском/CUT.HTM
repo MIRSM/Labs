@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>CUT(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CUT(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+cut - команда выборки отдельных полей из строк файла
+<p><b>СИНТАКСИС</b>
+<pre>
+  cut  -cсписок [файл ...]
+  cut  -fсписок [-dсимвол] [-s] [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда cut используется для выборки колонок из таблицы
+или полей из каждой строки файла; если применить терминологию баз данных, команда cut выполняет операцию проекции отношения. Поля, специфицированные списком, могут
+быть фиксированной длины, то есть расположенные как  на
+перфокарте  (опция  -c), или переменной длины, изменяющейся от строки к строке; в этом случае  границей  поля
+является символ-разделитель, например, символ табуляции
+(опция -f). Команду можно использовать как фильтр: если
+не указано ни одного файла или задано имя -,  используется  стандартный  ввод.  Результат всегда поступает на
+стандартный вывод.
+<p>
+Смысл опций команды cut таков:
+<dl>
+<dt>список 
+<dd>Список целых номеров полей в возрастающем порядке,
+перечисленных через запятую; возможен символ - для
+указания интервалов; например, 1,4,7; 1-3,8; -5,10
+(сокращение для 1-5,10); 3 (обозначение для интервала от 3 до последнего поля).
+<dt>-cсписок 
+<dd>Список, следующий за -c (без пробела),  специфицирует позиции символов (например, опция -c1-72  задает первые 72 символа каждой строки).
+<dt>-fсписок 
+<dd>Список, следующий за -f  (без  пробела),  является
+списком  номеров  полей;  предполагается, что поля
+разделены в файле символом-разделителем (см. опцию
+-d); например,  -f1,7  копирует  только  первое  и
+седьмое  поля. Если не задана опция -s, то строки,
+не содержащие разделителей, копируются в результат
+без всякой  обработки  (используется  для  ведения
+подзаголовков таблиц).
+<dt>-dсимвол 
+<dd>Символ, следующий за -d  (без  пробела),  является
+разделителем полей (только в случае опции -f).  По
+умолчанию разделителем является символ  табуляции.
+Пробел или  другие  символы,  имеющие  специальное
+значение для интерпретатора команд  shell,  должны
+заключаться в кавычки.
+<dt>-s
+<dd>Игнорировать строки  без  символов-разделителей  в
+случае опции -f. Если опция не задана,  то  строки
+без разделителей копируются в результат без  обработки.
+</dl>
+Одна из опций -c или -f должна быть задана обязательно.
+<p align=justify>
+Для  осуществления  горизонтальной проекции содержимого
+файла по контексту используйте команду <a href=GREP.htm>grep(1)</a>; для горизонтального соединения  файлов  -  команду  <a href=PASTE.htm>paste(1)</a>.
+Чтобы  переупорядочить  столбцы  в таблице, используйте
+команды cut и paste.
+<p><b>ПРИМЕРЫ</b><br>
+<ol>
+<li>Поставить в соответствие идентификаторам пользователей их входные имена:
+<pre>
+cut -d: -f1,3 /etc/passwd
+</pre>
+<li>Присвоить переменной name входное имя текущего пользователя:
+<pre>
+name=`who am i | cut -f1 -d" "`
+</pre></ol>
+<p align=justify><b>СМ. ТАКЖЕ</b><br> 
+<a href=GREP.htm>grep(1)</a>, <a href=PASTE.htm>paste(1)</a>.
+<p><b>ДИАГНОСТИКА</b>
+<dl>
+<dt>ERROR: line too long 
+<dd>Строка имеет более 511 символов или полей.
+<dt>ERROR: bad list for c/f option 
+<dd>Не задана опция -c или -f или неверно специфицирован список. Ошибки не происходит, если строка имеет меньше полей, чем указано в списке.
+<dt>ERROR: no fields 
+<dd>Список пуст.
+<dt>ERROR: no delimeter 
+<dd>После опции -d не задан символ.
+<dt>ERROR: cannot handle multiple adjacent backspaces 
+<dd>Смежные  символы забоя не могут быть корректно обработаны.
+<dt>WARNING: cannot open файл 
+<dd>Файл либо не доступен на чтение, либо не существует. Если задано несколько файлов,  обработка  продолжается.
+</dl>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

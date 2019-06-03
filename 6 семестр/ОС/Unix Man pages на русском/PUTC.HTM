@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>PUTC(3S)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>PUTC(3S)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+putc, putchar, fputc, putw - запись в поток символа или
+машинного слова
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	
+	int putc (c, stream)
+	char c;
+	FILE *stream;
+	
+	int putchar (c)
+	char c;
+	
+	int fputc (c, stream)
+	char c;
+	FILE *stream;
+	
+	int putw (w, stream)
+	int w;
+	FILE *stream;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Макрос putc записывает символ c в поток  вывода  stream
+(в позицию, задаваемую указателем файла, если он  определен). Макрос putchar (c) определяется  как  putc  (c,
+stdout).
+<p align=justify>Функция fputc выполняет те же действия,  что  и  макрос
+putc; она работает медленнее,  чем  putc,  но  занимает
+меньше пространства на каждое использование. Кроме  того, функцию можно передавать в качестве аргумента.
+<p align=justify>Функция putw выводит машинное слово  w  (значение  типа
+int) в поток вывода stream (в позицию, задаваемую  указателем файла, если он определен). Размер слова  машинно-зависим. Для данной системы он составляет  32  бита.
+Функция putw не требует и не выполняет выравнивание  по
+границе слова в выходном файле.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FCLOSE.htm>fclose(3S)</a>,    <a href=FERROR.htm>ferror(3S)</a>,    <a href=FOPEN.htm>fopen(3S)</a>,     <a href=FREAD.htm>fread(3S)</a>,
+<a href=PRINTF.htm>printf(3S)</a>, <a href=PUTS.htm>puts(3S)</a>, <a href=SETBUF.htm>setbuf(3S)</a>, <a href=STDIO.htm>stdio(3S)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+В случае успеха описанные функции (кроме putw)  возвращают выводимое значение. Функция putw возвращает ferror
+(stream). При неудаче  они  возвращают  константу  EOF.
+Ошибка  возникает, если файл stream не открыт на запись
+или, если файл вывода не может расти. Так как EOF - допустимое целое значение, для распознавания ошибок  putw
+нужно пользоваться функцией <a href=FERROR.htm>ferror(3S)</a>.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Поскольку putc - макрос,  аргумент  stream  вычисляется
+многократно, что существенно при наличии  побочных  эффектов. В частности, вызов putc (c,  *f++)  ведет  себя
+нежелательным образом. В таких случаях следует  использовать fputc.
+<p align=justify>Из-за возможных различий в длине слова и  порядке  байт
+файлы,  сформированные при помощи putw, являются машинно-зависимыми и могут не быть прочитаны при помощи getw
+на другом процессоре.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

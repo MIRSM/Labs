@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>POPEN(3S)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>POPEN(3S)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+popen,  pclose  -  создание  и  ликвидация канала между
+программой и командой
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	
+	FILE *popen (command, type)
+	char *command, *type;
+	
+	int pclose (stream)
+	FILE *stream;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргументами функции popen являются указатели на цепочки
+символов  с  завершающим нулевым байтом. Первая из них,
+command, содержит команду shell'а, а вторая задает  режим  ввода/вывода:  "r"  для  чтения  и "w" для записи.
+Функция popen создает канал между вызывающей программой
+и указанной командой. Возвращаемое значение - это  указатель  на поток. Если режим равен "w", то можно писать
+на стандартный ввод команды, выводя в созданный  поток.
+Если  режим  равен "r", то можно читать со стандартного
+вывода команды, вводя из созданного потока.
+<p align=justify>Поток,  открытый  с помощью popen, должен быть закрыт с
+помощью функции pclose, которая ожидает завершения  запущенного  процесса выполнения команды и выдает код его
+завершения.
+<p align=justify>Поскольку открытые файлы разделяются, команда с режимом
+"r" может быть использована как входной фильтр,  а  команда с режимом "w" - как выходной фильтр.
+<p><b>ПРИМЕР</b>
+<ol>
+<li> Типичным является следующий пример:
+<pre>
+	char *cmd = "ls *.c";
+	FILE *ptr;
+	if ((ptr = popen (cmd, "r")) != NULL)
+	  while (fgets (buf, n, ptr)) != NULL)
+	    (void) printf ("%s", buf);
+</pre>
+</ol>
+<p align=justify>На стандартный вывод будут записаны имена всех файлов с
+расширением .c, принадлежащих текущему каталогу.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PIPE.htm>pipe(2)</a>,  <a href=WAIT.htm>wait(2)</a>,  <a href=FCLOSE.htm>fclose(3S)</a>,  <a href=FOPEN.htm>fopen(3S)</a>,  <a href=STDIO.htm>stdio(3S)</a>,
+<a href=SYSTEM.htm>system(3S)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функция popen возвращает пустой указатель (NULL),  если
+файл или процесс не могут быть созданы.
+<p align=justify>Функция  pclose возвращает -1, если поток не ассоциирован с командой посредством popen.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Если требуется, чтобы вызывающий процесс и процесс, порождаемый по popen, одновременно читали  или  писали  в
+общие  файлы, то нельзя при этом пользоваться буферизованным вводом/выводом, так как данные в буферах перемешаются непредсказуемо. Проблемы с выходным фильтром могут быть решены путем аккуратного выталкивания  буферов
+с помощью функции fflush [см. <a href=FCLOSE.htm>fclose(3S)</a>].
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

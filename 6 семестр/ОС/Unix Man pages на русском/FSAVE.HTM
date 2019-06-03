@@ -1,0 +1,297 @@
+<html>
+<head>
+<title>FSAVE(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FSAVE(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+fsave - резервное копирование файловых систем с контролем ошибок в
+неинтерактивном режиме.
+<p><b>СИНТАКСИС</b>
+<pre>
+ fsave filesystem [dumpinfo] [mediainfo] [sitename]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+fsave запускается  из  <a href=FSPHOTO.htm>fsphoto(8)</a> для получения полуавтоматического
+интерфейса  для  резервного  копирования  файловых  систем  XENIX с
+помощью <a href=BACKUP.htm>backup(1)</a>.  Вмешательство оператора  требуется для  монтажа
+и  демонтажа  кассет  или  дискет  в  нужные  моменты,  однако, для
+уменьшения потенциально возможных ошибок сведено к минимуму.
+<p align=justify>
+Оператор  получает  подсказки,  когда  от него требуется выполнение
+определенных действий,  таких как  монтаж или  демонтаж кассет  или
+дискет. Эти подсказки и допустимые ответы на них описываются ниже.
+<p align=justify>
+Для всех подсказок введение h,H или ?  осуществляет выдачу на экран
+краткой сводки всех возможных ответов.
+<p align=justify><i>Дамп файловой системы (резервное копирование)</i><br>
+Следующая подсказка выводит  параметры, используемые по  умолчанию,
+(выбранные из  файла базы  данных schedule)  и представляет  опции,
+предназначенные для их изменения:
+<pre>
+  Level dumplevel dump of filesystem filesistem, date
+          media size:       size feet [or Kb]
+          media drive:      drive
+  This media will be saved for howlong, and is howvital.
+
+  M)ounted volume, P)ostpone, C)heck or F)ormat volumes,
+  R)etension or H)elp:
+</pre><p align=justify>
+Выведенные величины задают следующие инструкции: filesystem  должна
+быть скопирована с помощью  магнитной ленты длиной size  футов (или
+size килобайт для емких дискет), установленной на драйве(дисководе)
+drive. Носители media будут храниться howlong ("1 год", "2  месяца"
+и  т.д.),  причем  уровень  резервного  копирования dumplevel будет
+howvital ("критическим", "предупредительным" и т.д.).
+<p><i>Опции меню таковы:</i>
+<table>
+<tr valign=top><td><b>m</b><td>Установлен (с правом записи) том запрошенного размера size,  можно  начинать резервное копирование (дамп).</tr>
+<tr valign=top><td><b>mnewsize</b><td>Доступны тома недостаточного размера, поэтому  вместо них установлен большой том размера newsize. Если дамп
+выйдет за  пределы одного  тома, то  последующие тома
+должны быть того же размера.</tr>
+<tr valign=top><td><b>p</b><td>Резервное    копирование     откладывается   (fsphoto автоматически  повторит  копирование  этой   файловой системы в следующий раз).</tr>
+<tr valign=top><td><b>c</b><td>Повторная проверка на ошибки томов, используемых  для резервного копирования  файловой системы  filesystem.
+Эта опция  полезна, когда  дамп таинственным  образом
+срывается, и fsave начинает все сначала, но  оператор
+не  видит  действительной  причины (например, стример
+случайно  остался  в  режиме  "offline", или осталась
+незапертым задвижка дисковода гибких дисков) и  хочет
+перепроверить носители.</tr>
+<tr valign=top><td><b>f</b><td>Форматирование  установленного в    текущий момент носителя (главным образом эта опция опция полезна для дискет).</tr>
+<tr valign=top><td><b>r</b><td>Перенатяжка ленты с помощью /usr/bin/tape.</tr>
+</table>
+<p align=justify>
+Если требуется несколько томов,  то backup будет останавливаться  в
+ожидании установки очередного тома. Следите за порядком  следования
+носителей.
+<p align=justify><i>Проверка форматирования</i><br>
+Проверка форматирования носителей "критического" уровня выполняется
+с помощью <a href=DUMPDIR.htm>dumpdir(1)</a>:
+<pre>
+  Check vital volumes for format errors
+  M)ounted first volume, S)kip format check, or H)elp:
+</pre>
+<p><i>Опции меню таковы:</i>
+<table>
+<tr valign=top><td><b>m</b><td>Первый  том уже (или  еще) установлен, и  dumpdir может начинать проверку его форматирования.</tr>
+<tr valign=top><td><b>s</b><td>Проверка   форматирования  тома  пропускается,  и осуществляется проверка ошибок чтения (см. ниже).</tr>
+</table>
+<p align=justify><i>Проверка ошибок чтения</i><br>
+Все  тома  читаются  с  помощью  restor(1),  которая   осуществляет
+контроль ошибок во  время этого чтения.  Если возникает ошибка,  то
+дамп объявляется неудавшимся и начинается сначала.
+<pre>
+   Check vital volumes for read errors
+   M)ounted which volume, E)rror on previos volume, D)one, S)kip
+   checks, or H)elp:
+</pre>
+<p><i>Опции меню таковы:</i>
+<table>
+<tr valign=top><td><b>m</b><td>Том which ("первый"  или "следующий") установлен в дисководе и готов к проверке на ошибки чтения.</tr>
+<tr valign=top><td><b>e</b><td>На последнем проверяемом  томе возникла ошибка, и дамп  следует повторить.</tr>
+<tr valign=top><td><b>d</b><td>Все тома проверены, ошибок не обнаружено, резервное копирование файловой системы было завершено успешно.</tr>
+<tr valign=top><td><b>s</b><td>Пропуск проверки на ошибки чтения для остальных томов.</tr>
+</table>
+<p align=justify>
+Каждый  том  должен  быть   проверен  на  ошибки  чтения;   restor
+запрашивает тома для проверки  от первого до последнего.  Тома, на
+которых обнаруживаются  ошибки чтения,  должны быть  помечены, как
+"подозрительные" и сняты, а дамп повторен сначала.
+<p align=justify>
+После  того,  как  резервное  копирование будет успешно завершено,
+тома   должны   быть   помечены   в   соответствии  с  приводимыми
+инструкциями.
+<p align=justify><i>Аргументы</i><br>
+fsave обычно запускается  программой fsphoto, которая  передает ей
+все необходимые аргументы, взятые из базы данных <a href=SCHEDULE.htm>schedule(8)</a>.
+<dl>
+<dt>filesystem
+<dd>Файловая система, подлежащая резервному копированию.
+<dt>dumpinfo
+<dd>Набор  разделенных   пробелами  строк,   которые   предоставляют
+некоторую   необязательную   информацию   о   данном   резервном
+копировании:
+<pre>
+       dumplevel size savetime importance marker
+</pre>
+Каждая из этих строк-компонентов может быть заключена в кавычки
+и, таким образом, может содержать пробелы.
+<dl>
+<dt>dumplevel
+<dd>Уровень  выполняемого дампа, задаваемый  одной цифрой
+от  0  до   9  (передаваемой  дампу)   или  буквы   x
+(означающей,  что   дамп  выполнять   не  надо).   По
+умолчанию выполняется дамп нулевого уровня.
+<dt>size
+<dd>Объем    промежуточных    носителей,  которые   будут
+использованы (в  футах для  ленты и  в килобайтах для
+дискет).  size  относится  к  первому  из   размеров,
+перечисленных в mediainfo. Это значение  используется
+по умолчанию.
+<dt>savetime
+<dd>Время    хранения  резервной   копии  (например,   "3
+месяца"). По умолчанию - "1 год".
+<dt>importance
+<dd>Уровень   важности  данного  резервного  копирования?
+(Например,  "критический"  или  "предупредительный").
+Форматирование     копий     "критического"    уровня
+проверяется программой dumpdir. По умолчанию задается
+"важный" уровень.
+<dt>marker
+<dd>Помещает  на каждом томе метку "none"("никакой" -  по
+умолчанию) или метку дополнительного типа  (например,
+"a pink sticker" - розовая наклейка)
+</dl>
+Типичный вид dumpinfo:
+<pre>
+      9 1200 "2 weeks" useful "a blue X"
+</pre>
+определяет, что будет выполняться дамп уровня 9 на  1200-футовой
+ленте  (или  на  1200   килобайтовой  дискете),  который   будет
+храниться  2  недели  с  меткой  "голубой крест" (в дополнение к
+метке более содержательного типа). Эта резервная копия считается
+просто  "полезной"  (useful)  и  не  будет проверяться с помощью
+dumpdir.
+<dt>mediainfo
+<dd>Набор   разделенных   пробелами   строк,   задающих    некоторую
+необязательную информацию об используемом носителе:
+<pre>
+     drive d density sizes ... [format]
+     drive k sizes ... [format]
+</pre>
+<dl>
+<dt>drive
+<dd>Имя используемого для резервного копирования
+устройства. По умолчанию - /dev/rmt0.
+<dt>k sizes ...
+<dd>Если задано значение k, устройство drive
+предполагается дисководом гибких дисков, а список
+размеров sizes определяет емкости дискет, которые
+могут быть использованы (в килобайтах).
+<dt>d density sizes ...
+<dd>В противном случае, должно быть задано значение d. В
+этом  случае  drive  считается  магнитной  лентой  с
+плотностью записи density (битов  на дюйм) и с одной
+из возможных емкостей sizes (в футах).
+<dt>format
+<dd>Используется команда форматирования ленты или
+дискеты так, как это описано.
+</dl>
+Информация mediainfo, описывающая 9-дорожечную магнитную  ленту,
+будет выглядеть так:
+<pre>
+      media /dev/rmt0 d 1600 2400 1200 600
+      media /dev/rmt2 d 800 1400 1200 600
+</pre>
+определяя,  что  /dev/rmt0  -  это  магнитная лента с плотностью
+записи  1600  бит/дюйм  емкостью  2400,1200  или  600  футов,  а
+/dev/rmt2 -  с плотностью записи 800 бит/дюйм.
+<p>
+Дискета может быть описана так:
+<pre>
+      media /dev/fd0 k 1024 format /dev/fd0
+</pre>
+что  означает,   что  /dev/fd0   -  мегабайтная   дискета  (1024
+килобайта), сформатированная командой:
+<pre>
+      format /dev/fd0
+</pre>
+<dt>sitename
+<dd>Место  выполнения  резервного  копирования  (например,  название
+компании или здания). Заметьте,  что имя дескриптора <a href=UUCP.htm>uucp(1)</a>  из
+/etc/systemid автоматически  помещается в область меток томов.
+</dl>
+<p align=justify>
+Только  привилегированный  пользователь  может  запускать   команду
+fsave.
+<p><b>ФАЙЛЫ</b>
+<pre>
+/etc/systemid  Имя машины.
+/etc/ddate     Регистрация последнего резервного копирования каждой  файловой
+               системы.
+/dev/tty       Всегда присутствующее символьное устройство.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=FSPHOTO.htm>fsphoto(8)</a>, <a href=SCHEDULE.htm>schedule(8)</a>, <a href=BACKUP.htm>backup(1)</a>, <a href=DUMPDIR.htm>dumpdir(1)</a>, restor(1),
+<a href=BASENAME.htm>basename(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Резервное копирование  завершается успешно  (код завершения  0), но
+ошибки  генерируют  соответствующее  сообщение  и  статус выхода 1.
+fsave сообщает о  неправильном вводе аргументов  и выходит с  кодом
+завершения 2.
+<p align=justify>
+Резервное копирование файловой системы filesystem откладывается,  и
+fsave выходит с кодом завершения 3.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>LOGIN(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LOGIN(1) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+login - вход в систему
+<p><b>СИНТАКСИС</b>
+<pre>
+   login  [имя [аргумент_окружения ...]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда login используется в начале каждого сеанса  работы за  терминалом  и  дает  возможность  пользователю
+идентифицировать себя для системы. Команду login  можно
+вызвать явно или ее может выдать система при первом установлении связи. Эта команда также выдается системой в
+тот момент, когда предыдущий пользователь закончил  сеанс работы. Информация о том, как начать работу, имеется в начале этого Справочника (см. КАК НАЧАТЯ?).
+<p align=justify>Если команда login вызывается явно, она  должна  заместить исходный интерпретатор команд. Данное действие выполняется после ввода в первоначальном shell'е строки
+<pre>
+     exec login
+</pre>
+<p align=justify>Команда login запрашивает входное имя (если оно не  задано как аргумент) и пароль (если он  есть).  Во  время
+ввода пароля эхоотображение  выключено  (там,  где  это
+возможно), поэтому в протокол сеанса пароль не попадет.
+<p align=justify>Если в течение определенного промежутка времени (например, одной минуты) пользователь не завершил вход в систему, то скорее всего его "молча" отсоединят.
+<p align=justify>После успешного входа в систему модифицируются  учетные
+файлы, выполняется процедура  /etc/profile  и  выдается
+дополнительное сообщение из файла /etc/motd, если  файл
+не пуст.  Устанавливаются  идентификатор  пользователя,
+идентификатор группы, рабочий каталог  и  интерпретатор
+команд [обычно это <a href=SH.htm>sh(1)</a>]. Если в рабочем каталоге  существует файл .profile, то он выполняется. Все эти спецификации находятся в строке файла /etc/passwd,  описывающей данного пользователя. Имя интерпретатора  команд
+состоит из символа -, за которым идет последний  компонент маршрутного имени интерпретатора (например,  -sh).
+Если это поле в файле паролей  пусто,  то  используется
+имя стандартного интерпретатора команд /bin/sh. Если  в
+этом поле стоит символ *, то каталог, указанный в  предыдущем поле, становится корневым  -  стартовой  точкой
+при поиске файлов по маршрутным именам, начинающимся  с
+символа /. Затем в новой иерархии файлов, которая должна содержать свои  /bin/login  и  /etc/passwd,  команда
+login выполняется повторно.
+<p align=justify>Стандартное окружение инициализируется следующим  образом:
+<pre>
+     HOME=входной_каталог
+     PATH=:/bin:/usr/bin
+     SHELL=последнее_поле_строки_из_файла_паролей
+     MAIL=/usr/mail/входное_имя
+     TZ=информация_о_часовом_поясе
+</pre>
+<p align=justify>Окружение можно расширить или модифицировать с  помощью
+дополнительных аргументов команды login либо  во  время
+ее запуска, либо в момент запроса входного имени. Аргументы могут быть в двух формах: либо yyy, либо xxx=yyy.
+Аргументы без знака равенства помещаются в окружение  в
+виде
+<pre>
+     Ln=yyy
+</pre>
+<p align=justify>где n - номер, отсчитываемый от 0 и увеличивающийся  на
+1 всякий раз, когда требуется новое имя  переменной.  В
+аргументах вида xxx=yyy xxx  означает  имя  переменной,
+yyy - ее значение. Именно так эта пара и  помещается  в
+окружение. Если одноименная переменная  уже  входила  в
+окружение, ее старое значение пропадает, однако имеются
+два исключения: значения переменных PATH и SHELL  изменить нельзя. В результате пользователи, вошедшие в  ограниченный shell [см <a href=RSH.htm>rsh(1)</a>], лишены возможности  снять
+ограничения.
+<p align=justify>Команды login и getty допускают экранирование посредством символа \. Тем самым в аргументы могут входить пробелы и символы табуляции, если перед ними поместить \.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/utmp                  Файл учета.
+	/etc/wtmp                  Файл учета.
+	/usr/mail/имя_пользователя Почтовый ящик пользователя.
+	/etc/motd                  Дополнительное сообщение.
+	/etc/passwd                Файл паролей.
+	/etc/profile               Системный профайл.
+	.profile                   Пользовательский профайл.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MAIL.htm>mail(1)</a>, <a href=NEWGRP.htm>newgrp(1)</a>, <a href=SH.htm>sh(1)</a>, <a href=SU.htm>su(1)</a>.<br>
+<a href=PASSWD.htm>passwd(4)</a>, <a href=PROFILE.htm>profile(4)</a>, <a href=ENVIRON.htm>environ(5)</a> в  Справочнике  программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+<dl>
+<dt>login incorrect <dd>     Имя пользователя или пароль не соответствуют зарегистрированным в системе.
+<p><dt>No shell, cannot open password file, no directory <dd>     Обратитесь к администратору системы.
+<p><dt>No utmp entry, You must exec "login"  from  the  lowest
+level "sh" <dd> Вы попытались выполнить login как команду без  использования внутренней команды  shell'а  exec  или пытались  выполнить  ее  не   из   первоначального shell'а.
+</dl>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

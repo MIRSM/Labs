@@ -1,0 +1,495 @@
+
+; pragmas
+; -omit=operate
+; -omit=system
+
+; tests
+T=<  "меньше чем"
+T=>  "больше чем"
+T=>= "больше или равно"
+T=<= "меньше или равно"
+T=<> "не равно"
+T==  "равно"
+
+; casts
+C=B "Boo;превратить в булевский"
+C=A "Ana;превратить в аналоговый"
+C=R "Real;превратить в действительный"
+C=T "Tmr;превратить в таймер"
+C=M "Msg;превратить в сообщение"
+
+; operators (extend)
+EB=>=1 "булевский OR"
+EB=& "булевский AND"
+EA=+ "сложение"
+EA=* "умножение"
+EM=CAT "слияние"
+
+; operators (fixed)
+OB==1 "исключающее OR"
+OA=- "вычитание"
+OA=/ "деление"
+
+; unary operators
+UX=1 "1 присвоить"
+UA=Neg "численное отрицание"
+
+;blocks: {B=nb:name\n...iop...\n}\n
+{B=1:sig_gen;генератор сигналов
+#B<RUN
+#T<PERIOD
+#A<MAXIMUM
+#B>PULSE
+#A>UP
+#B>END
+#R>SINE
+}
+{B=2:RS;сбросить доминанту
+#B<SET
+#B<RESET1
+#B>Q1
+}
+{B=3:SR;установить доминанту
+#B<SET1
+#B<RESET
+#B>Q1
+}
+{B=4:r_trig;определение переднего фронта
+#B<CLK
+#B>Q
+}
+{B=5:f_trig;определение заднего фронта
+#B<CLK
+#B>Q
+}
+{B=6:CTU;счетчик вверх
+#B<CU
+#B<RESET
+#A<PV
+#B>Q
+#A>CV
+}
+{B=7:CTD;счетчик вниз
+#B<CD
+#B<LOAD
+#A<PV
+#B>Q
+#A>CV
+}
+{B=8:CTUD;счетчик вверх/вниз
+#B<CU
+#B<CD
+#B<RESET
+#B<LOAD
+#A<PV
+#B>QU
+#B>QD
+#A>CV
+}
+{B=9:TON;включить таймер
+#B<IN
+#T<PT
+#B>Q
+#T>ET
+}
+{B=10:TOF;выключить таймер
+#B<IN
+#T<PT
+#B>Q
+#T>ET
+}
+{B=11:TP;время пульсирования
+#B<IN
+#T<PT
+#B>Q
+#T>ET
+}
+{B=12:sema;семафор
+#B<CLAIM
+#B<RELEASE
+#B>BUSY
+}
+{B=13:CMP;сравнение
+#A<VAL1
+#A<VAL2
+#B>LT
+#B>EQ
+#B>GT
+}
+{B=14:stackint;Стек целых аналоговых
+#B<PUSH
+#B<POP
+#B<R1
+#A<IN
+#A<N
+#B>EMPTY
+#B>OFLO
+#A>OUT
+}
+{B=15:derivate;дифференцировние
+#B<RUN
+#R<XIN
+#T<CYCLE
+#R>XOUT
+}
+{B=16:hyster;гистерезис
+#R<XIN1
+#R<XIN2
+#R<EPS
+#B>Q
+}
+{B=17:average;бегущее среднее
+#B<RUN
+#R<XIN
+#A<N
+#R>XOUT
+}
+{B=18:lim_alrm;тревога предела 
+#R<H
+#R<X
+#R<L
+#R<EPS
+#B>QH
+#B>Q
+#B>QL
+}
+{B=19:blink;мерцающий сигнал
+#B<RUN
+#T<CYCLE
+#B>Q
+}
+{B=20:integral;интегрирование
+#B<RUN
+#B<R1
+#R<XIN
+#R<X0
+#T<CYCLE
+#B>Q
+#R>XOUT
+}
+
+;functions: {F=nb:name\n...iop...\n}\n
+
+{F=1:abs;абсолютное значение
+#R<IN
+#R>Q
+}
+{F=2:acos;арккосинус
+#R<IN
+#R>Q
+}
+{F=3:asin;арксинус
+#R<IN
+#R>Q
+}
+{F=4:atan;арктангенс
+#R<IN
+#R>Q
+}
+{F=5:cos;косинус
+#R<IN
+#R>Q
+}
+{F=6:expt;экспонента
+#R<IN
+#A<EXP
+#R>Q
+}
+{F=7:log;логарифм (10)
+#R<IN
+#R>Q
+}
+{F=8:sin;синус
+#R<IN
+#R>Q
+}
+{F=9:sqrt;корень квадратный
+#R<IN
+#R>Q
+}
+{F=10:tan;тангенс
+#R<IN
+#R>Q
+}
+{F=11:trunc;целая часть
+#R<IN
+#R>Q
+}
+{F=12:pow;степень
+#R<IN
+#R<EXP
+#R>Q
+}
+{F=20:and_mask;битовая маска
+#A<IN
+#A<MSK
+#A>Q
+}
+{F=21:limit;ограничение на пределы
+#A<MIN
+#A<IN
+#A<MAX
+#A>Q
+}
+{F=22:max;максимальное значение
+#A<IN1
+#A<IN2
+#A>Q
+}
+{F=23:min;минимальное значение
+#A<IN1
+#A<IN2
+#A>Q
+}
+{F=24:mod;модуль
+#A<IN
+#A<Base
+#A>Q
+}
+{F=25:mux4;мультиплексор с 4 входами
+#A<SEL
+#A<IN1
+#A<IN2
+#A<IN3
+#A<IN4
+#A>Q
+}
+{F=26:mux8;мультиплексор с 8 входами
+#A<SEL
+#A<IN1
+#A<IN2
+#A<IN3
+#A<IN4
+#A<IN5
+#A<IN6
+#A<IN7
+#A<IN8
+#A>Q
+}
+{F=27:not_mask;битовая маска
+#A<IN
+#A>Q
+}
+{F=28:or_mask;битовая маска
+#A<IN
+#A<MSK
+#A>Q
+}
+{F=29:rand;случайное значение
+#A<base
+#A>Q
+}
+{F=30:rol;вращать влево
+#A<IN
+#A<NbR
+#A>Q
+}
+{F=31:ror;вращать вправо
+#A<IN
+#A<NbR
+#A>Q
+}
+{F=32:sel;двоичный селектор
+#B<SEL
+#A<IN1
+#A<IN2
+#A>Q
+}
+{F=33:shl;сдвинуть влево
+#A<IN
+#A<NbS
+#A>Q
+}
+{F=34:shr;сдвинуть вправо
+#A<IN
+#A<NbS
+#A>Q
+}
+{F=35:xor_mask;битовая маска
+#A<IN
+#A<MSK
+#A>Q
+}
+{F=36:odd;проверка нечетности
+#A<IN
+#B>Q
+}
+{F=40:ascii;взять ascii код
+#M<IN
+#A<Pos
+#A>Code
+}
+{F=41:char;взять символ
+#A<Code
+#M>Q
+}
+{F=42:delete;удалить строку
+#M<IN
+#A<NbC
+#A<Pos
+#M>Q
+}
+{F=43:find;найти строку
+#M<In
+#M<Pat
+#A>Pos
+}
+{F=44:insert;вставить строку
+#M<IN
+#M<Str
+#A<Pos
+#M>Q
+}
+{F=45:left;изъять строку слева
+#M<IN
+#A<NbC
+#M>Q
+}
+{F=46:mid;изъять строку
+#M<IN
+#A<NbC
+#A<Pos
+#M>Q
+}
+{F=47:mlen;взять длину строки
+#M<IN
+#A>NbC
+}
+{F=48:replace;заменить строку
+#M<IN
+#M<Str
+#A<NbC
+#A<Pos
+#M>Q
+}
+{F=49:right;изъять 
+#M<IN
+#A<NbC
+#M>Q
+}
+{F=60:arcreate;создать массив
+#A<ID
+#A<Size
+#A>ok
+}
+{F=61:arread;читать элемент массива
+#A<ID
+#A<Pos
+#A>Q
+}
+{F=62:arwrite;записать элемент массива
+#A<ID
+#A<Pos
+#A<IN
+#A>ok
+}
+{F=63:day_time;взять системные дату/время
+#A<SEL
+#M>Q
+}
+
+{F=70:F_ROPEN;открыть файл (чтение)
+#M<Path
+#A>ID
+}
+{F=71:F_WOPEN;открыть файл (запись)
+#M<Path
+#A>ID
+}
+{F=72:FA_READ;читать аналог из файла
+#A<ID
+#A>Q
+}
+{F=73:FM_READ;читать сообщение из файла
+#A<ID
+#M>Q
+}
+{F=74:FA_WRITE;писать аналог в файл
+#A<ID
+#A<IN
+#B>ok
+}
+{F=75:FM_WRITE;писать сообщение в файл
+#A<ID
+#M<IN
+#B>ok
+}
+{F=76:F_CLOSE;закрыть файл
+#A<ID
+#B>ok
+}
+{F=77:F_EOF;тест конца файла
+#A<ID
+#B>ok
+}
+
+;{F=50:mlen_bin
+;#M<IN
+;#A>NbC
+;}
+;{F=51:msg_alg
+;#M<INPUT
+;#A<POSITION
+;#A<MASK
+;#A>OUTPUT
+;}
+;{F=52:alg_msg
+;#A<INPUT
+;#A<POSITION
+;#A<MASK
+;#M<MESSAGE
+;#M>OUTPUT
+;}
+;{F=53:msg_boo
+;#M<INPUT
+;#A<POSITION
+;#A<OFFSET
+;#B>OUTPUT
+;}
+;{F=54:boo_msg
+;#B<INPUT
+;#A<POSITION
+;#A<OFFSET
+;#M<MESSAGE
+;#M>OUTPUT
+;}
+;{F=55:mult_m_a
+;#M<INPUT1
+;#M<INPUT2
+;#M<INPUT3
+;#M<INPUT4
+;#M<INPUT5
+;#M<INPUT6
+;#M<INPUT7
+;#M<INPUT8
+;#A<POSITION
+;#A<OFFSET
+;#A>OUTPUT
+;}
+;{F=56:or_msg
+;#M<INPUT1
+;#M<INPUT2
+;#M<INPUT3
+;#M<INPUT4
+;#M<INPUT5
+;#M<INPUT6
+;#M<INPUT7
+;#M<INPUT8
+;#A<POSITION
+;#A<OFFSET
+;#B>OUTPUT
+;}
+;{F=57:and_msg
+;#M<INPUT1
+;#M<INPUT2
+;#M<INPUT3
+;#M<INPUT4
+;#M<INPUT5
+;#M<INPUT6
+;#M<INPUT7
+;#M<INPUT8
+;#A<POSITION
+;#A<OFFSET
+;#B>OUTPUT
+;}
+

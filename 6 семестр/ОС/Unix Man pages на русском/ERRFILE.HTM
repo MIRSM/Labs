@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>ERRFILE(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ERRFILE(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+errfile - формат файла фиксации аппаратных ошибок
+<p align=justify><b>ОПИСАНИЕ</b><br>
+При обнаружении системой аппаратных  сбоев  порождается
+запись,  которая передается демону, фиксирующему ошибки
+и заносящему записи в соответствующий файл для последующего  анализа.  По  умолчанию, таким  файлом  является
+/usr/adm/errfile.
+<p align=justify>
+Формат записи об ошибке зависит  от  типа  обнаруженной
+ошибки. Каждая запись, однако, имеет заголовок  следующего формата:
+<pre>
+struct errhdr {
+  short  e_type; /* Тип записи */
+  short  e_len;  /* Кол-во байт в записи (вкл. заголовок) */
+  time_t e_time; /* Дата ошибки */
+};
+</pre>
+Перечень допустимых типов записей:
+<pre>
+#define E_GOTS  010  /* Старт UNIX/TS */
+#define E_GORT  011  /* Старт UNIX/RT */
+#define E_STOP  012  /* Стоп */
+#define E_TCHG  013  /* Изменение времени */
+#define E_CCHG  014  /* Переконфигурация */
+#define E_BLK   020  /* Ошибка блочного устройства */
+#define E_STRAY 030  /* Случайное прерывание */
+#define E_PRTY  031  /* Четность памяти */
+</pre><p align=justify>
+Некоторые записи в файле ошибок имеют администраторское
+происхождение. Сюда входит инициализационная запись  об
+активации процесса сбора ошибок, завершающая запись при
+успешном  завершении  работы  демона, а также записи об
+изменении времени, которые  используются  для  фиксации
+изменений  системного времени. Эти записи имеют следующий формат:
+<pre>
+struct estart {
+  short          e_cpu;  /* Тип ЦП */
+  struct utsname e_name; /* Имя системы */
+};
+
+#define eend errhdr /* Заголовок записи */
+struct etimchg {
+  time_t e_ntime;  /* Новое значение времени */
+};
+</pre><p align=justify>
+При случайном прерывании порождается запись  следующего
+формата:
+<pre>
+struct estray {
+  uint e_saddr; /* Адрес прерывания или устройства */
+};
+</pre><p align=justify>
+Фиксация  ошибок памяти не поддерживается в данной реализации.
+<p>
+Записи для блочных устройств имеют следующий формат:
+<pre>
+struct eblock {
+  dev_t   e_dev;    /* Старший+младший ном. уст-ва */
+  physadr e_regloc; /* Адрес контроллера */
+  short   e_bacty;  /* Прочие опер. ввода/вывода */
+  struct iostat {
+    long   io_ops;    /* Кол-во чтений/записей */
+    long   io_misc;   /* Кол-во прочих операций */
+    ushort io_unlog;  /* Кол-во незафикс. ошибок */
+  }       e_stats;
+  short   e_bflags; /* Чтение/запись, ошибка и т.д. */
+  short   e_cyloff; /* Начальный цилиндр уст-ва */
+  daddr_t e_bnum;   /* Номер логического блока */
+  ushort  e_bytes;  /* Кол-во передаваемых байт */
+  paddr_t e_memadd; /* Адрес буфера */
+  ushort  e_rtry;   /* Кол-во повторных попыток */
+  short   e_nreg;   /* Кол-во регистров уст-ва */
+};
+</pre>
+Следующие значения используются в поле флагов e_bflags:
+<pre>
+#define E_WRITE  0   /* Операция записи */
+#define E_READ   1   /* Операция чтения */
+#define E_NOIO   02  /* Нет запросов, ожидающих в/в */
+#define E_PHYS   04  /* Физический ввод/вывод */
+#define E_FORMAT 010 /* Форматирование диска */
+#define E_ERROR  020 /* Неудачный ввод/вывод */
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ERRDEMON.htm>errdemon(1M)</a> в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

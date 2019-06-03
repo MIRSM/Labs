@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/brown.html -->
+<HTML><HEAD><TITLE>Фракталы: Броуновская частица</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Броуновская частица.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Броуновская частица.files/lab24.gif" width=150 
+    border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Броуновская частица</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=285 alt="Броуновская частица" 
+src="Фракталы Броуновская частица.files/fr064.gif" width=415 border=1></CENTER>
+<P>В 1828 году шотландский биолог Роберт Браун открыл необычное явление. Когда 
+он смотрел в микроскоп на взвесь цветочной пыльцы в воде, он был поражен тем 
+фактом, что частицы непрерывно двигались, описывая самые причудливые траектории. 
+Это беспорядочное движение взвешенных частиц в жидкости стали называть 
+<I>брауновским движением</I></P>
+<P>Этот феномен был объяснен значительно позднее, в начале прошлого века, когда 
+зародилась квантовая механика и статистическая физика. Молекулы жидкости 
+совершают тепловое нерегулярное движение, которое становится более сильным при 
+возрастании температуры. Молекулы соударяются с более крупными частицами, 
+заставляя менять направление движения. Автором первой количественной теории 
+движения брауновских частиц был Альберт Эйнштейн.</P>
+<P>Броуновскую кривую можно представить как фрактальную кривую.</P><PRE><B>Program</B> Brown;
+<B>Uses</B> Crt, Graph;
+<B>Var</B>
+   GD, GM, X, Y, dX, dY, I: Integer;
+<B>Begin</B>
+   GD:=Detect;
+   InitGraph(GD, GM, 'c:\bp\bgi');
+   X:=639 <B>div</B> 2;
+   Y:=470 <B>div</B> 2;
+   MoveTo(X,Y);{ s:=0};
+   <B>Repeat</B>
+      {s:=s+1;}
+      dX:=Random(3)-1; dY:=Random(3)-1;
+      If (X+dX &lt;   0) Then X:=X-dX Else X:=X+dX;
+      If (X+dX &gt; 640) Then X:=X-dX Else X:=X+dX;
+      If (Y+dY &lt;   0) Then Y:=Y-dY Else Y:=Y+dY;
+      If (Y+dY &gt; 480) Then Y:=Y-dY Else Y:=Y+dY;
+      LineTo(X,Y);
+      <B>For</B> I:=1 <B>To</B> 100 <B>Do</B> PutPixel(Random(640),Random(480),0);
+   <B>Until</B> KeyPressed;
+   CloseGraph
+<B>End</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.10.04<BR>Дата последнего обновления: 27.11.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Броуновская частица.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>UADMIN(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>UADMIN(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+uadmin - административные действия
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;sys/uadmin.h&gt;
+        
+        int uadmin (cmd, fcn, mdep)
+        int cmd, fcn, mdep;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов uadmin обеспечивает выполнение  базовых
+административных  функций. Он тесно связан с системными
+администраторскими процедурами и  не  предназначен  для
+широкого использования. Аргумент mdep введен для реализации  машинно-зависимых действий и здесь не описывается.
+<p align=justify>
+Эффект работы  системного  вызова  uadmin  определяется
+значением аргумента cmd, которое должно быть  одним  из
+следующих:
+<dl>
+<dt>A_SHUTDOWN 
+<dd>Система  завершает  работу.  Все  пользовательские
+процессы  терминируются,  буфера  выталкиваются  и
+корневая файловая система размонтируется. Последующие  действия  определяются  значением  аргумента
+fcn; на разных машинах выполняются разные действия
+в силу разных аппаратных возможностей.  Самым  разумным является перезапуск системы путем  передачи
+управления программе загрузки, хранящейся в ПЗУ.
+<dt>A_REBOOT 
+<dd>Система немедленно останавливается без  каких-либо
+действий. Как и в  предыдущем  случае,  дальнейшие
+действия определяются значением аргумента fcn.
+<dt>A_REMOUNT 
+<dd>Корневая файловая система вновь монтируется  после
+того, как она была зафиксирована. Это  может  быть
+сделано только в процессе загрузки.
+</dl>
+<p>Системный вызов uadmin завершается неудачей, если:
+<dl>
+<dt>[EPERM]
+<dd>Соответствующий процессу действующий  идентификатор пользователя не является  идентификатором суперпользователя.
+</dl>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении в зависимости от  значения  cmd
+возвращаются следующие значения:
+<ul>
+<b>A_SHUTDOWN</b> Никогда не происходит возврата.<br>
+<b>A_REBOOT</b> Никогда не происходит возврата.<br>
+<b>A_REMOUNT</b> 0.
+</ul><p align=justify>
+В противном случае возвращается -1, а переменной  errno
+присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

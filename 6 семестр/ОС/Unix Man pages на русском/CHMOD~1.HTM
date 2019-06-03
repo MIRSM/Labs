@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>CHMOD(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CHMOD(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+chmod - изменение режима доступа к файлу
+<p><b>СИНТАКСИС</b>
+<pre>
+        int chmod (path, mode)
+        char *path;
+        int mode;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргумент path является  указателем  на  маршрутное  имя
+файла. Системный вызов chmod устанавливает режим доступа к указанному файлу в соответствии с битным шаблоном,
+содержащимся в аргументе mode.
+<p align=justify>
+Биты прав доступа интерпретируются следующим образом:
+<table>
+<tr valign=top><td>04000<td>При выполнении переустановить действующий идентификатор пользователя.</tr>
+<tr valign=top><td>020#0<td>При выполнении переустановить действующий идентификатор группы, если # есть 7, 5,  3  или  1; учитывать блокировку доступа, если # есть 6, 4, 2 или 0.</tr>
+<tr valign=top><td>01000<td>Бит  навязчивости  -  сохранить  сегмент команд после завершения выполнения.</tr>
+<tr valign=top><td>00400<td>Доступен для чтения владельцем.</tr>
+<tr valign=top><td>00200<td>Доступен для записи владельцем.</tr>
+<tr valign=top><td>00100<td>Доступен для выполнения (в  случае  каталога - для просмотра) владельцем.</tr>
+<tr valign=top><td>00040<td>Доступен для чтения членами группы.</tr>
+<tr valign=top><td>00020<td>Доступен для записи членами группы.</tr>
+<tr valign=top><td>00010<td>Доступен  для  выполнения  (просмотра)  членами группы.</tr>
+<tr valign=top><td>00004<td>Доступен для чтения прочими пользователями.</tr>
+<tr valign=top><td>00002<td>Доступен для записи прочими пользователями.</tr>
+<tr valign=top><td>00001<td>Доступен  для  выполнения  (просмотра)  прочими пользователями.</tr>
+</table>
+<p align=justify>
+Для  изменения режима доступа к файлу действующий идентификатор пользователя процесса должен быть равен идентификатору владельца файла или суперпользователя.
+<p align=justify>
+Если действующий идентификатор пользователя процесса не
+равен идентификатору суперпользователя, то бит навязчивости (01000) обнуляется.
+<p align=justify>
+Если действующий идентификатор пользователя процесса не
+равен  идентификатору  суперпользователя  и действующий
+идентификатор группы процесса не  равен  идентификатору
+группы  файла, то бит 02000 (переустановить идентификатор группы при выполнении) обнуляется.
+<p align=justify>
+Если у выполняемого файла с режимом доступа 410 бит навязчивости равен 1,  операционная  система  не  удаляет
+сегмент  команд  из области подкачки, когда завершается
+последний пользовательский процесс,  выполняющий  файл.
+Если  при тех же предположениях режим доступа есть 413,
+то операционная система не удаляет  сегмент  команд  из
+оперативной  памяти. В обоих случаях, если бит навязчивости равен 1, то сегмент команд, независимо  от  того,
+где  он  находится  (в  области подкачки или в памяти),
+становится сразу же доступным для очередного  пользователя, выполняющего этот файл, что делает выполнение более быстрым.
+<p align=justify>
+Если бит переустановки идентификатора группы при выполнении  равен  1,  а бит 00010 (выполнение или поиск для
+группы) обнуляется, то для обычного файла  устанавливается режим учета блокировки, что может сказаться на выполнении последующих вызовов <a href=OPEN.htm>open(2)</a>, <a href=CREAT.htm>creat(2)</a>, <a href=READ.htm>read(2)</a>
+и <a href=WRITE.htm>write(2)</a> для этого файла.
+<p align=justify>
+Системный вызов chmod завершается неудачей и режим доступа не изменяется, если выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[ENOTDIR]
+<dd>Компонент маршрута не является каталогом.
+<dt>[ENOENT]
+<dd>Указанный файл не существует.
+<dt>[EACCES]
+<dd>Для компонента маршрута  отсутствует  право
+на поиск.
+<dt>[EPERM]
+<dd>Действующий идентификатор  пользователя  не
+равен идентификатору  владельца  файла  или
+суперпользователя.
+<dt>[EROFS]
+<dd>Указанный файл расположен в файловой системе, доступной только на чтение.
+<dt>[EFAULT]
+<dd>Аргумент path указывает за пределы отведенного процессу адресного пространства.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[ENOLINK]
+<dd>Маршрутное имя path указывает на  удаленный
+компьютер, связи с которым в данный  момент
+нет.
+<dt>[EMULTIHOP] Компоненты path требуют многократного обращения к удаленным компьютерам.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHOWN~1.htm>chown(2)</a>,  <a href=CREAT.htm>creat(2)</a>,   <a href=FCNTL.htm>fcntl(2)</a>,   <a href=MKNOD~1.htm>mknod(2)</a>,   <a href=OPEN.htm>open(2)</a>,
+<a href=READ.htm>read(2)</a>, <a href=WRITE.htm>write(2)</a>.<br>
+<a href=CHMOD.htm>chmod(1)</a> в Справочнике пользователя.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

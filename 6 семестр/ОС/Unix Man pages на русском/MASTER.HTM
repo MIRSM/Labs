@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>MASTER(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MASTER(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+master - основной файл с информацией об устройствах
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Файл  master используется утилитой <a href=CONFIG.htm>config(1M)</a> для получения информации об устройствах, на основаниии  которой
+генерируются  конфигурационные  файлы  low.s  и conf.c.
+Утилита config читает dfile и  помещает  информацию  из
+каждого  элемента первой части в массивы, заготовленные
+по основному файлу master. Для получения  информации  о
+получаемых  файлах см. <a href=CONFIG.htm>config(1M)</a>, а о значении полей в
+первой части поддерживаемого пользователем файла  dfile
+см.  <a href=DFILE.htm>dfile(4)</a>. Файл master состоит из пяти частей, разделенных символом $ в первой колонке. Любая строка, содержащая звездочку в первой колонке или звездочку,  перед  которой находятся только пробелы и табуляции, считается строкой комментария.
+<p align=justify>
+Часть 1 содержит информацию об устройствах; в  части  2
+задаются дополнительные имена устройств; часть 3 содержит информацию о настраиваемых параметрах. В частях 4 и
+5  располагается информация, относящаяся к конфигурации
+систем только для семейства M68000. Часть 4 (спецификация  микропроцессора)  должна  присутствовать  в  файле
+master  и не должна присутствовать в файле dfile. Часть
+5 содержит строки в точности того  же  формата,  что  и
+специфическая для M68000 часть в <a href=DFILE.htm>dfile(4)</a>.
+<p align=justify>
+Ниже  описываются  пять частей файла master. В качестве
+примера используется дисковый контроллер.
+<dl>
+<dt><i>Первая часть</i>
+<dd>Часть 1 содержит строки по 10 полей в каждой. Поля разделяются пробелами.
+<p>
+Поле 1 - имя устройства (не более 8 символов).
+<p>
+Поле 2 - размер (десятичный) векторов прерываний;  размер есть количество векторов, умноженное на четыре.
+<p>
+Поле  3  - спецификация программ выполнения управляющих
+действий (более кратко - обработчика)  устройства.  Для
+каждого нужного обработчика следует задать соответствующую букву; если обработчик не существует, вместо буквы
+указывается символ -. Допустимы следующие спецификации:
+<p><table>
+<tr valign=top><th>s<td>Самостоятельные  программы открытия и закрытия для
+блочных и символьных  устройств.  Так,  комбинация
+букв sO означает, что для диска программа открытия
+его как блочного устройства будет называться hdbopen, а как символьного - hdcopen.</tr>
+<tr valign=top><th>t<td>Устройство имеет структуру терминала.</tr>
+<tr valign=top><th>i<td>Обработка (выполнение) инициализации.</tr>
+<tr valign=top><th>p<td>Обработка ошибки питания.</tr>
+<tr valign=top><th>O<td>Обработка открытия.</tr>
+<tr valign=top><th>C<td>Обработка закрытия.</tr>
+<tr valign=top><th>R<td>Обработка чтения.</tr>
+<tr valign=top><th>W<td>Обработка записи.</tr>
+<tr valign=top><th>I<td>Обработка управляющих действий.</tr>
+<tr valign=top><th>S<td>Драйвер потока. Других обработчиков у него быть не
+должно.</tr>
+</table><p>
+Поле 4 - индикатор типа устройства. Для каждого нужного
+индикатора  следует  задать соответствующую букву; если
+индикатор не существует, вместо буквы указывается  символ -. Допустимы следующие спецификации:
+<p><table>
+<tr valign=top><th>v<td>Создать  массив  векторов   прерывания,  например,
+hd_ivec  [  ].  Для  каждого вектора, описанного в
+файле dfile, в массив помещается  (шестнадцатеричный)  адрес  вектора  (номер вектора умножается на
+4).</tr>
+<tr valign=top><th>m<td>Создать для устройства символьный старший номер  и
+блочный   старший   номер   (например,  hd_cmaj  и
+hd_bmaj).</tr>
+<tr valign=top><th>l<td>Создать  массив   уровней   прерываний,  например,
+hd_ilev [ ]; уровни прерывания указаны в четвертом
+поле,  уровень, каждой строки в первой части файла
+dfile.</tr>
+<tr valign=top><th>o<td>Разрешить только одно данное устройство.</tr>
+<tr valign=top><th>c<td>Не вставлять счетчик в файл conf.c.</tr>
+<tr valign=top><th>i<td>Не вставлять вектор прерываний.</tr>
+<tr valign=top><th>R<td>Требуемое устройство.</tr>
+<tr valign=top><th>B<td>Блочное устройство.</tr>
+<tr valign=top><th>C<td>Символьное устройство.</tr>
+<tr valign=top><th>I<td>Устройство, управляемое прерываниями, не блочное и
+не символьное.</tr>
+<tr valign=top><th>a<td>Разрешить определения одного вектора с многими адресами.</tr>
+</table><p>
+Поле  5  -  префикс  обработчика (не более 4 символов),
+например hd.
+<p>
+Поле 6 - размер  страницы  регистров  (десятичный),  то
+есть размер области памяти для всех регистров устройства, начинающейся по адресу, указанному в файле dfile.
+<p>
+Поле  7  - старший номер  блочного  устройства;  символ
+-, если такового нет.
+<p>
+Поле 8 - старший номер символьного  устройства;  символ
+-, если такового нет.
+<p>
+Поле  9 - максимальное количество устройств на контроллер (десятичное); например, 32. Значение необязательного поля число (пятое поле в строках первой части  файла
+dfile)  замещает  значение,  указанное  в  поле 9 файла
+master.
+<p>
+Поле 10 - максимальный уровень запроса шины  (от  1  до
+7); символ -, если такового нет.
+<p>
+Для  устройств,  которые  не  управляются прерываниями,
+размер вектора прерываний (поле 2) должен быть нулевым.
+Буква v в поле 4 приводит к тому, что <a href=CONFIG.htm>config(1M)</a>  записывает вектора прерываний, хотя в первой части программы  low.s не окажется присваиваний соответствующим элементам вектора (прерывания в таком случае будут классифицироваться как случайные).
+<dt><i>Вторая часть</i>
+<dd>Часть 2 содержит строки, состоящие из двух полей:
+<p>
+Поле 1 - дополнительное имя устройства (не более 8 символов).
+<p>
+Поле  2  -  соответствующее основное имя устройства (не
+более 8 символов; устройство описано в части 1).
+<dt><i>Третья часть</i>
+<dd>Часть 3 составляют строки, состоящие из одного или двух
+полей:
+<p>
+Поле 1 - имя параметра (не более 30 символов).
+<p>
+Поле 2 - подразумеваемое значение параметра  (не  более
+30  символов;  если это поле пустое, то предполагается,
+что параметр определяется в файле dfile).
+<dt><i>Четвертая часть</i>
+<dd>Часть 4 содержит одну строку, состоящую из  2  полей  и
+содержащую спецификацию микропроцессора.
+<p>
+Поле 1 записывается как mpu.
+<p>
+Поле 2 - одно из чисел: 68000, 68010, 68020 или 68030.
+<dt><i>Пятая часть</i>
+<dd>Часть  5  содержит специфическую для M68000 информацию,
+имеющую в точности тот же формат, что  и  специфическая
+для  M68000  часть в файле dfile. Смысл этой информации
+описан в <a href=DFILE.htm>dfile(4)</a>.
+</dl>
+<p><b>ФАЙЛЫ</b><br>
+<pre>
+/usr/src/uts/dfile
+/usr/src/uts/master
+/usr/src/uts/low.s
+/usr/src/uts/conf.c
+/usr/include/sys/conf.h
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=DFILE.htm>dfile(4)</a>.<br>
+<a href=CONFIG.htm>config(1M)</a> в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

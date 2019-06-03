@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>FIND(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FIND(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	find - поиск файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+ find  список_поиска выражение
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда find рекурсивно просматривает каждый из каталогов, перечисленных в  списке_поиска,  отыскивая  файлы,
+	удовлетворяющие логическому выражению,  построенному  с
+	помощью описанных ниже средств. В  список_поиска  могут
+	входить и обычные файлы. Далее n обозначает целое десятичное число, на месте которого могут также указываться
+	комбинации +n, что означает "больше, чем n", и -n,  что
+	означает "меньше, чем n". Элементарные логические выражения и их результаты:
+<dl>
+<p><dt> -name шаблон_файлов <dd>  Истина, если текущий файл удовлетворяет  шаблону_файлов. Символы шаблона, имеющие для shell'а  специальный смысл, должны быть экранированы.
+<p><dt> [-perm] [-]восьмеричное_число <dd> Истина, если режим доступа к текущему файлу в точности равен  восьмеричному_числу  [см.  <a href=CHMOD.htm>chmod(1)</a>].
+	     Если перед восьмеричным_числом указан знак  -,  то
+	     для сравнения из режима файла берутся только биты,
+	     соответствующие битам восьмеричного_числа,  равным
+	     единице.
+<p><dt> -type c <dd> Истина, если файл имеет тип c, где c есть b, c, d,
+	     p или f - блочный или символьный специальный файл,
+	     каталог, именованный канал или обычный файл.
+<p><dt> -links n <dd> Истина, если на файл имеется n ссылок.
+<p><dt> -user имя_пользователя <dd>  Истина, если файл принадлежит пользователю с  данным именем. Если имя_пользователя является  числом и не встречается в файле /etc/passwd, оно рассматривается как идентификатор пользователя.
+<p><dt> -group имя_группы <dd>  Истина, если файл принадлежит группе с данным именем. Если имя_группы является числом и не встречается в файле /etc/group, оно  рассматривается  как идентификатор группы.
+<p><dt> -size n[c] <dd>  Истина, если файл занимает n блоков (по 512 байт).
+	     Если указана буква c, то размер файла  задается  в
+	     символах. Напомним, что с помощью комбинаций +n  и
+	     -n можно проверять размер (и  три  указанные  ниже
+	     характеристики) не только на равенство,  но  и  на
+	     неравенство.
+<p><dt> -atime n <dd>  Истина, если последний доступ к файлу производился
+	     n дней назад. Сама команда  find  изменяет   время
+	     доступа к каталогам, входящим в список_поиска.
+<p><dt> -mtime n <dd> Истина, если файл последний раз модифицировался  n
+	     дней назад.
+<p><dt> -ctime n <dd>  Истина, если характеристики файла  (размер,  режим
+	     доступа) последний раз изменялись n дней назад.
+<p><dt> -exec команда <dd> Истина, если после выполнения команды возвращается
+	     нулевой код завершения. Запись команды должна  заканчиваться экранированной точкой с  запятой.  Аргумент команды { } заменяется  текущим  маршрутным именем файла.
+<p><dt> -ok команда <dd> Эквивалентно -exec за исключением того, что  перед
+	     выполнением команды запрашивается подтверждение (в
+	     виде сгенерированной командной  строки  со  знаком
+	     вопроса в конце) и она выполняется только при  ответе y.
+<p><dt> -print <dd> Всегда истина; вызывает выдачу  маршрутного  имени
+	     текущего файла.
+<p><dt> -cpio устройство <dd>  Всегда истина; вызывает вывод  текущего  файла  на указанное устройство в формате  <a href=CPIO.htm>cpio(1)</a>  (записями по 5120 байт).
+<p><dt> -newer файл <dd> Истина, если текущий файл был модифицирован  позднее указанного файла.
+<p><dt> -depth <dd> Всегда истина; изменяет способ  просмотра  каталогов: сначала просматриваются  входящие  в  каталог файлы, а затем уже сам каталог. Этот предикат  полезен в сочетании с <a href=CPIO.htm>cpio(1)</a> для переноса файлов из каталогов, на запись в которые нет прав.
+<p><dt> -mount <dd> Всегда истина; ограничивает поиск файловой  системой, содержащей указанный в списке_поиска каталог.
+	     Если в списке_поиска не указан  ни  один  каталог,
+	     используется текущий.
+<p><dt> -local <dd>  Истина, если файл физически находится на локальной
+	     системе.
+<p><dt> (выражение) <dd> Истина, если истинно заключенное в скобки  выражение (скобки должны быть экранированы от  интерпретации shell'ом).
+</dl>
+<p align=justify>	Элементарные логические выражения могут комбинироваться
+	с помощью следующих операций (в порядке уменьшения приоритета):
+<ol>
+<li>   Унарная операция отрицания, обозначается !.
+<li>  Логическое И, обозначается пробелом.
+<li>   Логическое ИЛИ, обозначается -o.
+</ol>
+<p><b>ПРИМЕР</b><br>
+<ol>
+<li>  Удалить все файлы с именами a.out или *.o, доступ к
+	которым не производился в течение недели:
+<pre>
+  find / \( -name a.out -o -name '*.o' \) \
+            -atime +7 -exec rm {} \;
+</pre>
+<li>  Удалить из текущего каталога и его подкаталогов  все
+	файлы нулевого размера, запрашивая подтверждение:
+<pre>
+  find . -size 0c -ok rm {} \;
+</pre>
+</ol>
+<p><b>ФАЙЛЫ</b>
+<pre>
+  /etc/passwd
+  /etc/group
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CHMOD.htm>chmod(1)</a>, <a href=CPIO.htm>cpio(1)</a>, <a href=SH.htm>sh(1)</a>, <a href=TEST.htm>test(1)</a>.<br>
+<a href=STAT.htm>stat(2)</a>, <a href=UMASK.htm>umask(2)</a>, <a href=CPIO~1.htm>cpio(4)</a>, <a href=FS.htm>fs(4)</a> в  Справочнике  программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Команда
+<pre>
+   find / -depth
+</pre>
+всегда завершается неудачей с сообщением
+<pre>
+   find: stat failed: : No such file or directory
+</pre>
+Она исправно обходит все файлы, кроме корневого каталога.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

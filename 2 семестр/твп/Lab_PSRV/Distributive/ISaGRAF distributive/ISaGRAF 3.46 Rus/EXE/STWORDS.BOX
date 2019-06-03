@@ -1,0 +1,20 @@
+; keywords for ST language
+
+nbcol=2
+
+K=:=
+K=TRUE
+K=FALSE
+K=AND
+K=OR
+K=XOR
+K=RETURN;
+K=IF
+K=THEN
+K=ELSE
+K=ELSIF
+K=END_IF;
+K=CASE
+K=END_CASE;
+
+; eof

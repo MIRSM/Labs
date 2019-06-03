@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>SETJMP(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SETJMP(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+setjmp, longjmp - нелокальная передача управления
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;setjmp.h>
+	
+	int setjmp (env)
+	jmp_buf env;
+	
+	void longjmp (env, val)
+	jmp_buf env;
+	int val;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Описываемые функции полезны при обработке ошибок и прерываний, случившихся на одном из нижних  уровней  программной системы.
+<p align=justify>Функция  setjmp  сохраняет текущее стековое окружение в
+массиве env (тип jmp_buf определен во включаемом  файле
+&lt;setjmp.h>)  для  последующего  использования  функцией
+longjmp. Результат функции setjmp равен 0.
+<p align=justify>Функция  longjmp восстанавливает окружение, сохраненное
+при последнем вызове setjmp с соответствующим  аргументом  env. После завершения longjmp выполнение программы
+продолжается  так,  как  будто  соответствующий   вызов
+setjmp  только  что вернул значение val. Отметим, что в
+промежутке между обращениями  к  setjmp  и  longjmp  не
+должно быть возврата из функции, вызывавшей setjmp.
+<p align=justify>С помощью функции longjmp  невозможно  вернуть  нулевое
+значение. Если при вызове longjmp аргумент val равен 0,
+setjmp  все  равно вернет 1. Тем самым всегда есть возможность  отличить  естественный  возврат  из   функции
+setjmp от искусственного, ставшего результатом выполнения longjmp. Значения всех глобальных объектов в момент
+искусственного  возврата из setjmp, естественно, те же,
+что и в момент вызова longjmp. Значения локальных  объектов   соответствуют   экземпляру  функции,  вызвавшей
+setjmp.
+<p><b>ПРИМЕР </b><br>
+<pre>
+	#include &lt;setjmp.h>
+
+	jmp_buf env;
+	int i=0;
+	main ()
+	{
+	  void exit ();
+
+	  if (setjmp (env) != 0) {
+	    (void) printf (
+	     "Значение i при 2-ом возврате из setjmp: %d\n",i);
+	    exit (0);
+	  }
+	  (void) printf (
+	   "Значение i при 1-ом возврате из setjmp: %d\n",i);
+	  i = 1;
+	  g();
+	  /* Недостижимый фрагмент */
+	}
+
+	g()
+	{
+	  longjmp (env, 1);
+	  /* Недостижимый фрагмент */
+	}
+</pre>
+Результаты выполнения этой программы после компиляции с
+языка C будут следующими:
+<pre>
+     	Значение i при 1-ом возврате из setjmp: 0
+     	Значение i при 2-ом возврате из setjmp: 1
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=SIGNAL.htm>signal(2)</a>.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ </b><br>
+Если  при  обращении к функции longjmp передается аргумент env, не заполненный setjmp,  или  последний  вызов
+setjmp был в функции, из которой уже произошел возврат,
+то Вам гарантируется абсолютный хаос.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>TAPE(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TAPE(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+tape - программа обслуживания магнитной ленты.
+<p><b>СИНТАКСИС</b>
+<pre>
+	tape command [devicefile]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Программа tape  посылает команды и принимает информацию о состоянии в/из ленточной подсистемы. 
+<p align=justify>Доступные команды перечислены ниже:
+<table>
+<tr valign=top><th>amount<td>
+Сообщает количество данных, обработанных при последней или текущей передаче.
+<tr valign=top><th>erase<td>
+Стирает информацию с ленты в кассете. Также подтягивает.
+<tr valign=top><th>reset<td>
+Устанавливает в исходное состояние  контроллер  и  накопитель.
+Чистит все  флаги  ошибок и возвращает ленточную систему в активное состояние.
+<tr valign=top><th>reten<td>
+Подтягивание ленты на кассете. Следует использовать периодически
+с целью устранения проблем,  связанных  с  провисанием  ленты.
+Провисание ленты может вызвать чрезмерное число ошибок при использовании ленты.
+<tr valign=top><th>rewind<td>
+Ускоренная перемотка к началу ленты.
+<tr valign=top><th>rfm<td>
+Перемотка ленты вперед к маркеру следующего файла.
+<tr valign=top><th>status<td>
+Выходное сообщение о состоянии выглядит следующим образом:
+<pre>
+	status: status message
+	soft error:  n
+	underrrunns: m
+</pre>
+<dl>
+<dt>status message <dd> это сообщение о текущем состоянии накопителя; наиболее типичными сообщениями о состоянии накопителя являются   следующие:  "no  cartridge"  (нет  кассеты),
+"write protected" (защищен по записи), "beginning of tape"
+(начало ленты).
+<P><dt>
+soft errors <dd> это число исправляемых ошибок, которые имели
+место при последней операции с лентой.  Исправляемой ошибкой считается ошибка, которая может быть исправлена непосредственно самим накопителем  или  контроллером.  Примером
+неисправляемой, "тяжелой"  ошибки  является попытка записи
+на ленту,  защищенную по записи.  Необходимо отметить, что
+если число  возникающих  исправляемых  ошибок  значительно
+превышает спецификацию производителя, то накопитель должен
+быть отремонтирован или заменен.
+<p><dt>
+underruns <dd> это количество времени, которое было потрачено
+на остановку накопителя и его перезапуск вследствие  переполнения его буфера. Это время не является признаком ошибки, но указывает на то,  что данные не передавались с максимальной возможной скоростью,  на которую рассчитан накопитель. Влияние данной перегрузки может быть  снято  перезагрузкой системы.
+</dl>
+<tr valign=top><th>wfm<td>
+Запись маркера файла в текущую позицию на ленте.
+</table>
+<p align=justify>Команды amount и reset могут быть  использованы,  когда  лента
+занята выполнением   других   операций.  Команды erase, reten,
+rewind, rfm, status и wfm находятся в состоянии ожидания, пока
+не закончится текущая команда,  и только потом начинают выполняться.
+<p align=justify>Если вы используйте ленточный  накопитель,  не  поддерживающий
+режима ускоренной  перемотки к началу ленты или не выполняющий
+команды rfm и wfm,  то накопитель просто остановится после выполнения предыдущей  команды,  указывая на то,  что могут быть
+выполнены следующие команды. Команда rewind может быть использована для сброса этих условий.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/dev/rct0
+	/dev/nrct0
+	/dev/rct2
+	/dev/nrct0
+	/dev/rctmini
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BACKUP.htm>backup(1)</a>, <a href=CPIO.htm>cpio(1)</a>, <a href=DD.htm>dd(1)</a>, <a href=DUMP.htm>dump(1)</a>, <a href=RESTORE.htm>restore(1)</a>, <a href=TAR.htm>tar(1)</a>.
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Если вы используйте команду status,  пока ленточный накопитель
+занят, то никакой информации выдано не будет,  пока накопитель
+не освободится.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

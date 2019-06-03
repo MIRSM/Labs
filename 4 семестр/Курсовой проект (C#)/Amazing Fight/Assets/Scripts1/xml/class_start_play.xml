@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_start_play" kind="class" language="C#" prot="public">
+    <compoundname>StartPlay</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_start_play_1a66613db046d639cfa97b6b7a7e7adf78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StartPlay.BackBut</definition>
+        <argsstring>()</argsstring>
+        <name>BackBut</name>
+        <briefdescription>
+<para>Возвращает на сцену Main Menu </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="StartPlay.cs" line="12" column="1" bodyfile="StartPlay.cs" bodystart="12" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="32">
+        <label>StartPlay</label>
+        <link refid="class_start_play"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="34">
+        <label>StartPlay</label>
+        <link refid="class_start_play"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="StartPlay.cs" line="7" column="1" bodyfile="StartPlay.cs" bodystart="7" bodyend="16"/>
+    <listofallmembers>
+      <member refid="class_start_play_1a66613db046d639cfa97b6b7a7e7adf78" prot="public" virt="non-virtual"><scope>StartPlay</scope><name>BackBut</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

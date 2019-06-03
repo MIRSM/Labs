@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>MULTISCREEN(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MULTISCREEN(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+multiscreen - множественные экраны (файлы устройства)
+<p><b>СИНТАКСИС</b>
+<pre>
+     alt-Fn
+     alt-ctrl-Fn
+     alt-shift-Fn
+     alt-ctrl-shift-Fn
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Обладая свойством  multiscreen,  пользователь может работать с двенадцатью различными "экранами",  каждый  из  которых
+соответствует файлу отдельного устройства.  Каждый экран может
+просматриваться на primary monitor.
+<p align=justify>
+Количество экранов в системе зависит от количества памяти
+в компьюторе.  Система выдает число возможных экранов во время
+процесса начальной загрузки.
+<p align=justify><i>Доступ</i><br>
+Для того  чтобы посмотреть следующий последовательный экран, 1 введите:
+<pre>
+     Ctrl-PrtSc
+</pre>
+Для того, чтобы двигаться в любом экране с любого другого экрана, ввидите:
+<pre>
+     alt-Fn или alt-ctrl-Fn или alt-shift-Fn
+     alt-Fn или alt-ctrl-Fn (screens 1-12)
+     alt-shift-Fn или alt-ctrl-shift-Fn (screens 11-16, 7-12)
+</pre>
+где n  - номер одной из функциональных клавиш "F" на клавиатуре главного монитора. Например:
+<pre>
+     alt-F2
+</pre>
+выбирает tty12,  и  все  выводы  в  буфере  экрана  этого
+устройства выдаются на экране монитора.
+<p align=justify>
+Вторая форма (использующая клавишу SHIFT)  разрешает доступ на экраны 11 или 12 на клавиатуры,  имеющие только  десять
+функциональных клавиш. Также возможна конфигурация ядра для 16
+экранов, но 12 есть по умолчанию.
+<p align=justify>
+Комбинации функциональных клавиш,  используемых на разнообразных экранах, определяются в файле отображения клавиатуры.
+Для того чтобы изменить мультиэкраны, для разрешения различных
+комбинаций клавиш могут быть модифицированы /usr/lib/keyboard/
+key и mapkey(8).  Используйте утилиту  mapkey  для  создания
+отображения новой кавиатуры.
+<p><b>ФАЙЛЫ</b>
+<br><tt>/dev/tty[01-12]</tt> устройства мультиэкранов
+(количество доступных зависит от системной памяти)
+<p><b>СМ. ТАКЖЕ</b><br>
+mapkey(8), keyboard(HW), screen(HW), serial(HW), <a href=STTY~1.htm>stty(1)</a>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Сообщение об ошибке любой системы обычно выводится в файле устройства console. (dev/console). Когда выдается сообщение
+об ошибке,   видеодисплей  возвращается  в   файл   устройства
+console, сообщение выдается на экране.  Устройство console является только телетайпом, открытым во время последовательности
+начальной перезагрузки,   или когда единственный пользователь,
+или в режиме системного обслуживания.
+<p align=justify>
+Ограничения количества мультиэкранов,  доступных  системе
+не влияет  на  количество последовательных строк или доступных
+устройств. Смотрите serial(7)  для информации,   на  доступных
+последовательных устройствах.
+<p align=justify>
+Отметим, что  для  XENIX  нажатия клавиш,  представляемых
+здесь, происходит  по умолчанию,  а ваша клавиатура может быть
+различной. Если   это так,  для соответствующих замен смотрите
+keyboard(7). Также, любая клавиша может быть запрограммирована
+с помощью использования утилиты mapkey,  для того чтобы сгенерировать последовательности переключения экрана.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

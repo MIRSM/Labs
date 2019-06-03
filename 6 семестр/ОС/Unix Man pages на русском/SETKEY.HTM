@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>SETKEY(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SETKEY(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+setkey - Назначение функциональных клавиш
+<p><b>СИНТАКСИС</b>
+<pre>
+	setkey keynum string
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда setkey назначает данную строку (string)  ANSI  выводом
+функциональной   клавиши   компьютера,  задаваемой  параметром
+keynum. Например, команда:
+<pre>
+	setkey 1 date
+</pre>
+<p align=justify>Назначает строку "date" как вывод  функциональной  клавиши  1.
+Параметр string может содержать управляющие символы, такие как
+символ новой строки и его следует взять в кавычки, чтобы защитить от обработки интерпретатором shell. Например, команда:
+<pre>
+	setkey 2 "pwd;lc\n"
+</pre>
+<p align=justify>ставит в соответствии функциональной клавише 2 командную  последовательность "pwd;lc".  Обратите  внимание как символ новой
+строки вставляется в строку с кавычками.  Это вызовет выполнение команд в том случае, если нажата функциональная клавиша 2.
+Иначе, клавишу Enter следует нажать после нажатия функциональной клавиши, как в предыдущем примере.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/bin/setkey
+</pre>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Команда setkey   работает   только   на  клавиатуре   консоли.
+<p align=justify>Строковая таблица соответствия содержит описание  функциональных  клавиш.  Ее  объем  занимает 512 байт (типа strmap_t),где
+строки заканчивающиеся знаком null могут быть введены для  переопределения функциональных клавиш. Первая строка заканчиваемая знаком null назначается первой строковой  клавише,  вторая
+второй строкой клавише и так далее.  На каждый мультиэкран существует одна таблица отображения строк.
+<p align=justify>Хотя размер строковой таблицы соответствия команды setkey  занимает  512 байт существует ограничение в 30 символов, которые
+могут быть назначены любой отдельной функциональной клавише.
+<p align=justify>Формирование строковой таблицы соответствия,  занимающей более
+чем 512 символов,  вызовет переполнение буфера  функциональной
+клавиши.  Если это произошло, то последовательности посылаемые
+клавишами управления курсором (стрелки) переписываются, фактически искажая себя.  В случае переполнения буфера функциональной клавиши, единственным путем дающим возможность пользоваться   клавишами   управления   курсором  является  перезагрузка
+системы.
+<p align=justify>В таблице  приведенной  ниже  представлены  значения   keynum
+(номер комбинации) для функциональных клавиш:
+<p><table border=1>
+<tr valign=top><th align=left>  Функциональная клавиша <br>Function key   <th align=left>  Номер комбинации <br> keynum <th align=left> Функциональная клавиша <br> Function key <th align=left>   Номер комбинации <br>   keynum
+<tr valign=top><td>F1<td> 1<td> Ctrl-F10 <td>   34     
+<tr valign=top><td>F2<td> 2<td> Ctrl-F11 <td>   35    
+<tr valign=top><td>F3<td> 3<td> Ctrl-F12 <td>   36   
+<tr valign=top><td>F4<td> 4<td> Ctrl-Shift-F1 <td> 37  
+<tr valign=top><td>F5<td> 5<td> Ctrl-Shift-F2 <td> 38 
+<tr valign=top><td>F6<td> 6<td> Ctrl-Shift-F3 <td> 39      
+<tr valign=top><td>F7<td> 7<td> Ctrl-Shift-F4 <td> 40     
+<tr valign=top><td>F8<td> 8<td> Ctrl-Shift-F5 <td> 41    
+<tr valign=top><td>F9<td> 9<td> Ctrl-Shift-F6 <td> 42   
+<tr valign=top><td>F10<td> 10<td> Ctrl-Shift-F7 <td> 43  
+<tr valign=top><td>F11<td> 11<td> Ctrl-Shift-F8 <td> 44 
+<tr valign=top><td>F12<td> 12<td> Ctrl-Shift-F9 <td> 45
+<tr valign=top><td>Shift-F1<td> 13<td> Ctrl-Shift-F10 <td> 46      
+<tr valign=top><td>Shift-F2<td> 14<td> Ctrl-Shift-F11 <td> 47     
+<tr valign=top><td>Shift-F3<td> 15<td> Ctrl-Shift-F12 <td> 48    
+<tr valign=top><td>Shift-F4<td> 16   <td colspan=2>&nbsp;
+<tr valign=top><td>Shift-F5<td> 17   <td colspan=2>&nbsp;
+<tr valign=top><td>Shift-F6<td> 18   <th rowspan=3 align=left>   Цифровая клавиша клавиатуры <br>Numeric Key-Pad <th  rowspan=3 align=left>  Номер комбинации  keynum
+<tr valign=top><td>Shift-F7<td> 19   
+<tr valign=top><td>Shift-F8<td> 20   
+<tr valign=top><td>Shift-F9<td> 21<td>   7  <td>  49     
+<tr valign=top><td>Shift-F10<td> 22<td>   8 <td>   50    
+<tr valign=top><td>Shift-F11<td> 23<td>   9 <td>   51   
+<tr valign=top><td>Shift-F12<td> 24<td>   - <td>   52  
+<tr valign=top><td>Ctrl-F1<td>25 <td>  4 <td>   53 
+<tr valign=top><td>Ctrl-F2<td>26 <td>  5 <td>   54
+<tr valign=top><td>Ctrl-F3<td>27 <td>  6 <td>   55      
+<tr valign=top><td>Ctrl-F4<td>28 <td>  + <td>   56     
+<tr valign=top><td>Ctrl-F5<td>29 <td>  1 <td>   57    
+<tr valign=top><td>Ctrl-F6<td>30 <td>  2 <td>   58   
+<tr valign=top><td>Ctrl-F7<td>31 <td>  3 <td>   59  
+<tr valign=top><td>Ctrl-F8<td>32 <td>  0 <td>   60 
+<tr valign=top><td>Ctrl-F9<td>33 <td colspan=2>&nbsp;             
+</table>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

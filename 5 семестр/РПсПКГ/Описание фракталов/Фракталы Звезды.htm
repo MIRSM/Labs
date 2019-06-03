@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/zvezd.html -->
+<HTML><HEAD><TITLE>Фракталы: Звезды</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Звезды.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Звезды.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Звезды</H1></TD></TR></TBODY></TABLE>
+<CENTER><IMG height=503 alt="Звездный фрактал" 
+src="Фракталы Звезды.files/fr043.gif" width=479 border=0> </CENTER>
+<DIV align=justify>
+<P>Звездный фрактал состоит из правильной пятиконечной звезды с гирляндой из 5 
+меньших образцов. Каждая из 5 более мелких звезд несет на своих четырех 
+свободных концах более мелкие звезды. И так далее. В результате получим звездный 
+фрактал, обладающий самоподобием.</P><PRE><B>Program</B> Zvezda;
+<B>Uses</B> Crt, Graph;
+<B>Const</B>
+  it = 1280;
+  r = 0.35;
+  l = 300;
+  da = 4*pi/5;
+  v = 4;
+
+<B>Var</B>
+   gd,gm : Integer;
+   a     : Real;
+   x, y  : Real;
+   xn,yn : Real;
+   i     : Integer;
+
+<B>Function</B> Mn(nn: Integer): Real;
+<B>Begin</B>
+  <B>If</B> nn <B>mod</B> (v*v*v*v) = 0 <B>then</B> Mn:=1     <B>Else</B>
+  <B>If</B> nn <B>mod</B> (v*v*v)   = 0 <B>then</B> Mn:=r     <B>Else</B>
+  <B>If</B> nn <B>mod</B> (v*v)     = 0 <B>then</B> Mn:=r*r   <B>Else</B>
+  <B>If</B> nn <B>mod</B> (v)       = 0 <B>then</B> Mn:=r*r*r <B>Else</B>
+                               Mn:=r*r*r*r;
+<B>End</B>;
+<B>begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   a:=0;
+   x:=200;
+   y:=320;
+   <B>For</B> i:=0 <B>to</B> it <B>Do</B> <B>Begin</B>
+     xn:=x+sin(a)*l*Mn(i);
+     yn:=y-cos(a)*l*Mn(i);
+     Line(Round(x), Round(y), Round(xn), Round(yn));
+     x:=xn;
+     y:=yn;
+     a:=a+da;
+   <B>End</B>;
+   ReadKey;
+   closegraph;
+<B>end</B>.
+<PRE><P>Если положить it = 323, da = 3*pi/2, v = 3, то получим квадратичный звездный фрактал.</P>
+<CENTER>
+<IMG height=505 alt="Звездный фрактал" src="Фракталы Звезды.files/fr044.gif" width=504 border=0>
+</CENTER>
+</PRE></PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 21.10.04<BR>Дата последнего обновления: 21.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Звезды.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

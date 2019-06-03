@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>DF(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DF(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	df - сведения о числе  свободных  блоков  и  описателей
+	файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+ df  [-t] [-f] [файловая_система ...] [каталог ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда  df выдает число свободных килобайтных блоков и
+	незанятых описателей файлов в  смонтированных  файловых
+	системах,  используя значения соответствующих счетчиков
+	в суперблоках.
+<p align=justify>Файловая_система  может быть задана либо именем устройства (например, /dev/dsk/hd0s0), либо именем  каталога,
+	на который она смонтирована (например, /mnt).
+<p align=justify>Каталог задается полным именем. Будет выдана информация
+	об устройстве, содержащем этот каталог.
+<p align=justify>Если  аргументы  не  указаны, будет выдана информация о
+	свободном пространстве для всех смонтированных файловых
+	систем.
+<p align=justify>Команда df использует следующие опции:
+<table>
+<tr valign=top><th>-t <td> Наряду  со  сведениями  о числе свободных блоков и незанятых описателей выдается  также  общее  число блоков и описателей файлов.
+<tr valign=top><th>-f <td> Число свободных блоков определяется путем  прямого  подсчета по списку свободных блоков, а не по  значению счетчика в суперблоке (информация о  незанятых описателях не выдается).
+</table>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+	Если в команде задан список из нескольких файловых систем и/или каталогов, то при повторной выдаче информации о некоторой файловой системе соответствующая строка будет помечена звездочкой.
+
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /dev/dsk/*
+ /etc/mnttab
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	du(1).
+	fs(4), <a href=MNTTAB.htm>mnttab(4)</a> в Справочнике программиста.
+	mount(1M) в Справочнике администратора.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

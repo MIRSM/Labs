@@ -1,0 +1,11 @@
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.csprojAssemblyReference.cache
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.Form1.resources
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.Properties.Resources.resources
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.csproj.GenerateResource.cache
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.csproj.CoreCompileInputs.cache
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\bin\Debug\ExampleOfMVCPattern.exe.config
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\bin\Debug\ExampleOfMVCPattern.exe
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\bin\Debug\ExampleOfMVCPattern.pdb
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.exe
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.pdb
+C:\Users\ugrov\source\repos\ExampleOfMVCPattern\ExampleOfMVCPattern\obj\Debug\ExampleOfMVCPattern.FormResult.resources

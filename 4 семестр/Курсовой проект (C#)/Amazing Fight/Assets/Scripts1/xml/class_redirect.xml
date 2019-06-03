@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_redirect" kind="class" language="C#" prot="public">
+    <compoundname>Redirect</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_redirect_1a9c36af103c357b2f29f7a1278459e099" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Redirect.logoDuration</definition>
+        <argsstring></argsstring>
+        <name>logoDuration</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Redirect.cs" line="9" column="1" bodyfile="Redirect.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_redirect_1acad70707d9a5e7c6ca8c5a95e1b8c3b9" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Redirect.maxLogoDuration</definition>
+        <argsstring></argsstring>
+        <name>maxLogoDuration</name>
+        <initializer>= 1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Redirect.cs" line="10" column="1" bodyfile="Redirect.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_redirect_1acfb96a95ddb3b11a900f2dad76b808fd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Redirect.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Redirect.cs" line="13" column="1" bodyfile="Redirect.cs" bodystart="13" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_redirect_1a11c1b9cf32f3354c34bf081e43597507" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Redirect.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Redirect.cs" line="24" column="1" bodyfile="Redirect.cs" bodystart="24" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="25">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="24">
+        <label>Redirect</label>
+        <link refid="class_redirect"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="27">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="26">
+        <label>Redirect</label>
+        <link refid="class_redirect"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Redirect.cs" line="7" column="1" bodyfile="Redirect.cs" bodystart="7" bodyend="34"/>
+    <listofallmembers>
+      <member refid="class_redirect_1a9c36af103c357b2f29f7a1278459e099" prot="public" virt="non-virtual"><scope>Redirect</scope><name>logoDuration</name></member>
+      <member refid="class_redirect_1acad70707d9a5e7c6ca8c5a95e1b8c3b9" prot="public" virt="non-virtual"><scope>Redirect</scope><name>maxLogoDuration</name></member>
+      <member refid="class_redirect_1acfb96a95ddb3b11a900f2dad76b808fd" prot="private" virt="non-virtual"><scope>Redirect</scope><name>Start</name></member>
+      <member refid="class_redirect_1a11c1b9cf32f3354c34bf081e43597507" prot="private" virt="non-virtual"><scope>Redirect</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

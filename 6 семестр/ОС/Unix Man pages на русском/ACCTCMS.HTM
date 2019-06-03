@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>ACCTCMS(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCTCMS(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acctcms - получение статистики использования команд
+<p><b>СИНТАКСИС</b>
+<pre>
+/usr/lib/acct/acctcms  [-a [-p] [-o]] [-c] [-j] [-n] [-s] [-t] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита acctcms читает один или несколько файлов, имеющих, как правило, формат, описанный в <a href=ACCT~1~2.htm>acct(4)</a>. Она  собирает  все  записи  о процессах, выполнявших команды с
+одинаковыми именами, сортирует их и выдает на стандартный вывод, обычно во внутреннем формате. Допустимые опции:
+
+-a   Выдавать информацию в символьном  виде,  а  не  во
+внутреннем формате. Выводятся имя команды (COMMAND
+NAME),  количество запусков команды (NUMBER CMDS),
+общее количество килобайтоминут (TOTAL  KCOREMIN),
+общее  время ЦП (в минутах, TOTAL CPU-MIN), астрономическое  время  выполнения  (в  минутах,  TOTAL
+REAL-MIN),  расход памяти (Кб, MEAN SIZE-K), коэффициент нахальства (HOG FACTOR, среднее  время  ЦП
+на один запуск команды, в минутах), количество переданных  символов  (CHARS  TRNSFD)  и общее число
+прочитанных и записанных блоков (BLOCKS/READ) [см.
+<a href=ACCTCOM.htm>acctcom(1)</a>]. Обычно сортировка производится по общему количеству килобайтоминут.
+<table>
+<tr valign=top><td>-c<td>Производить сортировку по общему времени ЦП, а  не
+по килобайтоминутам.</tr>
+<tr valign=top><td>-j<td>Об'единить  все команды, запускавшиеся только один
+раз, под именем "***other".</tr>
+<tr valign=top><td>-n<td>Производить сортировку по количеству запусков  команд.</tr>
+<tr valign=top><td>-s<td>Считать, что все последующие файлы уже имеют внутренний формат acctcms, а не формат <a href=ACCT~1~2.htm>acct(4)</a>.</tr>
+<tr valign=top><td>-t<td>Трактовать  все  записи как имеющие сводный формат
+tacct [см. <a href=ACCT~1~2.htm>acct(4)</a>], в котором время не  подразделяется  на  дневное  (P) и ночное (NP). С записями
+такого  формата  работала  старая  версия  утилиты
+acctcms.  При указании опции -t вместо двух (под)полей с временами указывается одно, содержащее  их
+сумму, что необходимо для совместимости с предыдущими версиями.
+</tr></table><p>
+Следующие  опции  могут  указываться только совместно с
+опцией -a:
+<table>
+<tr valign=top><td>-p<td>Выводить    статистику    только    по   командам,
+выполненным обычными пользователями.</tr>
+<tr valign=top><td>-o<td>Выводить статистику только по командам,  выполненным  суперпользователем (такие команды будем называть системными).</tr>
+</table>
+<p align=justify>
+Если опции -p и -o указаны вместе, то выводится статистика  расходования как дневного, так и ночного времени.
+При этом все колонки будут содержать суммарные  величины,  кроме колонок количества запусков команды, времени
+ЦП и астрономического времени выполнения, которые будут
+разделены на дневные и ночные.
+<p align=justify>
+Следующая  последовательность  команд типична для ежедневного учета:
+<pre>
+ acctcms  файл ...  &gt;  нынешний_итог
+ cp  общий_итог  прежний_итог
+ acctcms  -s  нынешний_итог  прежний_итог  &gt;  общий_итог
+ acctcms  -a  -s  нынешний_итог
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCT.htm>acct(1M)</a>.<br>
+<a href=ACCTCOM.htm>acctcom(1)</a> в Справочнике пользователя.<br>
+<a href=ACCT~1~2.htm>acct(4)</a> в Справочнике программиста.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+При использовании опции -t все файлы  с  информацией  о
+командах должны иметь сводный формат, то есть эта опция
+не  решает  проблемы  совместного использования новых и
+старых файлов.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

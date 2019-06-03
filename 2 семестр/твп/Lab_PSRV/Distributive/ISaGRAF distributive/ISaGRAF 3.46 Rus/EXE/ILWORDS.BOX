@@ -1,0 +1,26 @@
+; keywords for ST language
+
+nbcol=4
+
+K=TRUE
+K=FALSE
+K=LD
+K=ST
+K=AND
+K=OR
+K=XOR
+K=ADD
+K=SUB
+K=MUL
+K=DIV
+K=LT
+K=LE
+K=EQ
+K=NE
+K=GE
+K=GT
+K=CAL
+K=JMP
+K=RET
+
+; eof

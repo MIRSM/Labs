@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>STRERR(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>STRERR(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+strerr - демон регистрации ошибок псевдоустройств
+<p><b>СИНТАКСИС</b>
+<pre>
+	strerr
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита strerr получает сообщения от драйвера регистрации ошибок и трассировки событий  псевдоустройств  [см.
+<a href=LOG.htm>log(7)</a>]  и записывает их в файл протокола. Файлы протокола создаются в каталоге /usr/adm/streams и имеют имена error.мм-дд, где мм - месяц, а дд - день посылки сообщения, запись о котором содержится в этом файле.
+<p align=justify>Сообщения в протоколе имеют следующий формат:
+<pre>
+	номер время время_от_загрузки уровень флаги ид_модуля ид_устр-ва текст
+</pre>
+где
+<table>
+<tr valign=top><td>номер   <td> порядковый номер
+<tr valign=top><td>время   <td>  время  выдачи  сообщения  в   формате
+                  чч:мм:сс
+<tr valign=top><td>время_от_загрузки <td>время выдачи сообщения в тактах часов
+                  от последней загрузки системы
+<tr valign=top><td>уровень <td>     уровень приоритета
+<tr valign=top><td>флаги   <td>     T:  сообщение  послано процессу трассировки
+                <br>  F:  фатальная ошибка
+                <br>  N:  послано  письмо  системному администратору
+<tr valign=top><td>ид_модуля  <td> идентификатор модуля источника
+<tr valign=top><td>ид_устр-ва  <td>   идентификатор устройства источника
+<tr valign=top><td>текст   <td>    текст сообщения
+</table>
+<p align=justify>Сообщения, которые появляются в протоколе, предназначены  для  регистрации исключительных ситуаций, требующих
+внимания системного администратора. Сообщения,  которые
+означают аварию в драйвере или модуле псевдоустройства,
+помечаются  флагом F. Сообщения, которые требуют немедленной реакции администратора  помечаются  флагом  N  и
+приводят к посылке письма администратору через почтовую
+службу  <a href=MAIL.htm>mail(1)</a>. Уровень приоритета имеет смысл, только
+если сообщение послано еще и процессу трассировки.
+<p align=justify>Будучи запущенной, утилита strerr  выполняется  до  тех
+пор, пока ее не терминирует пользователь. Обычно strerr
+выполняется асинхронно.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Только  один  процесс  strerr может открыть драйвер регистрации ошибок и трассировки событий псевдоустройств.
+Если модуль или драйвер генерирует  большое  количество
+сообщений об ошибках, включение их регистрации приводит
+к  замедлению работы с псевдоустройствами. Если большое
+количество ошибок возникает в течение короткого  времени,  драйвер регистрации ошибок может не успеть обработать все ошибки. Эту ситуацию можно обнаружить по  пропускам в нумерации сообщений в протоколе.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/usr/adm/streams/error.мм-дд
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LOG.htm>log(7)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

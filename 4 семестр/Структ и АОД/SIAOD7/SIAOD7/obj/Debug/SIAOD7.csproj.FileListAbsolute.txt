@@ -1,0 +1,9 @@
+C:\Users\я\source\repos\SIAOD7\SIAOD7\bin\Debug\SIAOD7.exe
+C:\Users\я\source\repos\SIAOD7\SIAOD7\bin\Debug\SIAOD7.pdb
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.csprojResolveAssemblyReference.cache
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.Form1.resources
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.Properties.Resources.resources
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.csproj.GenerateResource.cache
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.csproj.CoreCompileInputs.cache
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.exe
+C:\Users\я\source\repos\SIAOD7\SIAOD7\obj\Debug\SIAOD7.pdb

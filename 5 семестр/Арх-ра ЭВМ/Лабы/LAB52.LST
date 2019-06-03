@@ -1,0 +1,51 @@
+Turbo Assembler	 Version 2.5	    11/06/18 10:56:31	    Page 1
+lab52.asm
+
+
+
+      1	0000			     dseg    segment para
+      2	0000			     dseg ends
+      3	0000			     cseg    segment para
+      4	0000			     lab51   proc    near
+      5					 assume	     cs:cseg,ds:dseg
+      6	0000  B8 0000s			     mov     ax,dseg
+      7	0003  8E D8			     mov     ds,ax
+      8	0005  B9 0032			     mov     cx,50
+      9	0008			     wloop:
+     10	0008  B8 0000			     mov     ax,0000h
+     11	000B  CD 16			     int 16h
+     12	000D  80 FC 01			     cmp     ah,01h
+     13	0010  7E 02			     jle     final
+     14	0012  E2 F4			     loop wloop
+     15	0014			     final:
+     16	0014  B4 4C			     mov     ah,04Ch
+     17	0016  CD 21			     int     21h
+     18	0018  C3			     ret
+     19	0019			     lab51   endp
+     20	0019			     cseg    ends
+     21					     end     lab51
+Turbo Assembler	 Version 2.5	    11/06/18 10:56:31	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "11/06/18"
+??FILENAME			  Text	 "lab52	  "
+??TIME				  Text	 "10:56:31"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 LAB52
+@WORDSIZE			  Text	 2
+FINAL				  Near	 CSEG:0014
+LAB51				  Near	 CSEG:0000
+WLOOP				  Near	 CSEG:0008
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0019 Para	  none
+DSEG				  16  0000 Para	  none
+

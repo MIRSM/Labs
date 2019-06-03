@@ -1,0 +1,178 @@
+#info=WSGE1EDT
+@I:0,0=1;wait for 'run' command
+@O:1,0=0;
+@d:1,2=0;
+@T:2,0=1;start
+@T:2,2=103;start and not enough soap
+@S:3,0=2;Fill water
+@S:3,2=204;inhibate run command
+@T:4,0=2;water full
+@T:4,2=205;
+@A:5,0=6;
+@D:5,1=6;
+@J:5,2=1;
+@S:6,0=3;Heat water
+@S:6,1=101;Open soap
+@T:7,0=3;water hot
+@T:7,1=101;Soap empty
+@S:8,0=4;
+@S:8,1=102;
+@A:9,0=6;
+@C:9,1=6;
+@T:10,0=4;
+@S:11,0=5;Agitate
+@T:12,0=5;time out
+@S:13,0=6;empty water
+@T:14,0=6;water empty
+@S:15,0=7;fill water
+@T:16,0=7;water full
+@S:17,0=8;rince
+@T:18,0=8;time out
+@S:19,0=9;empty water
+@T:20,0=9;water empty
+@J:21,0=1;
+#endinfo
+_step _init GS1;
+#sfc=GS1(0,0)
+run (R);
+emptywater (R);
+ACTION (P) :
+   waterlevel := 0;
+   temperature := 0;
+END_ACTION;
+#sfc=end
+_next GT1, GT103;
+
+_trans GT1;
+#sfc=GT1(0,2)
+run & (soaplevel >= 100);
+#sfc=end
+_next GS2;
+
+_trans GT103;
+#sfc=GT103(2,2)
+run & (soaplevel < 100);
+#sfc=end
+_next GS204;
+
+_step GS2;
+#sfc=GS2(0,3)
+fillwater (N);
+#sfc=end
+_next GT2;
+
+_step GS204;
+#sfc=GS204(2,3)
+run (R);
+soapalarm (N);
+#sfc=end
+_next GT205;
+
+_trans GT2;
+#sfc=GT2(0,4)
+waterlevel >= 100;
+#sfc=end
+_next GS3, GS101;
+
+_trans GT205;
+#sfc=GT205(2,4)
+fillsoap or (GS204.T > t#2s);
+#sfc=end
+_next GS1;
+
+_step GS3;
+#sfc=GS3(0,6)
+Hot (S);
+#sfc=end
+_next GT3;
+
+_step GS101;
+#sfc=GS101(1,6)
+emptysoap (N);
+#sfc=end
+_next GT101;
+
+_trans GT3;
+#sfc=GT3(0,7)
+temperature >= 100;
+#sfc=end
+_next GS4;
+
+_trans GT101;
+#sfc=GT101(1,7)
+Soaplevel <= 0;
+#sfc=end
+_next GS102;
+
+_step GS4;
+_next GT4;
+
+_step GS102;
+_next GT4;
+
+_trans GT4;
+_next GS5;
+
+_step GS5;
+#sfc=GS5(0,11)
+Agitate (N);
+Wash (N);
+#sfc=end
+_next GT5;
+
+_trans GT5;
+#sfc=GT5(0,12)
+GS5.T > t#5s;
+#sfc=end
+_next GS6;
+
+_step GS6;
+#sfc=GS6(0,13)
+Hot (R);
+EmptyWater (N);
+#sfc=end
+_next GT6;
+
+_trans GT6;
+#sfc=GT6(0,14)
+(WaterLevel <= 0) & (GS6.T > t#2s);
+#sfc=end
+_next GS7;
+
+_step GS7;
+#sfc=GS7(0,15)
+fillwater (N);
+#sfc=end
+_next GT7;
+
+_trans GT7;
+#sfc=GT7(0,16)
+WaterLevel >= 100;
+#sfc=end
+_next GS8;
+
+_step GS8;
+#sfc=GS8(0,17)
+Agitate (N);
+Rince (N);
+#sfc=end
+_next GT8;
+
+_trans GT8;
+#sfc=GT8(0,18)
+GS8.T > t#5s;
+#sfc=end
+_next GS9;
+
+_step GS9;
+#sfc=GS9(0,19)
+EmptyWater (S);
+#sfc=end
+_next GT9;
+
+_trans GT9;
+#sfc=GT9(0,20)
+WaterLevel <= 0;
+#sfc=end
+_next GS1;
+

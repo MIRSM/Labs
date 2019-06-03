@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.ilab24.narod.ru/fract/frdragon.html -->
+<HTML><HEAD><TITLE>Фракталы: Кривая Дракона</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Кривая Дракона.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Кривая Дракона.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Кривая Дракона</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<P>Эта ломаная линия показалась похожей ее первооткрывателю Хайверу на китайских 
+драконов, поэтому она и получила название кривой Дракона. Эта ломаная линия не 
+пересекает саму себя и, кроме того, она регулярно заполняет часть плоскости 
+(занятой драконом).</P><PRE><B>Program</B> Dragon;
+<B>Uses</B> Graph, Crt;
+<B>Const</B>
+   c = 1024*16;
+   d = 3;
+   da =pi/2;
+<B>Var</B>
+   i   : Integer;
+   gd, gm   : Integer;
+   a,x,y : Real;
+<B>procedure</B> lineto1(x,y,l,u:real);
+<B>begin</B>
+  line(Round(x),round(y),round(x+l*cos(u)),Round(y-l*sin(u)));
+<B>end</B>;
+<B>function</B> opra(n:integer):integer;
+<B>Label</B>
+  nach;
+<B>Var</B>
+  j:integer;
+<B>Begin</B>
+ j:=n;
+ nach:
+ <B>if</B> (j-1) <B>mod</B> 4 = 0 <B>then</B> opra:=-1
+ <B>else</B> if (j-3) <B>mod</B> 4 = 0 <B>then</B> opra:=1
+ <B>else</B> <B>Begin</B>
+   j:=j <B>div</B> 2;
+   <B>goto</B> nach;
+ <B>End</B>;
+<B>End</B>;
+<B>Begin</B>
+   gd:=Detect;
+   InitGraph(gd,gm,'e:\bp\bgi');
+   x:=150;
+   y:=150;
+   a:=pi/2;
+   <B>For</B> i:=1 to c+1 <B>do</B> <B>Begin</B>
+     lineto1(x,y,d,a);
+     x:=x+d*cos(a);
+     y:=y-d*sin(a);
+     a:=a-da*opra(i);
+   <B>End</B>;
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+</PRE>
+<CENTER><IMG height=470 alt="Кривая дракона" 
+src="Фракталы Кривая Дракона.files/fr006.gif" width=325 border=0></CENTER></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 10.10.04<BR>Дата последнего обновления: 10.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Кривая Дракона.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

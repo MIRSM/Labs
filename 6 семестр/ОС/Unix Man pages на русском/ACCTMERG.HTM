@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>ACCTMERG(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCTMERG(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acctmerg - слияние статистической информации
+<p><b>СИНТАКСИС</b>
+<pre>
+/usr/lib/acctmerg  [-a] [-i] [-p] [-t] [-u] [-v] [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита acctmerg читает исходные данные со стандартного
+ввода и из указанных  в  командной  строке  файлов  (их
+должно  быть  не более 9). Исходные записи должны иметь
+сводный формат tacct [см. <a href=ACCT~1~2.htm>acct(4)</a>] или текстовый  вариант  этого формата. Утилита acctmerg производит слияние
+вводимой информации путем об единения записей с  одинаковыми  значениями  ключей,  каковыми  обычно  являются
+идентификаторы и входные имена пользователей, и помещает результаты на стандартный вывод. Предполагается, что
+исходные данные отсортированы по значениям ключей.
+<p>
+Допустимые опции:
+<table>
+<tr valign=top><td>-a<td>Порождать  результаты в текстовом варианте формата
+tacct.</tr>
+<tr valign=top><td>-i<td>Считать, что исходные записи имеют текстовый вариант формата tacct.</tr>
+<tr valign=top><td>-p<td>Выводить исходные данные без обработки.</tr>
+<tr valign=top><td>-t<td>Сгенерировать одну запись, являющуюся суммой  всех
+исходных записей.</tr>
+<tr valign=top><td>-u<td>Считать  ключом только идентификатор пользователя,
+а не идентификатор и входное имя.</tr>
+<tr valign=top><td>-v<td>Порождать  результаты в текстовом виде, а числовые
+величины выводить в вещественном формате.</tr>
+</table><p align=justify>
+Для внесения изменений в файл  f1,  хранящий  записи  в
+формате tacct, рекомендуется сначала преобразовать  его
+к текстовому виду командой
+<pre>
+acctmerg  -v &lt; f1 &gt; f2
+</pre>
+после  чего  отредактировать файл f2 и вновь сгенерировать результаты в сводном формате:
+<pre>
+acctmerg  -i &lt; f2 &gt; f1
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCT.htm>acct(1M)</a>,   <a href=ACCTCMS.htm>acctcms(1M)</a>,   <a href=ACCTCON.htm>acctcon(1M)</a>,    <a href=ACCTPRC.htm>acctprc(1M)</a>,
+<a href=ACCTSH.htm>acctsh(1M)</a>, <a href=DISKUSG.htm>diskusg(1M)</a>, <a href=FWTMP.htm>fwtmp(1M)</a>, <a href=RUNACCT.htm>runacct(1M)</a>.<br>
+<a href=ACCT~1~2.htm>acct(4)</a>, <a href=UTMP.htm>utmp(4)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

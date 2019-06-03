@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>BACKUP(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>BACKUP(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+backup  -  сохранение  файловой системы, восстановление
+данных
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Здесь  излагаются  самые общие соображения относительно
+сохранения и восстановления данных. Имеется в виду сохранение файловой системы или тома на другом носителе  и
+восстановление  данных, ранее сохраненных на другом носителе. Предполагается, что сохраняемая информация  находится на диске.
+<p><i>Сохранение</i><br>
+Содержимое диска может быть сохранено в виде:
+<ol>
+<li>Физической копии. Весь том или логический диск переписывается  программой  <a href=DD.htm>dd(1)</a> как бесструктурное
+устройство.
+<li>Логической копии. Файловая система  или  ее  части
+переписываются программой <a href=CPIO.htm>cpio(1)</a>.
+</ol>
+Для сохранения могут использоваться следующие носители:
+<ol>
+<li>С емный диск: дорого и быстро.
+<li>Другой нес емный диск: еще дороже.
+<Li>Магнитная лента: идеальный носитель.
+<li>Дискеты: дешево, медленно, чревато ошибками; только для бедных людей.
+</ol><p align=justify>
+Сколько лент (дисков, дискет) необходимо иметь и на какую ленту выполнять очередное копирование?
+<p align=justify>
+Если у Вас много кассет с лентой,  можно  рекомендовать
+порядок  копирования, совпадающий с порядком перекладывания дисков Ханойской башни: 1, 2, 1, 3, 1, 2,  1,  4,
+..., то есть использовать ленту 1 для каждой второй копии, ленту 2 - для каждой четвертой, ленту 3 - для каждой  восьмой и т.д. Если у Вас всего две кассеты, целесообразно пользоваться утилитой <a href=COPALL.htm>copall(1M)</a>, контролирующей их чередование. В любом  случае  логическая  копия
+предпочтительнее физической.
+<p>
+Для сохранения используются следующие утилиты:
+<dl>
+<dt>dd
+<dd>Физическое копирование.
+<dt>cpio
+<dd>Логическое сохранение/восстановление файлов; часто
+используется совместно с командой <a href=FIND.htm>find(1)</a>.
+<dt>vsplit
+<dd>Расщепление/слияние  на  несколько  (с нескольких) томов.
+<dt>saveto 
+<dd>Shell-процедура, предоставляющая удобный интерфейс
+с вышеперечисленными утилитами.
+<dt>copall 
+<dd>Еще одна shell-процедура для логического копирования, контролирует номер используемой ленты.
+</dl>
+<p align=justify>
+Рекомендуется иметь на дискете минимальный вариант системы  на  случай  серьезного повреждения диска, когда с
+него невозможно загрузиться. Для получения минимального
+варианта используйте утилиту <a href=MKMINI.htm>mkmini(1M)</a>.
+<p><i>Восстановление</i><br>
+Как восстановить диск после серьезного повреждения?
+<p align=justify>
+Сначала нужно загрузить систему с  какого-либо  другого
+носителя, например с дискеты.
+<p align=justify>
+Затем  с помощью отладчика файловых систем <a href=FSDB.htm>fsdb(1M)</a> попытайтесь установить масштабы повреждения и,  если  это
+возможно,  вручную  ликвидируйте  самые тяжелые из них.
+После этого попробуйте привести файловую систему в корректное состояние утилитой <a href=FSCK.htm>fsck(1M)</a>, даже ценой  потери
+некоторой  части информации, которую придется восстановить с логической копии утилитой <a href=RESTALL.htm>restall(1M)</a>.
+<p align=justify>
+Если повреждения не поддаются ликвидации, диск придется
+отформатировать.  Затем, если имеется физическая копия,
+информация восстанавливается утилитой  <a href=DD.htm>dd(1)</a>.  Если  же
+имеется  только  логическая копия, на отформатированном
+диске нужно создать минимальный вариант системы, загрузиться с диска и восстановить информацию  с  логической
+копии командами вида
+<pre>
+     cd /; dd if=/dev/mt bs=256k | cpio -idmvu
+</pre><p align=justify>
+Проверьте, созданы ли каталоги /mnt, /tmp, /lost+found,
+в каком состоянии файлы /etc/checklist,  /etc/fstab  и,
+конечно, файл /unix.
+<p align=justify><i>Сохранение/восстановление с помощью ленты и диска в памяти</i><br>
+Более  сложной является ситуация, когда нет возможности
+загрузить систему ни с диска, ни с дискеты. В этом случае нужно воспользоваться комбинацией лента/диск в  памяти.  В  вариант  системы, загружаемый с ленты, должен
+входить драйвер диска  в  памяти  /usr/src/uts/io/rd.c;
+должно быть доступно не менее 2 Мб памяти.
+<p align=justify>
+Подготовьте ленту, с которой можно  загрузить  систему.
+Сделать  это  достаточно  один  раз, готовясь к полному
+краху. Лента готовится следующим образом:
+<p align=justify>
+Конфигурируется UNIX-ядро с такими характеристиками:
+<ol>
+<li>Корневой каталог и каналы на диске в памяти.
+<li>Устройство для подкачки отсутствует.
+<li>Значения параметров,  влияющих  на  расход  памяти
+(например,  размер буферов) минимальны.
+<li>В ядро входит драйвер диска в памяти; под диск зарезервирован 1 Мб памяти.  Адрес  диска  в  памяти
+должен  быть  согласован  с  адресом, используемым
+программой начальной загрузки.
+<li>Память, отведенная для диска, исключается из  таблицы распределения памяти, доступной ядру.
+</ol><p align=justify>
+Создайте минимальный вариант системы  [см.  <a href=MKMINI.htm>mkmini(1M)</a>]
+размером порядка 900 Кб на свободном логическом диске и
+скопируйте  в корневой каталог полученной файловой системы сконфигурированное ядро. Выполните физическое  копирование диска на ленту.
+<p align=justify>
+Затем ведите нормальную жизнь, регулярно копируйте диск
+и ждите полного краха.
+<p align=justify>
+Когда (не дай бог!) крах  наступил,  восстанавливайтесь
+так:
+<p align=justify>
+Загрузите  систему с заготовленной ленты. Программа начальной загрузки прочтет ленту на диск в  памяти,  а  с
+точки  зрения ядра диск в памяти ничем не отличается от
+других дисков. Более  того,  загруженному  ядру  другие
+диски  не нужны. Дальнейшая процедура восстановления не
+отличается от описанной выше. Например, можно  отформатировать  поврежденный основной диск и использовать копию.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=COPALL.htm>copall(1M)</a>,    <a href=MKMINI.htm>mkmini(1M)</a>,   <a href=RESTALL.htm>restall(1M)</a>,   <a href=SAVETO.htm>saveto(1M)</a>,
+<a href=VSPLIT.htm>vsplit(1M)</a>.<br>
+<a href=CPIO.htm>cpio(1)</a>, <a href=DD.htm>dd(1)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

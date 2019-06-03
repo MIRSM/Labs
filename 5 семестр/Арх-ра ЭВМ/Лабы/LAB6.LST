@@ -1,0 +1,110 @@
+Turbo Assembler	 Version 2.5	    12/06/18 19:00:41	    Page 1
+lab6.asm
+
+
+
+      1	0000			     code_seg	     segment
+      2	0000			      TSRprog	     proc    far
+      3					     assume cs:code_seg
+      4					     org     100h
+      5	0100			     begin:
+      6	0100  B9 0064			     mov     cx,100
+      7	0103  BE 015Br			     lea     si,music
+      8	0106  51		     beg:    push    cx
+      9	0107  E4 61			     in	     al,61h
+     10	0109  24 FC			     and     al,0ffh-3
+     11	010B  E6 61			     out     61h,al
+     12	010D  B0 B6			     mov     al,10110110b
+     13	010F  E6 43			     out     43h, al
+     14	0111  B8 0000			     mov     ax,0000h
+     15	0114  CD 16				     int     16h
+     16						     ;cmp    ah,48h
+     17						     ;je     incr
+     18						     ;cmp ah,50h
+     19						     ;je decr
+     20	0116  80 FC 01				     cmp     ah,01h
+     21	0119  74 3A				     je	     final
+     22						     ;mov     ax,cs:[si]
+     23	011B  EB 15 90				     jmp     play
+     24	011E			     incr:
+     25	011E  2E: 83 04	64		     add     cs:[si],100
+*Warning* lab6.asm(25) Argument	needs type override
+     26	0122  2E: 8B 04			     mov ax,cs:[si]
+     27
+     28	0125  EB 0B 90			     jmp play
+     29	0128			     decr:
+     30	0128  2E: 83 2C	64		     sub     cs:[si],100
+*Warning* lab6.asm(30) Argument	needs type override
+     31	012C  2E: 8B 04			     mov ax,cs:[si]
+     32	012F  EB 01 90			     jmp play
+     33	0132			     play:
+     34	0132  E6 42				     out     42h,al
+     35	0134  8A C4			     mov     al,ah
+     36	0136  E6 42			     out     42h,al
+     37	0138  E4 61			     in	     al,61h
+     38	013A  0C 03			     or	     al,3
+     39	013C  E6 61			     out     61h, al
+     40	013E  E4 61			     in	     al,61h
+     41	0140  B8 8600			     mov     ax,8600h
+     42	0143  8C CB			     mov     bx,cs
+     43	0145  8E C3			     mov     es,bx
+     44	0147  BB 015Ar			     lea     bx,flag
+     45	014A  B9 0007			     mov     cx,7
+     46	014D  BA A120			     mov     dx,0A120h
+     47	0150  CD 15			     int     15h
+     48	0152			     bue:
+     49	0152  59			     pop     cx
+     50	0153  E2 B1			     loop    beg
+     51	0155			     final:
+     52	0155  B8 4C00			     mov ax,4c00h
+     53	0158  CD 21			     int  21h
+     54	015A  00		     flag    db	0
+     55	015B  1388		     music   dw	     5000
+Turbo Assembler	 Version 2.5	    12/06/18 19:00:41	    Page 2
+lab6.asm
+
+
+
+     56	015D  00		     index   db	0
+     57	015E			     TSRprog endp
+     58	015E			     code_seg	     ends
+     59				     end     begin
+Turbo Assembler	 Version 2.5	    12/06/18 19:00:41	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "12/06/18"
+??FILENAME			  Text	 "lab6	  "
+??TIME				  Text	 "19:00:41"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE_SEG
+@FILENAME			  Text	 LAB6
+@WORDSIZE			  Text	 2
+BEG				  Near	 CODE_SEG:0106
+BEGIN				  Near	 CODE_SEG:0100
+BUE				  Near	 CODE_SEG:0152
+DECR				  Near	 CODE_SEG:0128
+FINAL				  Near	 CODE_SEG:0155
+FLAG				  Byte	 CODE_SEG:015A
+INCR				  Near	 CODE_SEG:011E
+INDEX				  Byte	 CODE_SEG:015D
+MUSIC				  Word	 CODE_SEG:015B
+PLAY				  Near	 CODE_SEG:0132
+TSRPROG				  Far	 CODE_SEG:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE_SEG			  16  015E Para	  none
+Turbo Assembler	 Version 2.5	    12/06/18 19:00:41	    Page 4
+Error Summary
+
+
+
+*Warning* lab6.asm(25) Argument	needs type override
+*Warning* lab6.asm(30) Argument	needs type override
+

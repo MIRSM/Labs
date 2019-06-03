@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>PSTAT(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PSTAT(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+pstat - Сообщает системную информацию.
+<p><b>СИНТАКСИС</b>
+<pre>
+   pstat [ -aixpf ] [ -u ubase ] [ -c corefile ] [ -n namelist ] [file ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда pstat интерпретирует содержание определенных системных
+таблиц, команда pstat выполняет поиск этих таблиц в файле /dev
+/mem и /dev/kmem.  Если задан файл (аргумент file), то таблицы
+прежде  разыскиваются  в описанном файле,  а затем в /dev/mem.
+Аналогично,  опция -с позволяет вам указать  для  поиска  файл
+corefile,  в котором таблицы будут разыскиваться раньше, чем в
+/dev/mem.  Необходимый список имен берется  из  файла  /xenix.
+Доступны следующие опции:
+<dl>
+<dt>-a   <dd>   Под действием опции -p описывает в первую очередь все
+сегменты процессов,  а не процессы, которые уже действуют.
+<p><dt>-i  <dd>  Печатает таблицу узлов со следующими заголовками:
+<dl>
+<p><dt>LOC  <dd>  Центральное расположение  входа в эту таблицу.
+<p><dt>FLAGS <dd> Разнообразные переменные состояния,  закодированные следующим образом:
+<pre>
+      L   Заблокированное
+      U   Необходимо скорректировать  время обновления файловой системы (F)
+      A   Необходимо скорректировать время  доступа
+      M   Файловая система смонтирована здесь
+      W   Разыскивается  другим  процессом  (Включен флаг L)
+      T   Содержит текстовый файл
+      C   Измененное время должно быть  скорректировано
+</pre>
+<p><dt>CNT   <dd> Число  открытых  входов в файловую систему для
+данного узла.
+<p><dt>DEV  <dd>  Старший  и младший  номер  устройства файловой
+системы, в которой размещен данный узел.
+<p><dt>INO  <dd>  I-номер в пределах  указанного  устройства.
+<p><dt>MODE  <dd> Биты режима,  см. команду chmod(S).
+<p><dt>NLK  <dd>  Число связей,ведущих к этому узлу.
+<p><dt>UID  <dd>  Пользовательский идентификатор ID владельца
+<p><dt>SIZ/DEV<dd> Число байтов в исходном файле,  или старший  и
+младший  номера устройства специального файла.
+</dl>
+<p><dt>-x   <dd>   Печатает  текстовую таблицу со следующими заголовками
+(только 286):
+<dl>
+<p><dt>LOC  <dd>  расположение  входа в эту таблицу в памяти.
+<p><dt>FLAGS <dd> Разнообразные переменные  состояния, закодированные  следующим  образом:
+<pre>
+      T Команда <a href=PTRACE.htm>ptrace(2)</a> в действии
+      W Текст еще не записан на устройство перекачки
+      L   Загрузка в действии
+      K   Заблокирован
+      w   Запрошен (флаг L включен)
+</pre>
+<p><dt>DADDR <dd> Адрес на диске при перекачке  данных,  кратный
+байтам BSIZE.
+<p><dt>CADDR <dd> Адрес ядра, измеренный  в  блоках  разрешающей
+способности управления памятью.
+<p><dt>SIZE <dd>  Размер текстового сегмента, измеренный в  блоках разрешающей способности управления памятью.
+<p><dt>IPTR <dd>  Размещение ядра соответствующего узла.
+<p><dt>CNT  <dd>  Число  процессов,  использующих  этот текстовый
+сегмент.
+<p><dt>CCNT <dd> Число процессов в ядре, использующих этот текстовый сегмент.
+</dl>
+<p><dt>-p   <dd>   Печатает таблицу процессов для действующих процессов  со следующими заголовками:
+<dl>
+<p><dt>LOC  <dd>  Центральное расположение входа в эту таблицу.
+<p><dt>S  <dd>    Состояние выполнения, закодированное  следующим
+образом:
+<pre>
+      0   Нет процесса
+      1   Ожидание некоторого события
+      3   Доступен для выполнения
+      4   Создается
+      5   Завершается
+      6   Остановлен программой  трассировки
+</pre>
+<p><dt>F   <dd>   Разнообразные переменные состояния следующие:
+<pre>
+      01  Загружен
+      02  Процесс планировщика
+      04  Заблокирован
+      010 Откачан
+      020 Трассирован
+      040 Использован
+      0100 Заблокирован командой lock(2).
+</pre>
+<p><dt>PRI  <dd>  Приоритет в расписании,  см. команду <a href=NICE.htm>nice(2)</a>.
+<p><dt>SIGNAL <dd>Принятые сигналы (сигналы 1-16, закодированные
+в битах 0-15).
+<p><dt>UID  <dd>  Реальный  пользовательский идентификатор ID.
+<p><dt>TIM  <dd>  Время резидентной части в секундах, свыше 127,
+кодируется, как 127.
+<p><dt>CPU  <dd>  Взвешенное   интегральное   время центрального
+процессора (CPU) для планировщика.
+<p><dt>NI   <dd>  Предпочтительный уровень, см. команду <a href=NICE.htm>nice(2)</a>.
+<p><dt>PGRP <dd>  Процессовый  номер  маршрута  группы  процесса
+(открывающий управляющий терминал).
+<p><dt>PID  <dd>  Процессовый номер ID.
+<p><dt>PPID <dd>  Процессовый ID, порождающего процесса.
+<p><dt>ADDR <dd>  Если  процесс  размещен  в ядре, то физический
+адрес области "u-area" данного процесса, измеренный  в узлах разрешающей способности управления памяти. Если процесс откачен, то позиция
+в  области  перекачки измеряется кратно байтам
+BSIZE.
+<p><dt>WCHAN <dd> Номер канала ожидания ожидающего процесса.
+<p><dt>LINK  <dd> Указатель связи в списке выполняемых процессов.
+<p><dt>TEXTP <dd> Если текст чист, то указатель на место входа в
+текстовую таблицу (только 286).
+<p><dt>INODP <dd> Указатель  на  размещение   разделенного  узла
+(только 386).
+<p><dt>CLKT <dd>  Обратный счетчик для команды <a href=ALARM.htm>alarm(2)</a>,  измеренный в секундах.
+</dl>
+<p><dt>-u ubase<dd>
+Печатает информацию   о   пользовательском  процессе.
+Ubase - это шестнадцатеричный адрес  данного процесса
+в главной памяти.  Адрес может быть получен с помощью
+длинного (long) листинга (опция -l) команды <a href=PS.htm>ps(1)</a>.
+<p><dt>-c corefile<dd>
+Используйте файл corefile вместо /dev/kmem.
+<p><dt>-n namelist<dd>
+Используйте файл namelist в качестве альтернативного
+списка имен вместо /xenix.
+<p><dt>-f   <dd>   Печатает таблицу открытых файлов со следующими  заголовками:
+<dl>
+<p><dt>LOC  <dd>  Центральное  расположение  входа в эту таблицу.
+<p><dt>FLAGS <dd> Разнообразные переменные состояния:
+<pre>
+      R   Открыт для чтения
+      W   Открыт для записи
+      P   Программный канал
+</pre>
+<p><dt>CNT  <dd>  Количество  процессов,  которые знают этот открытый файл.
+<p><dt>INO <dd>   Адрес входа в таблицу узлов для  данного  файла.
+<p><dt>OFFS <dd>  Смещение данного файла, см. команду <a href=LSEEK.htm>lseek(2)</a>.
+</dl>
+</dl>
+<p><b>ФАЙЛЫ</b>
+<pre>
+   /xenix          Список имен
+   /dev/mem        Источник таблиц по умолчанию
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PS.htm>ps(1)</a>, <a href=STAT.htm>stat(2)</a>, filesystem(3)
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

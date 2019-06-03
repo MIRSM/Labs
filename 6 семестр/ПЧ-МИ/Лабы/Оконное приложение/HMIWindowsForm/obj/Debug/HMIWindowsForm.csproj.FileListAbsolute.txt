@@ -1,0 +1,11 @@
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\bin\Debug\HMIWindowsForm.exe.config
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\bin\Debug\HMIWindowsForm.exe
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\bin\Debug\HMIWindowsForm.pdb
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.csprojAssemblyReference.cache
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.ControlForm.resources
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.MainForm.resources
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.Properties.Resources.resources
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.csproj.GenerateResource.cache
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.csproj.CoreCompileInputs.cache
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.exe
+C:\Users\ugrov\source\repos\HMIWindowsForm\HMIWindowsForm\obj\Debug\HMIWindowsForm.pdb

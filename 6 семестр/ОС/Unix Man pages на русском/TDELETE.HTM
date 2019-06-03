@@ -1,0 +1,232 @@
+<html>
+<head>
+<title>TSEARCH(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>TSEARCH(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+tsearch,  tfind,  tdelete, twalk - управление бинарными
+деревьями поиска
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;search.h>
+	
+	char *tsearch ((char *) key, (char **) rootp, compar)
+	int (*compar) ( );
+	
+	char *tfind ((char *) key, (char **) rootp, compar)
+	int (*compar) ( );
+	
+	char *tdelete ((char *) key, (char **) rootp, compar)
+	int (*compar) ( );
+	
+	char *twalk ((char *) root, action)
+	void (*action) ( );
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функции tsearch, tfind, tdelete и  twalk  предназначены
+для выполнения операций над бинарными деревьями поиска.
+Функции реализованы на основе алгоритмов,  описанных  в
+книге Д. Кнута: Искусство программирования для ЭВМ.  Т.
+3. Сортировка, поиск. - М.: Мир,  1978.  Раздел  6.2.2,
+алгоритмы T и D. Операции сравнения выполняются  с  помощью функции, предоставляемой  пользователем.  Функция
+сравнения вызывается с двумя аргументами -  указателями
+на сравниваемые элементы. В соответствии с  тем,  какое
+целое число она возвращает: меньшее нуля,  равное  нулю
+или большее нуля, первый  аргумент  считается  меньшим,
+равным или большим по отношению ко второму. В сравнении
+не обязательно должен участвовать каждый байт,  поэтому
+элементы, в дополнение к сравниваемым величинам,  могут
+содержать произвольные данные.
+<p align=justify>Функция tsearch используется для  построения  дерева  и
+доступа к нему. Аргумент key является указателем на искомые данные (ключ). Если в дереве есть узел с данными,
+равными  искомым,  то результатом функции служит указатель на этот узел, первым полем которого является  указатель  на данные. В противном случае в дерево вставляется узел со ссылкой на искомые данные  и  возвращается
+указатель  на него. Отметим, что копируются только указатели, поэтому вызываемая программа сама  должна  хранить  данные.  Аргумент  rootp указывает на переменную,
+которая является указателем на корень дерева.  Значение
+NULL  переменной,  на которую указывает rootp, означает
+пустое дерево; в этом случае переменная устанавливается
+равной указателю на данные, которые  окажутся  в  корне
+нового дерева.
+<p align=justify>Подобно функции tsearch, функция tfind осуществляет поиск данных в дереве, возвращая в случае  успеха  указатель на узел. Однако в случае неудачного поиска функция
+tfind  возвращает  пустой указатель NULL. Аргументы для
+функции tfind такие же, как и для функции tsearch.
+<p align=justify>Функция tdelete удаляет узел из бинарного дерева  поиска. Аргументы такие же, как и для функции tsearch.  Переменная, на которую указывает rootp, изменяется,  если
+удаляемый узел является корнем дерева. Функция  tdelete
+возвращает указатель на предка удаляемого узла или пустой указатель NULL, если узел не найден.
+<p align=justify>Функция twalk осуществляет обход бинарного дерева поиска. Аргумент root указывает на  корень  обрабатываемого
+дерева.  Любой  узел  может быть использован в качестве
+корня для обхода соответствующего  поддерева.  Аргумент
+action  -  это  функция, которая вызывается для каждого
+узла. Она в свою очередь имеет  три  аргумента.  Первым
+аргументом  служит адрес текущего узла. Второй аргумент
+- это значение перечисляемого типа данных, определенного во включаемом  файле  &lt;search.h>  как
+<pre>
+	typedef enum {preorder, postorder, endorder, leaf} VISIT
+</pre>
+<p align=justify>Значение показывает, который раз  (первый,  второй  или
+третий)  осуществляется  доступ к узлу (во время обхода
+дерева в глубину и слева направо) или  показывает,  что
+узел является листом. Третий аргумент - это уровень узла  в дереве (в предположении, что корень имеет уровень
+0).
+<p align=justify>Указатели на ключ и  корень  дерева  должны  иметь  тип
+"указатель на элемент" и преобразовываться к типу "указатель на символ".  Аналогично,  возвращаемое  значение
+следует преобразовывать к типу "указатель на  элемент",
+хотя оно и описывается типом "указатель на символ".
+<p><b>ПРИМЕР </b><br>
+Следующая программа считывает цепочки символов и  запоминает в дереве структуры, содержащие указатель на каждую цепочку и ее длину. Затем осуществляется обход  дерева и распечатываются в алфавитном порядке сохраненные
+цепочки символов с их длинами.
+<pre>
+	#include &lt;search.h>
+	#include &lt;stdio.h>
+	
+	struct node {    /* В дереве будут запоминаться указатели
+	                  на эти структуры */
+	char *string;
+	int  length;
+	};
+	
+	char string_space [10000]; /* Пространство для хранения
+	                            цепочек символов */
+	struct node nodes [500];   /* Пространство для хранения
+	                            структур */
+	struct node *root=NULL;    /* Указатель на корень */
+	
+	main()
+	{
+	char *strptr = string_space;
+	struct node *nodeptr = nodes;
+	void print_node (), twalk ();
+	int i = 0, node_compare ();
+	
+	while (gets (strptr) != NULL && i++ &lt; 500) {
+	
+	  /* Инициализация структуры */
+	  nodeptr -> string = strptr;
+	  nodeptr -> length = strlen(strptr);
+	
+	  /* Поместить структуру в дерево */
+	  (void) tsearch ((char *) nodeptr, (char **)&root,
+	                  node_compare);
+	
+	  /* Скорректировать указатели */
+	  strptr += nodeptr->length + 1;
+	    nodeptr++;
+	}
+	twalk ((char *) root, print_node);
+	}
+	
+	/* Функция сравнивает две структуры в соответствии
+	 с алфавитной упорядоченностью цепочек символов */
+	int node_compare (node1, node2)
+	char *node1, *node2;
+	{
+	return strcmp (((struct node *) node1)->string,
+	               ((struct node *) node2)->string);
+	}
+	
+	/* Функция распечатывает узел при первом заходе в него */
+	void print_node (node, order, level)
+	char **node;
+	VISIT order;
+	int level;
+	{
+	if (order == preorder || order == leaf) {
+	  (void) printf ("string = %20s, length = %d\n",
+	            (*((struct node **)node)) -> string,
+	            (*((struct node **)node)) -> length);
+	}
+	}
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BSEARCH.htm>bsearch(3C)</a>, <a href=HSEARCH.htm>hsearch(3C)</a>, <a href=LSEARCH.htm>lsearch(3C)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функция tsearch возвращает пустой указатель NULL,  если
+не хватает свободного пространства для создания  нового
+узла.
+<p align=justify>Функции tfind и  tdelete  возвращают  пустой  указатель
+NULL, если аргумент rootp равен NULL.
+<p align=justify>Если данные найдены, то функции tsearch и tfind возвращают указатель на них. В случае неудачного поиска функция tfind возвращает пустой указатель NULL,  а  функция
+tsearch возвращает указатель на вставленные данные.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Аргумент root функции twalk имеет на один уровень  косвенной адресации меньше,  чем  аргумент  rootp  функций
+tsearch и tdelete.
+<p align=justify>Термины preorder, postorder и endorder могут толковаться двояко. Функция tsearch использует термины preorder,
+postorder и endorder для  обозначения,  соответственно,
+следующих случаев: доступ к узлу перед доступом к какому-либо  его потомку, доступ к узлу после доступа к его
+левому потомку и перед доступом к правому потомку, доступ к узлу после доступа к обоим потомкам.  Часто  названные термины используются для указания порядка обхода
+дерева, что может привести к путанице.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Если вызываемая функция изменяет  указатель  на  корень
+дерева, то последствия будут непредсказуемы.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

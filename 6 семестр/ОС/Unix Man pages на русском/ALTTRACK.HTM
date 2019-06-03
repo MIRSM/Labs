@@ -1,0 +1,171 @@
+<html>
+<head>
+<title>ALTTRACK(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ALTTRACK(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+alttrack - альтернативные дорожки для дефектных дорожек
+диска
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Блок 0 на дисковом томе содержит информацию о наличии и
+размещении дефектных дорожек, в виде следующей структуры.
+<pre>
+#define ALTMAGIC 0XDBDF     /* магическое число блока
+                               дефектных дорожек*/
+#define ALTSIZE  512        /* размер области  инфор- 
+                               мации о дефектных до- 
+                               рожках */
+#define NICALT ALTSIZE/2-4  /* максимальное число
+                               альтернативных дорожек */
+
+struct alttrack {
+        unsigned short a_magic;  /* магическое число */
+        unsigned short a_count;  /* текущее количество
+                                    дефектных дорожек */
+        unsigned short a_nicbad; /* максимальное число
+                                    дефектных дорожек */
+        unsigned short a_base;   /* начало карты */
+        unsigned short at_map [NICALT]; /* текущее  ко- 
+                      личество альтернативных дорожек */
+};
+</pre><p align=justify>
+Утилита alttrack(1M) позволяет  отображать  и  задавать
+эту информацию в символьном виде.
+<p align=justify>
+Типичный результат работы alttrack(1M) -a, -r (или
+входная информация для -w) выглядит так:
+<pre>
+        #bad tracks from /dev/rdsk/sm3s7
+        #magic count max base
+        56287  3     3   4245
+        #tracks(cyl:head):
+        2:1  444:0 2123:0
+</pre><p align=justify>
+Дорожка на цилиндре 2, головке 1 отображается на первую
+альтернативную дорожку 4245, дорожка на  цилиндре  444,
+головке 0 - на следующую дорожку 4246. Эта дорожка, находящаяся на цилиндре 2123, головке 0, сама дефектна  и
+отображается на следующую дорожку 4247.
+<p align=justify>
+Нулевая дорожка находится на цилиндре 0, головке 0. Номера дорожек сначала пробегают  головки одного цилиндра,
+затем переходят на следующий цилиндр. Строки,  начинающиеся с #, являются комментариями.
+<p align=justify>
+Информация изготовителя об аппаратных дефектах, обрабатываемая командой 'alttrack -a', должна иметь вид:
+<p>
+для приводов с интерфейсом smd - 1 запись на дорожку:
+<pre>
+        long bid;       /* идентификатор дорожки;
+                           &lt; 0 для дефектной дорожки */
+        long bpos [4];  /* позиции ошибок (до 4-х) */
+        unsigned short bend; /* контрольный код
+                                0xF000 */
+</pre>
+для приводов с интерфейсом st506 - по 1 записи на каждой дорожке цилиндра 0:
+<pre>
+        long date;
+        short zero [2];
+        {char cyl [2];  /* цилиндры, имеющие аппаратные
+                           дефекты */
+         char xxx [3];} [50] /* до 50 на поверхность */
+</pre>
+<p align=justify><i>Oбработка дефектных дорожек.</i><br>
+После выполнения 'mknod' для raw-устройства следует:
+<ul>
+<li>собрать информацию о дефектных дорожках диска<br>
+<tt>#alttrack -a /dev/rdsk/smls7 &gt;/etc/badtrack/file ;</tt>
+<li>форматировать диск<br>
+<tt>#format /dev/rdsk/smls7 ;</tt>
+<li>записать информацию о дефектных дорожках на диск<br>
+<tt>#alttrack -w /dev/rdsk/smls7 &lt;/etc/badtrack/file .</tt>
+</ul>
+Для добавления дефектной дорожки следует:
+<ul>
+<li>скорректировать блок 0:<br>
+увеличить счетчик count, при необходимости увеличить
+max и base, описать новую дефектную  дорожку, занести
+информацию на диск утилитой alttrack.
+<table><tr bgcolor=#C0C0C0><td>
+Внимание! Запись информации о дефектных дорожках  на
+диск приводит к потере всей информации на диске!;</tr></table>
+<li>создать новую файловую систему утилитой mkfs.
+</ul>
+<p><b>ФАЙЛЫ</b>
+<pre>
+/usr/include/sys/disk.h
+/etc/badtrack/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+alttrack(1M), <a href=FORMAT.htm>format(1M)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

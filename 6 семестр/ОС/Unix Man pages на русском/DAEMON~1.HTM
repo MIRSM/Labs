@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>DAEMON.MN(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DAEMON.MN(7)</h3>
+<p align=justify><b>ИМЯ</b><br>
+     daemon.mn - Демон посылки сообщений сети Micnet.
+<p><b>СИНТАКСИС</b>
+<pre>
+      /usr/lib/mail/daemon.mn[-ex]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+     Демон выполняет функцию выхода из сети команд mail, rsp и
+remote с помощью  установки  и  обслуживания  последовательной
+связи между компьютерами сети Micnet.
+<p align=justify>     При вызове демон создает много копий самого себя,  по одной копии для каждой последовательной строки,  используемой  в
+сети. Каждая  копия открывает последовательную строку, создает
+начальное сообщение для файла LOG и ждет ответа от  демона  на
+другом конце.  Начальное сообщение выдает имена устройств, которые следует подсоединить,  последовательную строку,  которую
+надо использовать, и текущую дату и время. Если демон получает
+правильный ответ, он вырабатывает последовательную связь и добавляет к  файлу LOG сообщение "первое подтверждение связи завершено". Если ответа нет, то демон безразлично ждет.
+<p align=justify>     При вызове с -х включением демон записывает каждую  передачу в LOG файл. Вход передачи показывает направление передачи
+(tx для посылки,  rx для получения),  число, переданное в байтах, время  счета для передачи (в минутах и секундах)  и время
+для передачи (в часах,  минутах и секундах). Каждый вход имеет
+вид:
+<pre>
+       direction byte_count elasped_time time_of_ day
+</pre>
+<p align=justify>     Демон также записывает дату и время каждый час.  Время  и
+дата имеют такой же формат, как описано в команде date.
+<p align=justify>     При вызове с е-включением демон записывает все ошибки передачи в файл LOG.  Вход ошибок показывает причину ошибки,   и
+перед ним  стоит  имя подпрограммы демона,  которая обнаружила
+ошибку.
+<p align=justify>     Демон, как  правило,   вызывается  опцией  start  команды
+netutil и останавливается опцией stop.
+<p align=justify>     При нормальном ходе вычисления демон использует несколько
+файлов из каталога /usr/spool/micnet/remote. Эти файлы обеспечивают хранение входных данных,  команд,  запускаемых командой
+<a href=REMOTE.htm>remote(1)</a>, и списка процессов под управлением демона.
+<p><b>ФАЙЛЫ</b>
+<pre>
+     /usr/lib/mail/daemon.mn
+     /usr/spool/micnet/remote/*/LOG
+     /usr/spool/micnet/remote/*/mn
+     /usr/spool/micnet/remote/local/mn*
+     /usr/spool/micnet/remote/loc
+     /usr/spool/micnet/remote/pids
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+     <a href=NETUTIL.htm>netutil(8)</a>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

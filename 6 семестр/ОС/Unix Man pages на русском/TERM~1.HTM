@@ -1,0 +1,186 @@
+<html>
+<head>
+<title>TERM(5)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TERM(5)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+term - соглашения об именах терминалов
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Имена  из этого файла используются некоторыми командами
+[например, man(1), <a href=TABS.htm>tabs(1)</a>, <a href=TPUT.htm>tput(1)</a>, <a href=VI.htm>vi(1)</a>, <a href=CURSES.htm>curses(3X)</a>]
+и  рассматриваются,  в  качестве  значения   переменной
+$TERM,   как   часть   окружения  shell'а  [см.  <a href=SH.htm>sh(1)</a>,
+<a href=PROFILE.htm>profile(4)</a>, <a href=ENVIRON.htm>environ(5)</a>].
+<p align=justify>
+Исходные файлы <a href=TERMINFO.htm>terminfo(4)</a> содержат элементы, состоящие
+из полей, разделенных запятыми. [Чтобы получить  исходное   описание   терминала,   используйте  опцию  -I  в
+<a href=INFOCMP.htm>infocmp(1M)</a>.] Пробелы и табуляции после запятых игнорируются. В первой строке каждого  описания  терминала  в
+базе  данных  <a href=TERMINFO.htm>terminfo(4)</a>  задаются  имена,  по которым
+<a href=TERMINFO.htm>terminfo(4)</a> распознает терминал. Имена разделяются символами |. Первое имя задает наиболее часто используемое
+сокращение  для терминала [это имя и нужно использовать
+как значение  переменной  TERM  в  $HOME/.profile,  см.
+<a href=PROFILE.htm>profile(4)</a>], последнее имя - длинное, полностью определяющее терминал, все остальные имена являются синонимами первого.
+<p align=justify>
+Имена терминалов (кроме последнего) должны выбираться в
+соответствии  со  следующими  соглашениями.  Необходимо
+выбрать  некоторое базовое имя, определяющее терминальное оборудование, например, для терминала AT&T 4425 таким именем может быть att4425. Длина базового имени  не
+более  восьми  символов, в него могут входить малые латинские буквы и цифры. При выборе имени терминала целесообразно опираться на название фирмы-производителя,  а
+не поставщика. Терминалы одного и того же производителя
+не должны иметь различных базовых имен. Модели одного и
+того же терминала, различные режимы,  в  которых  может
+функционировать оборудование, или режимы, которые предпочитают пользователи, обозначаются суффиксами, начинающимися  с  символа -. Так, терминал AT&T 4425 в режиме
+132 колонок обозначится  как  att4425-w.  Рекомендуется
+использовать следующие суффиксы:
+<table>
+<tr><th>Суффикс<th>Значение<th>Примеры</tr>
+<tr><td>-w<td>Расширенный режим (более 80 колонок)<td>att4425-w</tr>
+<tr><td>-am<td>С автоматическими границами (этот суффикс обычно используется по умолчанию)<td>vt100-am</tr>
+<tr><td>-nam<td>Без автоматических границ<td>vt100-nam</tr>
+<tr><td>-число<td>Количество строк на экране<td>aaa-60</tr>
+<tr><td>-na<td>Нет клавиш управления курсором<td>c100-na</tr>
+<tr><td>-числоp<td>Количество страниц памяти<td>c100-4p</tr>
+<tr><td>-rv<td>Инвертированное изображение<td>att4415-rv</tr>
+</table>
+<p align=justify>
+Чтобы предотвратить конфликты имен при описании различных  режимов (например, -w), не рекомендуется в базовых
+именах использовать дефис. Очень хорошо, если все имена
+терминалов, которые занесены в базу данных <a href=TERMINFO.htm>terminfo(4)</a>,
+являются уникальными. Описатели терминалов, которые используются  только  для  включения в другие описатели с
+помощью use=, должны содержать в своем имени +,  например 4415+nl.
+<p align=justify>
+Ниже  перечислены  некоторые  имена  терминалов; полный
+список можно получить с помощью команды
+<pre>
+   ls  -C /usr/lib/terminfo/?
+</pre>
+<ul>
+<li><b>1520</b> Datamedia 1520
+<li><b>155</b> Motorola EXORterm 155
+<li><b>1620</b> Diablo 1620 и другие, использующие принтер HyType II
+<li><b>1620-12</b> То же, в режиме 12 точек
+<li><b>165</b> Motorola EXORset 165
+<li><b>2621</b> Серия Hewlett-Packard HP2621
+<li><b>2631</b> Принтер Hewlett-Packard 2631
+<li><b>2631-c</b> Принтер Hewlett-Packard 2631 - уплотненный режим
+<li><b>2631-e</b> Принтер Hewlett-Packard 2631 - расширенный режим
+<li><b>2640,hp2640</b> Серия Hewlett-Packard HP2640
+<li><b>2645,hp2645</b> Серия Hewlett-Packard HP264n (но не 2640)
+<li><b>3270</b> Модель IBM 3270
+<li><b>300</b> DASI/DTC/GSI 300  и  другие,  использующие принтер HyType I
+<li><b>300-12</b> То же, в режиме 12 точек
+<li><b>300s</b> DASI/DTC/GSI 300s
+<li><b>382</b> DTC 382
+<li><b>300s-12</b> То же, в режиме 12 точек
+<li><b>3045</b> Datamedia 3045
+<li><b>33,tty33</b> AT&T-терминал, модель 33 KSR
+<li><b>35,tty35</b> AT&T-терминал, модель 35 KSR
+<li><b>37,tty37</b> AT&T-терминал, модель 37 KSR
+<li><b>40-2</b> AT&T-терминал, модель 40/2
+<li><b>40-4</b> AT&T-терминал, модель 40/4
+<li><b>4540</b> AT&T-терминал, модель 4540
+<li><b>4000a</b> Trendata 4000a
+<li><b>4014</b> Tektronix 4014
+<li><b>43</b> Модель 43 KSR
+<li><b>450</b> DASI 450 (то же, что и Diablo 1620)
+<li><b>450-12</b> То же, в режиме 12 точек
+<li><b>735</b> Texas Instruments TI735 and TI725
+<li><b>745</b> Texas Instruments TI745
+<li><b>dumb</b> Общее имя для терминалов, которые отвергают  обратный прогон бумаги и другие специальные управляющие последовательности
+<li><b>sync</b> Общее имя для синхронных терминалов,  совместимых с TELETYPE 4540
+<li><b>hp</b> Hewlett-Packard (то же, что и 2645)
+<li><b>lp</b> Общее имя для строчных принтеров
+<li><b>tn1200</b> General Electric TermiNet 1200
+<li><b>tn300</b> General Electric TermiNet 300
+<li><b>tvi950</b> TeleVideo 950
+</ul>
+<p align=justify>
+Команды,  поведение  которых зависит от типа терминала,
+должны обрабатывать аргументы  вида  -T  имя_терминала;
+если  такого аргумента нет, команда должна получить тип
+терминала из переменной окружения $TERM, в  которой,  в
+свою очередь, должно содержаться имя_терминала.
+<p align=justify><b>ФАЙЛЫ</b><br>
+<tt>/usr/lib/terminfo/?/*</tt> Скомпилированная база данных описаний терминалов.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CURSES.htm>curses(3X)</a>, <a href=PROFILE.htm>profile(4)</a>, <a href=TERMINFO.htm>terminfo(4)</a>, <a href=ENVIRON.htm>environ(5)</a>.<br>
+<a href=SH.htm>sh(1)</a>,  <a href=STTY~1.htm>stty(1)</a>,  <a href=TABS.htm>tabs(1)</a>,  <a href=TPLOT.htm>tplot(1G)</a>, <a href=TPUT.htm>tput(1)</a>, <a href=VI.htm>vi(1)</a> в
+Справочнике пользователя.<br>
+<a href=INFOCMP.htm>infocmp(1M)</a> в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Не все программы используют сформулированные выше  соглашения.  Некоторые программы, использующие базу данных
+описаний терминалов, проводят принцип независимости  от
+номенклатуры устройств непоследовательно.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

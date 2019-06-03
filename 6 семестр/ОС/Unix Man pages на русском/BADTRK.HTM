@@ -1,0 +1,237 @@
+<html>
+<head>
+<title>BADTRK(8)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>BADTRK(8)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+badtrk - сканирует жесткий диск в поисках дефектов и создает таблицу
+дефектных дорожек.
+<p><b>СИНТАКСИС</b>
+<pre>
+  badtrk [-e] [-s qtdn] [-f /dev/rhd*]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+badtrk используется преимущественно во время системной  инсталляции,
+сканирует промежуточные носители  в поисках дефектов,  создает новую
+таблицу  дефектных  дорожек,  печатает  текущую  таблицу и добавляет
+(удаляет) записи в этой таблице.
+<p align=justify>
+ПРЕДУПРЕЖДЕНИЕ: Пользователь  не должен  задавать опцию  -e, которая
+вызывается утилитой hdinit во время инсталляции для изменения объема
+пространства, выделенного под дефектные дорожки. Использование -e  в
+другое время может перестроить  жесткий диск, при этом  значительная
+часть информации будет потеряна.
+<p align=justify>
+Для использования badtrk вы должны находиться в однопользовательском
+режиме.  (См.  <a href=SHUTDOWN.htm>shutdown(8)</a>.) Для обращения к активному разделу XENIX
+на первичном жестком диске введите:
+<pre>
+ badtrk -f /dev/rhd0a
+</pre>
+Для обращения к активному  разделу XENIX на вторичном  жестком диске
+введите:
+<pre>
+ badtrk -f /dev/rhd1a
+</pre>
+<p align=justify><b>ИСПОЛЬЗОВАНИЕ</b><br>
+При выполнении badtrk вначале высвечивается главное меню:
+<pre>
+ 1. Print Current Bad Track Table
+ 2. Scan Disk (You may choose Read-Only or Destructive later)
+ 3. Add Entries to Current Bad Track Table by Cylinder/Head Number
+ 4. Add Entries to Current Bad Track Table by Sector Number
+ 5. Delete Entries Individually From Current Bad Track Table
+ 6. Delete All Entries From Bad Track Table
+
+   Enter your choice or 'q' to quit:
+</pre><p align=justify>
+Вам предлагается  выбрать номер  опции и,  в зависимости  от выбранной
+опции, может быть запрошена дальнейшая информация.
+<p>
+Таблица дефектных дорожек (опция '1') может выглядеть так:
+<pre>
+Defective Tracks
+------------------------------------------------
+      Cylinder      Head        Sector Number(s) 
+------------------------------------------------
+ 1.      190          3          12971-12987     
+------------------------------------------------
+ Press &lt;RETURN&gt; to continue.
+</pre>
+<p align=justify>
+Опция "2" осуществляет сканирование диска в поисках дефектов. Если  по
+мнению badtrk со времени ее запуска или модификации таблицы  дефектных
+дорожек в  эту таблицу  могли быть  внесены изменения,  то она  задаст
+вопрос,  не  хотите  ли  вы  модифицировать устройство с помощью новой
+таблицы  перед  сканированием.  Для  сохранения  изменений вам следует
+ответить "y", и "n", если вы не хотите сохранять внесенные до сих  пор
+изменения.   Затем   вам   будет   предложено   ввести  дополнительную
+информацию. После того, как вы  ответите на все вопросы badtrk  начнет
+сканирование. Вы  может прервать  процесс сканирования  в любой момент
+нажатием "q". Затем вам  будет предложено продолжить сканирование  или
+вернуться в главное меню.
+<p align=justify>
+При обнаружении дефектных дорожек программа высвечивает местоположение
+каждой такой дорожки. Вот пример сообщения о найденном дефекте:
+<pre>
+  wd:ERROR: on fixed disk ctlr=0 dev=0/47 block=31434 cmd=00000020
+ status=00005180, sector=62899, cylinder/head=483/4
+</pre><p align=justify>
+(Вы  можете  увидеть  подобное  сообщение,  если во время сканирования
+возникла ошибка чтения или записи.)
+<p align=justify>
+По  окончании  сканирование  снова  появляется главное меню. Программа
+вводит  все   обнаруженные  дефекты   в  таблицу   дефектных   дорожек
+автоматически.
+<p align=justify>
+Если в  этой таблице  нет записей,  и сканирование  не выявило никаких
+дефектов, но ваш диск был поставлен с картой дефектов, то вам  следует
+ввести указанные в этой карте дефекты в таблицу дефектных дорожек. Для
+добавления записей  выберите опцию  "3" или  "4". (Смотрите  следующий
+абзац.)
+<p align=justify>
+Для внесения дополнений в таблицу дефектных дорожек выберите опцию "3"
+или "4" в зависимости от формата карты дефектов, поставленной вместе с
+диском. Введите дефектные дорожки по одной на строку.
+<p align=justify>
+Когда вы будете  удовлетворены содержанием указанной  таблицы, выйдите
+из badtrk, нажав "q" в главном меню.
+<p align=justify>
+Если badtrk была  вызвана с опцией  -e (что должно  происходить только
+при ее вызове посредством hdinit во время инсталляции системы  XENIX),
+если  вы  выполняете  повторную  инсталляцию,  и  если  у  вас имеется
+допустимая таблица  разделов диска,  то перед  появлением меню  badtrk
+высветится следующее сообщение:
+<pre>
+This device contains a valid division table. Additional
+(non-root) filesystem can be preserved across this reinstallation.
+If you wish to be able to preserve these file systems later, you
+must not change the current limit of the bad track table, which is
+n bad tracks. Do you wish to leave it unchanged? &lt;y/n&gt;:/s+1
+</pre><p align=justify>
+Если вы ответите "y", то впоследствии вам больше не будет предлагаться
+ввести новый предел  на размер таблицы  дефектных дорожек. Вы  сможете
+добавить  или  удалить  записи,  но  вам  не будет позволено увеличить
+максимальный  резерв  для  сбойных  дорожек.  Если  вы ответите "n", и
+размер таблицы дефектных дорожек изменится, то таблица разделов  диска
+будет испорчена.
+<p align=justify>
+Если приемлимая  таблица разделов  диска отсутствует  или вы  ввели на
+подсказку "n",  то вам  будет предложено  задать резервное  количество
+дорожек,  предназаначенных  для  замены  дефектных.  При этом появится
+рекомендуемое число  таких дорожек,  вычисленное на  основе количества
+выявленных дефектных  дорожек плюс  допуск на  дорожки, которые станут
+дефектными в будущем. Вы должны зарезервировать количество дорожек, не
+меньшее рекомендованного значения. Будьте предусмотрительны, так  как,
+если  позже  вам  понадобится  изменять  это число, то вам понадобится
+переустанавливать систему XENIX.
+<p align=justify>
+После этого вам будет задан  вопрос, не хотите ли вы  "модифицировать"
+таблицу.  В  этом  заключается  способ,  с  помощью  которого   badtrk
+спрашивает,  нужно  ли  сохранять  сделанные изменения. Для сохранения
+изменений вам следует  ответить "y", и  "n", если вы  хотите сохранить
+неизмененную версию таблицы.
+<p>
+Аргументы
+<dl>
+<dt>-f name
+<dd>Открывает  файл  разделов  name  и  считывает таблицу дефектных
+дорожек, связанную с  этим разделом. По  умолчанию используется
+/dev/rhd0a.
+<dt>-s options
+<dd>Вызывает badtrk в  неинтерактивном режиме. Допустимыми  опциями
+являются:
+<table>
+<tr><td>[q]uick <td>(быстро)</TR>
+<tr><td>[t]horough<td>(тщательно)</TR>
+<tr><td>[d]estructive<td>(с разрушением)</TR>
+<tr><td>[n]on-destructive<td>(без разрушения)</TR>
+</table>
+</dl><p align=justify>
+Аргумент  -f  воспринимает  две  опции сразу. Выберите сканирование
+quick  или  thorough  (быстрое  или  тщательное)  и destructive или
+non-destructive (с разрушением или без разрушения).
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Эта утилита может  быть использована только  в однопользовательском
+режиме.
+<p align=justify>
+Если дефекты образуются в загрузочных блоках или системных таблицах
+в самом начале раздела, то необходима повторная инсталляция.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /etc/badtrk
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>YACC(1)  </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>YACC(1)  </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+yacc - еще один компилятор компиляторов
+<p><b>СИНТАКСИС</b>
+<pre>
+	yacc  [-v] [-d] [-l] [-t] грамматика
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда yacc преобразует контекстно-свободную грамматику в набор таблиц для простого LR(1)-разбора. Грамматика  может  содержать  неоднозначности; чтобы их преодолеть, используются заданные правила предшествования.
+<p align=justify>Выходной  файл  y.tab.c  преобразуется C-компилятором в
+программу yyparse, которую нужно скомпоновать  с  программой  лексического  анализа yylex, а также с подпрограммой main и подпрограммой обработки  ошибок  yyerror.
+Эти  подпрограммы должны быть предоставлены пользователем; при порождении  лексических  анализаторов  полезен
+<a href=LEX.htm>lex(1)</a>.
+<p align=justify><b>Допустимые опции:</b><br>
+<table>
+<tr valign=top><th>-v  <td> Сгенерировать файл y.output, который содержит описание таблиц разбора с указанием  конфликтных  ситуаций, вызванных неоднозначностями грамматики.
+<tr valign=top><th>-d  <td> Сгенерировать файл y.tab.h, который содержит определения #define, связывающие заданные  пользователем "имена лексем" с назначенными программой  yacc
+"кодами лексем", что позволяет  использовать  коды
+лексем в исходных файлах, отличных от y.tab.c.
+<tr valign=top><th>-l <td>  Не вставлять в программу y.tab.c операторы  #line.
+Рекомендуется использовать только после того,  как
+грамматика и другие компоненты полностью отлажены.
+<tr valign=top><th>-t <td>  При помощи средств условной компиляции в программу
+y.tab.c  всегда  вставляются отладочные операторы,
+однако по умолчанию компилятор их пропускает. Если
+указана опция -t, то при отсутствии других  указаний отладочные операторы будут скомпилированы. Вне
+зависимости  от использования опции -t компиляцией
+отладочных операторов управляет переменная препроцессора YYDEBUG. Если YYDEBUG имеет ненулевое значение, отладочные операторы компилируются; при нулевом значении они пропускаются.  Когда  программа
+сформирована без отладочного кода, ее размер меньше и скорость выполнения несколько выше.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	y.output
+	y.tab.c
+	y.tab.h                 Определение кодов лексем.
+	yacc.tmp                Временный файл.
+	yacc.debug              Временный файл.
+	yacc.acts               Временный файл.
+	/usr/lib/yaccpar        Прототип алгоритма разбора  для
+				C-программ.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=LEX.htm>lex(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+В стандартный протокол направляется информация о  числе
+конфликтных ситуаций типа  "свертка-свертка"  и  "перенос-свертка"; более подробные  сообщения  содержатся  в
+файле y.output. Аналогичным образом сообщается  о  продукциях, недостижимых из начального символа грамматики.
+<p align=justify><b>ОГРАНИЧЕНИЯ </b><br>
+Так как имена файлов фиксированы, в данном  каталоге  в
+каждый момент времени может быть активным  только  один
+процесс yacc
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

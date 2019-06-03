@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>CSPLIT(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CSPLIT(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+csplit - разбиение файла на части по контексту
+<p><b>СИНТАКСИС</b>
+<pre>
+csplit  [-s] [-k] [-f префикс] файл арг1 [... аргn]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда  csplit  читает  файл  и разбивает его на (n+1)
+частей  (секций),  определяемых  аргументами  арг1,...,
+аргn. По умолчанию, секции помещаются в файлы с именами
+xx00,...,  xxn; n не может быть больше 99. Границы секций определяются следующим образом:
+<p align=justify>
+<i>00</i>   От начала файла до строки (не включая ее),  указываемой аргументом арг1.
+<p align=justify>
+<i>01</i>   От строки, указываемой аргументом арг1, до строки,
+указываемой аргументом арг2.
+<p>.
+<p>.
+<p>.
+<p align=justify>
+<i>n</i>    От строки, указываемой аргументом аргn,  до  конца
+файла.
+<p align=justify>
+Если вместо имени файла указан  -,  используется  стандартный ввод.
+<p>
+Опции команды csplit таковы:
+<dl>
+<dt>-s
+<dd>Обычно команда csplit выдает  количество  символов
+для каждого созданного файла. Задание опции -s подавляет эту выдачу.
+<dt>-k
+<dd>Обычно в случае ошибки команда csplit удаляет созданные файлы. При наличии опции -k созданные файлы
+остаются без изменений.
+<dt>-f префикс
+<dd>Именовать создаваемые  файлы  так:  префикс00,...,
+префиксn. По умолчанию имена файлов суть xx00,...,
+xxn.
+</dl><p align=justify>
+Аргументы команды  csplit  (арг1,...,аргn)  могут  быть
+комбинацией следующих конструкций:
+<dl>
+<dt>/выражение/
+<dd>Создается файл для секции,  которая  начинается  с
+текущей строки и продолжается до строки (не  включая ее), содержащей выражение. За этим  аргументом
+может следовать знак + или - и величина смещения в
+строках  (например,  /Page/-5).  Граничная  строка
+становится текущей.
+<dt>%выражение%
+<dd>Этот аргумент обрабатывается так же, как и  предыдущий, за исключением того, что для очередной секции файл не создается.
+<dt>номер_строки
+<dd>Создается файл для секции,  которая  начинается  с
+текущей строки и продолжается до строки с заданным
+номером (не включая ее). Эта строка  и  становится
+текущей.
+<dt>{число}
+<dd>Коэффициент повторного выполнения.  Этот  аргумент
+может следовать за любым из приведенных выше. Если
+он следует за аргументом типа выражение,  то  этот
+последний применяется еще заданное число раз. Если
+он следует за аргументом типа номер_строки,  то  с
+текущей строки файл разбивается на  число  секций,
+каждая из которых содержит номер_строки строк.
+</dl><p align=justify>
+Заключайте в кавычки все аргументы типа выражение,  которые содержат пробелы или другие символы, имеющие значение для интерпретатора команд shell. Выражение не может содержать символ перевода строки. Команда csplit не
+изменяет исходный файл; удаление исходного файла возлагается на пользователя.
+<p><b>ПРИМЕРЫ</b><ol>
+<li>Разобьем файл f1, содержащий КОБОЛ-программу, на четыре части:
+<pre>
+csplit  -f cobol f1 '/procedure division/' \
+/par5./ /par6./
+</pre>
+В результате выполнения этой команды  создаются  четыре
+файла: cobol00,...,cobol03. После того, как  полученные
+файлы будут отредактированы, их можно об единить командой
+<pre>
+cat cobol0[0-3] &gt; f1
+</pre>
+Заметим, что команды этого примера  перезаписывают  исходный файл f1.
+<li>Команда
+<pre>
+csplit -k f2 100 {99}
+</pre>
+разбивает  файл  f2  через каждые 100 строк до 10000-ой
+строки. Указание опции -k гарантирует  сохранение  созданных  файлов, если исходный файл содержит менее 10000
+строк (однако сообщение об ошибке все равно будет выдано).
+<li>Разбиение C-программы:
+<pre>
+csplit -k prog.c '%main(%' '/^}/+1' {20}
+</pre>
+Если предположить, что в программе prog.c  все  функции
+заканчиваются правой фигурной скобкой }, стоящей в  начале строки, то  команда  этого  примера  помещает  все
+функции (не более 21) в отдельные файлы.
+</ol>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ED.htm>ed(1)</a>, <a href=FSPLIT.htm>fsplit(1)</a>, <a href=SH.htm>sh(1)</a>, <a href=SPLIT.htm>split(1)</a>.<br>
+<a href=REGEXP.htm>regexp(5)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Самоочевидна, за исключением сообщения:
+<pre>
+аргумент - out of range
+</pre><p align=justify>
+которое означает, что заданный аргумент не указывает на
+строку, находящуюся между текущей и последней  строками
+файла.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

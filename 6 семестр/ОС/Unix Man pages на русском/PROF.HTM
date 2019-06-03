@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>PROF(5)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PROF(5)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+prof - подготовка временного профиля одной функции
+<p><b>СИНТАКСИС</b>
+<pre>
+        #define MARK
+        #include &lt;prof.h&gt;
+        
+        void MARK (name)
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Вызов макроса MARK введет метку с именем name,  которая
+с точки зрения подготовки временного профиля трактуется
+аналогично  точке входа функции. Выполнение команд макроса приведет к увеличению счетчика для данной метки, а
+затраченное время приплюсуется к предыдущей метке, введенной посредством макроса MARK, или,  если  таковой  в
+пределах функции нет, то к точке входа функции.
+<p align=justify>
+Имя name может быть произвольной комбинацией букв, цифр
+и символов подчеркивания. В пределах одного  файла  все
+профилируемые имена должны быть уникальными, однако они
+могут совпадать с другими программными об ектами.
+<p align=justify>
+Чтобы данная возможность тонкого профилирования работала,  имя  MARK  должно  быть  определено до того, как в
+текст будет включен файл &lt;prof.h&gt;. Имя MARK может  быть
+определено  с  помощью директивы препроцессора, как это
+сделано выше, или с помощью аргумента командной строки,
+например:
+<pre>
+   cc  -p -DMARK f1.c
+</pre><p align=justify>
+Если имя MARK не определено, то предложения с  макросом
+MARK (name) могут быть оставлены в исходных файлах, так
+как они будут проигнорированы.
+<p align=justify>
+Просмотреть подготовленный профиль можно с помощью  опции -g программы <a href=PROF~1.htm>prof(1)</a>.
+<p align=justify><b>ПРИМЕР</b><br>
+В данном примере макросы можно использовать для определения времени, затраченного на выполнение каждого  цикла. Если этот пример не откомпилирован с определенным в
+командной строке именем MARK, то макросы игнорируются.
+<pre>
+#include &lt;prof.h&gt;
+f1 ()
+ {
+  int i,j;
+   ...
+  MARK(loop1);
+  for (i = 0; i &lt; 2000; i++) {
+   ...
+  }
+ MARK(loop2);
+ for (j = 0; j &lt; 2000; j++) {
+  ...
+ }
+}</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=PROFIL.htm>profil(2)</a>, <a href=MONITOR.htm>monitor(3C)</a>.<br>
+<a href=PROF~1.htm>prof(1)</a> в Справочнике пользователя.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+При  вызове  макроса MARK не должно быть пробелов между
+скобками и именем name, так как макрос определен в виде
+ассемблерных вставок и пробелы приведут к ошибке в метке.
+
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

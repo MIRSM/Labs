@@ -1,0 +1,195 @@
+<html>
+<head>
+<title>RCSMERGE(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>RCSMERGE(1)<br> КОМАНДЫ ПОЛЬЗОВАТЕЛЯ</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+rcsmerge - объединение изменений, сделанных в разных версиях
+файла в системе отслеживания версий RCS
+<p><b>СИНТАКСИС</b>
+<pre>
+ rcsmerge [флаги] имя-файла ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+<p align=justify>Команда rcsmerge производит объединение изменений, сделанных
+с разными версиями  одного  файла  и  помещает  их  в  новый
+рабочий файл.  С формальной точки зрения, над рабочим файлом
+совершаются  изменения,  ведущие  от  первой   указанной   в
+командной строке версии ко второй (см. флаг -j команды co ).
+<p align=justify>Полное имя файла, содержащее архивный суффикс, соответствует
+архивному файлу,  все прочие считаются рабочими  файлами.  О
+соответствии имен файлов, см. <a href=CI.htm>ci(1)</a> .
+<p align=justify>Должны быть  явно  заданы  одна  или  две  версии с одним из
+описанных ниже флагов, обычно, -r . Если задана одна версия,
+то  в  качестве  второй  берется  последняя  ветвь на ветви,
+заданной по умолчанию (обычно -- главной). Версия может быть
+задана в явном виде, численно, или в символьном виде.
+<p align=justify>Команда rcsmerge сообщает о наложении изменений, сделанных с
+одними строками,  разделяя  накладывающиеся   участки,   как
+объяснено в <a href=MERGE.htm>merge(1)</a> .
+<p align=justify><b>ФЛАГИ</b><br>
+<table>
+<tr valign=top><th>-A<td>Если команда  <a href=DIFF3.htm>diff3(1)</a> на вашем компьютере поддерживает
+флаг -A ,  то сообщения выдаются именно в этом стиле. В
+итоге, применение изменений ведущих от первой версии ко
+второй, к  рабочему  файлу,  порождая  при  этом  самую
+подробную информацию. Утилита diff3 из соответствующего
+пакета GNU этот флаг поддерживает,  поэтому имеет смысл
+указать при  построении  RCS  на вашем компьютере,  что
+используется именно эта версия утилиты.
+<tr valign=top><th>-E, -e<td>Эти флаги задают стиль сообщений о наложении изменений,
+менее подробный,  чем -A.  См.  <a href=DIFF3.htm>diff3(1)</a> . По умолчанию
+используется  -E.  Флаг   -e   не   порождает   никаких
+предупреждений.
+<tr valign=top><th>-ksubst<td>Устанавливает правила подстановки ключевых символов при
+извлечении  для  сравнения.  Возможные  правила   subst
+описаны   в  <a href=CO.htm>co(1)</a>.  Явное  задание  флага  -k  подавит
+заданное по умолчанию  значение.  Например,  -kk  -r1.1
+-r1.2 игнорирует разницу связанную с разными значениями
+ключевых символов в версиях 1.1 to 1.2. Если задан флаг
+-kb , команда rcsmerge не будет работать.
+<tr valign=top><th>-p[rev]<td>Результат записывается   не   в   рабочий   файл,  а  в
+стандартный вывод.
+<tr valign=top><th>-q[rev]<td>Все сообщения   подавляются.   Используется  в  фоновом
+режиме.
+<tr valign=top><th>-r[rev]<td>Изменения отсчитывать  от  версии  rev  .  Если  rev не
+задан, то берется последняя версия ветви,  используемой
+по умолчанию.
+<tr valign=top><th>-T<td>Присутствует исключительно для совместимости с  другими
+командами  RCS.
+<tr valign=top><th>-V<td>Посылает номер версии RCS на стандартный вывод.
+<tr valign=top><th>-Vn<td>Имитирует поведение версии  n комплекса программ  RCS .
+См. <a href=CO.htm>co(1)</a> .
+<tr valign=top><th>-xsuffixes<td>Задает суффикс,  добавляемый к имени  архивного  файла.
+См. <a href=CI.htm>ci(1)</a> .
+<tr valign=top><th>-zzone<td>Задает формат  даты  и  часовой  пояс  при  подстановке
+ключевых слов в маркеры. См. <a href=CO.htm>co(1)</a> .
+</table>
+<p align=justify><b>ПРИМЕРЫ</b><br>
+<p align=justify>Предположим, предыдущий  выпуск  программы задавался версией
+2.8 файла f.c .  Предположим далее,  что создав версию 3.4 ,
+Вы получаете сообщение об ошибке содержащейся в программе, и
+исправления,  внесенные в версию 2.8 от третьего  лица.  Для
+того, чтобы собрать исправления к версии 2.8 и те изменения,
+которые Вы сделали между версиями  2.8  и  3.4  ,  поместите
+исправленную весию 2.8 в файл f.c выполните
+<pre>
+    rcsmerge  -p  -r2.8  -r3.4  f.c  > f.merged.c
+</pre>
+и проверьте  файл  f.merged.c  .  Другой  способ объединения
+изменений состоит в том,  чтобы занести исправления к версии
+2.8 в архивный файл как версию 2.8.1.1 и применить co -j :
+<pre>
+    ci  -r2.8.1.1  f.c
+    co  -r3.4  -j2.8:2.8.1.1  f.c
+</pre>
+В следующем примере в рабочем файле f.c , скажем, версии 3.4
+,  отменяются  все  изменения сделанные между версиями 2.4 и
+2.8 этого файла:
+<pre>
+    rcsmerge  -r2.8  -r2.4  f.c
+</pre>
+Обратите внимание на порядок аргументов и на то, что рабочий
+файл затрется.
+<p align=justify><b>ПЕРЕМЕННЫЕ СРЕДЫ</b><br>
+<dl>
+<dt>LOGNAME<dd>
+Имя пользователя. В UNIX задано автоматически, в MS-DOS
+требуется задать явно командой
+<pre>
+    set LOGNAME=имя-пользователя
+</pre>
+<p><dt>TZ<dd>
+Часовой  пояс.  В UNIX  задан  автоматически,  в  MS-DOS
+требуется задать явно командой set.
+<p><dt>RCSINIT<dd>
+Список флагов  используемых  со всеми командами системы
+отслеживания версий RCS.  Не забудьте,  что  необходимы
+меры для  того,  чтобы  пробелы  между  флагами не были
+обработаны  командным  интерпретатором  преждевременно,
+защищайте их, например, кавычками. См. <a href=CI.htm>ci(1)</a> .
+</dl>
+<p align=justify><b>СООБЩЕНИЯ</b><br>
+<p align=justify>Возвращает операционной системе 0 если нет накладок, 1 если
+есть небольшие проблемы, с которыми программа справляется по
+ее мнению, и 2 если накладки слишком серьезны для работы.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CI.htm>ci(1)</a>, <a href=CO.htm>co(1)</a>,   <a href=IDENT.htm>ident(1)</a>,   <a href=MERGE.htm>merge(1)</a>,   <a href=RCS.htm>rcs(1)</a>,  <a href=RCSDIFF.htm>rcsdiff(1)</a>,
+<a href=RCSINTRO.htm>rcsintro(1)</a>, <a href=RLOG.htm>rlog(1)</a>, rcsfile(5)
+<p align=justify><i>Walter F.   Tichy,   RCS--A   System  for  Version  Control,
+Software--Practice & Experience 15, 7 (July 1985), 637-654.
+<p align=justify>Copyright (C) Walter F. Tichy, Paul Eggert.</i>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

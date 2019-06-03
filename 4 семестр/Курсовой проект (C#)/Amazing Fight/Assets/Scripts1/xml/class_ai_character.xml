@@ -1,0 +1,602 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_ai_character" kind="class" language="C#" prot="public">
+    <compoundname>AiCharacter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64a" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>AIState</name>
+        <enumvalue id="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64aadcab9fe534ddc53ff8b5a328303dfcd1" prot="public">
+          <name>closeState</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64aa4269669589c5aff2ddcfca013aa26e3f" prot="public">
+          <name>normalState</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64aa37e4d50e5b9736d445cb19f8de52da57" prot="public">
+          <name>resetAI</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Структура состояний </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="128" column="1" bodyfile="AiCharacter.cs" bodystart="127" bodyend="132"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_ai_character_1a83acb0de9a2d457596f7912914a41b5b" prot="private" static="no" mutable="no">
+        <type><ref refid="class_main_hero" kindref="compound">MainHero</ref></type>
+        <definition>MainHero AiCharacter.pc</definition>
+        <argsstring></argsstring>
+        <name>pc</name>
+        <briefdescription>
+<para>Управляемый персонаж </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="12" column="1" bodyfile="AiCharacter.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a4f816bb5e677750d32ceca53e13eac5d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_main_hero" kindref="compound">MainHero</ref></type>
+        <definition>MainHero AiCharacter.en</definition>
+        <argsstring></argsstring>
+        <name>en</name>
+        <briefdescription>
+<para>Противник </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="17" column="1" bodyfile="AiCharacter.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a1d7581dec36bf9739be76335063b5f29" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.nrmTimer</definition>
+        <argsstring></argsstring>
+        <name>nrmTimer</name>
+        <briefdescription>
+<para>Время нахождения на большой дистанции </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="32" column="1" bodyfile="AiCharacter.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a6d52181deb96d2a9fd9d5857e7662924" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.clTimer</definition>
+        <argsstring></argsstring>
+        <name>clTimer</name>
+        <briefdescription>
+<para>Время нахождения на маленькой дистанции </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="42" column="1" bodyfile="AiCharacter.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a0c02f37893035e588d4d42ab735b3bce" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.blTimer</definition>
+        <argsstring></argsstring>
+        <name>blTimer</name>
+        <briefdescription>
+<para>Длительность блока </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="52" column="1" bodyfile="AiCharacter.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1adcceec75b3b73ad31435ea5295dac16d" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.aiTimer</definition>
+        <argsstring></argsstring>
+        <name>aiTimer</name>
+        <briefdescription>
+<para>Длительность состояния </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="62" column="1" bodyfile="AiCharacter.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1aa6c19d12b0b64c9818dd3ba575136460" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool AiCharacter.initiateAI</definition>
+        <argsstring></argsstring>
+        <name>initiateAI</name>
+        <briefdescription>
+<para>Спровоцирован ли </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="67" column="1" bodyfile="AiCharacter.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a7c69ca54d76049653d245667659edf9a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool AiCharacter.closeCombat</definition>
+        <argsstring></argsstring>
+        <name>closeCombat</name>
+        <briefdescription>
+<para>Близко ли к противнику </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="72" column="1" bodyfile="AiCharacter.cs" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a6382ef7556fb60a910029d59f36ea4c4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool AiCharacter.gotRandom</definition>
+        <argsstring></argsstring>
+        <name>gotRandom</name>
+        <briefdescription>
+<para>Получено ли случайное число </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="77" column="1" bodyfile="AiCharacter.cs" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a50bcb840f72ec4cb5eda149bdd9fb05a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.storeRandom</definition>
+        <argsstring></argsstring>
+        <name>storeRandom</name>
+        <briefdescription>
+<para>Случайное число </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="82" column="1" bodyfile="AiCharacter.cs" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a9dffc5c052bd94c8871b2dd35a550309" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool AiCharacter.blocking</definition>
+        <argsstring></argsstring>
+        <name>blocking</name>
+        <briefdescription>
+<para>Сработал ли блок </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="87" column="1" bodyfile="AiCharacter.cs" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a12b639ba66976b96a19f35725b52a2ea" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool AiCharacter.randomizeAttacks</definition>
+        <argsstring></argsstring>
+        <name>randomizeAttacks</name>
+        <briefdescription>
+<para>Сгенерирована ли атака </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="92" column="1" bodyfile="AiCharacter.cs" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1abbd1188fab389f2266e44da81858bf4f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int AiCharacter.numberOfAttacks</definition>
+        <argsstring></argsstring>
+        <name>numberOfAttacks</name>
+        <briefdescription>
+<para>Количество сгенерированных атак </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="97" column="1" bodyfile="AiCharacter.cs" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a30fcd9cb633bfb5d18996de8a2367b75" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int AiCharacter.curNumAttacks</definition>
+        <argsstring></argsstring>
+        <name>curNumAttacks</name>
+        <briefdescription>
+<para>Количество произведенных атак </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="102" column="1" bodyfile="AiCharacter.cs" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a16ac12ee3f8dee05338abc3f011167af" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.jRate</definition>
+        <argsstring></argsstring>
+        <name>jRate</name>
+        <briefdescription>
+<para>Шанс прыжка </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="112" column="1" bodyfile="AiCharacter.cs" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1ade84b69b3013c662b5e56b8e6027d672" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool AiCharacter.jump</definition>
+        <argsstring></argsstring>
+        <name>jump</name>
+        <briefdescription>
+<para>Прыгнул ли </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="117" column="1" bodyfile="AiCharacter.cs" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a6cfc305195b586445fc360136f6bee44" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.jtimer</definition>
+        <argsstring></argsstring>
+        <name>jtimer</name>
+        <briefdescription>
+<para>Время без прыжка </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="122" column="1" bodyfile="AiCharacter.cs" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_ai_character_1a66d71727e76d925f7e39a3054eeec7cc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.changeStateTolerance</definition>
+        <argsstring></argsstring>
+        <name>changeStateTolerance</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+<para>Дистанция изменения состояния </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="22" column="1" bodyfile="AiCharacter.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a110ef2e2617c81909ca96f4ceea622be" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.normalRate</definition>
+        <argsstring></argsstring>
+        <name>normalRate</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Максимальное время нахождения на большой дистанции </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="27" column="1" bodyfile="AiCharacter.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a2b249bfa1c6b978d71476cc46a544974" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.closeRate</definition>
+        <argsstring></argsstring>
+        <name>closeRate</name>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+<para>Максимально время нахождения на маленькой дистанции </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="37" column="1" bodyfile="AiCharacter.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1aa16f6b3e1e586215ce88fdd2dab8bc99" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.blockingRate</definition>
+        <argsstring></argsstring>
+        <name>blockingRate</name>
+        <initializer>= 1.5f</initializer>
+        <briefdescription>
+<para>Максимальная длительность блока </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="47" column="1" bodyfile="AiCharacter.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a5c3bcd6073f4d8b52bb4835f5018e4fc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.aiStateLife</definition>
+        <argsstring></argsstring>
+        <name>aiStateLife</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Максимальная длительность состояния </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="57" column="1" bodyfile="AiCharacter.cs" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1a63521ebe1e7f0e656c64faa367c088de" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float AiCharacter.JumpRate</definition>
+        <argsstring></argsstring>
+        <name>JumpRate</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Частота прыжка </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="107" column="1" bodyfile="AiCharacter.cs" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ai_character_1aab87620294650d977ac6686be2e6006e" prot="public" static="no" mutable="no">
+        <type><ref refid="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64a" kindref="member">AIState</ref></type>
+        <definition>AIState AiCharacter.aiState</definition>
+        <argsstring></argsstring>
+        <name>aiState</name>
+        <briefdescription>
+<para>Состояния </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="137" column="1" bodyfile="AiCharacter.cs" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_ai_character_1a080c134e72a3eb28a9cb3bfcc2d17b33" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="141" column="1" bodyfile="AiCharacter.cs" bodystart="141" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1a0f425edffedad5fd3741d86219cb6552" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="146" column="1" bodyfile="AiCharacter.cs" bodystart="146" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1afb012d564777c9cadd451d13669755a2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.States</definition>
+        <argsstring>()</argsstring>
+        <name>States</name>
+        <briefdescription>
+<para>Установка состояния </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="163" column="1" bodyfile="AiCharacter.cs" bodystart="163" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1af3c08dc2ad82915a33182c81f1008352" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.AIAgent</definition>
+        <argsstring>()</argsstring>
+        <name>AIAgent</name>
+        <briefdescription>
+<para>Действия АИ </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="184" column="1" bodyfile="AiCharacter.cs" bodystart="184" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1a81ad80fd115f31feae47ae04d630a955" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.Attack</definition>
+        <argsstring>()</argsstring>
+        <name>Attack</name>
+        <briefdescription>
+<para>Атака </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="221" column="1" bodyfile="AiCharacter.cs" bodystart="221" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1ada2911b458ab4f306a342f8e618fa085" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.Movement</definition>
+        <argsstring>()</argsstring>
+        <name>Movement</name>
+        <briefdescription>
+<para>Передвижение </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="259" column="1" bodyfile="AiCharacter.cs" bodystart="259" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1a2543bf2df066fd7a8e49c304ae05a7c0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.ResetAI</definition>
+        <argsstring>()</argsstring>
+        <name>ResetAI</name>
+        <briefdescription>
+<para>Обновление действий </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="286" column="1" bodyfile="AiCharacter.cs" bodystart="286" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1a4b7fe3bb23be8163e9c5db644b4c7c77" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.CheckDistance</definition>
+        <argsstring>()</argsstring>
+        <name>CheckDistance</name>
+        <briefdescription>
+<para>Проверка дистанции с противником </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="314" column="1" bodyfile="AiCharacter.cs" bodystart="314" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1acdbd4ae94ac603e55efe95e302e9496a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.Blocking</definition>
+        <argsstring>()</argsstring>
+        <name>Blocking</name>
+        <briefdescription>
+<para>Блокирование </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="348" column="1" bodyfile="AiCharacter.cs" bodystart="348" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1a49e7b9dbd317b18efed851ae1002040e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.NormalState</definition>
+        <argsstring>()</argsstring>
+        <name>NormalState</name>
+        <briefdescription>
+<para>Большая дистанция </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="380" column="1" bodyfile="AiCharacter.cs" bodystart="380" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1a34a9735adf6b92f3f43324c20a385b77" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.CloseState</definition>
+        <argsstring>()</argsstring>
+        <name>CloseState</name>
+        <briefdescription>
+<para>Маленькая дистанция </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="394" column="1" bodyfile="AiCharacter.cs" bodystart="394" bodyend="403"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1af837c0595d0536a8889c8ab72673725e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AiCharacter.Jumping</definition>
+        <argsstring>()</argsstring>
+        <name>Jumping</name>
+        <briefdescription>
+<para>Прыжок </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="408" column="1" bodyfile="AiCharacter.cs" bodystart="408" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ai_character_1af65c5c7a0919e6a5010d177e38a07c17" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float AiCharacter.ReturnRandom</definition>
+        <argsstring>()</argsstring>
+        <name>ReturnRandom</name>
+        <briefdescription>
+<para>Возвращает случайное число </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Случайное число</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AiCharacter.cs" line="443" column="1" bodyfile="AiCharacter.cs" bodystart="443" bodyend="447"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="0">
+        <label>AiCharacter</label>
+        <link refid="class_ai_character"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>AiCharacter</label>
+        <link refid="class_ai_character"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="AiCharacter.cs" line="6" column="1" bodyfile="AiCharacter.cs" bodystart="5" bodyend="450"/>
+    <listofallmembers>
+      <member refid="class_ai_character_1af3c08dc2ad82915a33182c81f1008352" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>AIAgent</name></member>
+      <member refid="class_ai_character_1ab667232a23b5ee2e91e9c6584e6ce64a" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>AIState</name></member>
+      <member refid="class_ai_character_1aab87620294650d977ac6686be2e6006e" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>aiState</name></member>
+      <member refid="class_ai_character_1a5c3bcd6073f4d8b52bb4835f5018e4fc" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>aiStateLife</name></member>
+      <member refid="class_ai_character_1adcceec75b3b73ad31435ea5295dac16d" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>aiTimer</name></member>
+      <member refid="class_ai_character_1a81ad80fd115f31feae47ae04d630a955" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>Attack</name></member>
+      <member refid="class_ai_character_1a9dffc5c052bd94c8871b2dd35a550309" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>blocking</name></member>
+      <member refid="class_ai_character_1acdbd4ae94ac603e55efe95e302e9496a" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>Blocking</name></member>
+      <member refid="class_ai_character_1aa16f6b3e1e586215ce88fdd2dab8bc99" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>blockingRate</name></member>
+      <member refid="class_ai_character_1a0c02f37893035e588d4d42ab735b3bce" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>blTimer</name></member>
+      <member refid="class_ai_character_1a66d71727e76d925f7e39a3054eeec7cc" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>changeStateTolerance</name></member>
+      <member refid="class_ai_character_1a4b7fe3bb23be8163e9c5db644b4c7c77" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>CheckDistance</name></member>
+      <member refid="class_ai_character_1a7c69ca54d76049653d245667659edf9a" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>closeCombat</name></member>
+      <member refid="class_ai_character_1a2b249bfa1c6b978d71476cc46a544974" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>closeRate</name></member>
+      <member refid="class_ai_character_1a34a9735adf6b92f3f43324c20a385b77" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>CloseState</name></member>
+      <member refid="class_ai_character_1a6d52181deb96d2a9fd9d5857e7662924" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>clTimer</name></member>
+      <member refid="class_ai_character_1a30fcd9cb633bfb5d18996de8a2367b75" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>curNumAttacks</name></member>
+      <member refid="class_ai_character_1a4f816bb5e677750d32ceca53e13eac5d" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>en</name></member>
+      <member refid="class_ai_character_1a6382ef7556fb60a910029d59f36ea4c4" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>gotRandom</name></member>
+      <member refid="class_ai_character_1aa6c19d12b0b64c9818dd3ba575136460" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>initiateAI</name></member>
+      <member refid="class_ai_character_1a16ac12ee3f8dee05338abc3f011167af" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>jRate</name></member>
+      <member refid="class_ai_character_1a6cfc305195b586445fc360136f6bee44" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>jtimer</name></member>
+      <member refid="class_ai_character_1ade84b69b3013c662b5e56b8e6027d672" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>jump</name></member>
+      <member refid="class_ai_character_1af837c0595d0536a8889c8ab72673725e" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>Jumping</name></member>
+      <member refid="class_ai_character_1a63521ebe1e7f0e656c64faa367c088de" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>JumpRate</name></member>
+      <member refid="class_ai_character_1ada2911b458ab4f306a342f8e618fa085" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>Movement</name></member>
+      <member refid="class_ai_character_1a110ef2e2617c81909ca96f4ceea622be" prot="public" virt="non-virtual"><scope>AiCharacter</scope><name>normalRate</name></member>
+      <member refid="class_ai_character_1a49e7b9dbd317b18efed851ae1002040e" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>NormalState</name></member>
+      <member refid="class_ai_character_1a1d7581dec36bf9739be76335063b5f29" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>nrmTimer</name></member>
+      <member refid="class_ai_character_1abbd1188fab389f2266e44da81858bf4f" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>numberOfAttacks</name></member>
+      <member refid="class_ai_character_1a83acb0de9a2d457596f7912914a41b5b" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>pc</name></member>
+      <member refid="class_ai_character_1a12b639ba66976b96a19f35725b52a2ea" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>randomizeAttacks</name></member>
+      <member refid="class_ai_character_1a2543bf2df066fd7a8e49c304ae05a7c0" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>ResetAI</name></member>
+      <member refid="class_ai_character_1af65c5c7a0919e6a5010d177e38a07c17" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>ReturnRandom</name></member>
+      <member refid="class_ai_character_1a080c134e72a3eb28a9cb3bfcc2d17b33" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>Start</name></member>
+      <member refid="class_ai_character_1afb012d564777c9cadd451d13669755a2" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>States</name></member>
+      <member refid="class_ai_character_1a50bcb840f72ec4cb5eda149bdd9fb05a" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>storeRandom</name></member>
+      <member refid="class_ai_character_1a0f425edffedad5fd3741d86219cb6552" prot="private" virt="non-virtual"><scope>AiCharacter</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

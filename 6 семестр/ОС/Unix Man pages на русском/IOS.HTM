@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>IOS(7)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IOS(7)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ios - дополнительный сегмент ввода/вывода
+<p><b>СИНТАКСИС</b>
+<pre>
+  #include &lt;sys/user.h&gt;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Использование  дополнительного  сегмента   ввода/вывода
+позволяет осуществить прямой доступ к областям физической  памяти,  например к видеопамяти графического контроллера, регистрам периферийных устройств или еще к чему-нибудь на системной шине. Доступ к  такому  сегменту
+обеспечивается  с  помощью  дополнительной  информации,
+введенной в структуру user. Драйвер ввода/вывода  может
+записать  нужные  адреса в структуру и предоставить тем
+самым пользователю доступ к физической памяти.
+<p align=justify>
+В структуре  user  появились  следующие  дополнительные
+компоненты:
+<pre>
+     caddr_t u_iospad; /* Физич. адрес доп. сегмента */
+     caddr_t u_iosvad; /* Вирт. адрес доп. сегмента */
+     long    u_iossiz; /* Размер доп. сегмента */
+</pre>
+Значения всех этих компонентов должны быть кратны  двум
+килобайтам (величина NBPC в файле &lt;sys/param.h&gt;).
+<p align=justify><b>ПРИМЕР</b><br>
+Продемонстрируем  управление  графическим  контроллером
+AGC-1  из  прикладной  программы.  Для этого надо иметь
+доступ к памяти контроллера, что и  достигается  с  помощью  ios.  Память  контроллера  расположена  с адреса
+0xfcc00000 и имеет длину 0x240000  (вместе  с  видеопамятью).
+<p align=justify>
+Установка процессом соотвествующих полей структуры user
+осуществляется  с  помощью  открытия специального файла
+/dev/agc. При этом выполняется функция agcopen драйвера
+AGC (ее текст хранится в файле  /usr/src/uts/io/agc.c).
+Функция устанавливает поля
+<pre>
+     u.u_iosvad = (caddr_t) 0xfcc00000;
+     u.u_iospad = (caddr_t) 0xfcc00000;
+     u.u_iossiz = 0x240000;
+</pre><p align=justify>
+Для  доступа  к  любому внутреннему регистру конроллера
+AGC-1 используются два регистра, вынесенных на  внешнюю
+шину:  регистр адреса - для указания номера внутреннего
+регистра, регистр данных - для указания данных, которые
+должны быть занесены во внутренний регистр (или  прочитаны из него). Регистры имеют следующие адреса: регистр
+адреса - 0xfcc3c000, регистр данных - 0xfcc3c002.
+<p align=justify>
+Мы будем изменять два внутренних регистра - регистр высоты  экрана и регистр масштабирования. Предполагается,
+что на графическом экране уже есть изображение  (запустите  предварительно какой-либо тест). Тогда, меняя содержимое внутренних регистров, мы сможем изменять изображение.
+<pre>
+#include &lt;fcntl.h&gt;
+
+#define HEIGHT 0x008A
+#define ZOOM   0x00EA
+
+typedef unsigned short  ushort;
+
+main (argc, argv)
+int argc;
+char *argv[];
+{
+  int i, j, k, fd, old_value;
+
+  if ((fd = open ("/dev/agc", 0, O_RDWR)) &lt; 0) {
+    perror ("\nOpen error /dev/agc :");
+    exit (0);
+  }
+
+  /* Прочитаем значение высоты экрана в строках */
+  old_value = read_register (HEIGHT);
+
+  /* Будем изменять высоту экрана (сначала уменьшаем до
+     нуля, а потом увеличиваем до исходного значения */
+  for (i=old_value; i&gt;=1; i--) {
+    write_register (HEIGHT, i);
+    /* задержка */
+    for (j=0; j&lt;1000; j++) k = j/231;
+  }
+
+  for (i=1; i&lt;=old_value; i++) {
+    write_register (HEIGHT, i);
+    for (j=0; j&lt;1000; j++) k = j/231;
+  }
+
+  /* Будем изменять регистр масштабирования */
+  for (i=0; i&lt;16; i++) {
+    write_register (ZOOM, (i | (i&lt;&lt;4)) &lt;&lt; 8);
+    sleep (1);
+  }
+  for (i=15; i&gt;=0; i--) {
+    write_register (ZOOM, (i | (i&lt;&lt;4)) &lt;&lt; 8);
+    sleep (1);
+  }
+
+  close (fd);
+}
+
+/* Запись в регистр контроллера */
+void write_register (number, value)
+int number;  /* Номер регистра */
+int value;   /* Значение регистра */
+{
+  ushort *adr= (ushort *) 0xfcc3c000;
+  ushort *dat= (ushort *) 0xfcc3c002;
+  ushort val;
+
+  *adr = number;
+  *dat = value;
+}
+
+/* Чтение регистра контроллера */
+int read_register (number)
+int number;  /* Номер регистра */
+{
+  ushort *adr= (ushort *) 0xfcc3c000;
+  ushort *dat= (ushort *) 0xfcc3c002;
+
+  *adr = number;
+  return ((int) *dat);
+}
+</pre><p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Неосторожное использование ios  может  нарушить  работу
+системы.
+<p align=justify>
+Ios  является  машинно-зависимым  средством и на других
+компьютерах может не работать.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

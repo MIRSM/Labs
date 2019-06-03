@@ -1,0 +1,5 @@
+[PrgCom]
+WashMain=main machine control
+Agitate=control machine spin
+Simulate=simulates machine behaviour
+updown=up/down counters

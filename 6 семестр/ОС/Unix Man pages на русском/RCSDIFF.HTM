@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>RCSDIFF(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>RCSDIFF(1) <br> КОМАНДЫ ПОЛЬЗОВАТЕЛЯ </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+rcsdiff - сравнение  версий  файла  в  системе  отслеживания
+версий RCS
+<p><b>СИНТАКСИС</b>
+<pre>
+	 rcsdiff [ -ksubst ] [ -q ] [ -rrev1 [ -rrev2 ] ] [  -T  ]  [-V[n] ] 
+		 [ -xsuffixes ] [ -zzone ] [ diff флаги] имя-файла ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда rcsdiff вызывает команду <a href=DIFF.htm>diff(1)</a> для сравнения  двух
+версий одного файла.
+<p align=justify>Полное имя файла, содержащее архивный суффикс, соответствует
+архивному файлу,  все прочие считаются рабочими  файлами.  О
+соответствии имен файлов, см. <a href=CI.htm>ci(1)</a> . Там же описаны способы
+задания номеров версий.
+<p align=justify>Флагом -r могут быть заданы ноль,  одна или две версии. Если
+задана  одна  версия,  то  в качестве второй берется рабочий
+файл.  Если обе версии  не  заданы,  то  в  качестве  первой
+берется  последняя  ветвь  на  ветви,  заданной по умолчанию
+(обычно -- главной),  что удобно  использовать  для  ревизии
+изменений сделанных с момента последнего востребования файла
+из архива.  Версии могут быть заданы в явном виде, численно,
+или в символьном виде.
+<p align=justify>Флаг -ksubst   Устанавливает  правила  подстановки  ключевых
+символов при извлечении  для  сравнения.  Возможные  правила
+subst  описаны  в  <a href=CO.htm>co(1)</a>.  Явное  задание  флага  -k подавит
+заданное по умолчанию значение.  Например,  -kk -r1.1  -r1.2
+игнорирует  разницу  связанную с разными значениями ключевых
+символов в версиях 1.1 to  1.2.  Чтобы  уменьшить  выдачу  и
+игнорировать   различия   вызванные   подстановкой  ключевых
+символов,  по умолчанию задан флаг -kkvl ,  если: (1) задана
+хотя  бы  одна  версия,  (2)  флаг  -k  не задан явно ,  (3)
+подстановка ключевых слов по умолчанию задана флагом -kkv  и
+(4) атрибуты рабочего файла были созданы командой co -l .
+<p align=justify>Флаг -q подавляет выдачу сообщений. О флагах -T, -V, -x и -z
+см. <a href=CO.htm>co(1)</a> .
+<p align=justify>Воспринимаются все флаги  команды  <a href=DIFF.htm>diff(1)</a>  ,  применимые  к
+обычным  файлам.  Конкретная версия команды diff задается во
+время  построения  пакета  RCS;  рекомендуется  использовать
+версию из соответствующего пакета GNU.
+<p align=justify><b>ПРИМЕРЫ</b><br>
+Команда
+<pre>
+        rcsdiff  f.c
+</pre>
+сравнит рабочий файл с последней версией на главной ветви.
+<p align=justify><b>ПЕРЕМЕННЫЕ СРЕДЫ</b><br>
+<dl><dt>RCSINIT<dd>
+     Список флагов  используемых  со всеми командами системы
+     отслеживания версий RCS.  Не забудьте,  что  необходимы
+     меры для  того,  чтобы  пробелы  между  флагами не были
+     обработаны  командным  интерпретатором  преждевременно,
+     защищайте их, например, кавычками. См. <a href=CI.htm>ci(1)</a> .
+</dl>
+<p align=justify><b>СООБЩЕНИЯ</b><br>
+Возвращает операционной системе 0 если нет различий,  1 если
+есть небольшие различия, с которыми программа справляется по
+ее мнению, и 2 если различия слишком серьезны для работы.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CI.htm>ci(1)</a>,  <a href=CO.htm>co(1)</a>,  <a href=DIFF.htm>diff(1)</a>,  <a href=IDENT.htm>ident(1)</a>,   <a href=RCS.htm>rcs(1)</a>,   <a href=RCSINTRO.htm>rcsintro(1)</a>,
+<a href=RCSMERGE.htm>rcsmerge(1)</a>, <a href=RLOG.htm>rlog(1)</a>
+<p align=justify><i>Walter F.   Tichy,   RCS--A   System  for  Version  Control,
+Software--Practice & Experience 15, 7 (July 1985), 637-654.
+<p align=justify>Copyright (C) Walter F. Tichy, Paul Eggert.</i>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

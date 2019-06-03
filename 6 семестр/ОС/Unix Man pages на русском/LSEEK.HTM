@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>LSEEK(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LSEEK(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+lseek - передвижение указателя чтения/записи
+<p><b>СИНТАКСИС</b>
+<pre>
+        long lseek (fildes, offset, whence)
+        int fildes;
+        long offset;
+        int whence;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргумент fildes - это дескриптор файла, полученный после  выполнения  системных  вызовов creat, open, dup или
+fcntl. Системный вызов  lseek  устанавливает  указатель
+текущей  позиции файла, ассоциированного с дескриптором
+fildes, следующим образом, в  зависимости  от  значения
+аргумента whence:
+<p><table>
+<tr><th>0<td>Значение  указателя  устанавливается равным offset байт.</tr>
+<tr><th>1<td>К текущему значению указателя прибавляется  значение offset.</tr>
+<tr><th>2<td>Значением  указателя  становится размер файла плюс offset.</tr>
+</table>
+<p align=justify>
+При успешном завершении системного вызова lseek возвращается новое значение указателя текущей позиции (в байтах)  относительно  начала  файла.  Отметим,  что  если
+fildes является дескриптором файла на удаленном компьютере  и значение offset отрицательно, вызов lseek  возвращает значение указателя текущей  позиции, даже  если
+оно отрицательно.
+<p align=justify>
+Системный вызов lseek завершается неудачей и  указатель
+текущей позиции не изменяется, если выполнено  хотя  бы
+одно из следующих условий:
+<dl>
+<dt>[EBADF]
+<dd>Аргумент  fildes  не  является   корректным
+дескриптором открытого файла.
+<dt>[PIPE]
+<dd>Дескриптор файла fildes ассоциирован с  каналом.
+<dt>[EINVAL и сигнал SIGSYS] 
+Значение аргумента whence не равно 0, 1 или
+2.
+<dt>[EINVAL]
+<dd>Дескриптор fildes не является  дескриптором
+файла, расположенного на  удаленном  компьютере, и результирующее значение  указателя
+текущей позиции отрицательно.
+</dl><p align=justify>
+Некоторые  устройства не поддерживают передвижение указателя текущей позиции. Для файлов,  ассоциированных  с
+такими устройствами, значение указателя не определено.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CREAT.htm>creat(2)</a>, <a href=DUP.htm>dup(2)</a>, <a href=FCNTL.htm>fcntl(2)</a>, <a href=OPEN.htm>open(2)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении  результатом  служит  неотрицательное  целое число - указатель текущей позиции в файле; в случае ошибки возвращается -1, а переменной errno
+присваивается код ошибки
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

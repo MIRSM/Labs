@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>END(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>END(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+end, etext, edata - последние адреса в программе
+<p><b>СИНТАКСИС</b>
+<pre>
+	extern end;
+	extern etext;
+	extern edata;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Описываемые об екты не являются функциями или  переменными,  значения  которых  представляют интерес. Интерес
+представляют адреса описываемых об ектов. Адресом etext
+является адрес сразу за концом сегмента команд, адресом
+edata является адрес сразу за концом области  инициализированных  данных, адресом end является адрес сразу за
+концом области неинициализированных данных.
+<p align=justify>В момент начала выполнения программы ее верхняя граница
+(адрес сразу за концом сегмента данных) совпадает с адресом end, но верхняя граница может  передвинуться  при
+использовании  системных  вызовов из <a href=BRK.htm>brk(2)</a>, функций из
+<a href=MALLOC.htm>malloc(3C)</a>, стандартного ввода/вывода [см.  <a href=STDIO.htm>stdio(3S)</a>],
+средств  получения  временного  профиля [см. <a href=PROF~1.htm>prof(1)</a>] и
+т.д. Поэтому текущее значение верхней границы программы
+следует определять при помощи  системного  вызова  sbrk
+(0) [см. <a href=BRK.htm>brk(2)</a>].
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BRK.htm>brk(2)</a>, <a href=MALLOC.htm>malloc(3C)</a>, <a href=STDIO.htm>stdio(3S)</a>.<br>
+<a href=PROF~1.htm>prof(1)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

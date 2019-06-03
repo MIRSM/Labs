@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://www.ilab24.narod.ru/fract/julia.html -->
+<HTML><HEAD><TITLE>Фрактальное множество Жулиа</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фрактальное множество Жулиа.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фрактальное множество Жулиа.files/lab24.gif" width=150 
+    border=0></A></TD>
+    <TD align=middle>
+      <H1>Фрактальное множество Жулиа</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify><PRE><B>Program</B> G2;
+<B>Uses</B> Graph, Crt;
+<B>Type</B>
+   TComplex = <B>Record</B>
+     X : Real;
+     Y : Real;
+   <B>End</B>;
+<B>Const</B>
+   iter = 50;
+   max  = 16;
+<B>Var</B>
+   z, t, c : TComplex;
+   x, y, n : Integer;
+   Cancel  : Boolean;
+   gd, gm  : Integer;
+   mx, my  : Integer;
+<B>Begin</B>
+   Cancel := False;
+   Randomize;
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   Mx := GetMaxX <B>div</B> 2;
+   My := GetMaxY <B>div</B> 2;
+   <B>For</B> y := -my <B>to</B> my <B>do</B>
+      <B>For</B> x := -mx <B>to</B> mx <B>do</B> <B>Begin</B>
+         n := 0;
+         z.x := X * 0.005;
+         z.y := Y * 0.005;
+         c.x := 0.11;
+         c.y := -0.66;
+         <B>While</B> (sqr(z.x) + sqr(z.y) &lt; max) <B>and</B> (n &lt; iter) <B>do</B> <B>Begin</B>
+            t := z;
+            {z^2 + c}
+            Z.X := sqr(t.x) - sqr(t.y) + c.x;
+            Z.Y := 2*t.x*t.y + c.y;{}
+            z.x:=z.x+c.x;
+            z.y:=z.y+c.y;
+            Inc(n);
+            <B>If</B> keypressed <B>then</B> cancel := true;
+         <B>End</B>;
+         <B>If</B> n &lt; iter <B>then</B> <B>Begin</B>
+            PutPixel(mx + x,my + y,16 - (n mod 16));
+         <B>End</B>;
+         <B>If</B> cancel <B>then</B> exit;
+      <B>End</B>;
+   Readkey;
+   CloseGraph;
+<B>end</B>.
+</PRE>
+<P>Другие формулы: z'=z^3 + c<BR>Z.X := t.x*t.x*t.x - 3*t.x*t.y*t.y + c.x<BR>Z.Y 
+:= 3*t.x*t.x*t.y - t.y*t.y*t.y + c.y<BR><BR>z'=z^4 + c<BR>Z.X := t.x*t.x*t.x*t.x 
++ t.y*t.y*t.y*t.y - 6*t.x*t.x*t.y*t.y + c.x<BR>Z.Y := 4*t.x*t.x*t.x*t.y - 
+4*t.x*t.y*t.y*t.y + c.y<BR></P></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 02.12.04<BR>Дата последнего обновления: 02.12.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фрактальное множество Жулиа.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/plasma.html -->
+<HTML><HEAD><TITLE>Фракталы: Плазма</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Плазма.files/fon.bmp"><FONT face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Плазма.files/lab24.gif" width=150 border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Плазма</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>
+<CENTER><IMG height=400 alt=Плазма src="Фракталы Плазма.files/fr042.jpg" 
+width=400 border=1></CENTER><PRE> 
+<B>Program</B> Plazma;
+<B>Uses</B> CRT, Graph;
+<B>Var</B>
+  Plasma : <B>Array</B> [0..319, 0..199] <B>of</B> Byte;
+  x, y, j: Integer;
+  gd, gm : Integer;
+
+<B>Procedure</B> RGB(N, R, G, B:Word);
+<B>Begin</B>
+  Port[$3c8]:=n;
+  Port[$3c9]:=R <B>div</B> 4;
+  Port[$3c9]:=G <B>div</B> 4;
+  Port[$3c9]:=B <B>div</B> 4;
+<B>End</B>;
+
+<B>Procedure</B> Adjust(xa,ya,x,y,xb,yb: Integer);
+<B>Var</B>
+  d: Integer;
+  v: Real;
+<B>Begin</B>
+  <B>if</B> plasma[x, y] &lt;&gt; 0 <B>then</B> exit;
+  d:=Abs(xa - xb) + Abs(ya - yb);
+  v:=(plasma[xa, ya] + plasma[xb, yb]) / 2 + (random - 0.5) * d * 2;
+  <B>If</B> v &lt; 1 <B>Then</B> v:=1;
+  <B>If</B> v &gt;= 255 <B>Then</B> v:=255;
+  plasma[x, y]:=Trunc(v);
+<B>End</B>;
+
+<B>Procedure</B> HalfWay(x1, y1, x2, y2: Integer);
+<B>Var</B>
+  x, y: Integer;
+<B>Begin</B>
+  <B>If</B> (x2 - x1 &lt; 2) <B>and</B> (y2 - y1 &lt; 2) <B>Then</B> Exit;
+  x:=(x1 + x2) <B>div</B> 2;
+  y:=(y1 + y2) <B>div</B> 2;
+  Adjust(x1, y1, x,  y1, x2, y1);
+  Adjust(x2, y1, x2, y,  x2, y2);
+  Adjust(x1, y2, x,  y2, x2, y2);
+  Adjust(x1, y1, x1, y,  x1, y2);
+  <B>If</B> Plasma[x,y]=0 <B>Then</B>
+    plasma[x,y]:=trunc((plasma[x1, y1] + plasma[x2, y1] + plasma[x2, y2] + plasma[x1, y2]) / 4);
+  HalfWay(x1, y1, x,  y);
+  HalfWay(x,  y1, x2, y);
+  HalfWay(x,  y,  x2, y2);
+  HalfWay(x1, y,  x,  y2);
+<B>end</B>;
+
+<B>Procedure</B> MakePlasma;
+<B>Begin</B>
+  Plasma[0,   199]:=Random(190);
+  Plasma[319, 199]:=Random(190);
+  Plasma[319, 0  ]:=Random(190);
+  Plasma[0,   0  ]:=Random(190);
+  HalfWay(0, 0, 319, 199);
+<B>End</B>;
+
+<B>Begin</B>
+  <B>Asm</B>
+    mov ax ,13h
+    int 10h
+  <B>End</B>;
+  Randomize;
+  <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB(j, 255, j*6, 0);
+  <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB(43+j, 255-j*6, 255, 0);
+  <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB(86+j, 0, 255, j*6);
+  <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB(129+j, 0, 255-j*6, 255);
+  <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB(172+j, j*6, 0, 255);
+  <B>For</B> J:=0 <B>To</B> 40 <B>Do</B> RGB(215+j, 255, 0, 255-j*6);
+  MakePlasma;
+  <B>For</B> x := 0 <B>to</B> 319 <B>do</B>
+   <B>For</B> y := 0 <B>to</B> 199 <B>do</B>
+     Mem[$0a000 : y * 320 + x] := plasma[x, y];
+  Readkey;
+<B>End</B>.
+</PRE></DIV>
+<P>Чтобы перед глазами все поплыло, мы в цикле будем менят палитру. (Переменная 
+<I>c</I> любого целого типа.)</P><PRE>...
+
+<B>Begin</B>
+  <B>Asm</B>
+    mov ax ,13h
+    int 10h
+  <B>End</B>;
+  Randomize;
+  c:=0;
+  MakePlasma;
+  <B>For</B> x := 0 <B>to</B> 319 <B>do</B>
+   <B>For</B> y := 0 <B>to</B> 199 <B>do</B>
+     Mem[$0a000 : y * 320 + x] := plasma[x, y];
+  <B>Repeat</B>
+    <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB((j+c) <B>mod</B> 256, 255, j*6, 0);
+    <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB((43+j+c) <B>mod</B> 256, 255-j*6, 255, 0);
+    <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB((86+j+c) <B>mod</B> 256, 0, 255, j*6);
+    <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB((129+j+c) <B>mod</B> 256, 0, 255-j*6, 255);
+    <B>For</B> J:=0 <B>To</B> 43 <B>Do</B> RGB((172+j+c) <B>mod</B> 256, j*6, 0, 255);
+    <B>For</B> J:=0 <B>To</B> 40 <B>Do</B> RGB((215+j+c) <B>mod</B> 256, 255, 0, 255-j*6);
+    inc(c);
+    delay(1000);
+  <B>Until</B> KeyPressed;
+  Readkey;
+<B>End</B>.
+
+</PRE>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 17.10.04<BR>Дата последнего обновления: 17.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript src="Фракталы Плазма.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

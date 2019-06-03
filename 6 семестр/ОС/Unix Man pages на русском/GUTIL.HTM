@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>GUTIL(1G)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GUTIL(1G)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	gutil - графические утилиты
+<p><b>СИНТАКСИС</b>
+<pre>
+      имя_утилиты  [опция ...] [метафайл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Ниже приводится описание разнообразных  аппаратно-независимых утилит, находящихся  в  каталоге  /usr/bin/graf
+	[см <a href=GRAPHICS.htm>graphics(1G)</a>]. Если не оговорено противное, под метафайлом понимается файл в формате  GPS  [см.  <a href=GPS.htm>gps(4)</a>].
+	Если метафайлы не указаны, информация читается со стандартного ввода. Результаты записываются на  стандартный вывод.
+<dl>
+<p><dt> bel - звонок <dd> Посылает на  терминал  управляющий  символ,  вызывающий
+	звуковой сигнал.
+<p><dt> cvrtopt  [[=sцепочка] [=fцепочка] [=iцепочка] [=tцепочка]] ... [аргумент ..
+         преобразование опций <dd> Команда  преобразует  аргументы (обычно это позиционные
+	параметры вызывающей shell-процедуры), чтобы  облегчить
+	их обработку. Аргумент - это или имя файла, или цепочка
+	опций  [см. <a href=INTRO.htm>intro(1)</a>]. Результат работы команды cvrtopt
+	имеет вид
+<pre>
+     -опция  -опция ...  имя_файла ...
+</pre>
+	то есть каждая опция становится отдельным аргументом, а
+	все опции предшествуют именам файлов.
+<p align=justify>	Чтобы обеспечить правильный разбор двухбуквенных опций,
+	а также опций, состоящих из флага  и  значения  (таких,
+	например, как -r17.2), их следует описать в конструкциях =t и/или =s, =f, =i команды cvrtopt. Пример:
+<pre>
+     cvrtopt  =fr аргумент ...
+</pre>
+	Как правило, команда cvrtopt используется в сочетании с
+	set в начале shell-процедур:
+<pre>
+     set -- `cvrtopt =sопция ... =fопция ... =iопция ... =tопция ... $@`
+</pre>
+	Смысл  =sfit-конструкций  команды  cvrtopt (упоминаемые
+	ниже цепочки состоят из одного или двух символов):
+<dl>
+<p><dt> =sцепочка <dd>  Цепочка есть имя опции, входящей в число  аргументов cvrtopt, и  имеющей  своим  значением  цепочку символов.
+<p><dt> =fцепочка <dd>   Цепочка есть имя опции, входящей в число  аргументов cvrtopt, и имеющей  своим  значением  действительное число.
+<p><dt> =iцепочка <dd>  Цепочка есть имя опции, входящей в число  аргументов cvrtopt, и имеющей своим значением целое  число.
+<p><dt> =tцепочка <dd>  Цепочка есть имя двухбуквенной опции.
+</dl>
+<p><dt> gd  [метафайл ...] - GPS-дамп <dd> Дамп метафайлов в удобочитаемом формате.
+<p><dt> gtop  [-rномер_области] [-u] [метафайл ...] - преобразование метафайлов <dd> Команда gtop преобразует метафайлы из формата <a href=GPS.htm>gps(4)</a>  в формат <a href=PLOT.htm>plot(4)</a>. Транслируются объекты, попадающие в окно, охватывающее первый метафайл, если только не задана одна из опций:
+<dl>
+<p><dt> -rномер_области <dd>  Транслируются объекты из  GPS-области  с  заданным
+	     номером.
+<p><dt> -u <dd>   Транслируются все объекты из GPS-мира.
+</dl>
+<p><dt> pd  [метафайл_в_формате_plot(4) ...] - <a href=PLOT.htm>plot(4)</a>-дамп <dd> Дамп метафайлов_в_формате_plot(4), позволяющий человеку
+	ознакомиться с их содержимым.
+<p><dt> ptog  [метафайл_в_формате_plot(4) ...] - преобразование в формат GPS <dd> Преобразование  метафайлов_в_формате_plot(4)  в  формат <a href=GPS.htm>gps(4)</a>.
+<p><dt> quit <dd>  выход из системы 
+<p><dt> remcom  [файл ...] - удаление комментариев <dd> Команда remcom удаляет из файлов комментарии и  записывает результат на стандартный вывод.  Комментарии  распознаются по правилам языка C: /* комментарий */.
+<p><dt>  whatis  [-o] [имя_команды ...] - получение справочной информации <dd> Команда whatis выдает справочную информацию об  использовании графических команд. Если имя_команды не  указано, выдается перечень графических команд.  Если  в  качестве имени_команды задать \*, будет  выдано  описание
+	всех команд. Если задана опция -o, выдается только описание опций графических команд.
+<p><dt> yoo  файл - создание канала <dd> Команда yoo копирует стандартный ввод в указанный файл. Допустимо назначать стандартный ввод на тот же файл.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+	getopts(1), <a href=GRAPHICS.htm>graphics(1G)</a>, <a href=TEE.htm>tee(1)</a>.<br>
+	gps(4), <a href=PLOT.htm>plot(4)</a> в Справочнике программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+	Справочная команда whatis не работает
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

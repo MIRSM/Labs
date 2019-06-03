@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>AR(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>AR(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+ar - формат архивного файла
+<p><b>СИНТАКСИС</b>
+<pre>
+#include &lt;ar.h&gt;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда <a href=AR.htm>ar(1)</a> позволяет собрать несколько файлов в один
+архивный файл. Архивы используются в основном как  библиотеки об ектных  файлов,  просматриваемые  редактором
+связей <a href=LD.htm>ld(1)</a>.
+<p>
+Каждый архив начинается с магической цепочки архива.
+<pre>
+#define ARMAG "!&lt;arch&gt;\n" /* Магическая цепочка */
+#define SAMARG 8         /* Длина магической цепочки */
+</pre><p align=justify>
+Архив об ектных файлов обычного  формата  [см.a.out(4)]
+включает таблицу имен архива. Она используется редактором связей <a href=LD.htm>ld(1)</a> для определения того,  какие  элементы
+архива должны быть включены в результирующую  программу
+при редактировании связей. Таблица  имен  архива  (если
+она есть) всегда является первым файлом архива,  однако
+не отображается при выдаче оглавления. Она автоматически порождается и корректируется командой <a href=AR.htm>ar(1)</a>.
+<p align=justify>
+За  магической цепочкой архива следуют файлы - элементы
+архива. Каждый элемент начинается с заголовка следующего формата:
+<pre>
+#define ARFMAG "`\n" /* Ограничитель заголовка */
+
+struct ar_hdr {      /* Заголовок элемента архива */
+  char ar_name [16]; /* Имя элемента (в конце /) */
+  char ar_date [12]; /* Дата последней модификации */
+  char ar_uid [6];   /* Идентификатор владельца */
+  char ar_gid [6];   /* Идентификатор группы */
+  char ar_mode [8];  /* Режим элемента архива */
+  char ar_size;      /* Длина элемента */
+  char ar_fmag [2];  /* Ограничитель заголовка */
+};
+</pre><p align=justify>1
+Заголовок элемента  архива  является  чисто  текстовым.
+Числовая информация хранится в десятичном виде, за исключением ar_mode - восьмеричного режима доступа к  элементу архива. Поэтому, если архив состоит из  текстовых
+файлов, он и в целом является текстовым.
+<p align=justify>
+Имя файла в поле ar_name заканчивается символом / и дополняется пробелами. Поле ar_date содержит дату модификации файла на момент его  включения  в  архив.  Архивы
+обычного формата можно перемещать из системы в систему,
+используя команду <a href=AR.htm>ar(1)</a>. Для переноса архивов специальных форматов их преобразуют  к  обычному  формату  посредством команды <a href=CONV.htm>conv(1)</a>.
+<p align=justify>
+Каждый элемент архива начинается с границы четного байта. Для этого между разделами, если нужно,  вставляется
+символ перевода строки. Длина элемента в  поле  ar_size
+отражает точный размер без учета вставок.
+<p align=justify>
+Если архив включает таблицу имен,  первый  файл  архива
+имеет имя нулевой длины (ar_name [0] == '/') и содержит
+следующую информацию:
+<ol>
+<li>Количество имен (занимает 4 байта).
+<li>Массив смещений в архивном файле  [занимает  (4  *
+количество имен) байт].
+<li>Таблица цепочек символов - имен  элементов  архива
+(занимает остаток файла).
+</ol><p align=justify>
+Таблица цепочек (ограниченных нулевым байтом) и  массив
+смещений содержат равное число элементов. Каждое смещение связано с соответствующей по  порядку  цепочкой.  В
+таблице цепочек перечислены все глобальные имена, определенные во всех файлах архива. Смещение определяет положение архивного заголовка файла,  содержащего  данное
+глобальное имя.
+<p><b>СМ. ТАКЖЕ</b><br>
+a.out(4).<br>
+<a href=AR.htm>ar(1)</a>, <a href=LD.htm>ld(1)</a>, <a href=STRIP.htm>strip(1)</a> в Справочнике пользователя.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Команда <a href=STRIP.htm>strip(1)</a> удаляет все элементы таблицы имен. Для
+использования редактора связей <a href=LD.htm>ld(1)</a> их надо  восстановить с помощью команды ar -ts.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

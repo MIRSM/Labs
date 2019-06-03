@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>LABELIT(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LABELIT(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+labelit - присваивание имен файловым системам
+<p><b>СИНТАКСИС</b>
+<pre>
+   /etc/labelit  файловая_система [имя_системы имя_тома [-n]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда  labelit служит для присваивания имен размонтированным файловым_системам на диске или магнитной  ленте.  Файловая_система  задается  именем  содержащего ее
+специального файла, соответствующего  диску  (например,
+/dev/dsk/hd0s1) или ленте (/dev/rmt).
+<p align=justify>Если  необязательные аргументы опущены, команда labelit
+выдает на стандартный вывод текущее имя файловой системы и текущее имя тома, а также размер файловой системы,
+количество описателей файлов и другие сведения.
+<p align=justify>Аргумент  имя_системы  задает  имя, которое будет сообщаться при монтировании файловой системы.
+<p align=justify>Имя_тома обычно соответствует наклейке на  дискете  или
+кассете с лентой.
+<p align=justify>Для файловых систем на диске имена системы и тома записываются в суперблок.
+<p align=justify>Опция  -n  указывается  при  присваивании имен файловым
+системам на магнитной ленте. Содержимое ленты при  этом
+теряется.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=MKFS.htm>mkfs(1M)</a>.<br>
+<a href=SH.htm>sh(1)</a> в Справочнике пользователя.<br>
+<a href=FS.htm>fs(4)</a> в Справочнике программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Размер  файловой системы выдается в 512-байтных блоках,
+хотя строкой ниже и сообщается, что единицей  измерения
+служит 1 Кб.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

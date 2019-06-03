@@ -1,0 +1,201 @@
+<html>
+<head>
+<title>TSET(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>TSET(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+tset - устанавливает режимы терминала.
+<p><b>СИНТАКСИС</b>
+<pre>
+	tset [-] [-h rsuIQS] [-e[c]] [-E[c]] [-k[c]] [-m[ident]
+	     [test baudrate]:type] [type]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда tset обеспечивает зависимые от типа терминала установки, такие  как установку символов erase и kill,  установки или
+сброс задержек и т.д.  Они  задаются  файлами  /etc/ttytype  и
+/etc/termcap.
+<p align=justify>Тип терминала определяется аргументом type.  Он может быть любым типом,  имеющимся в файле /etc/termcap. Если аргумент type
+не определен,  то  типу терминала присваивается значение переменной среды TERM, если не установлен флаг -h или не задан аргумент -m.  В  этом  случае  значение  типа  читается из файла
+/etc/ttytype (это имя порта в  базе  данных,  описывающую  тип
+терминала). Имя  порта определяется вызовом ttyname(2) в диагностическом выводе.  Если в файле /etc/ttytype порт не найден,
+то типу терминала присваивается значение unknown (неизвестный).
+<p align=justify>Порты, для которых тип терминала не определен,  обозначаются в
+файле /etc/ttytype как dialup,  plugboard и т.д.  Пользователь
+может определить, как эти идентификаторы будут отображаться на
+действительный тип терминала. За флагом отображения -m следует
+соответствующий идентификатор  (подстрока из четырех или более
+символов), необязательная тестовая последовательность для проверки скорости передачи и тип терминала, которые будут использованы, если условия отображения удовлетворены. Если определено более одного отображения,  то используется первое корректирующее отображение.  Пропущенный идентификатор выравнивает все
+идентификаторы. Скорости передачи (в бодах) определяются как в
+команде <a href=STTY~1.htm>stty(1)</a> и сравниваются со  скоростью  диагностического
+вывода. Тестовая  последовательность может быть любой комбинацией из знаков >,  =, &lt;, @ , ! (Замечание: знак @ является синонимом '=', а '!' инвертирует последовательность теста. Обратите внимание, что исключающие символы имеют важное значение в
+интерпретаторе shell).
+<p align=justify>Если аргумент type,  определенный как описано выше, начинается
+со знак вопроса,  пользователю выдается запрос,  действительно
+ли он  хочет работать с терминалом данного типа.  Пустой ответ
+означает использование этого типа;  иначе,  может быть  введен
+другой тип,  который  будет  использован вместо предложенного.
+(Знак вопроса должен быть исключен для предохранения  расширения имени файла интерпретатором shell).
+<p align=justify>Команда tset наиболее удобна,  когда включается в файлы .login
+(для команды <a href=CSH.htm>csh(1)</a>) или .profile (для команды <a href=SH.htm>sh(1)</a>), автоматически выполняемые при регистрации, с флагом отображения  -m,
+используемым для определения типа терминала, который вы считаете наиболее удобным для подключения.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>-e   <td>   эта опция  устанавливает  соответствие  между   символом
+erase и указанным символом 'c', который по умолчанию равен Ctrl-H.
+<tr valign=top><th>-E   <td>   этот флаг идеинтичен флагу  -e,  кроме того,  что он используется на терминалах, которые допускают забой.
+<tr valign=top><th>-k   <td>   эта опция устанавливает соответствие между символом kill
+и указанным символом 'c',  который  по  умолчанию  равен
+Ctrl-U. Во  всех этих флагах '^X' (X - любой символ) эквивалентно Ctrl-X.
+<tr valign=top><th>-  <td>    эта опция печатает тип терминала на стандартном устройстве вывода;  это может быть использовано с целью получения информации о типе терминала; для этого наберите:
+<pre>
+	set termtypy = 'test-'
+</pre>
+Если другие опции не заданы,  команда test выполняется в
+быстром режиме ("fast mode") и выводит только тип терминала, пропуская все остальные данные.
+<tr valign=top><th>-h   <td>   вынуждает команду  test  осуществлять поиск информации в
+файле /etc/ttytype и пересмотр переменной среды TERM.
+<tr valign=top><th>-s   <td>   эта опция выводит команды setenv (если ваш интерпретатор
+shell по  умолчанию  -  <a href=CSH.htm>csh(1)</a>) или команды назначения и
+команды export (если ваш стандартный shell - <a href=SH.htm>sh(1)</a>).
+<br>Для опции -s с интерпретатором Bourne shell наберите:
+<pre>
+	tset -s   .>/tmp/tset$$
+	/tmp/tset$$
+	rm /tmp/tset$$
+</pre>
+<tr valign=top><th>-S   <td>   эта опция только печатает строки, размещенные в переменной среды. Если вы используйте csh, наберите:
+<pre>
+	set noglob
+	set term = ('tset -S   .'
+	setenv TERM $term[1]
+	setenv TERMCAP "$term[2]
+	unset term
+	unset noglob
+</pre>
+<tr valign=top><th>-r   <td>   эта опция высвечивает тип терминала  на  диагностическом
+устройстве вывода.
+<tr valign=top><th>-Q   <td>   эта опция  подавляет высвечивание предложений "Erase set
+to" и "Kill set to".
+<tr valign=top><th>-I  <td>    эта опция подавляет вывод строк, описывающих инициализацию терминала.
+<tr valign=top><th>-m   <td>   эта опция является флагом отображения.  Она используется
+для определения типа терминала, который вы наиболее часто используйте. За ним следует соответствующий идентификатор вашего    терминала,    находящийся    в     файле
+/etc/ttytype. Когда  вы  подключаетесь  к системе,  этот
+флаг присваивает типу терминала значение ident,  если вы
+не определили иначе.
+</table>
+<p><b>ПРИМЕРЫ</b>
+<pre>
+	tset gt42
+</pre>
+Присваивает типу терминала значение gt42.
+<pre>
+	tset -m dialup\>300:adm3a -m dialup:dw2 -Qr -e#
+</pre>
+Если  элемент  в файле /etc/ttytype, соответствующий порту регистрации, имеет имя dialup, а скорость передачи порта  больше
+300 бод, тип терминала будет иметь значение adm3a. Если тот-же
+элемент  в том же файле имеет имя dialup, но скорость передачи
+меньше или равна 300 бод, то тип терминала будет иметь  значение  dw2.  Символу  erase  присвоено значение символа #, а тип
+терминала (но не символ erase)  высвечивается  на  стандартном
+устройстве вывода.
+<pre>
+	tset -m dial:ti733 -m plug:\?hp2621 -m unknown:\? -e -k ^U
+</pre>
+Если элемент файла /etc/ttytype начинается с dial,  тип терминала имеет значение ti733.  Если элемент начинается с plug, то
+команда test выдает подсказку:
+<pre>
+	TERM = (hp2621)
+</pre>
+Если он отличается от желаемого,  то наберите новый тип терминала. Если элемент - unknown, то будет выдано сообщение:
+<pre>
+	TERM = (unknown)
+</pre>
+В любом  случае  символу  "пробел"  присвоено значение символа
+erase, тип терминала будет высвечен на стандартном  устройстве
+вывода ошибок,  а комбинации Ctrl-U присвоено значение символа
+kill.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/ttytype          Имя порта в базе данных, содержащей типы
+		              терминалов
+	/etc/termcap          База данных, описывающая возможности те-
+		              рминала
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=TTY~1~2.htm>tty(1)</a>, termcap(5), <a href=STTY~1.htm>stty(1)</a>.
+<p align=justify><b>РАЗРЕШЕНИЕ</b><br>
+Эта утилита  была  разработана  в Калифорнийском Университете,
+г.Беркли, и разрешена к использованию.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

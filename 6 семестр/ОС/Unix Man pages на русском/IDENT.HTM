@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>IDENT(1)<br> КОМАНДЫ ПОЛЬЗОВАТЕЛЯ</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IDENT(1)<br> КОМАНДЫ ПОЛЬЗОВАТЕЛЯ</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ident - идентификация файла по ключевым символам  в  системе
+отслеживания версий RCS
+<p><b>СИНТАКСИС</b>
+<pre>
+ident [ -q ] [ -V ] [ имя-файла ... ]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда ident ищет подстроки вида $ключевой-символ: текст$ в
+заданных файлах,  а если они не указаны,  то  в  стандартном
+вводе.
+<p align=justify>Строки такого вида вставляются в файл автоматически командой
+<a href=CO.htm>co(1)</a> .  Флаг -q подавляет сообщение об  отсутствии  искомых
+подстрок. Флаг -V сообщает номер версии.
+<p align=justify>Программа ident  работает как с текстовыми файлами,  так и с
+двоичными.  Например,  если  программа  на  C  в  файле  f.c
+содержит
+<pre>
+  #include <stdio.h>
+  static char const rcsid[] =
+    "$Id: f.c,v 5.4 1993/11/09 17:40:15 eggert Exp $";
+  int main() { return printf("%s\n", rcsid) == EOF; }
+</pre>
+и f.c откомпилирован в файл f.o, тогда команда
+<pre>
+  ident  f.c  f.o
+</pre>
+сообщит:
+<pre>
+  f.c:
+ $Id: f.c,v 5.4 1993/11/09 17:40:15 eggert Exp $
+  f.o:
+ $Id: f.c,v 5.4 1993/11/09 17:40:15 eggert Exp $
+</pre>
+<p align=justify>Следует заметить,  что  если  программа   содержит   строку,
+подобную упомянутой  выше,  но  не  использует ее никак,  то
+выдаются предупреждающие   сообщения,   а   слишком    умные
+оптимизаторы удаляют  ее из исполняемого файла без изменения
+результатов его работы. Потому лучше использовать эти строки
+так, как указано в примере.
+<p align=justify>Команда ident  ищет  все  подстроки  вида  $ключевой-символ:
+текст$  даже  если  RCS  не  поддерживает  такого  ключевого
+символа,  что  удобно,  если   вы   ищете   выражения   типа
+$XConsortium$.
+<p align=justify><b>КЛЮЧЕВЫЕ СЛОВА И ИХ ЗНАЧЕНИЯ:</b><br>
+Ниже приведен  список  ключевых   символов,   поддерживаемый
+<a href=CO.htm>co(1)</a>.  По  умолчанию  используется  Всемирное Время,  (UTC,
+иногда называемое Гринвичским GMT) но флаг -zzone может  это
+изменить.
+<p><dt>     $Author$
+<dd>  Имя (login   name)   пользователя   зарегистрировавшего
+  данную версию.
+<p><dt>     $Date$
+<dd>  Дата и  время  регистрации версии.  Флаг -zzone добавит
+  числовое  значение   часового   пояса,   по   умолчанию
+  используется Всемирное Время.
+<p><dt>     $Header$
+<dd>  Стандартный заголовок.  Содержит  полное  имя  файла  с
+  абсолютной формой указания пути,  номер версии,  дату и
+  время регистрации,  автора,  статус и имя пользователя,
+  забронировавшего  версию  для  внесения изменений (если
+  это так).   Флаг   -zzone   добавит  числовое  значение
+  часового пояса,  по  умолчанию  используется  Всемирное
+  Время.
+<p><dt>     $Id$
+<dd>  То же, что и $Header$, но имя файла не содержит путь.
+<p><dt>     $Locker$
+<dd>  Имя пользователя,  забронировавшего версию для внесения
+  изменений. Пустая строка, если файл не забронирован.
+<p><dt>     $Log$
+<dd>  Регистрационная запись,  внесенная  при  регистрации со
+  стандартным заголовком впереди.  С точки зрения команды
+  ident  ничем  не  отличается  от  такого символа,  как,
+  скажем, $RCSfile$
+<p><dt>     $Name$
+<dd>  Символическое имя,  использованное при извлечении файла
+  из архива.  Например,  co -rJoe породит  $Name: Joe $ .
+  Просто co породит просто $Name: $.
+<p><dt>     $RCSfile$
+<dd>  Имя файла, без пути.
+<p><dt>     $Revision$
+<dd>  Номер версии.
+<p><dt>     $Source$
+<dd>  Полное имя файла с абсолютным заданием пути.
+<p><dt>     $State$
+<dd>  Статус заданный флагом -s команд <a href=RCS.htm>rcs(1)</a> или <a href=CI.htm>ci(1)</a>.
+<p align=justify>Если для придания идентификационным маркерам красивого  вида
+потребуются нижеследующие символы,  то они могут быть заданы
+с помощью обратной косой черты.
+<pre>
+  символ   представление
+  tab      \t
+  newline  \n
+  space    \040
+  $        \044
+  \        \\
+</pre>
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CI.htm>ci(1)</a>, <a href=CO.htm>co(1)</a>, <a href=RCS.htm>rcs(1)</a>, <a href=RCSDIFF.htm>rcsdiff(1)</a>, <a href=RCSINTRO.htm>rcsintro(1)</a>,  <a href=RCSMERGE.htm>rcsmerge(1)</a>,
+<a href=RLOG.htm>rlog(1)</a>, rcsfile(5)<br>
+Walter F.   Tichy,   RCS--A   System  for  Version  Control,
+Software--Practice & Experience 15, 7 (July 1985), 637-654.
+<p align=justify><i>Copyright (C) Walter F. Tichy, Paul Eggert.</i>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

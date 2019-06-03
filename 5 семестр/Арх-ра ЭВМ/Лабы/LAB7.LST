@@ -1,0 +1,66 @@
+Turbo Assembler	 Version 2.5	    12/06/18 11:46:28	    Page 1
+lab7.asm
+
+
+
+      1	0000			     code	 segment
+      2	0000			      prog	  proc	  far
+      3					     assume cs:code, ds:code
+      4					     org     100h
+      5	0100				     begin:
+      6	0100  8C C8			     mov ax,cs
+      7	0102  8E D8			     mov ds,ax
+      8	0104  B9 0035			     mov cx,53
+      9
+     10					     ; установка видеорежима
+     11	0107  B4 00			     mov ah, 0
+     12	0109  B0 0F			     mov al, 0fh
+     13	010B  CD 10			     int 10h
+     14
+     15				     ; ввод	символов
+     16	010D			     wloop:
+     17	010D  B8 0000			     mov     ax,0000h
+     18	0110  CD 16			     int 16h
+     19	0112  80 FC 01			     cmp     ah,01h
+     20	0115  74 08			     je	     exit
+     21					     ;вывод символа
+     22	0117  B4 0E			     mov ah,0eH
+     23	0119  B3 05			     mov bl,5
+     24	011B  CD 10			     int 10h
+     25	011D  E2 EE			     loop wloop
+     26
+     27				     ; выход из программы
+     28	011F				     exit:
+     29	011F  B4 4C			     mov ah, 4ch
+     30	0121  CD 21			     int 21h
+     31
+     32				     ;string db	0ah, 100 dup('$')
+     33				     ;crlf db 0ah, 0dh,	'$'
+     34	0123			     prog endp
+     35	0123			     code	 ends
+     36				     end begin
+Turbo Assembler	 Version 2.5	    12/06/18 11:46:28	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "12/06/18"
+??FILENAME			  Text	 "lab7	  "
+??TIME				  Text	 "11:46:28"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 LAB7
+@WORDSIZE			  Text	 2
+BEGIN				  Near	 CODE:0100
+EXIT				  Near	 CODE:011F
+PROG				  Far	 CODE:0000
+WLOOP				  Near	 CODE:010D
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0123 Para	  none
+

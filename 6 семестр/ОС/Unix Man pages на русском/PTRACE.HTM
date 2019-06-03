@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>PTRACE(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>PTRACE(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+ptrace - трассировка процесса
+<p><b>СИНТАКСИС</b>
+<pre>
+        int ptrace (request, pid, addr, data)
+        int request, pid, addr, data;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов ptrace предоставляет средства,  используя которые родительский процесс может управлять выполнением порожденного процесса. В первую очередь этот вызов используется для реализации  отладчиков  с  точками
+прерывания [см. <a href=SDB.htm>sdb(1)</a>]. Порожденный  процесс  работает
+обычным образом, пока он не получает сигнал [см. список
+в <a href=SIGNAL.htm>signal(2)</a>], после чего он приостанавливается,  а  его
+родительский процесс получает информацию об этом  через
+<a href=WAIT.htm>wait(2)</a>. Пока порожденный процесс приостановлен,  родительский процесс может читать и изменять образ его  памяти, вызывая ptrace. Кроме того, родительский  процесс
+может либо уничтожить порожденный процесс, либо  возобновить его выполнение, возможно удалив сигнал,  вызвавший остановку.
+<p align=justify>
+Аргумент request определяет  действия,  которые  должен
+выполнить системный вызов  ptrace.  Возможны  следующие
+действия:
+<table>
+<tr valign=top><th>0
+<td>Вызов с этим значением request должен быть  сделан порожденным  процессом,  если  предполагается  его трассировка родительским процессом. Этот вызов устанавливает у порожденного процесса  флаг  трассировки, вследствии чего порожденный процесс при получении сигнала  останавливается,  не  отрабатывая функции, указанной  аргументом  системного  вызова signal [см. <a href=SIGNAL.htm>signal(2)</a>]. Аргументы pid, addr, и data игнорируются и возвращаемое значение не определено.  Если  родительский  процесс  не  собирается трассировать порожденный процесс, результаты будут непредсказуемыми.</tr>
+<tr valign=top><td colspan=2>Вызовы с остальными значениями аргумента request  могут использоваться только родительским процессом. Для  всех этих вызовов аргумент pid обозначает идентификатор  по рожденного процесса. Вызовы имеют смысл,  только  когда порожденный процесс приостановлен.</tr>
+<tr valign=top><th>1,2
+<td>При этих значениях request  родительскому процессу возвращается  слово  по  адресу  addr  в  адресном пространстве порожденного процесса.  Оба  значения request приводят к одинаковым результатам. Игнорируется аргумент data.</tr>
+<tr valign=top><th>3
+<td>Родительскому  процессу  возвращается   слово   из структуры u типа user, находящейся в системном адресном  пространстве [см.  &lt;sys/user.h&gt;] и соответствующей порожденному процессу.  Аргумент  addr  задает смещение слова относительно начала структуры.  Аргумент data игнорируется. Вызов завершается неудачей, если указанное слово находится за преде лами этой структуры, в этом  случае  родительскому  процессу  возвращается  -1, а переменной родительского процесса errno присваивается значение EIO.</tr>
+<tr valign=top><th>4,5
+<td>При этих значениях request аргумент data записывается по адресу addr в адресном пространстве порожденного процесса. Оба значения request приводят  к одинаковым результатам.  При  успешном  завершении возвращается результат, равный записанному  значению; в  противном  случае  родительскому  процессу  возвращается -1, а переменной  родительского  процесса errno присваивается значение EIO.</tr>
+<tr valign=top><th>6
+<td>Это значение аргумента request позволяет  изменить некоторые поля в структуре u типа user, соответствующей  порожденному  процессу. Значение аргумента data записывается в слово,  смещение  которого  от начала структуры u задается аргументом addr. Могут быть изменены лишь следующие компоненты:
+<ol>
+<li>Регистры общего назначения.
+<li>Признаки результата в слове состояния процессора.
+</ol>
+Поле  u_ar0  структуры u содержит адрес массива, в котором сохраняются регистры, как общего  назначения,  так  и специальные. Чтобы вычислить смещение этого массива от начала структуры, нужно  в  файле /unix найти имя u, извлечь адрес структуры и затем вычесть его из значения поля u_ar0. Порядок расположения  регистров  в упомянутом массиве описан во включаемом файле &lt;sys/reg.h&gt;.</tr>
+<tr valign=top><th>7
+<td>Вызов с этим значением request служит  для  возобновления  работы порожденного процесса. Если аргумент data равен 0, то до возобновления работы удаляются все полученные, но не обработанные сигналы, включая тот, который вызвал приостановку порожденного процесса. Если аргумент data равен корректному номеру сигнала, то порожденный  процесс  возобновляет работу так, как будто он получил этот сигнал, а все остальные полученные сигналы удаляются. Аргумент addr задает адрес, с которого возобновляется выполнение порожденного процесса. Если значение addr равно 1, выполнение порожденного процесса возобновляется  с места приостановки. При успешном завершении возвращается результат, равный значению аргумента data. Вызов завершается  неудачей,  если аргумент  data  не  равен 0 или корректному номеру сигнала,  в  этом  случае  родительскому  процессу возвращается  -1,  а переменной родительского процесса errno присваивается значение EIO.</tr>
+<tr valign=top><th>8
+<td>Вызов с этим значением request приводит к  уничтожению  порожденного  процесса  с той же последовательностью действий, что и <a href=EXIT.htm>exit(2)</a>.</tr>
+<tr valign=top><th>9
+<td>Вызов с этим значением request  устанавливает  бит трассировки в слове состояния процессора порожденного  процесса и затем совершает действия, описанные для значения request, равного 7. Установленный бит трассировки вызывает прерывания по  выполнению каждой  машинной команды, что позволяет эффективно трассировать порожденный процесс по одной команде.</tr>
+</table><p align=justify>
+Чтобы предупредить возможный обман, вызов ptrace подавляет возможность переустанавливать действующий  идентификатор пользователя при последующих  вызовах  <a href=EXEC.htm>exec(2)</a>.
+Если трассируемый процесс вызывает exec, то он  до  выполнения первой команды из  нового  выполняемого  файла
+останавливается, сообщая о получении сигнала SIGTRAP.
+<p align=justify>
+Системный вызов ptrace завершается неудачей,  если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EIO]
+<dd>Некорректный параметр request.
+<dt>[ESRCH]
+<dd>Отсутствует порожденный процесс с идентификатором, равным  pid,  или  он  не  вызывал
+ptrace с параметром request, равным 0.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=SDB.htm>sdb(1)</a>, <a href=EXEC.htm>exec(2)</a>, <a href=EXIT.htm>exit(2)</a>, <a href=SIGNAL.htm>signal(2)</a>, <a href=WAIT.htm>wait(2)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>CDC(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CDC(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+cdc - изменение описания версии в SCCS-файле
+<p><b>СИНТАКСИС</b>
+<pre>
+     cdc  -rс_идентификатор
+     [-m[список_номеров_запросов_на_модификацию]] [-y[комментарий]]
+     файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда cdc изменяет у всех указанных SCCS-файлов  описание версии, с_идентификатор которой задан в опции -r.
+<p align=justify>
+Описание версии -  это  номер  запроса  на  модификацию
+и/или комментарий. Обычно описание  версии  задается  с
+помощью команды <a href=DELTA.htm>delta(1)</a> (опции -m и -y). Если  указано
+имя каталога, cdc обрабатывает все файлы в этом каталоге, начинающиеся с s.; файлы, к которым нет доступа  на
+чтение, игнорируются без дополнительных сообщений. Если
+указано имя -, происходит чтение со стандартного  ввода
+[см. ПРЕДОСТЕРЕЖЕНИЯ], каждая строка при этом трактуется, как имя SCCS-файла для обработки.
+<p align=justify>
+В командной строке cdc можно в любом  порядке  задавать
+опции и имена файлов.
+<p>
+Каждая опция независимо применяется к каждому файлу.
+<table>
+<tr valign=top><td>-rс_идентификатор<td>
+Указывает, описание какой версии будет изменено.</tr>
+<tr valign=top><td>-m[список_номеров_ запросов_на_модификацию]<td>
+Если в  SCCS-файле  установлен  флаг  v  [см.  <a href=ADMIN.htm>admin(1)</a>], то можно указать список  номеров запросов
+на модификацию, который будет добавлен и/или  удален в версии, указанной опцией -r.  Пустой  список
+игнорируется. Номера запросов добавляются к списку
+таким же образом, как это делает  <a href=DELTA.htm>delta(1)</a>.  Чтобы
+удалить запрос из списка, перед его номером  нужно
+указать символ ! [см. ПРИМЕРЫ]. Если удаляемый номер присутствует, он удаляется из списка и перемещается в секцию комментария описания версии. Перед
+списком удаленных номеров в секции комментария помещается строка, говорящая о том, что  эти  номера
+были удалены.
+<p>
+Если опция -m не указана, а стандартный ввод  назначен на терминал, перед  чтением  списка  номеров
+запросов на модификацию со стандартного  ввода  на
+стандартный вывод выдается запрос MRs?. Если стандартный ввод назначен не  на  терминал,  указанный
+запрос не выдается. Запрос MRs? всегда предшествует запросу comments? (см. опцию -y).
+<p>
+Номера в списке разделяются пробелами и/или символами табуляции.  Неэкранированный  перевод  строки
+завершает список.
+<p>
+Если флаг v снабжен значением [см. <a href=ADMIN.htm>admin(1)</a>],  оно
+трактуется  как  имя  программы   (или   процедуры
+shell'а) для проверки корректности  номеров.  Если
+программа проверки возвращает ненулевой код завершения, cdc терминируется (считая, что номера  запросов некорректны) и описание версии остается  неизменным.</tr>
+<tr valign=top><td>-y[комментарий]<td>
+Дополнительный текст для замены комментария в описании версии, указанной опцией -r. Предыдущие комментарии  сохраняются, перед ними помещается строка, говорящая, что они были изменены. Пустой  комментарий игнорируется.
+<p>
+Если опция -y не указана, а стандартный ввод  назначен  на  терминал, на стандартный вывод выдается
+запрос comments?. Если стандартный  ввод  назначен
+не  на терминал, указанный запрос не выдается. Неэкранированный перевод строки завершает  комментарий.</tr>
+</table>
+<p align=justify><b>ПРИМЕРЫ</b><br>
+Команда
+<pre>
+cdc -r1.6 -m bl78-12345 !bl77-54321 bl79-00001 \
+-ytrouble s.file
+</pre><p align=justify>
+добавляет bl78-12345 и bl79-00001 к списку номеров запросов, удаляет из этого списка bl77-54321  и  добавляет
+комментарий "ошибка" к версии 1.6 файла s.file.
+<p>
+Тот же эффект достигается следующим образом:
+<pre>
+cdc -r1.6 s.file
+MRs? !bl77-54321 bl78-12345 bl79-00001
+comments? trouble
+</pre>
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЯ</b><br>
+Если имена SCCS-файлов вводятся со  стандартного  ввода
+(в командной строке указан -), необходимо  использовать
+также опции -m и -y.
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+x-файл    [см. <a href=DELTA.htm>delta(1)</a>]
+z-файл    [см. <a href=DELTA.htm>delta(1)</a>]
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ADMIN.htm>admin(1)</a>, <a href=DELTA.htm>delta(1)</a>, <a href=GET.htm>get(1)</a>, <a href=HELP.htm>help(1)</a>, <a href=PRS.htm>prs(1)</a>.<br>
+<a href=SCCSFILE.htm>sccsfile(4)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Для раз'яснений пользуйтесь командой <a href=HELP.htm>help(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

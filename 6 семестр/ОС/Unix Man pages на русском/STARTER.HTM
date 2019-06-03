@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>STARTER(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>STARTER(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+starter  -  информация  о  системе  UNIX для начинающих
+пользователей
+<p><b>СИНТАКСИС</b>
+<pre>
+[help]  starter
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда справочной службы starter предоставляет следующие пять видов информации о системе UNIX в помощь новым
+пользователям:
+<ol>
+<li> Команды, которые новый пользователь должен выучить
+     в первую очередь.
+<li> Документы системы UNIX, важные для начинающих.
+<li> Центры  обучения,  предлагающие  курсы  по системе
+     UNIX.
+<li> Информация по локальному окружению.
+<li> Средства обучения в ходе сеанса, задействованные в
+     системе UNIX.
+</ol>
+<p align=justify>Пользователь  может либо выбрать один из видов справочной информации, введя указанную в меню букву, либо вернуться в систему, введя q (quit - выйти). В первом случае пользователь получит одну или более страниц  информации на указанную тему.
+<p align=justify>В любой момент диалога со справочной службой  пользователь может выполнить команду shell'а [см. <a href=SH.htm>sh(1)</a>], введя
+! и собственно команду. После ее выполнения экран перерисовывается, если команда  была  введена  в  ответ  на
+приглашение первого уровня; в противном случае  перерисовывается только приглашение.
+<p align=justify>По умолчанию справочная служба  роллирует  изображение.
+Если Вы предпочитаете, чтобы экран очищался перед выводом данных (без роллинга),  переменной  shell'а  SCROLL
+нужно присвоить значение no и экспортировать ее,  чтобы
+сделать частью окружения. Для этого в  пользовательский
+профайл .profile [см. <a href=PROFILE.htm>profile(4)</a>]  достаточно  вставить
+строку
+<pre>
+     SCROLL=no; export SCROLL
+</pre>
+Чтобы вернуть роллинг, переменной SCROLL нужно  присвоить значение yes.
+<p align=justify>Каждой из команд справочной  службы  (starter,  locate,
+usage, glossary и help) посвящена отдельная статья настоящего Справочника.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GLOSSARY.htm>glossary(1)</a>, <a href=HELP.htm>help(1)</a>, <a href=LOCATE.htm>locate(1)</a>, <a href=SH.htm>sh(1)</a>, <a href=USAGE.htm>usage(1)</a>.
+<a href=TERM~1.htm>term(5)</a> в Справочнике программиста.
+<a href=HELPADM.htm>helpadm(1M)</a> в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Если переменная окружения TERM не  установлена,  то  по
+умолчанию считается, что работа идет с терминалом  типа
+450. Список допустимых типов  терминалов  содержится  в
+файле <a href=TERM~1.htm>term(5)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

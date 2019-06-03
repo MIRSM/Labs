@@ -1,0 +1,799 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Assembly-CSharp</name>
+    </assembly>
+    <members>
+        <member name="T:AiCharacter">
+            <summary>
+            Ai character
+            </summary>
+        </member>
+        <member name="F:AiCharacter.pc">
+            <summary>
+            Управляемый персонаж
+            </summary>
+        </member>
+        <member name="F:AiCharacter.en">
+            <summary>
+            Противник
+            </summary>
+        </member>
+        <member name="F:AiCharacter.changeStateTolerance">
+            <summary>
+            Дистанция изменения состояния
+            </summary>
+        </member>
+        <member name="F:AiCharacter.normalRate">
+            <summary>
+            Максимальное время нахождения на большой дистанции
+            </summary>
+        </member>
+        <member name="F:AiCharacter.nrmTimer">
+            <summary>
+            Время нахождения на большой дистанции
+            </summary>
+        </member>
+        <member name="F:AiCharacter.closeRate">
+            <summary>
+            Максимально время нахождения на маленькой дистанции
+            </summary>
+        </member>
+        <member name="F:AiCharacter.clTimer">
+            <summary>
+            Время нахождения на маленькой дистанции
+            </summary>
+        </member>
+        <member name="F:AiCharacter.blockingRate">
+            <summary>
+            Максимальная длительность блока
+            </summary>
+        </member>
+        <member name="F:AiCharacter.blTimer">
+            <summary>
+            Длительность блока
+            </summary>
+        </member>
+        <member name="F:AiCharacter.aiStateLife">
+            <summary>
+            Максимальная длительность состояния
+            </summary>
+        </member>
+        <member name="F:AiCharacter.aiTimer">
+            <summary>
+            Длительность состояния
+            </summary>
+        </member>
+        <member name="F:AiCharacter.initiateAI">
+            <summary>
+            Спровоцирован ли
+            </summary>
+        </member>
+        <member name="F:AiCharacter.closeCombat">
+            <summary>
+            Близко ли к противнику
+            </summary>
+        </member>
+        <member name="F:AiCharacter.gotRandom">
+            <summary>
+            Получено ли случайное число
+            </summary>
+        </member>
+        <member name="F:AiCharacter.storeRandom">
+            <summary>
+            Случайное число
+            </summary>
+        </member>
+        <member name="F:AiCharacter.blocking">
+            <summary>
+            Сработал ли блок
+            </summary>
+        </member>
+        <member name="F:AiCharacter.randomizeAttacks">
+            <summary>
+            Сгенерирована ли атака
+            </summary>
+        </member>
+        <member name="F:AiCharacter.numberOfAttacks">
+            <summary>
+            Количество сгенерированных атак
+            </summary>
+        </member>
+        <member name="F:AiCharacter.curNumAttacks">
+            <summary>
+            Количество произведенных атак
+            </summary>
+        </member>
+        <member name="F:AiCharacter.JumpRate">
+            <summary>
+            Частота прыжка
+            </summary>
+        </member>
+        <member name="F:AiCharacter.jRate">
+            <summary>
+            Шанс прыжка
+            </summary>
+        </member>
+        <member name="F:AiCharacter.jump">
+            <summary>
+            Прыгнул ли
+            </summary>
+        </member>
+        <member name="F:AiCharacter.jtimer">
+            <summary>
+            Время без прыжка
+            </summary>
+        </member>
+        <member name="T:AiCharacter.AIState">
+            <summary>
+            Структура состояний
+            </summary>
+        </member>
+        <member name="F:AiCharacter.aiState">
+            <summary>
+            Состояния
+            </summary>
+        </member>
+        <member name="M:AiCharacter.States">
+            <summary>
+            Установка состояния
+            </summary>
+        </member>
+        <member name="M:AiCharacter.AIAgent">
+            <summary>
+            Действия АИ
+            </summary>
+        </member>
+        <member name="M:AiCharacter.Attack">
+            <summary>
+            Атака
+            </summary>
+        </member>
+        <member name="M:AiCharacter.Movement">
+            <summary>
+            Передвижение
+            </summary>
+        </member>
+        <member name="M:AiCharacter.ResetAI">
+            <summary>
+            Обновление действий
+            </summary>
+        </member>
+        <member name="M:AiCharacter.CheckDistance">
+            <summary>
+            Проверка дистанции с противником
+            </summary>
+        </member>
+        <member name="M:AiCharacter.Blocking">
+            <summary>
+            Блокирование
+            </summary>
+        </member>
+        <member name="M:AiCharacter.NormalState">
+            <summary>
+            Большая дистанция
+            </summary>
+        </member>
+        <member name="M:AiCharacter.CloseState">
+            <summary>
+            Маленькая дистанция
+            </summary>
+        </member>
+        <member name="M:AiCharacter.Jumping">
+            <summary>
+            Прыжок
+            </summary>
+        </member>
+        <member name="M:AiCharacter.ReturnRandom">
+            <summary>
+            Возвращает случайное число
+            </summary>
+            <returns>Случайное число</returns>
+        </member>
+        <member name="T:DamageScript">
+            <summary>
+            Damage script
+            </summary>
+        </member>
+        <member name="F:DamageScript.damage">
+            <summary>
+            Наносимый урон
+            </summary>
+        </member>
+        <member name="M:DamageScript.OnTriggerEnter2D(UnityEngine.Collider2D)">
+            <summary>
+            Соприкосновение коллайдера кулака с объектами
+            </summary>
+            <param name="other">Коллайдер, с которым соприкасается кулак</param>
+        </member>
+        <member name="T:EventHolder">
+            <summary>
+            Event holder
+            </summary>
+        </member>
+        <member name="F:EventHolder.pl">
+            <summary>
+            Персонаж
+            </summary>
+        </member>
+        <member name="M:EventHolder.ThrowProjectile">
+            <summary>
+            Специальная атака
+            </summary>
+        </member>
+        <member name="T:MainHero">
+            <summary>
+            Main hero
+            </summary>
+        </member>
+        <member name="F:MainHero.PlayerNumber">
+            <summary>
+            Индекс персонажа
+            </summary>
+        </member>
+        <member name="F:MainHero.AiCharacter">
+            <summary>
+            Управляется ли персонаж с помощью АИ
+            </summary>
+        </member>
+        <member name="F:MainHero.enemy">
+            <summary>
+            Противник
+            </summary>
+        </member>
+        <member name="F:MainHero.rb">
+            <summary>
+            Ригидбоди объекта
+            </summary>
+        </member>
+        <member name="F:MainHero.anim">
+            <summary>
+            Аниматор объекта
+            </summary>
+        </member>
+        <member name="F:MainHero.horizontal">
+            <summary>
+            Перемещение по оси Х
+            </summary>
+        </member>
+        <member name="F:MainHero.vertical">
+            <summary>
+            Перемещение по оси Y
+            </summary>
+        </member>
+        <member name="F:MainHero.maxSpeed">
+            <summary>
+            Максимальная скорость передвежения персонажа
+            </summary>
+        </member>
+        <member name="F:MainHero.movement">
+            <summary>
+            Вектор передвежения
+            </summary>
+        </member>
+        <member name="F:MainHero.crouch">
+            <summary>
+            Сидит ли персонаж
+            </summary>
+        </member>
+        <member name="F:MainHero.JumpForce">
+            <summary>
+            Сила прыжка (устанавливается из дебаг окна)
+            </summary>
+        </member>
+        <member name="F:MainHero.jmpForce">
+            <summary>
+            Сила прыжка
+            </summary>
+        </member>
+        <member name="F:MainHero.JumpDuration">
+            <summary>
+            Максимальная продолжительность прыжка
+            </summary>
+        </member>
+        <member name="F:MainHero.jmpDuration">
+            <summary>
+            Продолжительность прыжка
+            </summary>
+        </member>
+        <member name="F:MainHero.jumpKey">
+            <summary>
+            Прыгает ли
+            </summary>
+        </member>
+        <member name="F:MainHero.falling">
+            <summary>
+            Падает ли
+            </summary>
+        </member>
+        <member name="F:MainHero.onGround">
+            <summary>
+            Стоит ли на земле
+            </summary>
+        </member>
+        <member name="F:MainHero.attackRate">
+            <summary>
+            Скорость атаки
+            </summary>
+        </member>
+        <member name="F:MainHero.attack">
+            <summary>
+            Массив с вариантами атаки
+            </summary>
+        </member>
+        <member name="F:MainHero.attacktimer">
+            <summary>
+            Продолжительность нажатий клавиш атаки 
+            </summary>
+        </member>
+        <member name="F:MainHero.timesPressed">
+            <summary>
+            Количество нажатий клавиш атаки
+            </summary>
+        </member>
+        <member name="F:MainHero.damage">
+            <summary>
+            Нанесен ли урон
+            </summary>
+        </member>
+        <member name="F:MainHero.noDamage">
+            <summary>
+            Максимальная продолжительность неуязвимости после получения урона
+            </summary>
+        </member>
+        <member name="F:MainHero.noDamageTimer">
+            <summary>
+            Продолжительность неуязвимости после получения урона
+            </summary>
+        </member>
+        <member name="F:MainHero.blocking">
+            <summary>
+            Сработал ли блок
+            </summary>
+        </member>
+        <member name="F:MainHero.blockingRate">
+            <summary>
+            Максимальная продолжительность блока
+            </summary>
+        </member>
+        <member name="F:MainHero.blTimer">
+            <summary>
+            Продолжительность блока
+            </summary>
+        </member>
+        <member name="F:MainHero.specialAttack">
+            <summary>
+            Нажата ли клавиша специальной атаки
+            </summary>
+        </member>
+        <member name="F:MainHero.prLifeTime">
+            <summary>
+            Время жизни прожектайла специальной атаки
+            </summary>
+        </member>
+        <member name="F:MainHero.gotRandom">
+            <summary>
+            Получено ли случайное число
+            </summary>
+        </member>
+        <member name="F:MainHero.storeRandom">
+            <summary>
+            Случайное число
+            </summary>
+        </member>
+        <member name="F:MainHero.projectile">
+            <summary>
+            Прожектайл
+            </summary>
+        </member>
+        <member name="F:MainHero.am">
+            <summary>
+            Аудиомикшер
+            </summary>
+        </member>
+        <member name="F:MainHero.Au">
+            <summary>
+            Источник звука удара
+            </summary>
+        </member>
+        <member name="F:MainHero.die">
+            <summary>
+            Упало ли здоровье ниже 0
+            </summary>
+        </member>
+        <member name="F:MainHero.deathAnimLife">
+            <summary>
+            Максимальное время работы игры после смерти персонажа
+            </summary>
+        </member>
+        <member name="F:MainHero.deathAnimTimer">
+            <summary>
+            Время работы игры после смерти персонажа
+            </summary>
+        </member>
+        <member name="F:MainHero.healthBar">
+            <summary>
+            Слайдер со здоровьем персонажа
+            </summary>
+        </member>
+        <member name="P:MainHero.CurrentHealth">
+            <summary>
+            Текущее здоровье
+            </summary>
+        </member>
+        <member name="P:MainHero.MaxHealth">
+            <summary>
+            Максимальное здоровье
+            </summary>
+        </member>
+        <member name="F:MainHero.ContinueText">
+            <summary>
+            Текст "Continue"
+            </summary>
+        </member>
+        <member name="F:MainHero.WinText">
+            <summary>
+            Текст "...WIN"
+            </summary>
+        </member>
+        <member name="F:MainHero.plH">
+            <summary>
+            Объект со слайдером здоровья (для паузы)
+            </summary>
+        </member>
+        <member name="F:MainHero.paused">
+            <summary>
+            Нажата ли пауза
+            </summary>
+        </member>
+        <member name="F:MainHero.volume">
+            <summary>
+            Уровень громкости
+            </summary>
+        </member>
+        <member name="F:MainHero.pauseMenu">
+            <summary>
+            Объект меню паузы
+            </summary>
+        </member>
+        <member name="M:MainHero.OnGroundCheck">
+            <summary>
+            Изменение гравитации в зависимости от положения
+            </summary>
+        </member>
+        <member name="M:MainHero.AttackInput">
+            <summary>
+            Нажатие клавиш атаки
+            </summary>
+        </member>
+        <member name="M:MainHero.Damage">
+            <summary>
+            Получение урона
+            </summary>
+        </member>
+        <member name="M:MainHero.SpecialAttack">
+            <summary>
+            Специальная атака
+            </summary>
+        </member>
+        <member name="M:MainHero.UpdateAnimator">
+            <summary>
+            Обновление анимации
+            </summary>
+        </member>
+        <member name="M:MainHero.OnCollisionEnter2D(UnityEngine.Collision2D)">
+            <summary>
+            Проверка на соприкосновение с полом
+            </summary>
+            <param name="col">Коллайдер, с которым соприкасается персонаж</param>
+        </member>
+        <member name="M:MainHero.OnCollisionExit2D(UnityEngine.Collision2D)">
+            <summary>
+            Проверка на отталкивание от пола
+            </summary>
+            <param name="col">Коллайдер, от которого отталкивается персонаж</param>
+        </member>
+        <member name="M:MainHero.ScaleCheck">
+            <summary>
+            Разворот в сторону противника
+            </summary>
+        </member>
+        <member name="M:MainHero.GameOver">
+            <summary>
+            Окончание игры
+            </summary>
+        </member>
+        <member name="M:MainHero.CalculateHealth">
+            <summary>
+            Возвращает текущее здоровье
+            </summary>
+            <returns>Текущее здоровье</returns>
+        </member>
+        <member name="M:MainHero.Blocking">
+            <summary>
+            Блокирование
+            </summary>
+        </member>
+        <member name="M:MainHero.ReturnRandom">
+            <summary>
+            Возвращает случайное число
+            </summary>
+            <returns>Случайное число</returns>
+        </member>
+        <member name="M:MainHero.PauseApp">
+            <summary>
+            Ставит игру на паузу
+            </summary>
+        </member>
+        <member name="M:MainHero.ContinueBut">
+            <summary>
+            Продолжает игру (Кнопка "Continue")
+            </summary>
+        </member>
+        <member name="M:MainHero.MenuBut">
+            <summary>
+            Переход на сцену с главным меню (Кнопка "Main menu")
+            </summary>
+        </member>
+        <member name="M:MainHero.QuitBut">
+            <summary>
+            Выход из игры (Кнопка "Quit")
+            </summary>
+        </member>
+        <member name="T:PausePlay">
+            <summary>
+            Pause play
+            </summary>
+        </member>
+        <member name="F:PausePlay.pauseMenu">
+            <summary>
+            Объект меню паузы
+            </summary>
+        </member>
+        <member name="T:Player1SetUp">
+            <summary>
+            Player1 set up
+            </summary>
+        </member>
+        <member name="M:Player1SetUp.PlayVs(System.Int32)">
+            <summary>
+            Устанавливает тип управления персонажем 1
+            </summary>
+            <param name="dropDownIndex">Индекс из выпадающего списка</param>
+        </member>
+        <member name="T:Player2SetUp">
+            <summary>
+            Player2 set up
+            </summary>
+        </member>
+        <member name="M:Player2SetUp.PlayVs(System.Int32)">
+            <summary>
+            Устанавливает тип управления персонажем 2
+            </summary>
+            <param name="dropDownIndex">>Индекс из выпадающего списка</param>
+        </member>
+        <member name="T:Redirect">
+            <summary>
+            Redirect.
+            </summary>
+        </member>
+        <member name="F:Redirect.logoDuration">
+            <summary>
+            Продолжительность показа лого
+            </summary>
+        </member>
+        <member name="F:Redirect.maxLogoDuration">
+            <summary>
+            Максимальная продолжительность показа лого
+            </summary>
+        </member>
+        <member name="T:SettingsMenu">
+            <summary>
+            Settings menu
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.audioMixer">
+            <summary>
+            Аудиомикшер
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.volumeSlider">
+            <summary>
+            Слайдер громкости
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.volume1">
+            <summary>
+            Уровень громкости
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.fullScr">
+            <summary>
+            Тагл "Fullscreen"
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.resolutionDropDown">
+            <summary>
+            Выпадающий список с разрешениями экрана
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.resolutions">
+            <summary>
+            Массив разрешений экрана
+            </summary>
+        </member>
+        <member name="F:SettingsMenu.curRes">
+            <summary>
+            Индекс разрешения экрана на данный момент
+            </summary>
+        </member>
+        <member name="M:SettingsMenu.SetResolution(System.Int32)">
+            <summary>
+            Установка разрешения экрана
+            </summary>
+            <param name="resolutionIndex">Индекс элемента из выпадающего списка</param>
+        </member>
+        <member name="M:SettingsMenu.SaveSettings">
+            <summary>
+            Сохранение настроек
+            </summary>
+        </member>
+        <member name="M:SettingsMenu.SetVolume(System.Single)">
+            <summary>
+            Изменение громкости
+            </summary>
+            <param name="volume">Уровень громкости</param>
+        </member>
+        <member name="M:SettingsMenu.SetFullscreen(System.Boolean)">
+            <summary>
+            Установко полноэкранного режимы
+            </summary>
+            <param name="isFullscreen">Тагл "Fullscreen"</param>
+        </member>
+        <member name="M:SettingsMenu.PlayButton">
+            <summary>
+            Переход на игровую сцену
+            </summary>
+        </member>
+        <member name="M:SettingsMenu.HelpButton">
+            <summary>
+            Переход на сцену Main Menu
+            </summary>
+        </member>
+        <member name="M:SettingsMenu.QuitButton">
+            <summary>
+            Выход из игры
+            </summary>
+        </member>
+        <member name="T:BackToMenu">
+            <summary>
+            Start play
+            </summary>
+        </member>
+        <member name="M:BackToMenu.BackBut">
+            <summary>
+            Возвращает на сцену Main Menu
+            </summary>
+        </member>
+        <member name="M:TMPro.Examples.SkewTextExample.WarpText">
+            <summary>
+             Method to curve text along a Unity animation curve.
+            </summary>
+            <param name="textComponent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.TextConsoleSimulator.RevealCharacters(TMPro.TMP_Text)">
+            <summary>
+            Method revealing the text one character at a time.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.TextConsoleSimulator.RevealWords(TMPro.TMP_Text)">
+            <summary>
+            Method revealing the text one word at a time.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.TMP_TextInfoDebugTool.DrawCharactersBounds">
+            <summary>
+            Method to draw a rectangle around each character.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:TMPro.Examples.TMP_TextInfoDebugTool.DrawWordBounds">
+            <summary>
+            Method to draw rectangles around each word of the text.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:TMPro.Examples.TMP_TextInfoDebugTool.DrawLinkBounds">
+            <summary>
+            Draw rectangle around each of the links contained in the text.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:TMPro.Examples.TMP_TextInfoDebugTool.DrawLineBounds">
+            <summary>
+            Draw Rectangles around each lines of the text.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:TMPro.Examples.TMP_TextInfoDebugTool.DrawBounds">
+            <summary>
+            Draw Rectangle around the bounds of the text object.
+            </summary>
+        </member>
+        <member name="M:TMPro.Examples.VertexColorCycler.AnimateVertexColors">
+            <summary>
+            Method to animate vertex colors of a TMP Text object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TMPro.Examples.VertexJitter.VertexAnim">
+            <summary>
+            Structure to hold pre-computed animation data.
+            </summary>
+        </member>
+        <member name="M:TMPro.Examples.VertexJitter.AnimateVertexColors">
+            <summary>
+            Method to animate vertex colors of a TMP Text object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.VertexShakeA.AnimateVertexColors">
+            <summary>
+            Method to animate vertex colors of a TMP Text object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.VertexShakeB.AnimateVertexColors">
+            <summary>
+            Method to animate vertex colors of a TMP Text object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.VertexZoom.AnimateVertexColors">
+            <summary>
+            Method to animate vertex colors of a TMP Text object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMPro.Examples.WarpTextExample.WarpText">
+            <summary>
+             Method to curve text along a Unity animation curve.
+            </summary>
+            <param name="textComponent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMPro.TMP_DigitValidator">
+            <summary>
+            EXample of a Custom Character Input Validator to only allow digits from 0 to 9.
+            </summary>
+        </member>
+        <member name="T:TMPro.TMP_PhoneNumberValidator">
+            <summary>
+            Example of a Custom Character Input Validator to only allow phone number in the (800) 555-1212 format.
+            </summary>
+        </member>
+        <member name="P:TMPro.TMP_TextEventHandler.onCharacterSelection">
+            <summary>
+            Event delegate triggered when pointer is over a character.
+            </summary>
+        </member>
+        <member name="P:TMPro.TMP_TextEventHandler.onWordSelection">
+            <summary>
+            Event delegate triggered when pointer is over a word.
+            </summary>
+        </member>
+        <member name="P:TMPro.TMP_TextEventHandler.onLineSelection">
+            <summary>
+            Event delegate triggered when pointer is over a line.
+            </summary>
+        </member>
+        <member name="P:TMPro.TMP_TextEventHandler.onLinkSelection">
+            <summary>
+            Event delegate triggered when pointer is over a link.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,177 @@
+<html>
+<head>
+<title>AR(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>AR(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ar - обслуживание мобильных архивов и библиотек
+<p><b>СИНТАКСИС</b>
+<pre>
+  ar  [-][d][r][q][t][p][m][x][v][c][l][s] [позиционирующее_имя]
+  а_файл [имя ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда ar предоставляет средства  обслуживания  группы
+файлов, об единенных в один архивный файл.  Применяется
+главным образом для создания и  изменения  библиотечных
+файлов, используемых редактором  связей.  Может  применяться и для других подобных целей. Магические  цепочки
+и заголовки файлов состоят из  печатаемых  ASCII-символов, так что если в состав архива входят только печатаемые файлы, то и архив в целом окажется печатаемым.
+<p align=justify>
+При создании архива командой ar заголовки файлов  строятся в формате, не зависящем от конкретной машины. Формат и структура мобильного архива  подробно  описаны  в
+<a href=AR~1.htm>ar(4)</a>. Таблица имен архива (описанная там же) используется редактором связей  [ld(1)]  для  сокращения  числа
+проходов по библиотекам об ектных  файлов.  Команда  ar
+создает и поддерживает таблицу имен только при  наличии
+в архиве хотя бы одного об ектного файла. Таблица  имен
+в случае ее создания помещается в начале архива  в  качестве файла с особым именем. Ни ссылка на  этот  файл,
+ни доступ к нему для пользователя невозможны. При  создании или изменении архива командой <a href=AR.htm>ar(1)</a> таблица  имен
+всякий раз перестраивается. Таблицу имен можно  перестроить принудительно,  воспользовавшись  описанной  ниже
+опцией s.
+<p align=justify>
+В отличие от командных опций командный ключ  составляет
+обязательную часть командной строки ar. Ключ  (которому
+может предшествовать символ -) представляет собой  один
+из символов набора drqtpmx. Аргументами же ключа  могут
+служить один или несколько символов из набора vuaibcls.
+Позиционирующее_имя - это имя элемента архива,  которое
+используется в качестве указателя конкретного места архива, куда должны помещаться другие файлы. А_файл - это
+имя архивного файла. Под именами подразумеваются  имена
+файлов, входящих в архив.  Символам,  образующим  ключ,
+приписан следующий смысл:
+<table>
+<tr valign=top><td>d<td>
+Удалить указанные файлы из архива.</tr>
+<tr valign=top><td>r<td>
+Заменить указанные файлы в архиве.  Если  в  ключе
+наряду с r присутствует необязательный  символ  u,
+то замена будет произведена только для тех из указанных файлов, у которых дата последней  модификации превышает соответствующую дату  у  одноименных
+файлов, хранящихся в архиве.  Если  ключ  содержит
+признак позиционирования, т.е.  один  из  необязательных символов abi, то  в  команде  должен  присутствовать аргумент позиционирующее_имя и в  этом
+случае все новые файлы будут помещаться  перед  (b
+или i) или вслед за (a) файлом с таким именем. При
+отсутствии признака позиционирования  новые  файлы
+будут помещаться в конец архива.</tr>
+<tr valign=top><td>q<td>
+Быстро поместить указанные файлы в  конец  архива.
+Использование символов позиционирования недопустимо. Проверка, имеются ли уже  в  архиве  указанные
+файлы, командой не осуществляется. Данная  возможность полезна  только  для  того,  чтобы  избежать
+квадратичного роста временных затрат при наращивании больших архивов. Отказ от проверок может, напротив, повести к росту размеров архивного файла.</tr>
+<tr valign=top><td>t<td>
+Вывести оглавление архива. Если имена не  указаны,
+перечисляются все файлы архива; если имена  указаны, выводятся только они.</tr>
+<tr valign=top><td>p<td>
+Напечатать указанные файлы из архива.</tr>
+<tr valign=top><td>m<td>
+Переместить указанные файлы в конец  архива.  Если
+ключ содержит признак позиционирования, то  в  команде должен присутствовать аргумент позиционирующее_имя, и тогда место, куда  перемещаются  файлы,
+будет определяться так же, как и для опции r.</tr>
+<tr valign=top><td>x<td>
+Извлечь указанные файлы из архива  и  поместить  в
+текущий каталог. Если имена не указаны, извлекаются все содержащиеся в архиве  файлы.  Операция  не
+изменяет архивный файл.</tr>
+</table>
+<p>Аргументам ключа приписан следующий смысл:
+<table>
+<tr valign=top><td>v<td>
+Вывести подробное, файл за файлом, описание процедуры создания нового архивного  файла  из  старого
+архива и указанных в  команде  файлов-компонентов.
+При совместном использовании ключа t и аргумента v
+выводится подробная информация о каждом файле. При
+совместном использовании x и v по мере  извлечения
+файлов будут выводиться их имена.</tr>
+<tr valign=top><td>c<td>
+Подавить сообщение, выдаваемое обычно при создании
+а_файла.</tr>
+<tr valign=top><td>l<td>
+Помещать временные файлы в локальный (текущий  рабочий) каталог, а не в  подразумеваемый  временный
+каталог TMPDIR.</tr>
+<tr valign=top><td>s<td>
+Принудительно регенерировать таблицу имен  архива,
+даже если вызов <a href=AR.htm>ar(1)</a> не предусматривает модификации содержимого архива. Эта  команда  полезна  при
+восстановлении таблицы имен после применения к архиву команды <a href=STRIP.htm>strip(1)</a>.</tr>
+</table>
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+TMPDIR/*        Временные файлы.
+</pre><p align=justify>
+Обычно  каталог  TMPDIR  -  это /usr/tmp, однако данное
+соглашение можно изменить, присвоив переменной  окружения TMPDIR другое значение [см. tempnam в <a href=TMPNAM.htm>tmpnam(3S)</a>].
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=LD.htm>ld(1)</a>, <a href=LORDER.htm>lorder(1)</a>, <a href=STRIP.htm>strip(1)</a>.<br>
+<a href=TMPNAM.htm>tmpnam(3S)</a>, a.out(4), <a href=AR~1.htm>ar(4)</a> в Справочнике программиста.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Если один и тот же файл упомянут  в  списке  аргументов
+дважды, он может быть дважды и помещен в архив.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

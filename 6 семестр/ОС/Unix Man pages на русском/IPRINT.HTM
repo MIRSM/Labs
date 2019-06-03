@@ -1,0 +1,154 @@
+<html>
+<head>
+<title> IPRINT(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center> IPRINT(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+iprint - Преобразует текстовые файлы в DVI формат.
+<p><b>СИНТАКСИС</b>
+<pre>
+iprint [options][file...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда iprint преобразует входные текстовые файлы,  задаваемые аргументом file,в DVI формат. Сначала вывод в формате DVI
+должен быть преобразован до его печати на печатающем устройстве IMAGEN в формат печати imPRESS.  Если не задана опция -i,
+то используется команда dviimp(1)  для автоматического выполнения этого преобразования и печати результатов.  Если не заданы имена file, то производится считывание стандартного ввода.
+<p align=justify><b>Опциями являются:</b><br>
+<dl>
+<dt>   -ioutput  <dd> Файл в  формате  imPRESS сохраняется в файле output
+вместо того, чтобы быть напечатанным.
+<dt>   -bbanner <dd>  Строка banner передается в качестве аргумента опции
+-b  в команду dviimp.  По умолчанию banner является
+именем первого файла ввода file.
+<dt>   -cn  <dd>   Печатает n копий.
+<dt>   -B   <dd>   Печатает на каждой странице непустую  первую строку
+шрифтом с полужирным начертанием и пропускает предшествующие пустые строки.  Это используется  такими
+программами, как <a href=PR.htm>pr(1)</a>, которые формируют заголовок
+страниц.
+<dt>   -ffont <dd>   Использует следующий аргумент в качестве имени файла  шрифта  для текста.  Шрифт с переменным шагом в
+общем случае будет производить непредсказуемые  результаты.
+<dt>   -Ffont <dd>   Использует следующий аргумент в качестве имени файла шрифта для строки с полужирным начертанием заголовка. (Смотрите опцию -B).
+<dt>   -on  <dd>   Печатает страницу с отступом (от левого края)  в  n
+пробелов.
+<dt>   -ln  <dd>   Взять высоту страницы в n строк.
+<dt>   -Draster <dd>  Каталог, содержащий образы растра,  и есть  raster.
+По  умолчанию  каталог образов растров определяется
+посредством переменной RASTER в файле /etc/default/
+imagen,  и предполагается разрешающая способность в
+240 точек растра (pixels) на дюйм.
+<dt>   -d   <dd>  Производит пространный вывод для отладки.
+<dt>   -v   <dd>   Производит более подробный вывод отладки.
+</dl>
+<p align=justify>Команда iprint производит считывание файла /etc/default/imagen
+для получения различных установок значений по умолчанию.
+Значениями полученными и значениями по умолчанию являются:
+<dl>
+<p><dt>RASTER=/usr/lib/imagen/raster<dd>
+Файлы растеризации шрифта находятся  в  каталоге  с
+именем 240, в пределах этого каталога (т.е. raster/
+240). Это может отменятся опцией -D.
+<p><dt>TMPDIR=/tmp<dd>
+Каталог, в котором сохраняются временные файлы.
+</dl>
+Значения, установленные по умолчанию,  могут быть изменены для
+отражения локальной конфигурации системы.  Если не  существует
+файл /etc/default/imagen или он не может быть прочитан, то используется значение по умолчанию, описанные выше.
+<p><b>ФАЙЛЫ</b>
+<dl>
+<p><dt>tmpdir/dvi??????<dd>
+Это - временные файлы,  используемые  под  вывод  в
+формате  DVI,  который  производит  команда dviimp.
+Значение аргумента tmpdir устанавливается  посредством переменной TMPDIR в файле /etc/default/imagen.
+<p><dt>raster/240/*<dd>
+Образы растра основных резидентных шрифтов.  Значения  по умолчанию для аргумента raster определяются
+посредством переменной RASTER в файле /etc/default/
+imagen, а могут быть заданы с помощью опции -D значения, отличные от заданных по умолчанию.
+<pre>
+	/usr/bin/dviimp
+	  Программа преобразования   DVI   формата  в  формат
+	  imPRESS.
+</pre></dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+dviimp(1), <a href=IMPRINT.htm>imprint(1)</a>, <a href=IPR.htm>ipr(1)</a>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Считается, что  разрешающая  способность   устройства   печати
+IMAGEN  должна иметь значение 240 пикселей на дюйм.
+<p align=justify>Диагностическое сообщение  "Font f version n" ("Шрифт f версия
+n") означает,  что этот файл шрифта не является файлом формата
+RAS  версии 0.  Другие диагностические сообщения должены включать в себя пояснения.
+<p align=justify><b>АВТОР</b><br>
+Корпорация IMAGEN.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>ACCTPRC(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>ACCTPRC(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+acctprc1, acctprc2 - получение статистической  информации о процессах
+<p><b>СИНТАКСИС</b>
+<pre>
+  /usr/lib/acct/acctprc1  [файл]
+  /usr/lib/acct/acctprc2
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита  acctprc1 читает со стандартного ввода записи о
+процессах, имеющие формат acct [см. <a href=ACCT~1~2.htm>acct(4)</a>], добавляет
+к ним входные имена пользователей, а затем для  каждого
+процесса  выдает  текстовую  строку,  в которой указаны
+идентификатор пользователя, его входное имя, время  ЦП,
+истраченное  днем (в тактах часов), время ЦП, истраченное ночью (в тактах часов) и средний расход  памяти  (в
+64-байтных  единицах).  Как  правило,  стандартный ввод
+назначается на файл /usr/adm/pacct.
+<p align=justify>
+Файл, если он указан, должен содержать записи о сеансах
+работы  пользователей в системе, сгенерированные утилитой acctcon1 [см.  <a href=ACCTCON.htm>acctcon(1M)</a>]  и  отсортированные  по
+идентификаторам  и  входным  именам пользователей. Файл
+помогает устранить неоднозначности, возникающие,  когда
+с  одним идентификатором связано несколько входных имен
+пользователей. Если файл не указан, входные имена  извлекаются из файла паролей /etc/passwd.
+<p align=justify>
+Утилита  acctprc2  читает записи, порожденные acctprc1,
+выполняет их слияние, используя в качестве ключей идентификаторы и входные имена пользователей,  сортирует  и
+помещает  результирующие  записи на стандартный вывод в
+сводном формате tacct [см. <a href=ACCT~1~2.htm>acct(4)</a>].
+<p>
+Описанные  утилиты  обычно используются следующим образом:
+<pre>
+   acctcon1 /etc/wtmp | sort +1n +2 &gt; ctmp
+   acctprc1 ctmp &lt;/usr/adm/pacct | acctprc2 ptacct
+</pre>
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+   /etc/passwd
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ACCT.htm>acct(1M)</a>, <a href=ACCTCON.htm>acctcon(1M)</a>.<br>
+<a href=ACCTCOM.htm>acctcom(1)</a> в Справочнике пользователя.<br>
+<a href=ACCT~1~2.htm>acct(4)</a> в Справочнике программиста.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Если несколько пользователей имеют одинаковые идентификаторы, то, вообще говоря, невозможно определить автора
+команды,  запущенной утилитой <a href=CRON.htm>cron(1M)</a>. Для исправления
+ситуации можно создать записи о фиктивных сеансах,  используя утилиту acctwtmp [см. <a href=ACCT.htm>acct(1M)</a>].
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

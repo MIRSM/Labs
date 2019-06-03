@@ -1,0 +1,6 @@
+Petri nets Emulator requires JFreeChart library. You must download it from JFreeChart official site and put files jcommon-X.X.XX.jar and jfreechart-X.X.XX.jar in this folder.
+
+
+JFreeChart official site: http://www.jfree.org/jfreechart/
+
+JFreeChart is "open source" or, more specifically, free software. It is distributed under the terms of the GNU Lesser General Public Licence (LGPL), which permits use in proprietary applications.

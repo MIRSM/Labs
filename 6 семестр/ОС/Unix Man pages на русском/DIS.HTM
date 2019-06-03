@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>DIS(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DIS(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	dis - дизассемблер об ектного кода
+<p><b>СИНТАКСИС</b>
+<pre>
+ dis  [-o] [-V] [-L] [-s] [-d секция] [-da секция] [-F функция]
+ [-t секция] [-l цепочка] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда dis выдает на стандартный вывод листинг  файлов
+	на языке ассемблера. Файлы могут быть  как  об ектными,
+	так и архивами (библиотеками) об ектных файлов. Листинг
+	содержит команды ассемблера и их восьмеричное или шестнадцатеричное представление.
+<p align=justify>Дизассемблер интерпретирует  следующие  опции,  которые
+	можно указывать в произвольном порядке:
+<table>
+<tr valign=top><th>-o <td> Выводить числа в восьмеричном виде.  По  умолчанию используется шестнадцатеричная система счисления.
+<tr valign=top><th>-V <td> Вывести в стандартный протокол номер версии дизассемблера.
+<tr valign=top><th>-L <td> Найти в таблице имен метки исходной программы  для вставки их в листинг. Данная опция работает только в том случае, если файл был откомпилирован  с  дополнительной отладочной информацией  [например,  с опцией -g для <a href=CC.htm>cc(1)</a>]. Синтаксис  выдаваемых  меток C-подобен.
+<tr valign=top><th>-s <td> Выполнять символьное дизассемблирование,  то  есть подставлять в качестве операндов  имена  там,  где это возможно. Символьная информация будет располагаться на следующей строке после команды. Для  того, чтобы  было  выполнено  максимально  возможное символьное дизассемблирование,  файл  должен  быть откомпилирован с дополнительной отладочной  информацией [например, с опцией -g для <a href=CC.htm>cc(1)</a>].  Синтаксис выдаваемых имен C-подобен.
+<tr valign=top><th>-d секция <td> Дизассемблировать поименованную секцию как  секцию данных, выводя смещение данных относительно начала секции.
+<tr valign=top><th>-da секция <td> Дизассемблировать поименованную секцию как  секцию данных, выводя фактические адреса.
+<tr valign=top><th>-F функция <td>  Дизассемблировать в об ектных файлах,  перечисленных в командной строке, только указанную  функцию. Опция -F может быть  указана  в  командной  строке несколько раз.
+<tr valign=top><th>-t секция <td> Дизассемблировать поименованную секцию как  секцию команд.
+<tr valign=top><th>-l цепочка<td>Дизассемблировать библиотечный файл, заданный  цепочкой. Полное имя библиотечного файла формируется как LIBDIR/libцепочка.a. Например, команду dis  -l x -l z можно применить для дизассемблирования библиотек libx.a и libz.a.
+</table>
+<p align=justify>При наличии опций  -d,  -da  или  -t  дизассемблируются
+	только заданные в опциях  секции  файлов.  В  противном
+	случае дизассемблируются все секции команд.
+<p align=justify>Число, стоящее в начале строки листинга и заключенное в
+	квадратные скобки, например [5], означает,  что  строка
+	C-программы с указанным номером, на которую можно установить точку прерывания, открывается машинной  командой
+	из данной строки. Эти  номера  строк  будут  выдаваться
+	только в том случае, если файл был откомпилирован с дополнительной отладочной информацией [например, с опцией -g для <a href=CC.htm>cc(1)</a>]. Выражение типа  <40>  в  поле  операнда, следующее за относительным смещением в команде  перехода, означает вычисленный адрес внутри секции, на  который передается управление. Имя функции выводится с первой позиции, за ним стоят скобки ( ).
+
+<p><b>ФАЙЛЫ</b>
+<pre>
+ LIBDIR          Обычно это /lib.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	as(1), <a href=CC.htm>cc(1)</a>, <a href=LD.htm>ld(1)</a>, a.out(4).
+<p><b>ДИАГНОСТИКА</b><br>
+Понятные без пояснений диагностические сообщения указывают на ошибки в командной строке или на  некорректности, обнаруженные при обработке заданных файлов.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Опция -s не обрабатывается данной версией  дизассемблера.
+
+
+<h3 align=center>DISABLE(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	disable - блокировка принтеров
+<p><b>СИНТАКСИС</b>
+<pre>
+ disable  [-c] [-r [причина]]  принтер ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда disable  блокирует  принтеры,  запрещая  печать
+	запросов по команде <a href=LP.htm>lp(1)</a>. По умолчанию, любые запросы,
+	которые в текущий момент  обрабатываются  на  указанных
+	принтерах, допечатываются до конца либо на том же самом
+	принтере, либо на другом принтере того же  класса.  Для
+	выяснения  статуса   принтеров   используется   команда
+	lpstat(1). Опции команды disable:
+<table>
+<tr valign=top><th>-c <td> Аннулировать все запросы, обрабатываемые в текущий момент на всех указанных принтерах.
+<tr valign=top><th>-r[причина] <td> Связать причину с блокировкой принтера.  Указанная причина относится ко всем принтерам, упомянутым до появления следующей опции -r. Если опция -r не задана или задана без указания причины, используется подразумеваемая причина. Причина сообщается по команде <a href=LPSTAT.htm>lpstat(1)</a>.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /usr/spool/lp/*
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	enable(1), <a href=LP.htm>lp(1)</a>, <a href=LPSTAT.htm>lpstat(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>CONFIG(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CONFIG(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+config - конфигурирование UNIX-ядра
+<p><b>СИНТАКСИС</b>
+<pre>
+  /etc/config  [-t] [-l файл] [-c файл] [-m master_файл] [-b файл]
+  [dfile_файл]
+
+  /etc/addconf [-t] [-l файл] [-c файл] [-m master_файл] [-b файл]
+  [dfile_файл]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Утилита  config  по  описаниям UNIX-ядра генерирует два
+файла. Один файл, low.s, делится на две  части.  Первая
+содержит  присваивания вектору прерываний. Вторая часть
+содержит информацию, касающуюся интерфейса между оборудованием  и  обработчиками  устройств.   Другой   файл,
+conf.c, есть программа на языке C, описывающая конфигурационные  таблицы для различных устройств, имеющихся в
+системе.
+<p>
+Опциям утилиты config приписан следующий смысл:
+<dl>
+<dt>-l файл
+<dd>Указывается имя  файла,  содержащего  присваивания
+вектору прерываний и описание интерфейса с  оборудованием; файл по умолчанию - low.s.
+<dt>-c файл
+<dd>Указывается имя файла, содержащего  конфигурационные таблицы; файл по умолчанию - conf.c.
+<dt>-m master_файл
+<dd>Указывается имя файла, содержащего всю информацию,
+касающуюся поддерживаемых устройств; файл по умолчанию - master. Если файл  master  не  существует,
+делается  попытка открыть /etc/master. Файл master
+поставляется вместе с системой и  его  не  следует
+изменять, если до конца не ясна структура файла.
+<dt>-t
+<dd>Запросить краткую таблицу старших номеров символьных  и блочных устройств, что может облегчить создание специальных файлов.
+<dt>-b файл
+<dd>Определяет  имя  конфигурационной  базы. Это файл,
+строки которого используются  при  создании  константных  частей  файлов  low.s  и  conf.c. Файл по
+умолчанию - /usr/lib/confbase.
+</dl><p align=justify>
+Можно указать также dfile_файл; если он не  указан,  то
+используется  файл  dfile. В dfile_файле содержится информация об устройствах. Файл  делится  на  три  части.
+Первая содержит спецификации физических устройств. Вторая  -  системно-зависимую информацию. Третья часть содержит информацию, специфичную для конкретного  микропроцессора.  Первые  две  части  являются обязательными,
+третья - нет. Подробнее формат и содержание  описаны  в
+<a href=DFILE.htm>dfile(4)</a>.
+<p align=justify>
+Следующие  переменные  можно  указать в master_файле, и
+тогда они будут распознаваться утилитой config:
+<pre>
+ BDEVSWCNT    минимальный размер массива bdevsw [ ];
+ CDEVSWCNT    минимальный размер массива cdevsw [ ];
+ FMODSWCNT    минимальный размер массива fmodsw [ ].
+</pre><p align=justify>
+В этих массивах  генерируются  дополнительные  элементы
+для последующего использования программой  <a href=ADDKERN.htm>addkern(1M)</a>.
+<p align=justify>
+Утилита addconf работает аналогично config, но информация  генерируется для использования программой addkern,
+а не для конфигурирования нового UNIX-ядра.
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+<dl>
+<dt><tt>master</tt>
+<dd>Подразумеваемая таблица устройств.
+<dt><tt>dfile</tt>
+<dd>Подразумеваемый файл с  информацией
+об устройствах.
+<dt><tt>low.s</tt>
+<dd>Подразумеваемый файл, в который помещаются  присваивания вектору прерываний  и  описание  интерфейса  с
+оборудованием.
+<dt><tt>conf.c</tt>
+<dd>Подразумеваемый файл, в который помещаются конфигурационные таблицы.
+<dt><tt>/usr/lib/confbase</tt>
+<dd>Подразумеваемая    конфигурационная
+база.
+</dl>
+<p align=justify><b>СМ. ТАКЖЕ</b><br>
+<a href=ADD.htm>add(1M)</a>.<br>
+<a href=DFILE.htm>dfile(4)</a>, <a href=MASTER.htm>master(4)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Диагностические сообщения не нуждаются в пояснениях.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

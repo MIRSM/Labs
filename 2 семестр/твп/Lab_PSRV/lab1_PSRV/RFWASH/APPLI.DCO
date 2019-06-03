@@ -1,0 +1,4 @@
+#A[1]%+X0000%waterlevel%%I0%0%water level
+#A[1]%+X0000%temperature%%I0%0%water temperature
+#A[1]%+X0000%soaplevel%%I0%0%soap level - full when application starts
+=100

@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>SU(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>SU(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+su -  присваивает пользователю статус привилегированного пользователя или имя другого пользователя.
+<p><b>СИНТАКСИС</b>
+<pre>
+	su [-] [name [arg...]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда su позволяет вам становиться другим пользователем  без
+логического  отключения.  По умолчанию имя пользователя name root (т.е. привилегированный пользователь).
+<p align=justify>Для того,  чтобы использовать su,  необходимо ввести соответствующий пароль (до этого пароль - root).  Если пароль правильный, su выполнит новый shell с истинным и действительным идентификатором пользователя,  с истинным и действительным идентификатором группы пользователей. Новый shell будет необязательной  программой  с именем,  указанным в поле shell (поле shell
+является частью компонента специфицированного файла  пользовательских паролей),  или с именем /bin/sh,  если имя не задано.
+Для возврата к обычным привилегиям идентификатора пользователя
+наберите EOF (Ctrl-D) в новом shell.
+<p align=justify>Любые дополнительные аргументы, задаваемые в командной строке,
+поступают в программу, вызванную как shell. Когда используются
+программы подобно <a href=SH.htm>sh(1)</a>, аргумент arg вида -c string обрабатывает значение string через shell,  а аргумент вида -r  предоставляет пользователю ограниченный shell.
+<p align=justify>Текущие предложения  справедливы только тогда,  когда необязательная программа с именем,  указанным в поле shell компонента
+файла пользовательских паролей, идеинтична команде <a href=SH.htm>sh(1)</a>. Если
+первый аргумент команды su '-',  то конфигурация системы будет
+изменена и приведена в ожидаемое состояние,  если пользователь
+действительно зарегистрирован как  определенный  пользователь.  Это  сделано  путем вызова программы,  используемой как
+shell, со значением arg0, у которого первый знак '-', вызывая,
+тем    самым,    выполнение    сначала   системных параметров
+(/etc/profile),  а затем указанных пользовательских параметров
+(.profile в новой директории HOME). В противном случае, конфигурация остается неизменной, кроме значения $PATH, которое безусловно  устанавливается  как  /bin:/etc:/usr/bin  для  имени
+пользователя root.  Необходимо заметить, что если необязательная программа,  используемая как shell,  имеет имя /bin/sh, то
+пользовательский  .profile  может  проверить  аргумент
+arg0 на наличие -sh или -su,  чтобы обнаружить,  вызывалась ли
+данная программа командами login(5) или <a href=SH.htm>sh(1)</a>, соответственно.
+Если пользовательская программа отлична от /bin/sh, то пользовательский .profile вызывается  с  аргументом  arg0,  равным
+-program, и командой login(5), и командой <a href=SH.htm>sh(1)</a>.
+<p align=justify>Файл /etc/default/su может быть использован для управления ходом выполнения команды su.  В этом файле может быть  размещено
+несколько флагов:
+<dl>
+<dt>SULOG    <dd>    Имя файла журнала регистрации для учета всех попыток
+использования команды   su.    Обычно    это    файл
+/usr/adm/sulog. Если флаг не установлен, то файл
+журнала не заводится (смотрите пример ниже).
+<p><dt>PATH   <dd>    Переменная среды PATH для  установки  пользователей,
+находящихся в не-корневом каталоге. Если данный флаг
+не установлен, то по умолчанию принимается  значение
+":/bin:/usr/bin".  Текущая переменная среды PATH игнорируется.
+<p><dt>SUPATH  <dd>    При активизации  из корневого каталога путь по умолчанию принимает значение "/bin:/usr/bin:/etc" до тех
+пор, пока переменная  не определена.Текущее  значение
+PATH игнорируется.
+<p><dt>CONSOLE   <dd>   Попытки использовать команду  su  регистрируются  на
+устройстве device независимо от SULOG.
+</dl>
+<p align=justify>Например, если  вы хотите отслеживать все попытки полььзователей разместиться   в   корневом   каталоге,   создайте    файл
+/etc/default/su. В этом файле разместите строку следующего вида: SULOG = /usr/adm/sulog.  Это позволит  записывать  в  файл
+/usr/adm/sulog все попытки пользователей изменять свои пользовательские идентификаторы.  Имя файла может быть произвольным.
+журнал su записывает начальное имя пользователя, универсальный
+идентификатор попытки выполнить команду su  и  время  попытки.
+Если  попытка закончилась успешно, в соответствующей ей строке
+ставится знак (+), иначе - знак (-).
+<p><b>ПРИМЕРЫ</b><br>
+Чтобы стать пользователем bin, сохранив при этом вашу, предварительно установленную, конфигурацию, наберите:
+<pre>
+	su bin
+</pre>
+<p align=justify>Чтобы стать пользователем bin и изменить при этом конфигурацию
+на ту,  которая была бы установлена,  если бы bin был до этого
+подключен,наберите:
+<pre>
+	su -bin
+</pre>
+<p align=justify>Для выполнения команды command  с  временной  конфигурацией  и
+правами пользователя bin наберите:
+<pre>
+	su -bin -c "command args"
+</pre>
+<p><b>ФАЙЛЫ</b>
+<pre>
+	$HOME/.profile         пользовательские параметры
+	/etc/logingroup        системный  файл  порядка группового 
+			       доступа по умолчанию.
+	/etc/passswd           системный файл паролей.
+	/etc/profile           системные параметры
+	/usr/adm/sulog         журнал всех попыток.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ENV.htm>env(1)</a>, login(5), <a href=SH.htm>sh(1)</a>, passwd(3), profile(5), <a href=ENVIRON.htm>environ(5)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

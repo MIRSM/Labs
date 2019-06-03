@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>VAL(1) </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>VAL(1) </h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+val - проверка корректности SCCS-файла
+<p><b>СИНТАКСИС</b>
+<pre>
+	val  - 
+	val  [-s] [-rс_идентификатор] [-mимя] [-yтип] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда val  определяет,  является  ли  указанный  файл
+SCCS-файлом с атрибутами,  соответствующими  указанным.
+Опции могут задаваться в любом порядке.
+<p align=justify>У команды val есть  специальный  аргумент,  -,  который
+приводит к чтению строк со стандартного  ввода  до  тех
+пор, пока не встретится конец файла. Каждая строка  при
+этом обрабатывается независимо, как командная строка  с
+опциями и аргументами.
+<p align=justify>Команда val выдает диагностические сообщения  на  стандартный вывод для каждой командной строки и для каждого
+обрабатываемого файла, а также возвращает 8-битный  код
+завершения, описанный ниже.
+<p align=justify>Каждая опция независимо применяется  к  каждому  файлу,
+указанному в командной строке.
+<dl>
+<dt>-s <dd>  Подавляет выдачу на стандартный  вывод  диагностических сообщений, которые обычно выдаются для каждой ошибки, обнаруженной при обработке  файлов  из
+командной строки.
+<p><dt>-rс_идентификатор <dd>
+Значение  аргумента  -  с_идентификатор  версии  в
+SCCS-файле. Выполняется проверка того, что с_идентификатор неоднозначен (как, например,  -r1,  поскольку при отсутствии версии 1 могут  существовать
+версии 1.1, 1.2 и т.д.) или некорректен (как, например, -r1.0 или -r1.1.0, поскольку  содержит  некорректный номер ветви). Если с_идентификатор  однозначен и корректен, проверяется его  существование.
+<p><dt>-mимя <dd>
+Значение аргумента имя сравнивается  со  значением
+ключевого слова %M% в SCCS-файле.
+<p><dt>-yтип <dd>
+Значение аргумента тип сравнивается  со  значением
+ключевого слова %Y% в SCCS-файле.
+</dl>
+<p align=justify><b>КОД ЗАВЕРШЕНИЯ</b><br>
+8-битный код, возвращаемый командой val, является об единением  возможных  ошибок,  то есть может быть проинтерпретирован как шкала, в которой каждый  бит,  равный
+1, означает следующее (слева направо):
+<pre>
+	0.   Опущен аргумент файл.
+	1.   Неизвестный или несколько раз  повторенный флаг.
+	2.   Поврежден SCCS-файл.
+	3.   Файл не открывается или не является SCCS-файлом.
+	4.   С_идентификатор некорректен или неоднозначен.
+	5.   С_идентификатор не существует.
+	6.   Значение %Y% не совпадает со значением опции -y.
+	7.   Значение %M% не совпадает со значением опции -m.
+</pre>
+<p align=justify>Команда val может обрабатывать несколько файлов на  одной командной строке или несколько командных строк (читая их со стандартного ввода). В этом случае возвращаемый  код  является поразрядным ИЛИ кодов для каждой командной строки и каждого обрабатываемого файла.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ADMIN.htm>admin(1)</a>, <a href=DELTA.htm>delta(1)</a>, <a href=GET.htm>get(1)</a>, <a href=HELP.htm>help(1)</a>, <a href=PRS.htm>prs(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Для раз яснений пользуйтесь командой <a href=HELP.htm>help(1)</a>.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+Команда val может обработать до 50 файлов на одной  командной строке. Указание более  50  файлов  приводит  к
+аварийному завершению программы и дампу памяти.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

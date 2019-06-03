@@ -1,0 +1,238 @@
+<html>
+<head>
+<title>RAMDISK(HW)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>RAMDISK(HW)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+ramdisk - блочно-ориентированное устройство памяти (псевдодиск).
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Драйвер устройства ramdisk обеспечивает блочный интерфейс к памяти.
+ramdisk можно использовать как и любое другое блочное устройство,
+включая установку файловых систем с помощью mkfs(8).  Существует
+восемь типов доступных псевдодисков.
+<p align=justify>
+Характеристики файла ramdisk определяются малым числом  устройства.
+Биты  этого  числа  содержат  информацию  о размере устройства, его
+долговечности и номере одного из восьми псевдодисков.
+<p align=justify>
+Три  младших  бита  малого  числа  устройства  определяют, какое из
+восьми упомянутых псевдодисков будет использоваться.
+<p align=justify>
+Следующие четыре бита определяют размер  этого псевдодиска.  Размер
+ramdisk должен быть кратен 2 и должен быть не меньше 16K. Поскольку
+имеется 4 бита, то может быть 16 различных размеров, начиная с  16K
+и удваивая это значение  при каждом единичном увеличении  указателя
+размера. При этом будет получаться 16K, 32K, 64K и т.д.
+<p align=justify>
+Самый  старший  бит  является  указателем  долговечности.  Если  он
+установлен,  то  этому   псевдодиску  будет  постоянно   выделяться
+заданная память,  которая   отключается  только  при   перезагрузке
+системы.    Постоянные псевдодиски  могут резервироваться    только
+привилегированным   пользователем. Но  когда постоянный  псевдодиск
+зарезервирован  (посредством    его      открытия),  он       может
+использоваться    для    чтения   и    записи   всеми, кто    имеет
+соответствующее разрешение  в дескрипторе псевдодиска.
+<p align=justify>
+Если  этот   бит  сброшен   и  если   процессы,  открывающие   его,
+отсутствуют,  то   псевдодиск  отключается.   Для  создания   легко
+удалимого, но  полу-постоянного псевдодиска используйте   отдельный
+процесс  для  открытия  и  поддержания  этого  устройства в течение
+нужного времени.
+<p align=justify>
+Поскольку полный набор восьми псевдодисков поглотил бы 256 индексных
+дескрипторов,  то  при  инсталляции  системы  создается  только один
+ramdisk  размеров  16K  (/dev/ram00).  Администратор  системы  может
+проанализировать   существующий   файл   этого   устройства,   чтобы
+определить главное  (большее) число  устройства для  создания других
+потребовавшихся  псевдодисков.  Все   эти  устройства   будут  иметь
+одинаковое главное число устройства.
+<p align=justify>
+В  следующей  таблице  показано,  как  конструируется  малое   число
+устройство:
+<center>
+<table border=1>
+<tr><th colspan=10>Структура малого числа устройства</tr>
+<tr><th>Описание<th>Долговечность<th colspan=4>Размер (см. cлед. таб.)<th colspan=3>Номер псевдодиска<th>Малое число устройства</tr>
+<tr><td>16K (#1)<br>(Временное)<td>0<td>0<td>0<td>0<td>0<td>0<td>0<td>1<td>1</tr>
+<tr><td>16K (#1)<br>(Постоянное)<td>1<td>0<td>0<td>1<td>0<td>0<td>0<td>0<td>129</tr>
+<tr><td>64K (#0)<br>(Временное)<td>0<td>0<td>0<td>0<td>0<td>0<td>0<td>0<td>16</tr>
+<tr><td>512K (#7)<br>(Постоянное)<td>1<td>0<td>1<td>0<td>1<td>1<td>1<td>1<td>1</tr>
+</table></center><p>
+Содержимое  поля  размера  и  соответствующий  размер   псевдодиска
+приведены в следующей таблице:
+<center><table border=1>
+<tr><th>Биты размера<th>Размер устройства</tr>
+<tr><td>0  0  0  0<td align=right>16K</tr>
+<tr><td>0  0  0  1<td align=right>32K</tr>
+<tr><td>0  0  1  0<td align=right>64K</tr>
+<tr><td>0  0  1  1<td align=right>128K</tr>
+<tr><td>0  1  0  0<td align=right>256K</tr>
+<tr><td>0  1  0  1<td align=right>512K</tr> 
+<tr><td>0  1  1  0<td align=right>1M</tr>
+<tr><td>0  1  1  1<td align=right>2M</tr>
+<tr><td>1  0  0  0<td align=right>4M</tr>
+<tr><td>1  0  0  1<td align=right>8M</tr>
+<tr><td>1  0  1  0<td align=right>16M</tr>
+<tr><td>1  0  1  1<td align=right>32M</tr>
+<tr><td>1  1  0  0<td align=right>64M</tr>
+<tr><td>1  1  0  1<td align=right>128M</tr>
+<tr><td>1  1  1  0<td align=right>256M</tr>
+<tr><td>1  1  1  1<td align=right>512M</tr>
+</table></center>
+<p>Для создания устройства ramdisk выполните следующие действия:
+<ol>
+<li>Создание дескриптора устройства<br>
+Вначале   вы   должны   создать   устройство,   на   котором  будет
+располагаться псевдодиск. Соответствующая команда имеет вид:
+<pre>
+   mknod device_name b_or_c major_device_number minor_device_number
+</pre>
+где  b_or_c  -  "b"  или  "c".  "b"  предназначается  для   блочных
+устройств, его вам и нужно задать. Главным числом всегда будет  31.
+Малое число определяется по приведенной выше таблице. Малое число это сумма значений из трех колонок.
+<p>
+Долговечность:
+<pre>
+    постоянное устройство - 128, временное - 0.
+</pre>
+Размер:
+<pre>
+16K = 0    124K = 24  1M = 48   8M  = 72
+32K = 8    256K = 32  2M = 56   16M = 80
+64K = 16   512K = 40  4M = 64   32M = 88
+</pre>
+Номер псевдодиска: 0 - 7. Примечание: Доступно только 8  устройств.
+Два  устройства с  различными размерами  не могут  иметь одинаковый
+номер.
+<p>
+Например, при создании постоянного псевдодиска размером  64K  можно
+выбрать малое число устройства в пределах от 144 до 151. Если номер
+диска будет 1, то соответствующая команда примет вид:
+<pre>
+   mknod /dev/ram64 b 31 145
+</pre>
+<li>Создание файловой системы<br>
+Следующая команда создает на псевдодиске файловую систему:
+<pre>
+   mkfs device_name size_of_file_in_Bsize_blocks
+</pre>
+В данном примере команда для создания файловой системы размером 64K
+будет выглядеть так:
+<pre>
+   mkfs /dev/ram64 64
+</pre>
+<li>Монтировка файловой системы<br>
+Следующая команда монтирует выбранное устройство на заданном месте:
+<pre>
+   mount device_name mount_point
+</pre>
+Команда монтировки 64-килобайтового псевдодиска на /mnt будет:
+<pre>
+   mount /dev/ram64 /mnt
+</pre>
+</ol><p align=justify>
+Для  создания  файловой  системы  на  временном  псевдодиске   файл
+устройства  нужно  открыть  между  командами  mkfs  и  mount. Иначе
+псевдодиск будет создан при запуске  команды mkfs и отключен по  ее
+завершении. А когда псевдодиск  смонтирован, он быдет открыт,  пока
+его не демонтируют.
+<p align=justify>
+Следующий фрагмент  программы оболочки  демонстрирует использование
+mkfs для временного псевдодиска размером 512K и его монтировку:
+<pre>
+  (  /etc/mkfs /dev/ram40 512
+     /etc/mount /dev/ram40 /mnt
+  ) &lt; /dev/ram40
+</pre>
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Псевдодиски  должны  занимать  непрерывную  область  памяти.   Если
+свободная память фрагментируется, то открытие псевдодиска может  не
+удасться, даже  если общей  памяти будет  достаточно. В  идеале все
+псевдодиски  должны  резервироваться   при  запуске  системы.   Это
+предохраняет псевдодиски от влияния фрагментации памяти.
+<p align=justify>
+Псевдодиски  создаются  для   использования  в   специализированных
+прикладных  программах.   Во  многих   случаях  при   использовании
+псевдодисков   вы   можете   наблюдать   ухудшение    эффективности
+функционирования системы, потому что система  UNIX обычно  способна
+лучше использовать память.
+<p><b>ФАЙЛЫ</b>
+<pre>
+ /dev/ram00
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+mkfs(8), mount(8), mknod(1)
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

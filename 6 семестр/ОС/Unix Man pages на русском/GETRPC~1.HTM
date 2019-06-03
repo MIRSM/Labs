@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>GETRPCBYNUMBER(3)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETRPCBYNUMBER(3)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+  getrpcent, getrpcbyname, getrpcbynumber  - получить сведения об RPC
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;rpc/netdb.h>
+	 
+	struct rpcent *getrpcent()
+	 
+	struct rpcent *getrpcbyname(name)
+	char *name;
+	 
+	struct rpcent *getrpcbynumber(number)
+	int number;
+	 
+	setrpcent(stayopen)
+	int stayopen
+	 
+	endrpcent()
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функции getrpcent,   getrpcbyname  и  getrpcbyaddr возвращают
+указатель на объект,  имеющий следующую структуру  и  описывающий
+строку в БД номеров программ RPC /etc/rpc:
+<pre>
+	struct rpcent {
+	  char   *r_name;     /* имя сервера для rpc-программы */
+	  char   **r_aliases; /* список псевдонимов */
+	  long   r_number;    /* номер rpc-программы */
+	};
+</pre>
+<p><b>ЭЛЕМЕНТЫ СТРУКТУРЫ</b><br>
+<table>
+<tr valign=top><th>r_name    <td>    Имя сервера для данной RPC-программы.
+<tr valign=top><th>r_aliases <td>    Список альтернативных имен RPC-программы, оканчивающийся нулем.
+<tr valign=top><th>r_number  <td>    Номер RPC-программы для данной функции.
+</table>
+<p align=justify>Команды работают следующим образом:<br>
+Getrpcent считывает следующую строку из файла,  открывая файл
+в случае необходимости.
+ 
+Функция setrpcent открывает файл и возвращается к его началу.
+Если флаг stayopen установлен (non-zero),  сетевая  БД  не  будет
+закрываться после каждого обращения к getrpcent.
+Endrpcent закрывает файл.
+Getrpcbyname и  getrpcbynumber  последовательно просматривают
+файл с самого начала в поисках имени или номера RPC-программы.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/rpc
+	имя_домена/rpc.bynumber
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=RPC.htm>rpc(2)</a>, <a href=RPCINFO.htm>rpcinfo(8)</a>
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+В случае  достижения  конца  файла  или  возникновения ошибки
+возвращаемый указатель имеет нулевое значение.
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+Вся информация  сохраняется в статической области,  поэтому в
+целях сохранения ее необходимо скопировать.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

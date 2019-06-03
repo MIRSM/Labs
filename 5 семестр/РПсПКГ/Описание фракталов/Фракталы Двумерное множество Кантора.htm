@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.ilab24.narod.ru/fract/frcnt2.html -->
+<HTML><HEAD><TITLE>Фракталы: Двумерное множество Кантора</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY background="Фракталы Двумерное множество Кантора.files/fon.bmp"><FONT 
+face="Courier New">
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=150 height=50><A 
+      href="http://www.ilab24.narod.ru/index.html"><IMG height=50 alt=logo 
+      src="Фракталы Двумерное множество Кантора.files/lab24.gif" width=150 
+      border=0></A></TD>
+    <TD align=middle>
+      <H1>Фракталы: Двумерное множество Кантора</H1></TD></TR></TBODY></TABLE>
+<DIV align=justify>Программа для построения множества Кантора на языке Pascal 
+выглядит следующим образом: <PRE><B>Program</B> Cantor3;
+<B>Uses</B> CRT, Graph;
+<B>Const</B>
+  min = 2;
+<B>Var</B>
+  gd, gm : Integer;
+
+<B>Procedure</B> Draw(x, y : Real; Size : Real);
+<B>Var</B>
+  s : Real;
+<B>Begin</B>
+  <B>If</B> size &gt; min <B>then Begin</B>
+    s := size / 2;
+    Draw(x - size, y + size, s);
+    Draw(x - size, y - size, s);
+    Draw(x + size, y + size, s);
+    Draw(x + size, y - size, s);
+  <B>End</B>;
+  Rectangle(Round(x - size), Round(y - size), 
+     Round(x + size), Round(y + size));
+  Bar(Round(x - size + 1), Round(y - size + 1), 
+     Round(x + size - 1), Round(y + size - 1));
+<B>End</B>;
+<B>Begin</B>
+  gd := Detect;
+  InitGraph(gd, gm, '');
+  setfillstyle(solidfill, 0);
+  Draw(320, 240, 120);
+  ReadKey;
+  CloseGraph;
+<B>End</B>.
+</PRE>
+<P><IMG height=30 src="Фракталы Двумерное множество Кантора.files/warning.gif" 
+width=30 border=0> Не забудте в процедуре инициализации графического режима 
+указать путь к графическому драйверу!</P>
+<CENTER><IMG height=480 alt="Двумерное множество Кантора" 
+src="Фракталы Двумерное множество Кантора.files/fr014.gif" width=484 
+border=0></CENTER>
+<P>Если конец программы переписать следующим образом, то получится весьма 
+интересный эффект. <PRE>...
+<B>begin</B>
+   gd := Detect;
+   InitGraph(gd,gm,'c:\bp\bgi');
+   setfillstyle(solidfill,0);
+   setcolor(15);
+   draw(320,240,120);
+   readln;
+   setwritemode(xorput);
+   setcolor(0);
+   draw(320,240,120);
+   readln;
+   closegraph;
+<B>end</B>.
+</PRE>
+<P></P><A name=3><BR>
+<P><B>Треугольное двумерное множество Кантора.</B></P>Также можно построить 
+треугольное двумерное множество Кантора. Это делает следующая программа. <PRE><B>uses</B> crt,graph;
+<B>const</B>
+  min_size=0;
+<B>Var</B>
+   gd,gm : Integer;
+<B>procedure</B> triangle(xc,yc:Integer; l:integer);
+<B>Var</B>
+  x1,y1,x2,y2,x3,y3:Integer;
+<B>Begin</B>
+  x1:=xc;
+  y1:=yc-l;
+  x2:=xc+Round(l*cos(pi/6));
+  y2:=yc+Round(l*sin(pi/6));
+  x3:=xc-Round(l*cos(pi/6));
+  y3:=yc+Round(l*sin(pi/6));
+  SetColor(1);
+  Line(x1,y1,x2,y2);
+  Line(x2,y2,x3,y3);
+  Line(x3,y3,x1,y1);
+  FloodFill(xc,yc,1);
+  SetColor(15);
+  Line(x1,y1,x2,y2);
+  Line(x2,y2,x3,y3);
+  Line(x3,y3,x1,y1);
+<B>End</B>;
+
+<B>procedure</B> draw(x,y:integer;size:word);
+<B>var</B> s:word;
+<B>begin</B>
+  <B>if</B> size&gt;min_size <B>then</B> <B>begin</B>
+    s:=size div 2;
+    draw(x,y-size,s);
+    draw(x+Round(size*cos(pi/6)), y+Round(size*sin(pi/6)),s);
+    draw(x-Round(size*cos(pi/6)), y+Round(size*sin(pi/6)),s);
+  <B>end</B>;
+  triangle(x,y,size);
+<B>end</B>;
+
+<B>begin</B>
+  gd := Detect;
+  InitGraph(gd,gm,'c:\bp\bgi');
+  draw(320,280,120);
+  readln;
+  closegraph;
+<B>end</B>.
+</PRE></DIV>
+<HR>
+
+<DIV align=center><A 
+href="http://www.ilab24.narod.ru/fract/frprindx.html">[Построение]</A> <A 
+href="http://www.ilab24.narod.ru/fract/frindex.html">[Фракталы]</A> <A 
+href="http://www.ilab24.narod.ru/index.html">[На главную]</A><BR><BR><I>Дата 
+создания: 01.08.04<BR>Дата последнего обновления: 10.10.04<BR>© <A 
+href="mailto:ilab24@narod.ru">Matvey V. Kotov, Dmitry V. Kotov</A>, 
+2004.<BR></I></DIV><!-- ><!-- "><!-- '><!-- --></TEXTAREA></FORM></TITLE></COMMENT></A>
+<DIV></DIV></SPAN></ILAYER></LAYER></IFRAME></NOFRAMES></STYLE></NOSCRIPT></TABLE></SCRIPT></APPLET></FONT>
+<STYLE>#bn {
+	DISPLAY: block
+}
+#bt {
+	DISPLAY: block
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Фракталы Двумерное множество Кантора.files/163.gif"></SCRIPT>
+<!-- mailto:spm111@yandex.ru --></BODY></HTML>

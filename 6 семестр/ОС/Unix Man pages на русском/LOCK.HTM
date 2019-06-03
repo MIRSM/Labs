@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>LOCK(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>LOCK(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+   lock - Блокирует терминал пользователя.
+<p><b>СИНТАКСИС</b>
+<pre>
+   lock [-v][-number]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   Команда lock выдает пользователю запрос на пароль, затем снова
+   запрашивает пароль для проверки и блокирует  терминал  до  тех
+   пор пока  пароль не будет повторно введен.  Если опция -number
+   определена в команде lock,  то терминал автоматически отключается и  после нескольких минут дается возможность передачи управления другому пользователю.
+<p align=justify>   Эта команда использует файл /etc/defalt/lock.  Этот файл имеет
+   две записи:
+<pre>
+   DEFLOGOUT = number
+   MAXLOGOUT = number
+</pre>
+<p align=justify>   Значение DEFLOGOUT определяет установленное по умолчанию время
+   в минутах, в течение которого терминал останется заблокированным пока пользователь не отключится. Это значение по умолчанию
+   не используется,  если опция -number указана в командной строке. Если ни значение DEFLOGOUT,  ни опция -number не определены, то используется значение MAXLOGOUT.
+<p align=justify>   Значение MAXLOGOUT  -  это  максимальное  время  в минутах,  в
+   течение которого пользователю разрешается заблокировать терминал. Если  пользователь пытается блокировать терминал на более
+   длительное время,  чем это,  команда lock выдает  пользователю
+   предупреждение, что  он  использовал ограничение по системному
+   максимому времени.  Если значение DEFLOGOUT,  опция -number  и
+   значение MAXLOGOUT не указаны, то пользователь не может отключиться.
+<p align=justify>   Значения DEFLOGOUT и MAXLOGOUT формируются системным администратором,  чтобы отобразить запрос для терминалов данного рабочего места.
+<p align=justify>   Блокировка может быть завершена уничтожением  процесса  блокировки. Это может сделать только привелигированный пользователь
+   или пользователь вызвавший эту команду lock.
+<p align=justify><b>ОПЦИИ</b><br>
+<table>
+<tr valign=top><th>  -number <td>   Устанавливает ограничение  на  время  блокировки на  number минут вместо  установленного  в  системе  по умолчанию.
+<tr valign=top><th> -v    <td> Определяет команду подробно.
+</table>
+<p><b>ФАЙЛЫ</b>
+<pre>
+   /etc/default/lock
+</pre>
+<p align=justify><b>ЗАМЕЧАНИЯ</b><br>
+   Файл /etc/default/lock загружается  следующими  значениями  по
+   умолчанию:
+<pre>
+   DEFLOGOUT = 30
+   MAXLOGOUT = 60
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

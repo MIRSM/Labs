@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>IOCTL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>IOCTL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+ioctl - управление устройствами
+<p><b>СИНТАКСИС</b>
+<pre>
+        ioctl (fildes, command, arg)
+        int fildes, command;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный  вызов  ioctl выполняет различные управляющие
+действия над обычными устройствами и  псевдоустройствами.  Для файлов, не являющихся псевдоустройствами, действия, которые выполняет этот системный вызов,  зависят
+от  устройства.  Аргументы  command  и arg передаются в
+файл, ассоциированный с дескриптором fildes, и  интерпретируются драйвером устройства. Подобный способ управления  для обычных устройств используется редко; основные операции ввода/вывода выполняются с помощью системных вызовов <a href=READ.htm>read(2)</a> и <a href=WRITE.htm>write(2)</a>.
+<p align=justify>
+Действия  над псевдоустройствами, выполняемые с помощью
+системного вызова ioctl, описаны в <a href=STREAMIO.htm>streamio(7)</a>.
+<p align=justify>
+Аргумент fildes - это открытый дескриптор файла, являющегося устройством. Аргумент command задает выполняемые
+действия и зависит от устройства, с которым ведется работа. Наконец, arg  задает  дополнительную  информацию,
+которая  может  потребоваться  для выполнения указанных
+действий. Тип аргумента arg зависит от конкретного  управляющего  действия и является либо целым, либо указателем на специфичную для устройства структуру.
+<p align=justify>
+Отметим, что существуют некоторые общие действия, которые выполняются драйверами различных устройств,  например общий интерфейс с терминалом [см. <a href=TERMIO.htm>termio(7)</a>].
+<p align=justify>
+Системный вызов ioctl завершается неудачей  для  файлов
+любого  типа,  если выполнено хотя бы одно из следующих
+условий:
+<dl>
+<dt>[EBADF]
+<dd>Аргумент  fildes  не  является   корректным
+дескриптором открытого файла.
+<dt>[ENOTTY]
+<dd>Аргумент  fildes  не  связан с устройством,
+драйвер которого  отрабатывает  управляющие
+функции.
+<dt>[EINTR]
+<dd>Во  время  выполнения системного вызова перехвачен сигнал.
+</dl><p align=justify>
+Системный вызов ioctl также завершается неудачей,  если
+драйвер  устройства  обнаружит  ошибку.  В  этом случае
+ошибка возвращается системным  вызовом  без  изменений.
+Конкретный  драйвер может вырабатывать не все ошибки из
+перечисленных ниже:
+<dl>
+<dt>[EFAULT]
+<dd>Действие  command  требует обмена данными с
+буфером, указанным с помощью аргумента arg,
+но сам буфер или  его  часть  находятся  за
+пределами  отведенного  процессу  адресного
+пространства.
+<dt>[EINVAL]
+<dd>Значения аргументов command или arg  некорректны для данного устройства.
+<dt>[EIO]
+<dd>Обнаружена ошибка ввода/вывода.
+<dt>[ENXIO]
+<dd>Значения  аргументов  command  или arg корректны для данного драйвера, но над  данным
+устройством  указанный запрос не может быть
+выполнен.
+<dt>[ENOLINK]
+<dd>Аргумент fildes является дескриптором файла
+на  удаленном компьютере, связи с которым в
+данный момент нет.
+</dl>
+Ошибки псевдоустройств описаны в <a href=STREAMIO.htm>streamio(7)</a>.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=STREAMIO.htm>streamio(7)</a>, <a href=TERMIO.htm>termio(7)</a> в Справочнике администратора.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат зависит от  управляющего  действия,  но  должен  быть неотрицательным целым
+числом. В случае ошибки возвращается -1,  а  переменной
+errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>QSORT(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+<h3 align=center>QSORT(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+qsort - быстрая сортировка
+<p><b>СИНТАКСИС</b>
+<pre>
+	void qsort ((char *) base, nel, sizeof (*base), compar)
+	unsigned int nel;
+	int (*compar) ( );
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Процедура qsort реализует алгоритм  быстрой  сортировки
+таблицы данных на своем месте.
+<p align=justify>Аргумент base является указателем  на  начало  таблицы.
+Nel - число элементов в таблице. Compar - функция сравнения, аргументами которой при вызове служат два указателя на сравниваемые элементы. В  соответствии  с  тем,
+какое целое число она возвращает: меньшее нуля,  равное
+нулю или большее нуля, первый аргумент считается  меньшим, равным или большим по отношению ко второму.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Указатель на начало таблицы должен иметь тип "указатель
+на элемент" и преобразовываться к  типу  "указатель  на
+символ".
+<p align=justify>В сравнении, осуществляемом функцией compar, не  обязательно должен участвовать каждый байт, поэтому элементы
+таблицы в дополнение к сравниваемым величинам могут содержать произвольные данные.
+<p align=justify>Порядок, в каком окажутся после сортировки два  элемента, считающиеся равными при сравнении, непредсказуем.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BSEARCH.htm>bsearch(3C)</a>, <a href=LSEARCH.htm>lsearch(3C)</a>, <a href=STRING.htm>string(3C)</a>.<br>
+<a href=SORT.htm>sort(1)</a> в Справочнике пользователя
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

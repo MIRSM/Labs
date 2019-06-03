@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>     CREATSEM(3)  </title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информацаналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CDCONTROL(1)<br>FreeBSD Reference Manual</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+cdcontrol - утилита контролирования компакт-диска
+<p><b>СИНТАКСИС</b>
+<pre>
+  cdcontrol [-s] [-v] [-f discname] [command args...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+cdcontrol это программа контролирования воспроизведения звука с компакт
+диска (устройства, названного как cd0 или mcd0).
+<p align=justify>
+Если устройство не указано, то переменная окружения DISC используется
+для отыскания устройства CD.
+<p align=justify>
+Если команды не указаны, то cdcontrol работает в интерактивном режиме,
+читая команды со стандартного ввода.
+<p align=justify><b>ОПЦИИ</b>
+<table>
+<tr valign=top><td>-s<td>Молчаливый режим. Не выдает таблицу заголовков, комментарии...</tr>
+<tr valign=top><td>-v<td>Режим сообщений. Печатает всю возможную информацию о CD.</tr>
+<tr valign=top><td>-f discname<td>Указывает имя устройства, к примеру /dev/cd0c или mcd0.</tr>
+</table><p align=justify>
+Далее следует список возможных команд. Только несколько символов,
+идентифицирующих команду должны быть указаны. Слово play вообще
+можно опустить.
+<dl>
+<dt>play first_track [last_track]
+<dd>Играть с дорожки first_track до дорожки last_track. Первая
+дорожка имеет номер 1, номер последней дорожки можно не
+указывать.
+<dt>play start_m:start_s.start_f [end_m:end_s.end_f]
+<dd>Играть с абсолютного адреса (MSF) определенного start_m в
+минутах, start_s в секундах и start_f (номер фрагмента) до
+абсолютного адреса end_m в минутах, end_s секундах, или
+указывая второй номер фрагмента end_f. Минуты указываются в
+диапазоне 0-99, секунды - 0-59, номера фрагментов - 0-74.
+<dt>play [#start_block [length]]
+<dd>Начинает проигрывание с логического блока start_block,
+используя длину length логических блоков.
+<dt>pause
+<dd>Остановка прогрывания, но не остановка диска.
+<dt>resume
+<dd>Продолжение. Используется после паузы.
+<dt>stop
+<dd>Останов диска.
+<dt>eject
+<dd>Извлечение диска.
+<dt>close
+<dd>Ввод диска.
+<dt>volume left_channel right_channel
+<dd>Установка громкости левого left_channel и правого right_channel 
+каналов. Громкость может принимать значение в диапазоне 0-255.
+<dt>volume mute
+<dd>Выключает звук.
+<dt>volume mono
+<dd>Установка ражима МОНО.
+<dt>volume stereo
+<dd>Установка режима СТЕРЕО.
+<dt>volume left
+<dd>Проигрывать левый канал на обоих (левом и правом) каналах.
+<dt>volume right
+<dd>Проигрывать правый канал на обоих (левом и правом) каналах.
+<dt>info
+<dd>Напечатать таблицу содержимого на диске.
+<dt>status
+<dd>Напечатать информацию о диске. Текущий статус проигрывания
+и позицию, значение громкости для левого и правого каналов...
+<dt>help
+<dd>Напечатать список возможных команд.
+<dt>debug on
+<dd>Включить режим отладки устройства CD.
+<dt>debug off
+<dd>Выключить режим отладки устройства CD.
+<dt>reset
+<dd>Сбрасывает установки на устройстве.
+<dt>set msf
+<dd>Устанавливает режим minute-second-frame ioctl (default).
+<dt>set lba
+<dd>Устанавливает режим LBA ioctl.
+<dt>quit
+<dd>Выход из программы.
+</dl>
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+/dev/rcd0c
+/dev/rmcd0c
+/dev/rwcd0c
+</pre>
+<p align=justify><b>АВТОРЫ</b><br>
+Jean-Marc Zucconi, Andrey A. Chernov, Serge V. Vakulenko
+<p align=justify><b>ИСТОРИЯ</b><br>
+Команда cdcontrol появилась в FreeBSD 2.1
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,10 @@
+C:\Users\я\source\repos\FractalGraph\FractalGraph\bin\Debug\FractalGraph.exe.config
+C:\Users\я\source\repos\FractalGraph\FractalGraph\bin\Debug\FractalGraph.exe
+C:\Users\я\source\repos\FractalGraph\FractalGraph\bin\Debug\FractalGraph.pdb
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.csprojResolveAssemblyReference.cache
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.Form1.resources
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.Properties.Resources.resources
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.csproj.GenerateResource.cache
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.csproj.CoreCompileInputs.cache
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.exe
+C:\Users\я\source\repos\FractalGraph\FractalGraph\obj\Debug\FractalGraph.pdb

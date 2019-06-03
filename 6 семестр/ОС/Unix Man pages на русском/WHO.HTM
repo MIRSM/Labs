@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>WHO(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>WHO(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+who - кто в системе?
+<p><b>СИНТАКСИС</b>
+<pre>
+	who  [-u] [-T] [-l] [-H] [-q] [-p] [-d] [-b] [-r] [-t] [-a] [-s] [файл]
+	who  am i
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда who сообщает имя пользователя, имя терминальной
+линии, астрономическое время начала  сеанса,  продолжительность бездействия терминальной линии с момента последнего обмена, идентификатор  процесса  интерпретатора
+команд shell для каждого из пользователей, работающих в
+системе UNIX. Для  получения  этой  информации  команда
+просматривает файл /etc/utmp. Впрочем, вместо него  может просматриваться другой файл,  имя  которого  должно
+быть тогда указано  в  командной  строке  (файл  должен
+иметь формат utmp[4]). Обычно в качестве файла указывают /etc/wtmp, где зафиксированы времена начала всех сеансов с момента его последнего создания.
+<p align=justify>Команда who с опциями am i или am I идентифицирует  обратившегося с ней пользователя.
+<p align=justify>Выдаваемые сообщения имеют,  вообще  говоря,  следующий
+формат:
+<pre>
+	NAME [STATE] LINE TIME [IDLE] [PID] [COMMENT] [EXIT]
+</pre>
+<p align=justify>Информация NAME, LINE и TIME выдается при всех  опциях,
+кроме -q; STATE - только при -T; IDLE и  PID  -  только
+при -u и -l; и, наконец, COMMENT и EXIT  -  только  при
+-a. Какая информация выдается в случае опций -p,  -d  и
+-r, подробно об ясняется для каждой из них отдельно.
+<p align=justify>Задавая различные опции, с помощью  команды  who  можно
+получить информацию о времени начала и  конца  сеансов,
+перезагрузок, корректировках системных часов, а также о
+других процессах, порожденных процессом init. Опции эти
+таковы:
+<table>
+<tr valign=top><th>-u  <td> Выдать информацию только о тех пользователях,  которые  в настоящий момент работают в системе. NAME
+- это входное имя пользователя. LINE - имя  терминальной  линии, под которым она фигурирует в каталоге /dev. TIME - астрономическое время начала сеанса. IDLE - количество часов и минут, протекших с
+последнего момента активизации данной линии. Точка
+(.) свидетельствует о том, что данный терминал находился в активном состоянии не более минуты  тому
+назад,  то  есть о том, что это действующий терминал. Если с тех пор прошло более 24 часов или если
+линия не была использована с момента загрузки,  то
+сообщение  маркируется  как старое (old). Это поле
+оказывается полезным при попытке определить, работает ли кто-нибудь за терминалом. PID -  идентификатор процесса интерпретатора shell, обслуживающего  данного  пользователя.  COMMENT - комментарий,
+характеризующий данную  линию;  берется  из  соответствующего поля файла /etc/inittab [его описание
+см. в <a href=INITTAB.htm>inittab(4)</a>]. Этот файл может содержать, например,  сведения о местоположении терминала, телефонном номере комнаты или о типе физического  терминала.
+<tr valign=top><th>
+-T <td>  Эта опция аналогична опции -s с той разницей,  что
+дополнительно  выводится  информация  о  состоянии
+терминальной линии (в позиции  STATE).  Здесь  под
+состоянием имеется в виду  возможность  передавать
+сообщения на этот терминал  со  стороны  кого-либо
+другого. Терминалу, на который передавать  сообщения может любой, отвечает состояние "+"; если  это
+не так - состояние "-".  Пользователь  root  может
+передавать сообщения во все линии, которым отвечает состояние "+" или "-". При  обнаружении  неисправной линии печатается "?".
+<tr valign=top><th>
+-l  <td> Перечислить только те линии,  на  которых  система
+ожидает входа в нее какого-либо пользователя. Поле
+NAME в таких случаях содержит слово LOGIN.  Другие
+поля имеют такой же смысл, как  и  в  сообщении  о
+пользователе, с той разницей,  что  не  существует
+поля STATE.
+<tr valign=top><th>
+-H  <td> При этой опции над обычными сообщениями печатаются
+названия столбцов.
+<tr valign=top><th>
+-q  <td> Реализует быстрый вариант команды who,  отображающей только имена и количество пользователей, работающих в настоящий момент в системе. При этой  опции все прочие игнорируются.
+<tr valign=top><th>
+-p  <td> Перечисляет все другие процессы, активные в настоящий  момент,  которые  были  порождены  процессом
+init. Поле NAME содержит название  программы,  исполняемой процессом init, которое берется из файла
+/etc/inittab. Поля STATE,  LINE,  IDLE  смысла  не
+имеют. В поле COMMENT отображается поле  идентификатора из строки файла /etc/inittab, вызвавшей порождение этого процесса. См. <a href=INITTAB.htm>inittab(4)</a>.
+<tr valign=top><th>
+-d <td>  Выдать информацию о всех процессах, которые  прекратили существование и не  были  заново  порождены
+процессом init. У мертвых процессов появляется поле EXIT, которое содержит  значения  системного  и
+пользовательского кодов  завершения  [возвращенных
+системным вызовом <a href=WAIT.htm>wait(2)</a>].  Это  может  оказаться
+полезным при выяснении причин аварийного окончания
+процесса.
+<tr valign=top><th>
+-b <td>  Выдать время и дату последней загрузки системы.
+<tr valign=top><th>
+-r <td>  Выдать текущий уровень выполнения  процесса  init.
+Кроме этого, будут выданы идентификатор  процесса,
+системный код завершения  и  пользовательский  код
+завершения процесса [см. <a href=UTMP.htm>utmp(4)</a>].
+<tr valign=top><th>
+-t <td>  Выдать информацию о последней  корректировке  системных часов [посредством команды <a href=DATE.htm>date(1)</a>] пользователем root. См. <a href=SU.htm>su(1)</a>.
+<tr valign=top><th>
+-a <td>  Обрабатывать файл /etc/utmp или файл, указанный  в
+команде, считая все опции (кроме THqs)  включенными.
+<tr valign=top><th>
+-s  <td> Выдавать только поля NAME, LINE и TIME; это опция,
+принимаемая по умолчанию.
+</table>
+<p align=justify><b>Примечание для суперпользователя:</b> после закрытия системы и перевода ее в однопользовательский режим,  команда
+who  просто  возвращает приглашение; причина в том, что
+поскольку файл /etc/utmp корректируется в момент  входа
+в  систему, а в однопользовательском режиме вход в систему не производится, команда who не может отразить это
+состояние корректно. Команда who am i,  однако,  выдает
+правильную информацию.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	/etc/utmp
+	/etc/wtmp
+	/etc/inittab
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=DATE.htm>date(1)</a>, <a href=LOGIN.htm>login(1)</a>, <a href=MESG.htm>mesg(1)</a>, <a href=SU.htm>su(1)</a>.<br>
+<a href=WAIT.htm>wait(2)</a>, <a href=INITTAB.htm>inittab(4)</a>, <a href=UTMP.htm>utmp(4)</a> в Справочнике  программиста.
+<a href=INIT.htm>init(1M)</a> в Справочнике администратора.
+<p align=justify><b>СЮРПРИЗЫ</b><br>
+При использовании опции -d поле EXIT не выдается; появляется только при опции -a.
+<p align=justify>Если длина входного имени пользователя превышает 7 символов, команда who am i не работает.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

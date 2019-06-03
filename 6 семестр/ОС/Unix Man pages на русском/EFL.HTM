@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>EFL(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>EFL(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	efl - препроцессор для расширенного Фортрана
+<p><b>СИНТАКСИС</b>
+<pre>
+ efl  [-w] [-#] [-C] [файл ...]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Команда efl компилирует программы, написанные на  языке
+	EFL, в чистый Фортран и направляет результат  на  стандартный вывод. EFL предоставляет C-подобные управляющие
+	конструкции ratfor'а(1):
+<ol>
+<li>  Группировка операторов посредством скобок { }.
+<li>  Ветвление:  if,  if-else,  select-case  (последнюю конструкцию иногда называют switch-case).
+<li>  Циклы while, for, do, repeat и repeat ... until.
+<li>  Многоуровневые break и next.
+</ol>
+<p align=justify>	В EFL есть C-подобные структуры данных, например:
+<pre>
+  struct {
+     integer flags(3)
+     character(8) name
+     long real coords(2)
+  } table(100)
+</pre>
+<p align=justify>	Можно  употреблять  родовые  имена  функций,  операторы присваивания +=, &=, и т.д.,  а  также  последовательно
+	выполняемые логические операции && и ||. Принят  унифицированный синтаксис ввода/вывода:
+<pre>
+  write(6,x,y:f(7,2), do i=1,10 { a(i,j),z.b(i) })
+</pre>
+<p align=justify>	Язык EFL также предоставляет  некоторый  синтаксический "сахар":
+<ol>
+<li>  Свободный  формат исходного текста: несколько операторов на одной строке; один оператор на нескольких строках; имена (а не только числа) в  качестве меток операторов.
+<li>  Комментарии: # - это комментарий.
+<li>  Трансляция  операций сравнения и логических операций: >, >=, & и т.д. преобразуются в  .GT.,  .GE., .AND. и т.д.
+<li>  Возврат  выражения  в качестве результата функции: return (выражение)
+<li>  Макроопределения: define имя замена
+<li>  Вставка файлов: include файл
+</ol>
+<p><b>Допускается использование следующих опций:</b><br>
+<table>
+<tr valign=top><th>-w <td> Не выдавать предупреждения.
+<tr valign=top><th>-# <td> Не включать в порождаемую программу комментарии.
+<tr valign=top><th>-C <td> Включать в порождаемую программу комментарии  (режим по умолчанию).
+</table>
+<p align=justify>	Аргумент с предшествующим знаком  равенства  определяет опцию EFL, как если бы она встретилась в  начале  программы в операторе option. Значение опций  по  умолчанию для конкретной машины может быть выбрано  из  следующих вариантов: system=unix, system=gcos,  или  system=cray. Если значение system не задано явно,  оно  определяется
+	машиной, на которой работает препроцессор. Другие  специфические опции определяют стиль  ввода/вывода,  обработку ошибок, соглашения о символах продолжения,  число символов, пакуемых в слово, а также  форматы,  установленные по умолчанию.
+<p align=justify>	Препроцессор efl лучше всего использовать с  компилятором <a href=F77.htm>f77(1)</a>.
+<p><b>СМ. ТАКЖЕ</b><br>
+	cc(1), <a href=F77.htm>f77(1)</a>, <a href=RATFOR.htm>ratfor(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

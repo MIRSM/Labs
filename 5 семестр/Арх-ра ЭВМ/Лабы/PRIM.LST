@@ -1,0 +1,65 @@
+Turbo Assembler	 Version 2.5	    03/11/16 16:44:46	    Page 1
+prim.ASM
+
+
+
+      1	0000			     stseg   segment para    stack
+      2	0000  10*(????)			     dw	     16	     dup(?)
+      3	0020			     stseg   ends
+      4	0000			     dseg    segment para
+      5	0000  000A		     a	     dw	     10
+      6	0002  0014		     b	     dw	     20
+      7	0004  0019		     c	     dw	     25
+      8	0006  ????		     y	     dw	     ?
+      9	0008			     dseg    ends
+     10	0000			     cseg    segment para
+     11	0000			     lab1    proc    far
+     12					     assume  cs:cseg,ds:dseg,ss:stseg
+     13	0000  1E			     push    ds
+     14	0001  B8 0000			     mov     ax,0
+     15	0004  50			     push    ax
+     16	0005  B8 0000s			     mov     ax,dseg
+     17	0008  8E D8			     mov     ds,ax
+     18
+     19	000A  8B 47 FE			     mov     ax, [bx-2]
+     20	000D  2B 07			     sub     ax, [bx]
+     21	000F  03 47 02			     add     ax, [bx+2]
+     22	0012  2D 002D			     sub     ax, 45
+     23	0015  89 47 04			     mov     [bx+4], ax
+     24
+     25					     ;mov     ax,a
+     26					     ;add     ax,b
+     27					     ;sub     ax,c
+     28					     ;mov     y,ax
+     29	0018  CB			     ret
+     30	0019			     lab1    endp
+     31	0019			     cseg    ends
+     32					     end     lab1
+Turbo Assembler	 Version 2.5	    03/11/16 16:44:46	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/11/16"
+??FILENAME			  Text	 "prim	  "
+??TIME				  Text	 "16:44:46"
+??VERSION			  Number 0205
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 PRIM
+@WORDSIZE			  Text	 2
+A				  Word	 DSEG:0000
+B				  Word	 DSEG:0002
+C				  Word	 DSEG:0004
+LAB1				  Far	 CSEG:0000
+Y				  Word	 DSEG:0006
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0019 Para	  none
+DSEG				  16  0008 Para	  none
+STSEG				  16  0020 Para	  Stack
+

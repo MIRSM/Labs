@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>FSPEC(4)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FSPEC(4)</h3>
+<p><b>НАЗВАНИЕ</b><br>
+fspec - спецификация формата текстового файла
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Иногда  бывает удобно хранить текстовые файлы ОС UNIX с
+нестандартной табуляцией (то есть табуляцией, не  устанавливающей  курсор  в  каждой восьмой позиции). Вообще
+говоря, такие файлы перед обработкой командами ОС должны быть преобразованы в стандартный формат, часто с заменой символов  табуляции  соответствующим  количеством
+пробелов.  Спецификация формата, встретившаяся в первой
+строке текстового файла, задает табуляцию в  оставшейся
+части файла.
+<p align=justify>
+Спецификация формата представляет собой  последовательность параметров, разделенных пробелами, заключенную  в
+специальные скобки &lt;: и :&gt;. Каждый параметр состоит  из
+ключевой буквы, сразу за которой может следовать число.
+Распознаются следующие параметры:
+<dl>
+<dt>tразметка 
+<dd>Задание  табуляции в файле. Значением разметки может быть:
+<ol>
+<li>Список номеров позиций, разделенных запятыми.
+<li>Символ -, за которым следует целое число n, задающее интервал табуляции.
+<li>Символ -, за которым следует имя одного из фиксированных способов табуляции.
+</ol>
+Стандартная  табуляция  задается   как   t-8   или
+t1,9,17,25,  и  т.д.  Имена фиксированных способов
+табуляции перечислены в команде <a href=TABS.htm>tabs(1)</a>.
+<dt>sразмер 
+<dd>Задание максимальной длины строки. Значение размера должно быть целым. Проверка длины строки выполняется после расстановки табуляций, но до установки полей.
+<dt>mполе 
+<dd>Задание количества пробелов (полей) в начале  и  в
+конце каждой строки. Значение поле должно быть целым.
+<dt>d
+<dd>Строка,  содержащая  спецификацию  формата, должна
+быть удалена из преобразованного файла.
+<dt>е
+<dd>Текущий формат преобразования  действует  лишь  до
+тех  пор, пока в файле не встретится другая спецификация формата.
+</dl><p align=justify>
+Значения параметров по умолчанию - t-8 и  m0.  Если  не
+задан параметр s, проверка длины строк не производится.
+Если  первая строка файла не содержит спецификации формата, действуют значения по умолчанию.  Пример  строки,
+содержащей спецификацию формата:
+<pre>
+     *&lt;:t5,10,15 s72:&gt;*
+</pre><p align=justify>
+Если  спецификация формата выглядит как комментарий, то
+параметр d задавать не обязательно.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=ED.htm>ed(1)</a>, <a href=NEWFORM.htm>newform(1)</a>, <a href=TABS.htm>tabs(1)</a> в Справочнике пользователя.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

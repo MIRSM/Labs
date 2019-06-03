@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>CRYPT(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CRYPT(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+crypt, setkey, encrypt - шифровка хешированием
+<p><b>СИНТАКСИС</b>
+<pre>
+	char *crypt (key, salt)
+	char *key, *salt;
+	
+	void setkey (key)
+	char *key;
+	
+	void encrypt (block, ignored)
+	char *block;
+	int ignored;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция  crypt  предназначена  для шифровки пароля. Она
+основана на алгоритме шифровки хешированием, назначение
+которого, помимо всего прочего, - предупредить  использование аппаратных средств раскрытия ключа.
+<p align=justify>Аргумент key представляет собой пароль, введенный пользователем. Salt - это двухсимвольная цепочка,  выбираемая из множества [a-zA-Z0-9./]. Она  настраивает  алгоритм хеширования на один из 4096 вариантов, после  чего
+пароль используется как ключ для  циклической  шифровки
+некоторой текстовой  константы.  Возвращаемое  значение
+указывает на зашифрованный пароль. Его первые два  символа равны salt.
+<p align=justify>Функции setkey и encrypt обеспечивают  доступ  (на  довольно примитивном уровне) к алгоритму хеширования. Аргумент  функции  setkey  - это символьный массив длиной
+64, содержащий только символы с числовым значением 0  и
+1  и изображающий цепочку бит. В каждой из восьми групп
+по 8 символов наименее значащий "бит" игнорируется. Полученный 56-битный ключ передается компьютеру и используется в алгоритме  хеширования  для  шифровки  цепочки
+block в функции encrypt.
+<p align=justify>Аргумент функции encrypt - символьный массив длиной 64,
+содержащий  только  символы с числовым значением 0 и 1.
+Аргумент преобразуется на месте в массив того же  вида,
+изображающий  биты аргумента после применения алгоритма
+хеширования с ключом, установленным в  функции  setkey.
+Аргумент ignored не используется, но должен быть задан.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GETPASS.htm>getpass(3C)</a>, <a href=PASSWD.htm>passwd(4)</a>.<br>
+<a href=LOGIN.htm>login(1)</a>, <a href=MAKEKEY.htm>makekey(1)</a>, <a href=PASSWD~2.htm>passwd(1)</a> в Справочнике пользователя.
+<p align=justify><b>ОГРАНИЧЕНИЯ</b><br>
+Значение, возвращаемое  функцией  crypt,  указывает  на
+один и тот же статический массив,  содержимое  которого
+полностью изменяется после каждого вызова.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>FOPEN(3S)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FOPEN(3S)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+fopen, freopen, fdopen - открыть поток
+<p><b>СИНТАКСИС</b>
+<pre>
+	#include &lt;stdio.h>
+	
+	FILE *fopen (filename, type)
+	char *filename, *type;
+	
+	FILE *freopen (filename, type, stream)
+	char *filename, *type;
+	FILE *stream;
+	
+	FILE *fdopen (fildes, type)
+	int fildes;
+	char *type;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функция fopen открывает файл с именем filename, ассоциирует с ним поток и возвращает указатель  на  структуру
+типа FILE, соответствующую этому потоку.
+<p align=justify>Аргумент filename является указателем на цепочку символов - имя открываемого файла.
+<p align=justify>Аргумент type - это указатель на цепочку символов,  которая может принимать одно из следующих значений:
+<table>
+<tr valign=top><th>r <td>  Открыть на чтение.
+<tr valign=top><th>w <td>  Опустошить или создать для записи.
+<tr valign=top><th>a <td>  Добавлять; открыть для записи в  конец  файла  или
+     создать для записи.
+<tr valign=top><th>r+ <td> Открыть для изменения (чтения и записи).
+<tr valign=top><th>w+ <td> Опустошить или создать для изменения.
+<tr valign=top><th>a+ <td> Добавлять;  открыть  или  создать  для изменения в
+     конце файла.
+</table>
+<p align=justify>Функция freopen подставляет указанный файл вместо ранее
+открытого потока, заданного аргументом stream. Первоначальный поток закрывается независимо от  того,  удалось
+ли  открыть новый файл. Функция freopen возвращает указатель на структуру типа FILE, ассоциированную с  потоком.
+<p align=justify>Функция  freopen обычно используется для привязки заранее открытых потоков stdin, stdout и  stderr  к  другим
+файлам.
+<p align=justify>Функция  fdopen  ассоциирует поток с дескриптором файла
+fildes, полученным в  результате  выполнения  системных
+вызовов open, dup, creat или <a href=PIPE.htm>pipe(2)</a>, которые открывают
+файл,  но  не  возвращают  указатель  на структуру типа
+FILE, описывающую поток. Этот указатель  требуется  для
+идентификации  потока  во  многих библиотечных функциях
+подраздела 3S. Тип потока,  заданный  аргументом  type,
+должен  соответствовать режиму доступа к открытому файлу.
+<p align=justify>Если файл открывается для обновления, то к результирующему потоку применимы операции как ввода, так и вывода.
+Однако операция ввода не может  непосредственно  следовать  за операцией вывода, без промежуточного использования функций fseek или rewind, а  операция  вывода  не
+может  непосредственно следовать за операцией ввода без
+промежуточного использования функций fseek, rewind  или
+операции ввода, достигающей конца файла.
+<p align=justify>Если  файл открывается для добавления (то есть тип type
+равен "a" или "a+"), то невозможно изменить информацию,
+уже содержащуюся в файле. Функция fseek может использоваться для перемещения указателя файла в любую его  позицию, но при операции записи указатель текущей позиции
+файла  игнорируется. Вся выводимая информация записывается в конец файла и указатель текущей позиции  перемещается  на конец записываемых данных. Если два процесса
+открывают один и тот же файл для добавления, то  каждый
+процесс  может  писать в файл без риска разрушить вывод
+другого процесса. Данные, записываемые двумя  процессами,  будут  перемежаться в файле в порядке их поступления.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CREAT.htm>creat(2)</a>,   <a href=DUP.htm>dup(2)</a>,   <a href=OPEN.htm>open(2)</a>,   <a href=PIPE.htm>pipe(2)</a>,   <a href=FCLOSE.htm>fclose(3S)</a>,
+<a href=FSEEK.htm>fseek(3S)</a>, <a href=STDIO.htm>stdio(3S)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+В случае ошибки функции fopen, fdopen и freopen возвращают пустой указатель NULL.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

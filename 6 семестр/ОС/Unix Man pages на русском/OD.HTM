@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>OD(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>OD(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+od - восьмеричный дамп
+<p><b>СИНТАКСИС</b>
+<pre>
+od  [-b] [-c] [-d] [-o] [-s] [-x] [файл] [[+]смещение[.][b]]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда od выдает на стандартный вывод файл в одном или
+нескольких форматах в соответствии с указанными  опциями. При отсутствии опций используется восьмеричный формат (как в опции -o). Смысл опций формата таков:
+<table>
+<tr valign=top><th>-b  <td> Выдавать байты в восьмеричном виде.
+<tr valign=top><th>-c  <td> Интерпретировать байты как коды  ASCII.  Некоторые
+служебные символы выводятся по соглашениям, принятым в языке C: пусто=\0, забой=\b, переход_к_новой
+странице=\f,   перевод_строки=\n,   возврат_каретки=\r, табуляция=\t; все остальные  выводятся  как
+восьмеричные числа из 3 цифр.
+<tr valign=top><th>-d  <td> Выдавать 16-разрядные слова в виде десятичных  чисел без знака.
+<tr valign=top><th>-o <td>  Выдавать 16-разрядные слова в восьмеричном виде.
+<tr valign=top><th>-s <td>  Выдавать 16-разрядные слова в виде десятичных  чисел со знаком.
+<tr valign=top><th>-x <td>  Выдавать 16-разрядные  слова  в  шестнадцатеричном
+виде.
+</table>
+<p align=justify>Аргумент файл специфицирует  файл,  который  необходимо
+распечатать. Если этот аргумент не указан, используется
+стандартный ввод.
+<p align=justify>Аргумент смещение определяет смещение в файле, с  которого должна начинаться распечатка. Обычно этот аргумент
+интерпретируется как восьмеричное число байт. Если  добавлена точка (.), то смещение трактуется как  десятичное. Если добавлен символ b, то смещение считается  заданным в блоках по 512 байт. Если файл не указан,  смещению должен предшествовать символ +.
+<p align=justify>Файл распечатывается до конца.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=HD.htm>hd(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>FSTYP(1M)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>FSTYP(1M)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+        fstyp - определение идентификатора файловой системы
+<p><b>СИНТАКСИС</b>
+<pre>
+     /etc/fstyp  файловая_система
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+        Команда  fstyp позволяет определить идентификатор (тип)
+        смонтированной или  размонтированной  файловой_системы,
+        используя  эвристическую  программу анализа. Файловая_система задается  именем  содержащего  ее  специального
+        файла. Тип требуется для программы <a href=MOUNT~1.htm>mount(2)</a> [иногда для
+        <a href=MOUNT.htm>mount(1M)</a>] при монтировании файловой системы.
+<p align=justify>Каталог /etc/fstyp.d содержит набор программ, каждая из
+        которых эвристически проверяет соответствие типа файловой_системы некоторому распознаваемому ею типу. При успехе проверки программа выдает на стандартный вывод соответствующий идентификатор файловой системы и  возвращает  код завершения 0; в противном случае выдается сообщение об ошибке и возвращается ненулевой код. Команда
+        fstyp выполняет программы из /etc/fstyp.d в  алфавитном
+        порядке,  передавая  файловую_систему  как аргумент, до
+        первой успешной проверки. Если удачи не было, fstyp выводит сообщение "Unknown_fstyp" - неизвестный тип.
+<p align=justify><b>ПРЕДОСТЕРЕЖЕНИЕ</b><br>
+        Поскольку программы  эвристические,  достоверность  результата команды fstyp не гарантируется.
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+        <a href=MOUNT.htm>mount(1M)</a>.<br>
+        <a href=MOUNT~1.htm>mount(2)</a>, <a href=SYSFS.htm>sysfs(2)</a> в Справочнике программиста.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

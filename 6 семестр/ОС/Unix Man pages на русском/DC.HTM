@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>DC(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>DC(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+	dc - настольный калькулятор
+<p><b>СИНТАКСИС</b>
+<pre>
+ dc  [файл]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+	Dc - пакет для арифметических вычислений с произвольной
+	точностью. Обычно он  оперирует  в  десятичной  системе
+	счисления с целыми числами, однако можно задать системы
+	счисления для ввода и вывода, а также точность вычислений. Общая структура dc - стековый калькулятор, использующий обратную   польскую  запись.  [См.  также  <a href=BC.htm>bc(1)</a>
+	- препроцессор для dc, поддерживающий инфиксную нотацию
+	и  C-подобный синтаксис.] Если аргумент указан, то сначала ввод производится из файла, а потом со стандартного ввода.
+<p align=justify>Dc распознает следующие конструкции:
+<table>
+<tr valign=top><th>число<td>Значение числа помещается в стек. Число  -  непрерывная цепочка цифр 0-9. В начале ее может  стоять знак подчеркивания _ для ввода отрицательного числа. Число может содержать десятичную точку.
+<tr valign=top><th> +  -  /  *  %  ^<td>Верхние два числа стека складываются (+),  вычитаются (-), умножаются (*), делятся (/), берется остаток (%) или выполняется  возведение  в  степень. Оба операнда извлекаются из стека и результат  помещается обратно в стек. Дробная часть  показателя степени игнорируется.
+<tr valign=top><th>sx<td>Извлекается вершина стека и помещается в регистр с именем  x,  где x - любой символ. Если конструкция имеет вид Sx, то x рассматривается как стек, в который и помещается извлеченное значение.
+<tr valign=top><th>lx <td> Значение,  хранящееся  в  регистре x, помещается в стек. Регистр x не изменяется. Изначально все  регистры  инициализируются  нулем.  Если конструкция имеет вид Lx, то x рассматривается как  стек,  его вершина извлекается и помещается в главный стек.
+<tr valign=top><th>d <td> Вершина стека удваивается.
+<tr valign=top><th>p <td> Выводится вершина стека (без удаления из стека).
+<tr valign=top><th>P <td> Вершина стека трактуется как цепочка символов, печатается и удаляется из стека.
+<tr valign=top><th>f <td> Выводятся все элементы стека (без удаления).
+<tr valign=top><th>q <td> Завершает работу программы. При выполнении цепочки символов уровень рекурсии уменьшается на два.
+<tr valign=top><th>Q <td> Завершает работу программы. Вершина стека извлекается и уровень рекурсии уменьшается на  полученное значение.
+<tr valign=top><th>x <td> Вершина стека трактуется как цепочка символов, содержащая dc-команды, и выполняется.
+<tr valign=top><th>X <td>  Вершина стека заменяется  количеством  цифр  в  ее дробной части.
+<tr valign=top><th>[..]<td> Цепочка символов, заключенная в скобки, помещается в вершину стека.
+<tr valign=top><th> <x  >x  =x <td> Два верхних элемента стека извлекаются и сравниваются. Если они удовлетворяют  указанному  условию, то содержимое регистра x рассматривается  как  команда dc и выполняется.
+<tr valign=top><th>v  <td>  Верхний элемент стека заменяется квадратным корнем  из него. Если он имел дробную часть, то она учитывается; в  противном  случае  точность  вычислений (см. команду k) игнорируется.
+<tr valign=top><th>! <td>  Остаток  строки   интерпретируется   как   команда shell'а.
+<tr valign=top><th>c  <td> Очистка стека.
+<tr valign=top><th>i <td>  Вершина стека извлекается и используется как основание системы счисления при вводе. Команда I помещает  используемое  при  вводе  основание  системы счисления в вершину стека.
+<tr valign=top><th>o <td>  Вершина стека извлекается и используется как основание системы счисления при выводе. Команда O  помещает  используемое  при выводе основание системы счисления в вершину стека.
+<tr valign=top><th>k <td>  Извлекается вершина стека;  она  используется  для задания точности вычислений: количества  знаков  в дробной части при выводе и при выполнении  умножения, деления и возведения в степень.
+<tr valign=top><th>z  <td> В стек помещается количество его элементов.
+<tr valign=top><th>Z  <td> Число в вершине стека заменяется его  длиной  (без учета десятичной точки и знака минус).
+<tr valign=top><th>? <td>  Со стандартного ввода вводится одна строка  и  исполняется.
+<tr valign=top><th>;: <td> Используются утилитой <a href=BC.htm>bc(1)</a> для операций с  массивами.
+</table>
+<p align=justify><b>ПРИМЕР</b><br>
+Вывести факториалы первых 10 натуральных чисел:
+<pre>
+ [la1+dsa*pla10>y]sy
+ 0sa1
+ lyx
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+	bc(1).
+<p><b>ДИАГНОСТИКА</b>
+<pre>
+ x is unimplemented 
+     (где x - восьмеричное число). Операция, обозначен-
+     ная символом с кодом x, не реализована.
+ stack empty 
+     В стеке меньше элементов, чем требуется.
+ Out space 
+     Слишком длинное число.
+ Out of headers 
+     Слишком много чисел приходится хранить одновремен-
+     но.
+ Out of pushdown 
+     Стек переполнен.
+ Nesting depth 
+     Слишком  большой  уровень вложенности при выполне-
+     нии.
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

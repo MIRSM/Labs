@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>KILL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>KILL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+kill - посылка сигнала процессу или группе процессов
+<p><b>СИНТАКСИС</b>
+<pre>
+        int kill (pid, sig)
+        int pid, sig;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов kill посылает сигнал процессу или группе процессов, которые заданы идентификатором pid. Посылаемый  сигнал  определяется  аргументом sig и является
+либо одним из списка сигналов,  заданного  в  системном
+вызове  <a href=SIGNAL.htm>signal(2)</a>,  либо  0.  Если аргумент sig равен 0
+(пустой сигнал), то будет выполняться проверка корректности обращения к kill, но сигнал в действительности не
+посылается. Это свойство может  быть  использовано  для
+проверки того, правильно ли задан аргумент pid.
+<p align=justify>
+Передающий и принимающий процессы должны иметь  один  и
+тот же реальный или действующий идентификатор пользователя, если только соответствующий посылающему  процессу
+действующий  идентификатор  пользователя  не   является
+идентификатором суперпользователя.
+<p align=justify>
+Процессы с идентификаторами 0 и 1 являются специальными
+[см. <a href=INTRO~1.htm>intro(2)</a>] и в дальнейшем  будут  обозначаться  как
+процесс_0 и процесс_1 соответственно.
+<p align=justify>
+Если pid больше 0, то сигнал будет послан процессу, чей
+идентификатор равен значению pid.  Значение  pid  может
+быть равным 1.
+<p align=justify>
+Если pid равен 0, то сигнал будет послан  всем  процессам, входящим в группу посылающего процесса, за  исключением процесса_0 и процесса_1.
+<p align=justify>
+Если pid равен -1 и сигнал посылается  не  из  процесса
+суперпользователя, то сигнал будет послан всем  процессам, у которых реальный идентификатор пользователя  равен действующему идентификатору пользователя посылающего процесса, за исключением процесса_0 и процесса_1.
+<p align=justify>
+Если pid равен -1, и сигнал посылается из процесса  суперпользователя, то сигнал будет послан всем процессам,
+за исключением процесса_0 и процесса_1.
+<p align=justify>
+Если pid меньше -1, то сигнал будет послан всем процессам, у которых идентификатор группы процесса равен  абсолютной величине pid.
+<p align=justify>
+Системный вызов kill завершается неудачей и сигналы  не
+посылаются, если выполнено хотя бы  одно  из  следующих
+условий:
+<dl>
+<dt>[EINVAL]
+<dd>Аргумент sig задает неверный номер сигнала.
+<dt>[EINVAL]
+<dd>Номер сигнала sig равен SIGKILL, а принимающий процесс является  всеобщим  предком  с идентификатором, равным 1 (процесс_1).
+<dt>[ESRCH]
+<dd>Не найден процесс с идентификатором, равным значению аргумента pid.
+<dt>[EPERM]
+<dd>Реальный и действующий идентификаторы пользователя передающего и принимающего процессов не совпадают, а пользователь посылающего процесса не является суперпользователем.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=GETPID.htm>getpid(2)</a>, <a href=SETPGRP.htm>setpgrp(2)</a>, <a href=SIGNAL.htm>signal(2)</a>, <a href=SIGSET.htm>sigset(2)</a>.<br>
+<a href=KILL.htm>kill(1)</a> в Справочнике пользователя.
+<p align=justify><b>ДИГНОСТИКА</b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

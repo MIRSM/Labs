@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_settings_menu" kind="class" language="C#" prot="public">
+    <compoundname>SettingsMenu</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_settings_menu_1aa7b3c4cfb87c9f317fbb517ed6390475" prot="public" static="no" mutable="no">
+        <type>AudioMixer</type>
+        <definition>AudioMixer SettingsMenu.audioMixer</definition>
+        <argsstring></argsstring>
+        <name>audioMixer</name>
+        <briefdescription>
+<para>Аудиомикшер </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="17" column="1" bodyfile="SettingsMenu.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_settings_menu_1a383590e535f34f8e8bf25885d6cf67ff" prot="public" static="no" mutable="no">
+        <type>Slider</type>
+        <definition>Slider SettingsMenu.volumeSlider</definition>
+        <argsstring></argsstring>
+        <name>volumeSlider</name>
+        <briefdescription>
+<para>Слайдер громкости </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="22" column="1" bodyfile="SettingsMenu.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_settings_menu_1a6c5a6bc61adb1fa4e1f69ffc9d99c562" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SettingsMenu.volume1</definition>
+        <argsstring></argsstring>
+        <name>volume1</name>
+        <briefdescription>
+<para>Уровень громкости </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="27" column="1" bodyfile="SettingsMenu.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_settings_menu_1a35da40be7f9d0ba22b141c4df968a237" prot="public" static="no" mutable="no">
+        <type>Toggle</type>
+        <definition>Toggle SettingsMenu.fullScr</definition>
+        <argsstring></argsstring>
+        <name>fullScr</name>
+        <briefdescription>
+<para>Тагл &quot;Fullscreen&quot; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="31" column="1" bodyfile="SettingsMenu.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_settings_menu_1a27c59d87a06348cc36448ac5a505dfe1" prot="public" static="no" mutable="no">
+        <type>Dropdown</type>
+        <definition>Dropdown SettingsMenu.resolutionDropDown</definition>
+        <argsstring></argsstring>
+        <name>resolutionDropDown</name>
+        <briefdescription>
+<para>Выпадающий список с разрешениями экрана </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="36" column="1" bodyfile="SettingsMenu.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_settings_menu_1af0c46a77506918328a63bb22c0a5cb1d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SettingsMenu.curRes</definition>
+        <argsstring></argsstring>
+        <name>curRes</name>
+        <briefdescription>
+<para>Индекс разрешения экрана на данный момент </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="46" column="1" bodyfile="SettingsMenu.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_settings_menu_1a210d41a46c4293e55b5366b1437bd7f3" prot="private" static="no" mutable="no">
+        <type>Resolution []</type>
+        <definition>Resolution [] SettingsMenu.resolutions</definition>
+        <argsstring></argsstring>
+        <name>resolutions</name>
+        <briefdescription>
+<para>Массив разрешений экрана </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="41" column="1" bodyfile="SettingsMenu.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_settings_menu_1ab9c235acaf0040ded2587591c5626179" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="50" column="1" bodyfile="SettingsMenu.cs" bodystart="50" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_settings_menu_1ae1a101f20fa5dd16dc00b881c112ac14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.SetResolution</definition>
+        <argsstring>(int resolutionIndex)</argsstring>
+        <name>SetResolution</name>
+        <param>
+          <type>int</type>
+          <declname>resolutionIndex</declname>
+        </param>
+        <briefdescription>
+<para>Установка разрешения экрана </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>resolutionIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Индекс элемента из выпадающего списка</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="87" column="1" bodyfile="SettingsMenu.cs" bodystart="87" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_settings_menu_1acadc846d5d76eceeb43fa72bbcc732cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.SaveSettings</definition>
+        <argsstring>()</argsstring>
+        <name>SaveSettings</name>
+        <briefdescription>
+<para>Сохранение настроек </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="98" column="1" bodyfile="SettingsMenu.cs" bodystart="98" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_settings_menu_1a18d841ef0a70fe51fdc9876392df55e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.SetVolume</definition>
+        <argsstring>(float volume)</argsstring>
+        <name>SetVolume</name>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+<para>Изменение громкости </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>volume</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Уровень громкости</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="114" column="1" bodyfile="SettingsMenu.cs" bodystart="114" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_settings_menu_1ac4b16fdfe934136a376f665c389090b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.SetFullscreen</definition>
+        <argsstring>(bool isFullscreen)</argsstring>
+        <name>SetFullscreen</name>
+        <param>
+          <type>bool</type>
+          <declname>isFullscreen</declname>
+        </param>
+        <briefdescription>
+<para>Установко полноэкранного режимы </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>isFullscreen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Тагл &quot;Fullscreen&quot;</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="123" column="1" bodyfile="SettingsMenu.cs" bodystart="123" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_settings_menu_1ae1af9e9f118c234701c4f3b5b5d56df1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.PlayButton</definition>
+        <argsstring>()</argsstring>
+        <name>PlayButton</name>
+        <briefdescription>
+<para>Переход на игровую сцену </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="131" column="1" bodyfile="SettingsMenu.cs" bodystart="131" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_settings_menu_1ac6396a2966db7460965badeb77367e47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.HelpButton</definition>
+        <argsstring>()</argsstring>
+        <name>HelpButton</name>
+        <briefdescription>
+<para>Переход на сцену Main Menu </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="139" column="1" bodyfile="SettingsMenu.cs" bodystart="139" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_settings_menu_1abbbf52328e6430bc846cb4eace7af07f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SettingsMenu.QuitButton</definition>
+        <argsstring>()</argsstring>
+        <name>QuitButton</name>
+        <briefdescription>
+<para>Выход из игры </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SettingsMenu.cs" line="147" column="1" bodyfile="SettingsMenu.cs" bodystart="147" bodyend="150"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="28">
+        <label>SettingsMenu</label>
+        <link refid="class_settings_menu"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="30">
+        <label>SettingsMenu</label>
+        <link refid="class_settings_menu"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="SettingsMenu.cs" line="10" column="1" bodyfile="SettingsMenu.cs" bodystart="9" bodyend="152"/>
+    <listofallmembers>
+      <member refid="class_settings_menu_1aa7b3c4cfb87c9f317fbb517ed6390475" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>audioMixer</name></member>
+      <member refid="class_settings_menu_1af0c46a77506918328a63bb22c0a5cb1d" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>curRes</name></member>
+      <member refid="class_settings_menu_1a35da40be7f9d0ba22b141c4df968a237" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>fullScr</name></member>
+      <member refid="class_settings_menu_1ac6396a2966db7460965badeb77367e47" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>HelpButton</name></member>
+      <member refid="class_settings_menu_1ae1af9e9f118c234701c4f3b5b5d56df1" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>PlayButton</name></member>
+      <member refid="class_settings_menu_1abbbf52328e6430bc846cb4eace7af07f" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>QuitButton</name></member>
+      <member refid="class_settings_menu_1a27c59d87a06348cc36448ac5a505dfe1" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>resolutionDropDown</name></member>
+      <member refid="class_settings_menu_1a210d41a46c4293e55b5366b1437bd7f3" prot="private" virt="non-virtual"><scope>SettingsMenu</scope><name>resolutions</name></member>
+      <member refid="class_settings_menu_1acadc846d5d76eceeb43fa72bbcc732cc" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>SaveSettings</name></member>
+      <member refid="class_settings_menu_1ac4b16fdfe934136a376f665c389090b5" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>SetFullscreen</name></member>
+      <member refid="class_settings_menu_1ae1a101f20fa5dd16dc00b881c112ac14" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>SetResolution</name></member>
+      <member refid="class_settings_menu_1a18d841ef0a70fe51fdc9876392df55e3" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>SetVolume</name></member>
+      <member refid="class_settings_menu_1ab9c235acaf0040ded2587591c5626179" prot="private" virt="non-virtual"><scope>SettingsMenu</scope><name>Start</name></member>
+      <member refid="class_settings_menu_1a6c5a6bc61adb1fa4e1f69ffc9d99c562" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>volume1</name></member>
+      <member refid="class_settings_menu_1a383590e535f34f8e8bf25885d6cf67ff" prot="public" virt="non-virtual"><scope>SettingsMenu</scope><name>volumeSlider</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

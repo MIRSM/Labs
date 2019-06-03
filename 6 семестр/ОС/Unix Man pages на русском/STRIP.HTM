@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>STRIP(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>STRIP(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+strip - удаление из объектного файла таблицы имен и информации о номерах строк
+<p><b>СИНТАКСИС</b>
+<pre>
+	strip  [-l] [-x] [-b] [-r] [-V] файл ...
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда strip удаляет из объектных файлов (в том  числе
+и архивов) таблицу имен и информацию о  номерах  строк.
+После выполнения команды strip указанный файл не допускает символьной отладки; данная команда предназначается
+в первую очередь для отлаженных модулей.
+<p align=justify>Количеством информации, удаляемой из файла,  можно  управлять с помощью следующих опций:
+<table>
+<tr valign=top><th>-l <td>  Удалить только информацию о номерах строк; не удалять никакой информации из таблицы имен.
+<tr valign=top><th>-x <td>  Не удалять информацию о статических и внешних объектах.
+<tr valign=top><th>-b  <td> То же, что и -x, но также не удаляется  информация
+     об областях видимости (например,  начало  и  конец
+     блоков).
+<tr valign=top><th>-r <td>  Не удалять информацию о статических и внешних объектах, а также информацию о настройке ссылок.
+<tr valign=top><th>-V <td>  Вывести  в  стандартный  протокол  версию  команды
+     strip.
+</table>
+<p align=justify>Если опция -r не указана,  а  в  объектном  файле  есть
+настраиваемые ссылки и надо удалить какую-либо информацию  из таблицы имен, strip сообщит о невозможности выполнения задания и завершит работу.
+<p align=justify>При выполнении команды strip над архивом  [см.  <a href=AR~1.htm>ar(4)</a>],
+таблица имен архива удаляется. Эта таблица должна  быть
+восстановлена с помощью команды ar -s, прежде чем архив
+можно будет использовать для редактирования связей  командой <a href=LD.htm>ld(1)</a>. При возникновении данной ситуации команда
+<a href=STRIP.htm>strip(1)</a> выдает предупреждение.
+<p align=justify>Назначение команды strip - уменьшить об ем дисковой памяти, занимаемой объектным файлом.
+<p><b>ФАЙЛЫ</b>
+<pre>
+	TMPDIR/strp*    Временные файлы.
+</pre>
+Обычно каталог TMPDIR -  это  /usr/tmp,  однако  данное
+соглашение можно изменить, присвоив переменной  окружения   TMPDIR   другое   значение   [см.   tempnam( )  в
+<a href=TMPNAM.htm>tmpnam(3S)</a>].
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=AR.htm>ar(1)</a>, <a href=AS.htm>as(1)</a>, <a href=CC.htm>cc(1)</a>, <a href=LD.htm>ld(1)</a>.<br>
+<a href=TMPNAM.htm>tmpnam(3S)</a>, a.out(4), <a href=AR~1.htm>ar(4)</a> в Справочнике программиста.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+<tt>strip: файл: cannot open </tt><br>
+     Файл не удается открыть.
+<p><tt>strip: файл: bad magic </tt><br>
+     Файл не является объектным файлом обычного  формата.
+<p><tt>strip: файл: relocation entries present; cannot strip </tt><br>
+     Файл  содержит настраиваемые ссылки и делается попытка удалить информацию из таблицы имен, не  указав опцию -r.
+</pre>
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

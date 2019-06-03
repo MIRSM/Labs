@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>GETOPT(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>GETOPT(1)</h3>
+<p align=justify><b>ИМЯ</b><br>
+   getopt - Выполняет синтаксический анализ командных опций.
+<p><b>СИНТАКСИС</b>
+<pre>
+     set -- `getopt optstring $*`
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+   Команда getopt используется для того, чтобы проверять и разделять опции  в  командных строках для последующего их синтаксического анализа  процедурами  интерпретатора  shell.  Параметр
+   optstring является строкой распознаваемых букв опций (см. описание getopt(2)).  Если за буквой следует двоеточие, то считается,  что эта опция имеет аргумент, который может отделяться,
+   а может и не отделяться от нее пустым пространством. Специальная опция -- используется для указания конца списка опций. Команда getopt будет либо сама помещать -- в аргументах  в конце
+   опций,  либо распознавать эти знаки, если они используются заданным образом. Аргументы интерпретатора shell ($1 $2 ...) переустанавливаются таким образом, что каждой опции предшествует
+   тире (-) и она входит в свой собственной аргумент  интерпретатора  shell;  каждый  аргумент  опции  также участвует в своем
+   собственном аргументе интерпретатора shell.
+<p align=justify><b>ПРИМЕРЫ</b><br>
+   Следующий фрагмент  кода  программы показывает,  каким образом
+   обрабатываются аргументы для команды,  которые могут использовать опции a и b, и опцию о, для которой требуется аргумент:
+<pre>
+   set - - `getopt abo: $*`
+   if [ $? !=0 ]
+   then
+         echo $USAGE
+         exit 2
+   fi
+   for i in $*
+   do
+         case $i in
+         -a | -b) FLAG=$i; shift;;
+         -o)            OARG=$2;     shift; shift;;
+         - -)           shift;  break;;
+         esac
+   done
+</pre>
+   Этот код программы будет иметь вид любого из следующих эквивалентных представлений:
+<pre>
+   cmd -aoarg file file
+   cmd -a -o arg file file
+   cmd -oarg -a file file
+   cmd -a -oarg -- file file
+</pre>
+<p><b>СМ. ТАКЖЕ</b><br>
+   <a href=SH.htm>sh(1)</a>, getopt(2).  
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+   Команда getopt выводит сообщение об ошибке на устройство диагностического вывода в случае,  если она встречает буквы опций, не включенные в строку optstring.
+<p align=justify><b>ЗАМЕЧАНИЕ</b><br>
+   Синтаксис, заданный для этой утилиты,  предполагает, что пользователь имеет интерпретатор shell <a href=SH.htm>sh(1)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>CLOSE(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>CLOSE(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+close - закрыть дескриптор файла
+<p><b>СИНТАКСИС</b>
+<pre>
+        int close (fildes)
+        int fildes;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Аргумент  fildes  -  это дескриптор файла, полученный в
+результате выполнения системных  вызовов  creat,  open,
+dup,  fcntl  или  pipe. Системный вызов close закрывает
+этот дескриптор. Все блокировки файла, ассоциированного
+с дескриптором fildes, принадлежащие  вызывающему  процессу, удаляются.
+<p align=justify>
+Если закрывается файл-псевдоустройство [см. <a href=INTRO~1.htm>intro(2)</a>] и
+вызывающий процесс предварительно  зарегистрирован  для
+получения сигнала SIGPOLL [см. <a href=SIGNAL.htm>signal(2)</a> и <a href=SIGSET.htm>sigset(2)</a>] в
+связи  с событиями, ассоциированными с этим файлом [см.
+I_SETSIG в <a href=STREAMIO.htm>streamio(7)</a>], регистрация  событий  применительно к упомянутым процессу и файлу отменяется.
+<p align=justify>
+Последний вызов close для потока, связанного с дескриптором  fildes,  приводит к ликвидации потока. Если флаг
+O_NDELAY не установлен и не было  сигналов,  предназначенных для потока, системный вызов close ждет до 15 секунд,  пока  все  модули  и  драйверы завершат вывод, и
+только  после  этого  ликвидирует  поток.   Если   флаг
+O_NDELAY  установлен  или есть отложенные сигналы, системный вызов close не ждет окончания вывода и  ликвидирует поток немедленно.
+<p align=justify>
+Системный вызов close завершается неудачей и  указанный
+дескриптор файла не закрывается, если выполнено хотя бы
+одно из следующих условий:
+<dl>
+<dt>[EBADF]
+<dd>Аргумент  fildes  не  является   корректным
+дескриптором открытого файла.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[ENOLINK]
+<dd>Аргумент  fildes  указывает  на   удаленный
+компьютер, связи с которым в данный  момент
+нет.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=CREAT.htm>creat(2)</a>, <a href=DUP.htm>dup(2)</a>, <a href=EXEC.htm>exec(2)</a>, <a href=FCNTL.htm>fcntl(2)</a>, <a href=INTRO~1.htm>intro(2)</a>, <a href=OPEN.htm>open(2)</a>,
+<a href=PIPE.htm>pipe(2)</a>, <a href=SIGNAL.htm>signal(2)</a>, <a href=SIGSET.htm>sigset(2)</a>.<br>
+<a href=STREAMIO.htm>streamio(7)</a>  в Справочнике администратора.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном завершении результат  равен  0;  в  случае
+ошибки возвращается -1, а переменной errno присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

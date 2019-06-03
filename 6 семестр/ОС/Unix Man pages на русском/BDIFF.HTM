@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>BDIFF(1)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>BDIFF(1)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+bdiff - сравнение больших файлов
+<p><b>СИНТАКСИС</b>
+<pre>
+   bdiff  файл1 файл2 [размер] [-s]
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Команда  bdiff  используется  тем  же  образом,  что  и
+<a href=DIFF.htm>diff(1)</a>,  для  идентификации  в  двух данных файлах тех
+строк, которые нужно изменить, чтобы сделать файлы одинаковыми. Назначение данной  команды  -  обработка  тех
+файлов,  которые слишком велики для diff. Bdiff пропускает начала обоих файлов до места первого несовпадения,
+разрезает остаток каждого файла на сегменты  указанного
+размера  (в строках) и запускает diff для обработки соответствующих  сегментов.  По  умолчанию  размер  равен
+3500.  Явное  указание  размера  полезно в тех случаях,
+когда сегменты по 3500 строк слишком велики  для  diff,
+что  может  привести  к  ошибке. Если вместо файла1 или
+файла2 стоит -, будет использован стандартный ввод. Опция -s (от silent - безмолвный) служит  для  отключения
+выдачи  диагностики при работе bdiff. Отметим, что возможные сообщения из diff при этом не подавляются.  Если
+необходимо  использовать обе опции, то задавать их надо
+в том порядке, как показано выше.
+<p align=justify>
+Команда bdiff выдает результаты,  аналогичные  <a href=DIFF.htm>diff(1)</a>,
+при  нумерации  строк  делается поправка на сегментацию
+(то есть создается впечатление, что файлы  не  разрезались  на сегменты). Отметим, что из-за сегментации файлов набор изменений, предлагаемых bdiff  для  исправления, не обязательно будет минимальным.
+<p align=justify><b>ФАЙЛЫ</b>
+<pre>
+/tmp/bd?????
+</pre>
+<p align=justify><b>СМ. ТАКЖЕ</b><br> 
+<a href=DIFF.htm>diff(1)</a>, <a href=HELP.htm>help(1)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Используйте <a href=HELP.htm>help(1)</a> для раз'яснений.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

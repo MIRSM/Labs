@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>POLL(2)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>POLL(2)</H3>
+<p><b>НАЗВАНИЕ</b><br>
+poll - мультиплексирование псевдоустройств по вводу/выводу
+<p><b>СИНТАКСИС</b>
+<pre>
+        #include &lt;stropts.h&gt;
+        #include &lt;poll.h&gt;
+
+        int poll (fds, nfds, timeout)
+        struct pollfd fds [ ];
+        unsigned long nfds;
+        int timeout;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Системный вызов poll предоставляет  пользователю  механизм одновременного управления вводом/выводом (мультиплексирования)  для набора дескрипторов открытых потоков
+[см. <a href=INTRO~1.htm>intro(2)</a>]. Poll идентифицирует потоки, с  которыми
+пользователь  может обменяться сообщениями, а также потоки, в которых произошли определенные события. Сообщения можно принимать с помощью системных вызовов <a href=READ.htm>read(2)</a>
+или <a href=GETMSG.htm>getmsg(2)</a>,  а  посылать  посредством  <a href=WRITE.htm>write(2)</a>  или
+<a href=PUTMSG.htm>putmsg(2)</a>.  Некоторые команды из группы <a href=IOCTL.htm>ioctl(2)</a>, такие
+как I_RECVFD и I_SENDFD [см. <a href=STREAMIO.htm>streamio(7)</a>], также  могут
+быть использованы для приема и посылки сообщений.
+<p align=justify>
+Аргумент  fds задает дескрипторы файлов, которые должны
+анализироваться, и  интересующие  пользователя  события
+для каждого из дескрипторов. Fds есть указатель на массив  из стольких элементов, сколько дескрипторов файлов
+интересует пользователя.  Элементами  массива  являются
+структуры типа pollfd, содержащие следующие элементы:
+<pre>
+     int fd; /* Дескриптор файла */
+     short events;   /* Интересующие события */
+     short revents;  /* Происшедшие события */
+</pre><p align=justify>
+Компонент  fd  задает  дескриптор  открытого  файла,  а
+events и revents являются масками, построенными  с  помощью побитной операции ИЛИ из следующих флагов:
+<dl>
+<dt>POLLIN 
+<dd>В очереди чтения истока есть неприоритетное  сообщение  или  сообщение, передающее дескриптор файла
+(см. I_RECVFD). Этот флаг устанавливается и в  том
+случае, если сообщение имеет нулевую длину. В компоненте  revents этот флаг не может присутствовать
+одновременно с флагом POLLPRI.
+<dt>POLLPRI 
+<dd>В очереди чтения истока есть приоритетное  сообщение. Этот флаг устанавливается и в том случае, если  сообщение  имеет  нулевую  длину. В компоненте
+revents этот флаг не может присутствовать одновременно с флагом POLLIN.
+<dt>POLLOUT 
+<dd>Верхняя  очередь  записи   потока   неполна <dt>[см.
+<a href=INTRO~1.htm>intro(2)</a>].  Приоритетные управляющие сообщения могут быть посланы в любое время (см. <a href=PUTMSG.htm>putmsg(2)</a>).
+<dt>POLLERR 
+<dd>В исток потока поступило сообщение об ошибке. Флаг
+допустим  только в revents; в events он не используется.
+<dt>POLLHUP 
+<dd>В потоке произошло освобождение линии.  Этот  флаг
+не  может  присутствовать  одновременно  с  флагом
+POLLOUT: поток не может быть доступным на  запись,
+если  произошло освобождение линии. Этот флаг, однако, может присутствовать одновременно с  флагами
+POLLIN  и  POLLPRI. Флаг POLLHUP допустим только в
+revents; в events он не используется.
+<dt>POLLNVAL 
+<dd>Дескриптор fd не соответствует  открытому  потоку.
+Флаг допустим только в revents; в events он не используется.
+</dl><p align=justify>
+Для  каждого элемента массива, на который указывает аргумент fds, poll проверяет дескриптор файла fd на наличие событий, указанных в events. Количество  дескрипторов  файлов задается аргументом nfds. Если nfds превосходит NOFILES - системное ограничение на количество одновременно открытых файлов [см. <a href=INTRO~1.htm>intro(2)</a>] - poll завершается неудачей.
+<p align=justify>
+Если значение fd меньше нуля,  events  игнорируется,  а
+revents для этого элемента устанавливается равным 0.
+<p align=justify>
+Результаты работы системного вызова poll  помещаются  в
+поле  revents  структуры  типа pollfd. Единичные биты в
+revents  показывают,  какие  из  событий,  интересующих
+пользователя,  произошли.  Если  ни  одно из событий не
+произошло, poll возвращает в revents  нулевые  значения
+бит.  Флаги POLLHUP, POLLERR и POLLNVAL устанавливаются
+в revents, если выполнены соответствующие условия;  это
+происходит даже тогда, когда перечисленные флаги не установлены в поле events.
+<p align=justify>
+Если ни одно из ожидаемых событий ни для одного из указанных  дескрипторов  файлов не имеет места, poll будет
+ждать как минимум timeout миллисекунд  того,  чтобы  по
+крайней мере одно событие хотя бы для одного дескриптора  произошло.  На компьютерах, где время не может быть
+измерено с точностью до миллисекунд, timeout округляется до ближайшего доступного системе значения. Если значение timeout равно 0, poll возвращает  управление  немедленно.  Если  значение  timeout равно -1, poll ждет,
+пока не произойдет одно из событий, или системный вызов
+не будет прерван. Флаг O_NDELAY не влияет на poll.
+<p align=justify>
+Системный вызов poll завершается неудачей, если  выполнено хотя бы одно из следующих условий:
+<dl>
+<dt>[EAGAIN]
+<dd>Разместить внутренние структуры  данных  не
+удалось, но запрос следует повторить.
+<dt>[EFAULT]
+<dd>Какой-либо  аргумент  указывает  за пределы
+отведенного процессу адресного  пространства.
+<dt>[EINTR]
+<dd>Во время выполнения системного  вызова  перехвачен сигнал.
+<dt>[EINVAL]
+<dd>Аргумент nfds меньше 0 или больше NOFILES.
+</dl>
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=INTRO~1.htm>intro(2)</a>, <a href=READ.htm>read(2)</a>, <a href=GETMSG.htm>getmsg(2)</a>, <a href=PUTMSG.htm>putmsg(2)</a>, <a href=WRITE.htm>write(2)</a>.
+<a href=STREAMIO.htm>streamio(7)</a> в Справочнике администратора.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+При успешном  завершении  возвращается  неотрицательное
+целое  число.  Положительный результат равен количеству
+дескрипторов, для которых произошли  события  (то  есть
+компонент  revents не равен 0). Нулевой результат означает, что истек таймаут, а никаких событий не  произошло. В случае ошибки возвращается -1, а переменной errno
+присваивается код ошибки.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

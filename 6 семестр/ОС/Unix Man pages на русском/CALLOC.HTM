@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>MALLOC(3C)</title>
+		    <style type="text/css">
+TH.arial { font-family: Arial, Serif;}
+P.topic { font-family: sans-serif;}
+A.plain { text-decoration: none;}
+A.topic01 { color: #006890;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic02 { color: #099771;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic03 { color: #719709;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic04 { color: #98650A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic05 { color: #98340A;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic06 { color: #099607;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic07 { color: #9E1215;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic08 { color: #970941;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic09 { color: #950995;
+font-family: sans-serif;
+text-decoration: none;}
+A.topic010 { color: #390A98;
+font-family: sans-serif;
+text-decoration: none;}
+H1 { font-family: sans-serif;}
+H2 { font-family: sans-serif;}
+H3 { font-family: sans-serif;}
+H4 { font-family: sans-serif;}
+H5 { font-family: sans-serif;}
+H6 { font-family: sans-serif;}
+</style>
+</head>
+<body bgcolor="#FFFFFF" link="#006890" vlink="#003860" alink="#800000" text="#000000">
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/header0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<img src="_pic_/logo.gif" width=157 height=53 border=0 alt="Server for Information Technologies">
+</td><td align="right">
+<font size="-2">Сервер поддерживается<br><a class="plain" href="http://www.citmgu.ru">Центром Информационных Технологий</a><br>(095) 932-9212, 932-9213, 939-0783<br>E-mail: <a class=noneline href="mailto:info@citmgu.ru?Subject='From page topic CIT FORUM local copy'">info@citforum.ru</a></font>
+</td></tr>
+</table>
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="left">
+<font size="-1">Сервер содержит море(!) аналитической информации</font>
+</td><td align="right">
+<font size="-1">CIT Forum CD-ROM</font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<h3 align=center>MALLOC(3C)</h3>
+<p align=justify><b>НАЗВАНИЕ</b><br>
+malloc, free, realloc, calloc - управление памятью
+<p><b>СИНТАКСИС</b>
+<pre>
+	char *malloc (size)
+	unsigned size;
+	
+	void free (ptr)
+	char *ptr;
+	
+	char *realloc (ptr, size)
+	char *ptr;
+	unsigned size;
+	
+	char *calloc (nelem, elsize)
+	unsigned nelem, elsize;
+</pre>
+<p align=justify><b>ОПИСАНИЕ</b><br>
+Функции malloc и free предоставляют простой универсальный  механизм  выделения и освобождения памяти. Функция
+malloc возвращает указатель на блок памяти размером  не
+менее  size  байт,  который можно использовать в произвольных целях.
+<p align=justify>Аргументом функции free является указатель на блок  памяти,   предварительно  выделенный  с  помощью  функции
+malloc; после выполнения free эта  часть  памяти  может
+быть выделена вновь, но ее содержимое теряется.
+<p align=justify>В случае выхода за границы блока, выделенного  функцией
+malloc,  а  также при вызове функции free с аргументом,
+не являвшимся результатом malloc, эффект будет  непредсказуемым.
+<p align=justify>Функция malloc выделяет память  из  первого  достаточно
+большого  непрерывного блока свободной памяти, просматривая все блоки по циклу, начиная с последнего выделенного или освобожденного. Попутно смежные свободные блоки об единяются в один больший свободный блок. Если  не
+нашлось  подходящего  блока,  то  вызывается  sbrk [см.
+<a href=BRK.htm>brk(2)</a>], в результате чего сдвигается  верхняя  граница
+сегмента данных программы.
+<p align=justify>Функция  realloc изменяет размер блока, на который указывает аргумент ptr, до величины в size байт и  возвращает  указатель  на (возможно перемещенный) блок. Часть
+содержимого блока до наименьшего из  нового  и  старого
+размеров не изменяется. Если блок размером size байт не
+удается  разместить  на  прежнем  месте,  то вызывается
+malloc для выделения блока нужного размера, после  чего
+данные из старого блока перемещаются на новое место.
+<p align=justify>Аргумент ptr функции realloc может указывать и на блок,
+освобожденный после  последнего  обращения  к  функциям
+malloc,  realloc  или  calloc. Зная стратегию выделения
+памяти, последовательные вызовы функций malloc, free  и
+realloc можно использовать для уплотнения памяти.
+<p align=justify>Функция calloc выделяет пространство для массива из nelem элементов, каждый размером elsize байт, и заполняет
+массив нулями.
+<p align=justify>Границы  выделяемых  блоков  памяти  располагаются так,
+чтобы обеспечить (быть может после преобразования типов
+результирующих указателей) хранение произвольных об ектов.
+<p><b>СМ. ТАКЖЕ</b><br>
+<a href=BRK.htm>brk(2)</a>, <a href=MALLOC.htm>malloc(3X)</a>.
+<p align=justify><b>ДИАГНОСТИКА</b><br>
+Функции malloc, realloc и calloc возвращают пустой указатель NULL, если нет  достаточного  количества  памяти
+или  если  обнаруживается  нарушение  структуры  блоков
+(обычная причина такого нарушения - запись в память вне
+выделенных границ). В подобной ситуации не гарантируется сохранение содержимого блока, на  который  указывает
+аргумент ptr.
+<p align=justify><b>ПРИМЕЧАНИЯ</b><br>
+Когда  захвачено много блоков памяти, время поиска свободного блока увеличивается. Если программа захватывает
+память, но не освобождает ее, то каждое последующее успешное выделение  памяти  происходит  медленнее.  Чтобы
+этого  избежать, можно использовать более гибкую реализацию, см. <a href=MALLOC.htm>malloc(3X)</a>.
+<table cellspacing=0 cellpadding=0 border=0 background="_pic_/footer0.jpg" width="100%">
+<tr><td align="center">
+<table cellspacing=0 cellpadding=4 border=0 width="100%" background="">
+<tr><td align="right" valign="top" width="33%">
+<font size="-2">Comments: <a class="plain" href="mailto:info@citmgu.ru?Subject='From bottom of CIT FORUM local copy'">info@citmgu.ru</a><br>
+Designed by <a class="plain" href="mailto:andrey@novikov.com">Andrey Novikov</a><br>
+Copyright &copy; <a class="plain" href="http://www.citmgu.ru/">CIT</a></font>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>
